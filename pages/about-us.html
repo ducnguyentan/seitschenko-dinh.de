@@ -403,7 +403,6 @@
     </div>
   </footer>
 
-  <script src="../css/tailwind.min.css"></script>
   <script>
     // Mobile menu toggle
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
@@ -455,11 +454,426 @@
 
     document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
 
-    // Simple language change function (placeholder)
-    function changeLanguage(lang) {
-      console.log('Language changed to:', lang);
-      // Implement actual translation logic here
+    // Language data
+    const languages = {
+      de: {
+        meta: {
+          title: "Über uns - Seitschenko-Dinh",
+          description: "Professionelle Zahnversorgung, kompetente Beratung und langlebige Ergebnisse mit Zeit für Sie"
+        },
+        nav: {
+          home: "Start",
+          about: "Über uns",
+          services: "Leistungen",
+          labor: "Labor",
+          contact: "Kontakt"
+        },
+        aboutus: {
+          hero: {
+            title: "Was Sie bei uns erwarten können",
+            subtitle: "Professionelle Zahnversorgung, kompetente Beratung und langlebige Ergebnisse. Was häufig in unserer Dienstleistungsgesellschaft fehlt: Zeit."
+          },
+          intro: {
+            title: "Zeit für Sie",
+            description: "Wir nehmen uns die nötige Zeit für sorgfältige Diagnosen und ausführliche Beratungen in vier Sprachen: Deutsch, Englisch, Russisch und Vietnamesisch."
+          },
+          promises: {
+            title: "Unsere Versprechen an Sie"
+          },
+          promise1: {
+            title: "Zeit für Sie",
+            text: "Sorgfältige Diagnosen und ausführliche Beratungen in sechs Sprachen"
+          },
+          promise2: {
+            title: "Zeit für Ihre Behandlung",
+            text: "Professionelle Versorgung auf höchstem Niveau mit modernster Technik und biokompatiblen Materialien"
+          },
+          promise3: {
+            title: "Zeit für Qualität und Sicherheit",
+            text: "Strenge Hygieneprotokolle für eine risikofreie Behandlung"
+          },
+          promise4: {
+            title: "Zeit für Weiterbildung",
+            text: "Regelmäßige Fortbildungen in neuester medizinischer Expertise und progressiven Technologien"
+          },
+          promise5: {
+            title: "Zeit für Prophylaxe",
+            text: "Professionelle Vorsorge ist zentral in unserer Behandlungsphilosophie"
+          },
+          promise6: {
+            title: "Zeit für Service",
+            text: "Effiziente Terminvergabe minimiert Ihre Wartezeiten"
+          },
+          team: {
+            title: "Unser Team",
+            subtitle: "Erfahrene Zahnärzte und qualifiziertes Personal an beiden Standorten",
+            member1: {
+              name: "Vera Seitschenko-Dinh",
+              role: "Leitende Zahnärztin",
+              location: "Beide Standorte"
+            },
+            member2: {
+              name: "Brandon Dinh",
+              role: "Praxisleitung"
+            }
+          },
+          locations: {
+            title: "Unsere Standorte"
+          },
+          location1: {
+            title: "Standort Schwarzbach"
+          },
+          location2: {
+            title: "Standort Wall"
+          }
+        },
+        contact: {
+          address: "Adresse",
+          phone: "Telefon",
+          email: "E-Mail"
+        },
+        footer: {
+          description: "Moderne Zahnmedizin in Wuppertal mit zwei Standorten. Professionelle Behandlung in entspannter Atmosphäre.",
+          quickLinks: "Schnellzugriff",
+          contact: "Kontakt",
+          copyright: "© 2025 Seitschenko-Dinh. Alle Rechte vorbehalten."
+        }
+      },
+      en: {
+        meta: {
+          title: "About Us - Seitschenko-Dinh",
+          description: "Professional dental care, competent advice and lasting results with time for you"
+        },
+        nav: {
+          home: "Home",
+          about: "About Us",
+          services: "Services",
+          labor: "Laboratory",
+          contact: "Contact"
+        },
+        aboutus: {
+          hero: {
+            title: "What You Can Expect From Us",
+            subtitle: "Professional dental care, competent advice and lasting results. What is often missing in our service society: Time."
+          },
+          intro: {
+            title: "Time for You",
+            description: "We take the necessary time for careful diagnoses and detailed consultations in four languages: German, English, Russian and Vietnamese."
+          },
+          promises: {
+            title: "Our Promises to You"
+          },
+          promise1: {
+            title: "Time for You",
+            text: "Careful diagnoses and detailed consultations in four languages"
+          },
+          promise2: {
+            title: "Time for Your Treatment",
+            text: "Professional care at the highest level with state-of-the-art technology and biocompatible materials"
+          },
+          promise3: {
+            title: "Time for Quality and Safety",
+            text: "Strict hygiene protocols for risk-free treatment"
+          },
+          promise4: {
+            title: "Time for Continuing Education",
+            text: "Regular training in the latest medical expertise and progressive technologies"
+          },
+          promise5: {
+            title: "Time for Prevention",
+            text: "Professional preventive care is central to our treatment philosophy"
+          },
+          promise6: {
+            title: "Time for Service",
+            text: "Efficient appointment scheduling minimizes your waiting times"
+          },
+          team: {
+            title: "Our Team",
+            subtitle: "Experienced dentists and qualified staff at both locations",
+            member1: {
+              name: "Vera Seitschenko-Dinh",
+              role: "Lead Dentist",
+              location: "Both Locations"
+            },
+            member2: {
+              name: "Brandon Dinh",
+              role: "Practice Manager"
+            }
+          },
+          locations: {
+            title: "Our Locations"
+          },
+          location1: {
+            title: "Schwarzbach Location"
+          },
+          location2: {
+            title: "Wall Location"
+          }
+        },
+        contact: {
+          address: "Address",
+          phone: "Phone",
+          email: "Email"
+        },
+        footer: {
+          description: "Modern dentistry in Wuppertal with two locations. Professional treatment in a relaxed atmosphere.",
+          quickLinks: "Quick Links",
+          contact: "Contact",
+          copyright: "© 2025 Seitschenko-Dinh. All rights reserved."
+        }
+      },
+      vi: {
+        meta: {
+          title: "Về chúng tôi - Seitschenko-Dinh",
+          description: "Chăm sóc nha khoa chuyên nghiệp, tư vấn có năng lực và kết quả lâu dài với thời gian dành cho bạn"
+        },
+        nav: {
+          home: "Trang chủ",
+          about: "Giới thiệu",
+          services: "Dịch vụ",
+          labor: "Phòng Lab",
+          contact: "Liên hệ"
+        },
+        aboutus: {
+          hero: {
+            title: "Những gì bạn có thể mong đợi từ chúng tôi",
+            subtitle: "Chăm sóc nha khoa chuyên nghiệp, tư vấn có năng lực và kết quả lâu dài. Điều thường thiếu trong xã hội dịch vụ của chúng ta: Thời gian."
+          },
+          intro: {
+            title: "Thời gian cho bạn",
+            description: "Chúng tôi dành đủ thời gian để chẩn đoán cẩn thận và tư vấn chi tiết bằng bốn ngôn ngữ: Đức, Anh, Nga và Việt."
+          },
+          promises: {
+            title: "Cam kết của chúng tôi với bạn"
+          },
+          promise1: {
+            title: "Thời gian cho bạn",
+            text: "Chẩn đoán cẩn thận và tư vấn chi tiết bằng bốn ngôn ngữ"
+          },
+          promise2: {
+            title: "Thời gian cho điều trị của bạn",
+            text: "Chăm sóc chuyên nghiệp ở mức cao nhất với công nghệ hiện đại và vật liệu tương thích sinh học"
+          },
+          promise3: {
+            title: "Thời gian cho chất lượng và an toàn",
+            text: "Quy trình vệ sinh nghiêm ngặt cho điều trị an toàn"
+          },
+          promise4: {
+            title: "Thời gian cho đào tạo",
+            text: "Đào tạo thường xuyên về chuyên môn y tế mới nhất và công nghệ tiên tiến"
+          },
+          promise5: {
+            title: "Thời gian cho phòng ngừa",
+            text: "Chăm sóc phòng ngừa chuyên nghiệp là trung tâm trong triết lý điều trị của chúng tôi"
+          },
+          promise6: {
+            title: "Thời gian cho dịch vụ",
+            text: "Lên lịch hẹn hiệu quả giảm thiểu thời gian chờ đợi của bạn"
+          },
+          team: {
+            title: "Đội ngũ của chúng tôi",
+            subtitle: "Nha sĩ giàu kinh nghiệm và nhân viên có trình độ tại cả hai địa điểm",
+            member1: {
+              name: "Vera Seitschenko-Dinh",
+              role: "Nha sĩ trưởng",
+              location: "Cả hai địa điểm"
+            },
+            member2: {
+              name: "Brandon Dinh",
+              role: "Quản lý phòng khám"
+            }
+          },
+          locations: {
+            title: "Địa điểm của chúng tôi"
+          },
+          location1: {
+            title: "Địa điểm Schwarzbach"
+          },
+          location2: {
+            title: "Địa điểm Wall"
+          }
+        },
+        contact: {
+          address: "Địa chỉ",
+          phone: "Điện thoại",
+          email: "Email"
+        },
+        footer: {
+          description: "Nha khoa hiện đại tại Wuppertal với hai địa điểm. Điều trị chuyên nghiệp trong không gian thoải mái.",
+          quickLinks: "Liên kết nhanh",
+          contact: "Liên hệ",
+          copyright: "© 2025 Seitschenko-Dinh. Bảo lưu mọi quyền."
+        }
+      },
+      ru: {
+        meta: {
+          title: "О нас - Seitschenko-Dinh",
+          description: "Профессиональная стоматологическая помощь, компетентные консультации и долговечные результаты с временем для вас"
+        },
+        nav: {
+          home: "Главная",
+          about: "О нас",
+          services: "Услуги",
+          labor: "Лаборатория",
+          contact: "Контакты"
+        },
+        aboutus: {
+          hero: {
+            title: "Что вы можете ожидать от нас",
+            subtitle: "Профессиональная стоматологическая помощь, компетентные консультации и долговечные результаты. Чего часто не хватает в нашем обществе услуг: Времени."
+          },
+          intro: {
+            title: "Время для вас",
+            description: "Мы уделяем необходимое время для тщательной диагностики и подробных консультаций на четырёх языках: немецком, английском, русском и вьетнамском."
+          },
+          promises: {
+            title: "Наши обещания вам"
+          },
+          promise1: {
+            title: "Время для вас",
+            text: "Тщательная диагностика и подробные консультации на четырёх языках"
+          },
+          promise2: {
+            title: "Время для вашего лечения",
+            text: "Профессиональный уход на высочайшем уровне с современными технологиями и биосовместимыми материалами"
+          },
+          promise3: {
+            title: "Время для качества и безопасности",
+            text: "Строгие протоколы гигиены для безопасного лечения"
+          },
+          promise4: {
+            title: "Время для обучения",
+            text: "Регулярное обучение новейшим медицинским знаниям и прогрессивным технологиям"
+          },
+          promise5: {
+            title: "Время для профилактики",
+            text: "Профессиональная профилактическая помощь является центральной в нашей философии лечения"
+          },
+          promise6: {
+            title: "Время для сервиса",
+            text: "Эффективная запись на прием минимизирует время вашего ожидания"
+          },
+          team: {
+            title: "Наша команда",
+            subtitle: "Опытные стоматологи и квалифицированный персонал в обеих клиниках",
+            member1: {
+              name: "Вера Зайчшенко-Динь",
+              role: "Главный стоматолог",
+              location: "Обе клиники"
+            },
+            member2: {
+              name: "Брэндон Динь",
+              role: "Управляющий клиникой"
+            }
+          },
+          locations: {
+            title: "Наши клиники"
+          },
+          location1: {
+            title: "Клиника Шварцбах"
+          },
+          location2: {
+            title: "Клиника Валь"
+          }
+        },
+        contact: {
+          address: "Адрес",
+          phone: "Телефон",
+          email: "Email"
+        },
+        footer: {
+          description: "Современная стоматология в Вуппертале с двумя клиниками. Профессиональное лечение в расслабленной атмосфере.",
+          quickLinks: "Быстрые ссылки",
+          contact: "Контакты",
+          copyright: "© 2025 Seitschenko-Dinh. Все права защищены."
+        }
+      }
+    };
+
+    // Language configuration
+    const languageConfig = {
+      de: { flag: "https://flagcdn.com/24x18/de.png", code: "DE", alt: "Deutsch" },
+      en: { flag: "https://flagcdn.com/24x18/us.png", code: "EN", alt: "English" },
+      vi: { flag: "https://flagcdn.com/24x18/vn.png", code: "VN", alt: "Tiếng Việt" },
+      ru: { flag: "https://flagcdn.com/24x18/ru.png", code: "RU", alt: "Русский" }
+    };
+
+    // Current language
+    let currentLanguage = localStorage.getItem('preferredLanguage') || 'de';
+
+    // Function to get nested translation
+    function getTranslation(key) {
+      const keys = key.split('.');
+      let value = languages[currentLanguage];
+      for (const k of keys) {
+        value = value?.[k];
+      }
+      return value || key;
     }
+
+    // Function to update all translatable elements
+    function updateTranslations() {
+      document.querySelectorAll('[data-translate]').forEach(element => {
+        const key = element.getAttribute('data-translate');
+        const translation = getTranslation(key);
+        element.textContent = translation;
+      });
+
+      // Update meta tags
+      document.getElementById('page-title').textContent = getTranslation('meta.title');
+      document.getElementById('page-description').setAttribute('content', getTranslation('meta.description'));
+      document.getElementById('html-root').setAttribute('lang', currentLanguage);
+    }
+
+    // Function to update language display
+    function updateLanguageDisplay(lang) {
+      const config = languageConfig[lang];
+
+      // Desktop
+      const currentFlag = document.getElementById('current-flag');
+      const currentLang = document.getElementById('current-lang');
+      if (currentFlag && currentLang) {
+        currentFlag.src = config.flag;
+        currentFlag.alt = config.alt;
+        currentLang.textContent = config.code;
+      }
+
+      // Mobile
+      const mobileCurrentFlag = document.getElementById('mobile-current-flag');
+      const mobileCurrentLang = document.getElementById('mobile-current-lang');
+      if (mobileCurrentFlag && mobileCurrentLang) {
+        mobileCurrentFlag.src = config.flag;
+        mobileCurrentFlag.alt = config.alt;
+        mobileCurrentLang.textContent = config.code;
+      }
+
+      // Update active states
+      document.querySelectorAll('.language-option, .language-option-mobile').forEach(option => {
+        if (option.getAttribute('data-lang') === lang) {
+          option.classList.add('active');
+        } else {
+          option.classList.remove('active');
+        }
+      });
+    }
+
+    // Language change function
+    function changeLanguage(lang) {
+      currentLanguage = lang;
+      localStorage.setItem('preferredLanguage', lang);
+      updateTranslations();
+      updateLanguageDisplay(lang);
+
+      // Close language menus
+      document.getElementById('language-menu')?.classList.remove('show');
+      document.getElementById('mobile-language-menu')?.classList.remove('show');
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      updateTranslations();
+      updateLanguageDisplay(currentLanguage);
+    });
   </script>
 </body>
 </html>
