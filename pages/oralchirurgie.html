@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<!--
+  Oralchirurgie - Oral Surgery Service Page
+  ==========================================
+  Gentle surgical procedures for your dental health.
+-->
+<html lang="de" id="html-root">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title id="page-title">Oralchirurgie - Seitschenko-Dinh</title>
+  <meta name="description" content="Schonende chirurgische Eingriffe für Ihre Zahngesundheit" id="page-description">
+  <link href="../css/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="bg-white text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-white shadow-lg fixed top-0 left-0 right-0 z-50">
+    <div class="container mx-auto px-4">
+      <div class="flex items-center justify-between py-4">
+        <div class="flex items-center space-x-3">
+          <img src="../assets/img/logo.svg" alt="Seitschenko-Dinh Logo" class="w-12 h-12">
+          <a href="../index.html" class="text-2xl font-bold text-gray-800">Seitschenko-Dinh</a>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-4">
+          <nav class="flex space-x-2">
+            <a href="../index.html#home" class="nav-link" data-translate="nav.home">Start</a>
+            <a href="../index.html#about" class="nav-link" data-translate="nav.about">Über uns</a>
+            <a href="../index.html#services" class="nav-link active" data-translate="nav.services">Leistungen</a>
+            <a href="../index.html#labor" class="nav-link" data-translate="nav.labor">Labor</a>
+            <a href="../index.html#contact" class="nav-link" data-translate="nav.contact">Kontakt</a>
+          </nav>
+
+          <div class="language-switcher">
+            <button id="language-btn" class="flex items-center space-x-1 px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+              <img id="current-flag" src="https://flagcdn.com/24x18/de.png" alt="Deutsch" class="language-flag">
+              <span id="current-lang">DE</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div id="language-menu" class="language-menu">
+              <a href="#" onclick="changeLanguage('de')" class="language-option" data-lang="de">
+                <img src="https://flagcdn.com/24x18/de.png" alt="Deutsch" class="language-flag">
+                Deutsch
+              </a>
+              <a href="#" onclick="changeLanguage('en')" class="language-option" data-lang="en">
+                <img src="https://flagcdn.com/24x18/us.png" alt="English" class="language-flag">
+                English
+              </a>
+              <a href="#" onclick="changeLanguage('vi')" class="language-option" data-lang="vi">
+                <img src="https://flagcdn.com/24x18/vn.png" alt="Tiếng Việt" class="language-flag">
+                Tiếng Việt
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <button id="mobile-menu-btn" class="md:hidden p-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+
+      <div id="mobile-menu" class="md:hidden hidden pb-4">
+        <div class="flex flex-col space-y-2">
+          <a href="../index.html#home" class="nav-link" data-translate="nav.home">Start</a>
+          <a href="../index.html#about" class="nav-link" data-translate="nav.about">Über uns</a>
+          <a href="../index.html#services" class="nav-link active" data-translate="nav.services">Leistungen</a>
+          <a href="../index.html#labor" class="nav-link" data-translate="nav.labor">Labor</a>
+          <a href="../index.html#contact" class="nav-link" data-translate="nav.contact">Kontakt</a>
+
+          <div class="pt-2 border-t border-gray-200">
+            <div class="language-switcher-mobile">
+              <button id="mobile-language-btn" class="flex items-center justify-between w-full px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+                <span data-translate="language.current">Sprache:</span>
+                <div class="flex items-center space-x-1">
+                  <img id="mobile-current-flag" src="https://flagcdn.com/24x18/de.png" alt="Deutsch" class="language-flag">
+                  <span id="mobile-current-lang">DE</span>
+                </div>
+              </button>
+              <div id="mobile-language-menu" class="language-menu-mobile">
+                <a href="#" onclick="changeLanguage('de')" class="language-option-mobile" data-lang="de">
+                  <img src="https://flagcdn.com/24x18/de.png" alt="Deutsch" class="language-flag">
+                  Deutsch
+                </a>
+                <a href="#" onclick="changeLanguage('en')" class="language-option-mobile" data-lang="en">
+                  <img src="https://flagcdn.com/24x18/us.png" alt="English" class="language-flag">
+                  English
+                </a>
+                <a href="#" onclick="changeLanguage('vi')" class="language-option-mobile" data-lang="vi">
+                  <img src="https://flagcdn.com/24x18/vn.png" alt="Tiếng Việt" class="language-flag">
+                  Tiếng Việt
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-bg py-20 relative overflow-hidden">
+    <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+    <div class="relative z-10 text-center max-w-4xl mx-auto px-4">
+      <h1 class="text-4xl md:text-6xl font-bold text-white mb-6" data-translate="oralchirurgie.hero.title">
+        Oralchirurgie
+      </h1>
+      <p class="text-xl text-white mb-8 font-light max-w-2xl mx-auto" data-translate="oralchirurgie.hero.subtitle">
+        Schonende chirurgische Eingriffe für Ihre Zahngesundheit
+      </p>
+    </div>
+  </section>
+
+  <!-- Introduction Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+        <div class="scroll-reveal img-circle-frame">
+          <img src="../assets/img/z7157290635534_333918e8d7914be449ed5ff1eafc366c.jpg" alt="Oralchirurgie" class="shadow-2xl">
+        </div>
+        <div class="scroll-reveal">
+          <h2 class="text-3xl font-bold text-gray-800 mb-6" data-translate="oralchirurgie.intro.title">
+            Zahnchirurgie in unserer Praxis
+          </h2>
+          <p class="text-lg text-gray-600 mb-4 leading-relaxed" data-translate="oralchirurgie.intro.text1">
+            Manchmal reichen konservative Behandlungen nicht aus, um Zahnprobleme zu lösen. In diesen Fällen sind oralchirurgische Eingriffe notwendig. Dank moderner Technik und schonender Verfahren können wir viele Operationen ambulant in unserer Praxis durchführen.
+          </p>
+          <p class="text-lg text-gray-600 leading-relaxed" data-translate="oralchirurgie.intro.text2">
+            Von der Weisheitszahn-Entfernung über Wurzelspitzenresektionen bis zu komplexeren Eingriffen - wir behandeln Sie mit größter Sorgfalt und modernsten Methoden. Ihr Wohlbefinden steht dabei immer im Mittelpunkt.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center" data-translate="oralchirurgie.benefits.title">
+          Vorteile unserer Oralchirurgie
+        </h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="bg-white rounded-2xl p-6 shadow-lg">
+            <div class="w-12 h-12 bg-gradient-to-r from-teal-500 to-teal-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="oralchirurgie.benefits.benefit1.title">
+              Moderne Technik
+            </h3>
+            <p class="text-gray-600" data-translate="oralchirurgie.benefits.benefit1.text">
+              Digitale Röntgendiagnostik und schonende OP-Verfahren für optimale Ergebnisse.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 shadow-lg">
+            <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="oralchirurgie.benefits.benefit2.title">
+              Schmerzfreie Behandlung
+            </h3>
+            <p class="text-gray-600" data-translate="oralchirurgie.benefits.benefit2.text">
+              Lokale Betäubung oder auf Wunsch Sedierung für angstfreie Eingriffe.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 shadow-lg">
+            <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="oralchirurgie.benefits.benefit3.title">
+              Schnelle Heilung
+            </h3>
+            <p class="text-gray-600" data-translate="oralchirurgie.benefits.benefit3.text">
+              Minimal-invasive Techniken fördern schnelle Wundheilung.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 shadow-lg">
+            <div class="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="oralchirurgie.benefits.benefit4.title">
+              Umfassende Nachsorge
+            </h3>
+            <p class="text-gray-600" data-translate="oralchirurgie.benefits.benefit4.text">
+              Wir begleiten Sie auch nach dem Eingriff bis zur vollständigen Heilung.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center" data-translate="oralchirurgie.services.title">
+          Unsere oralchirurgischen Leistungen
+        </h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-gradient-to-br from-teal-50 to-teal-100 rounded-2xl p-8 shadow-md">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-gradient-to-r from-teal-500 to-teal-600 rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-800 ml-4" data-translate="oralchirurgie.services.service1.title">
+                Weisheitszahnentfernung
+              </h3>
+            </div>
+            <p class="text-gray-700 leading-relaxed" data-translate="oralchirurgie.services.service1.text">
+              Schonende Entfernung problematischer Weisheitszähne unter örtlicher Betäubung oder Sedierung.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-2xl p-8 shadow-md">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-600 rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-800 ml-4" data-translate="oralchirurgie.services.service2.title">
+                Wurzelspitzenresektion
+              </h3>
+            </div>
+            <p class="text-gray-700 leading-relaxed" data-translate="oralchirurgie.services.service2.text">
+              Rettung von Zähnen mit chronischen Entzündungen an der Wurzelspitze durch minimal-invasiven Eingriff.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 shadow-md">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-800 ml-4" data-translate="oralchirurgie.services.service3.title">
+                Zahnfreilegung
+              </h3>
+            </div>
+            <p class="text-gray-700 leading-relaxed" data-translate="oralchirurgie.services.service3.text">
+              Freilegung verlagerter Zähne für kieferorthopädische Behandlungen.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-orange-50 to-rose-50 rounded-2xl p-8 shadow-md">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-gradient-to-r from-orange-500 to-rose-600 rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-800 ml-4" data-translate="oralchirurgie.services.service4.title">
+                Knochenaufbau
+              </h3>
+            </div>
+            <p class="text-gray-700 leading-relaxed" data-translate="oralchirurgie.services.service4.text">
+              Aufbau von Kieferknochen als Vorbereitung für Implantate.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Treatment Process Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center" data-translate="oralchirurgie.process.title">
+          Ablauf einer oralchirurgischen Behandlung
+        </h2>
+        <div class="space-y-6">
+          <div class="flex items-start space-x-4 bg-white rounded-xl p-6">
+            <div class="flex-shrink-0 w-12 h-12 bg-teal-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
+              1
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-2" data-translate="oralchirurgie.process.step1.title">
+                Ausführliche Diagnostik
+              </h3>
+              <p class="text-gray-600" data-translate="oralchirurgie.process.step1.text">
+                Digitale Röntgenbilder und 3D-Diagnostik für präzise Planung.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-start space-x-4 bg-white rounded-xl p-6">
+            <div class="flex-shrink-0 w-12 h-12 bg-teal-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
+              2
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-2" data-translate="oralchirurgie.process.step2.title">
+                Beratung und Aufklärung
+              </h3>
+              <p class="text-gray-600" data-translate="oralchirurgie.process.step2.text">
+                Wir erklären Ihnen den geplanten Eingriff detailliert und beantworten alle Fragen.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-start space-x-4 bg-white rounded-xl p-6">
+            <div class="flex-shrink-0 w-12 h-12 bg-teal-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
+              3
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-2" data-translate="oralchirurgie.process.step3.title">
+                Schonender Eingriff
+              </h3>
+              <p class="text-gray-600" data-translate="oralchirurgie.process.step3.text">
+                Operation unter sterilen Bedingungen mit modernster Technik.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-start space-x-4 bg-white rounded-xl p-6">
+            <div class="flex-shrink-0 w-12 h-12 bg-teal-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
+              4
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-2" data-translate="oralchirurgie.process.step4.title">
+                Nachsorge und Kontrolle
+              </h3>
+              <p class="text-gray-600" data-translate="oralchirurgie.process.step4.text">
+                Regelmäßige Kontrollen und persönliche Betreuung bis zur vollständigen Heilung.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center" data-translate="faq.title">
+          Häufig gestellte Fragen
+        </h2>
+        <div class="space-y-6">
+          <div class="bg-gray-50 rounded-xl p-6 shadow-md">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="oralchirurgie.faq.question1">
+              Wann müssen Weisheitszähne entfernt werden?
+            </h3>
+            <p class="text-gray-600" data-translate="oralchirurgie.faq.answer1">
+              Weisheitszähne sollten entfernt werden, wenn sie Schmerzen verursachen, schief wachsen, Nachbarzähne schädigen oder sich entzünden. Auch vorbeugend können sie entfernt werden, wenn nicht genug Platz im Kiefer ist.
+            </p>
+          </div>
+
+          <div class="bg-gray-50 rounded-xl p-6 shadow-md">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="oralchirurgie.faq.question2">
+              Wie lange dauert die Heilung nach einer Weisheitszahn-OP?
+            </h3>
+            <p class="text-gray-600" data-translate="oralchirurgie.faq.answer2">
+              Die Wunde heilt in der Regel innerhalb von 1-2 Wochen. Schwellungen und leichte Schmerzen klingen nach 3-5 Tagen ab. Vollständige Knochenheilung dauert mehrere Monate.
+            </p>
+          </div>
+
+          <div class="bg-gray-50 rounded-xl p-6 shadow-md">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="oralchirurgie.faq.question3">
+              Was darf ich nach einem chirurgischen Eingriff essen?
+            </h3>
+            <p class="text-gray-600" data-translate="oralchirurgie.faq.answer3">
+              In den ersten Tagen sollten Sie weiche, kühle Speisen zu sich nehmen (Joghurt, Pudding, Suppen). Vermeiden Sie heiße Getränke, Alkohol und harte Speisen für mindestens 3 Tage.
+            </p>
+          </div>
+
+          <div class="bg-gray-50 rounded-xl p-6 shadow-md">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="oralchirurgie.faq.question4">
+              Welche Schmerzmittel kann ich nach der OP nehmen?
+            </h3>
+            <p class="text-gray-600" data-translate="oralchirurgie.faq.answer4">
+              Wir empfehlen Ibuprofen oder Paracetamol. Vermeiden Sie Aspirin, da es die Blutgerinnung hemmt. Genaue Empfehlungen erhalten Sie nach dem Eingriff.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-gray-800 mb-4" data-translate="contact.title">Termin vereinbaren</h2>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto" data-translate="contact.subtitle">
+          Vereinbaren Sie einen Termin in einer unserer Praxen
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div class="bg-white rounded-2xl shadow-lg p-8">
+          <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="contact.location1.title">Standort Schwarzbach</h3>
+          <div class="space-y-4">
+            <div class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+              <div>
+                <p class="font-semibold text-gray-800" data-translate="contact.address">Adresse</p>
+                <p class="text-gray-600">Schwarzbach 2<br>42277 Wuppertal</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+              </svg>
+              <div>
+                <p class="font-semibold text-gray-800" data-translate="contact.phone">Telefon</p>
+                <a href="tel:0202660828" class="text-teal-500 hover:text-teal-600">0202 660828</a>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+              <div>
+                <p class="font-semibold text-gray-800" data-translate="contact.email">E-Mail</p>
+                <a href="mailto:schwarzbach@seitschenko-dinh.de" class="text-teal-500 hover:text-teal-600">schwarzbach@seitschenko-dinh.de</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8">
+          <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="contact.location2.title">Standort Wall</h3>
+          <div class="space-y-4">
+            <div class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+              <div>
+                <p class="font-semibold text-gray-800" data-translate="contact.address">Adresse</p>
+                <p class="text-gray-600">Wall 3<br>42103 Wuppertal</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+              </svg>
+              <div>
+                <p class="font-semibold text-gray-800" data-translate="contact.phone">Telefon</p>
+                <a href="tel:0202451642" class="text-teal-500 hover:text-teal-600">0202 451642</a>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+              <div>
+                <p class="font-semibold text-gray-800" data-translate="contact.email">E-Mail</p>
+                <a href="mailto:wall@seitschenko-dinh.de" class="text-teal-500 hover:text-teal-600">wall@seitschenko-dinh.de</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer-bg text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid md:grid-cols-4 gap-8">
+        <div class="md:col-span-2">
+          <div class="flex items-center space-x-3 mb-4">
+            <img src="../assets/img/logo.svg" alt="Seitschenko-Dinh Logo" class="w-12 h-12">
+            <span class="text-2xl font-bold">Seitschenko-Dinh</span>
+          </div>
+          <p class="text-gray-400 mb-4" data-translate="footer.description">
+            Moderne Zahnmedizin in Wuppertal mit zwei Standorten. Professionelle Behandlung in entspannter Atmosphäre.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-semibold mb-4" data-translate="footer.quickLinks">Schnellzugriff</h4>
+          <ul class="space-y-2">
+            <li><a href="../index.html#home" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.home">Start</a></li>
+            <li><a href="../index.html#about" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.about">Über uns</a></li>
+            <li><a href="../index.html#services" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.services">Leistungen</a></li>
+            <li><a href="../index.html#labor" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.labor">Labor</a></li>
+            <li><a href="../index.html#contact" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.contact">Kontakt</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-semibold mb-4" data-translate="footer.contact">Kontakt</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><strong>Schwarzbach:</strong><br>0202 660828</li>
+            <li><strong>Wall:</strong><br>0202 451642</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+        <p class="text-gray-400" data-translate="footer.copyright">
+          © 2025 Seitschenko-Dinh. Alle Rechte vorbehalten.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/service-translations.js"></script>
+  <script src="../js/chatbot.js"></script>
+  <script>
+    window.addEventListener('load', function() {
+      const chatbot = new DigitizedBrainsChatbot({
+        iframeSrc: 'https://ducnguyen1978-digitizedgemini.hf.space',
+        widgetTitle: 'Dental Assistant',
+        position: { bottom: '30px', right: '30px' },
+        size: { width: '420px', height: '600px' }
+      });
+    });
+  </script>
+</body>
+</html>

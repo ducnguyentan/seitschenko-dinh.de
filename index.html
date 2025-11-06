@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<!--
+  Zahnarztpraxen Seitschenko-Dinh - Multilingual Website
+  ========================================================
+  Modern dental practice website with German, English, and Vietnamese support.
+  Features responsive design with comprehensive service information.
+-->
+<html lang="de" id="html-root">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title id="page-title">Zahnarztpraxen Seitschenko-Dinh - Moderne Zahnmedizin in Wuppertal</title>
+  <meta name="description" content="Professionelle Zahnmedizin in Wohlfühl-Ambiente in Wuppertal - Ihre Gesundheit und Ihr Wohlbefinden stehen an erster Stelle" id="page-description">
+  <link href="css/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-white text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-white shadow-lg fixed top-0 left-0 right-0 z-50">
+    <div class="container mx-auto px-4">
+      <div class="flex items-center justify-between py-4">
+        <!-- Logo -->
+        <div class="flex items-center space-x-3">
+          <img src="assets/img/logo.svg" alt="Seitschenko-Dinh Logo" class="w-12 h-12">
+          <a href="#" class="text-2xl font-bold text-gray-800">Seitschenko-Dinh</a>
+        </div>
+
+        <!-- Navigation and Language Switcher -->
+        <div class="hidden md:flex items-center space-x-4">
+          <nav class="flex space-x-2">
+            <a href="#home" class="nav-link active" data-translate="nav.home">Start</a>
+            <a href="#about" class="nav-link" data-translate="nav.about">Über uns</a>
+            <a href="#services" class="nav-link" data-translate="nav.services">Leistungen</a>
+            <a href="#labor" class="nav-link" data-translate="nav.labor">Labor</a>
+            <a href="#contact" class="nav-link" data-translate="nav.contact">Kontakt</a>
+          </nav>
+
+          <!-- Language Switcher -->
+          <div class="language-switcher">
+            <button id="language-btn" class="flex items-center space-x-1 px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+              <img id="current-flag" src="https://flagcdn.com/24x18/de.png" alt="Deutsch" class="language-flag">
+              <span id="current-lang">DE</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div id="language-menu" class="language-menu">
+              <a href="#" onclick="changeLanguage('de')" class="language-option" data-lang="de">
+                <img src="https://flagcdn.com/24x18/de.png" alt="Deutsch" class="language-flag">
+                Deutsch
+              </a>
+              <a href="#" onclick="changeLanguage('en')" class="language-option" data-lang="en">
+                <img src="https://flagcdn.com/24x18/us.png" alt="English" class="language-flag">
+                English
+              </a>
+              <a href="#" onclick="changeLanguage('vi')" class="language-option" data-lang="vi">
+                <img src="https://flagcdn.com/24x18/vn.png" alt="Tiếng Việt" class="language-flag">
+                Tiếng Việt
+              </a>
+              <a href="#" onclick="changeLanguage('ru')" class="language-option" data-lang="ru">
+                <img src="https://flagcdn.com/24x18/ru.png" alt="Русский" class="language-flag">
+                Русский
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="md:hidden p-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="md:hidden hidden pb-4">
+        <div class="flex flex-col space-y-2">
+          <a href="#home" class="nav-link active" data-translate="nav.home">Start</a>
+          <a href="#about" class="nav-link" data-translate="nav.about">Über uns</a>
+          <a href="#services" class="nav-link" data-translate="nav.services">Leistungen</a>
+          <a href="#labor" class="nav-link" data-translate="nav.labor">Labor</a>
+          <a href="#contact" class="nav-link" data-translate="nav.contact">Kontakt</a>
+
+          <!-- Mobile Language Switcher -->
+          <div class="pt-2 border-t border-gray-200">
+            <div class="language-switcher-mobile">
+              <button id="mobile-language-btn" class="flex items-center justify-between w-full px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+                <span data-translate="language.current">Sprache:</span>
+                <div class="flex items-center space-x-1">
+                  <img id="mobile-current-flag" src="https://flagcdn.com/24x18/de.png" alt="Deutsch" class="language-flag">
+                  <span id="mobile-current-lang">DE</span>
+                </div>
+              </button>
+              <div id="mobile-language-menu" class="language-menu-mobile">
+                <a href="#" onclick="changeLanguage('de')" class="language-option-mobile" data-lang="de">
+                  <img src="https://flagcdn.com/24x18/de.png" alt="Deutsch" class="language-flag">
+                  Deutsch
+                </a>
+                <a href="#" onclick="changeLanguage('en')" class="language-option-mobile" data-lang="en">
+                  <img src="https://flagcdn.com/24x18/us.png" alt="English" class="language-flag">
+                  English
+                </a>
+                <a href="#" onclick="changeLanguage('vi')" class="language-option-mobile" data-lang="vi">
+                  <img src="https://flagcdn.com/24x18/vn.png" alt="Tiếng Việt" class="language-flag">
+                  Tiếng Việt
+                </a>
+                <a href="#" onclick="changeLanguage('ru')" class="language-option-mobile" data-lang="ru">
+                  <img src="https://flagcdn.com/24x18/ru.png" alt="Русский" class="language-flag">
+                  Русский
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero-bg py-20 relative overflow-hidden">
+    <div class="absolute inset-0 bg-white bg-opacity-30"></div>
+    <div class="relative z-10 text-center max-w-4xl mx-auto px-4">
+      <h1 class="text-4xl md:text-6xl font-bold mb-6 scroll-reveal" style="color: #5eb3b3;" data-translate="hero.title">
+        Moderne Zahnmedizin im Wohlfühl-Ambiente
+      </h1>
+      <p class="text-xl text-gray-700 mb-8 font-light max-w-2xl mx-auto scroll-reveal" data-translate="hero.subtitle">
+        Ihre Gesundheit und Ihr Wohlbefinden stehen bei uns an erster Stelle
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 scroll-reveal">
+        <a href="#about" class="btn-primary text-white px-8 py-4 rounded-full font-semibold text-lg inline-block" data-translate="hero.exploreBtn">
+          Mehr erfahren
+        </a>
+        <a href="#contact" class="btn-outline-teal px-8 py-4 rounded-full font-semibold text-lg inline-block" data-translate="hero.contactBtn">
+          Termin vereinbaren
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16 scroll-reveal">
+        <h2 class="text-4xl font-bold text-gray-800 mb-4" data-translate="about.title">Über unsere Praxis</h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto" data-translate="about.subtitle">
+          Wir nehmen uns die nötige Zeit für sorgfältige Diagnosen und ausführliche Beratungen
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+        <div class="scroll-reveal img-circle-frame">
+          <img src="assets/img/praxis-02-scaled.jpeg" alt="Moderne Zahnarztpraxis" class="shadow-2xl">
+        </div>
+        <div class="scroll-reveal">
+          <h3 class="text-3xl font-bold text-gray-800 mb-6" data-translate="about.philosophy.title">
+            Unsere Philosophie
+          </h3>
+          <p class="text-gray-600 text-lg mb-6 leading-relaxed" data-translate="about.philosophy.description">
+            Wir legen besonderen Wert auf Zeit - Zeit für Sie, Zeit für sorgfältige Diagnosen und ausführliche Beratungen. Unsere professionelle Zahnmedizin verbindet modernste Techniken mit menschlicher Zuwendung.
+          </p>
+          <div class="space-y-4">
+            <div class="flex items-center space-x-3">
+              <div class="w-6 h-6 bg-teal-500 rounded-full flex items-center justify-center">
+                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <span class="text-gray-700" data-translate="about.feature1">Mehrsprachige Beratung (Deutsch, Russisch, Arabisch, Türkisch, Französisch, Englisch)</span>
+            </div>
+            <div class="flex items-center space-x-3">
+              <div class="w-6 h-6 bg-teal-500 rounded-full flex items-center justify-center">
+                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <span class="text-gray-700" data-translate="about.feature2">Modernste Behandlungstechniken und biokompatible Materialien</span>
+            </div>
+            <div class="flex items-center space-x-3">
+              <div class="w-6 h-6 bg-teal-500 rounded-full flex items-center justify-center">
+                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <span class="text-gray-700" data-translate="about.feature3">Strenge Hygieneprotokolle für risikofreie Behandlung</span>
+            </div>
+            <div class="flex items-center space-x-3">
+              <div class="w-6 h-6 bg-teal-500 rounded-full flex items-center justify-center">
+                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <span class="text-gray-700" data-translate="about.feature4">Regelmäßige Fortbildungen des gesamten Teams</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team Section -->
+      <div class="scroll-reveal">
+        <h3 class="text-3xl font-bold text-gray-800 mb-8 text-center" data-translate="about.team.title">Unser Team</h3>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-white rounded-2xl p-6 shadow-lg text-center">
+            <div class="w-24 h-24 logo-gradient rounded-full mx-auto mb-4 flex items-center justify-center">
+              <span class="text-white text-3xl font-bold">VS</span>
+            </div>
+            <h4 class="text-xl font-semibold text-gray-800 mb-2">Vera Seitschenko-Dinh</h4>
+            <p class="text-gray-600" data-translate="about.team.member1">Leitende Zahnärztin an beiden Standorten</p>
+          </div>
+          <div class="bg-white rounded-2xl p-6 shadow-lg text-center">
+            <div class="w-24 h-24 logo-gradient rounded-full mx-auto mb-4 flex items-center justify-center">
+              <span class="text-white text-3xl font-bold">BD</span>
+            </div>
+            <h4 class="text-xl font-semibold text-gray-800 mb-2">Brandon Dinh</h4>
+            <p class="text-gray-600" data-translate="about.team.member2">Praxisleitung</p>
+          </div>
+          <div class="bg-white rounded-2xl p-6 shadow-lg text-center">
+            <div class="w-24 h-24 logo-gradient rounded-full mx-auto mb-4 flex items-center justify-center">
+              <span class="text-white text-3xl font-bold">SD</span>
+            </div>
+            <h4 class="text-xl font-semibold text-gray-800 mb-2">Sofia Dinh</h4>
+            <p class="text-gray-600" data-translate="about.team.member3">Praxisleitung</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16 scroll-reveal">
+        <h2 class="text-4xl font-bold text-gray-800 mb-4" data-translate="services.title">Unsere Leistungen</h2>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto" data-translate="services.subtitle">
+          Umfassende zahnmedizinische Versorgung für die ganze Familie
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Service 1: Children's Dentistry -->
+        <div class="service-card bg-white rounded-2xl p-6 shadow-lg scroll-reveal">
+          <a href="pages/kinderzahnheilkunde.html" class="block">
+            <div class="w-12 h-12 bg-gradient-to-r from-teal-500 to-teal-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-800 mb-3" data-translate="services.service1.title">Kinderzahnheilkunde</h3>
+            <p class="text-sm text-gray-600" data-translate="services.service1.description">Spezialisierte Behandlung für junge Patienten mit sanften, stressfreien Methoden</p>
+          </a>
+        </div>
+
+        <!-- Service 2: Anxiety Patients -->
+        <div class="service-card bg-white rounded-2xl p-6 shadow-lg scroll-reveal">
+          <a href="pages/angstpatienten.html" class="block">
+            <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-800 mb-3" data-translate="services.service2.title">Angstpatienten</h3>
+            <p class="text-sm text-gray-600" data-translate="services.service2.description">Einfühlsame Betreuung für Patienten mit Zahnarztangst</p>
+          </a>
+        </div>
+
+        <!-- Service 3: Preventive Care -->
+        <div class="service-card bg-white rounded-2xl p-6 shadow-lg scroll-reveal">
+          <a href="pages/prophylaxe.html" class="block">
+            <div class="w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-800 mb-3" data-translate="services.service3.title">Prophylaxe</h3>
+            <p class="text-sm text-gray-600" data-translate="services.service3.description">Früherkennung und Vorsorge für langfristige Zahngesundheit</p>
+          </a>
+        </div>
+
+        <!-- Service 4: Restorative Dentistry -->
+        <div class="service-card bg-white rounded-2xl p-6 shadow-lg scroll-reveal">
+          <a href="pages/zahnerhaltung.html" class="block">
+            <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-800 mb-3" data-translate="services.service4.title">Zahnerhaltung</h3>
+            <p class="text-sm text-gray-600" data-translate="services.service4.description">Erhalt und Schutz natürlicher Zähne durch moderne Verfahren</p>
+          </a>
+        </div>
+
+        <!-- Service 5: Cosmetic Dentistry -->
+        <div class="service-card bg-white rounded-2xl p-6 shadow-lg scroll-reveal">
+          <a href="pages/aesthetische-zahnheilkunde.html" class="block">
+            <div class="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-800 mb-3" data-translate="services.service5.title">Ästhetische Zahnheilkunde</h3>
+            <p class="text-sm text-gray-600" data-translate="services.service5.description">Verschönerung Ihres Lächelns mit modernen ästhetischen Lösungen</p>
+          </a>
+        </div>
+
+        <!-- Service 6: Dentures -->
+        <div class="service-card bg-white rounded-2xl p-6 shadow-lg scroll-reveal">
+          <a href="pages/zahnersatz.html" class="block">
+            <div class="w-12 h-12 bg-gradient-to-r from-teal-500 to-teal-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-800 mb-3" data-translate="services.service6.title">Zahnersatz</h3>
+            <p class="text-sm text-gray-600" data-translate="services.service6.description">Hochwertiger Zahnersatz für Ästhetik und Funktion</p>
+          </a>
+        </div>
+
+        <!-- Service 7: Oral Surgery -->
+        <div class="service-card bg-white rounded-2xl p-6 shadow-lg scroll-reveal">
+          <a href="pages/oralchirurgie.html" class="block">
+            <div class="w-12 h-12 bg-gradient-to-r from-red-500 to-pink-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-800 mb-3" data-translate="services.service7.title">Oralchirurgie</h3>
+            <p class="text-sm text-gray-600" data-translate="services.service7.description">Umfassende chirurgische Behandlung von komplexen Zahnproblemen</p>
+          </a>
+        </div>
+
+        <!-- Service 8: Implantology -->
+        <div class="service-card bg-white rounded-2xl p-6 shadow-lg scroll-reveal">
+          <a href="pages/implantologie.html" class="block">
+            <div class="w-12 h-12 bg-gradient-to-r from-teal-500 to-green-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-800 mb-3" data-translate="services.service8.title">Implantologie</h3>
+            <p class="text-sm text-gray-600" data-translate="services.service8.description">Hochwertige Implantate für dauerhaften Zahnersatz</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Labor Section -->
+  <section id="labor" class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16 scroll-reveal">
+        <h2 class="text-4xl font-bold text-gray-800 mb-4" data-translate="labor.title">Unser eigenes Labor</h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto" data-translate="labor.subtitle">
+          Modernste Labortechnik für präzisen und individuellen Zahnersatz
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="scroll-reveal img-circle-frame">
+          <img src="assets/img/img_0384-scaled.jpeg" alt="Dentallabor" class="shadow-2xl">
+        </div>
+        <div class="scroll-reveal">
+          <h3 class="text-3xl font-bold text-gray-800 mb-6" data-translate="labor.description.title">
+            Vorteile unseres Praxislabors
+          </h3>
+          <p class="text-gray-600 text-lg mb-6 leading-relaxed" data-translate="labor.description.text">
+            Unser modernes Praxislabor ermöglicht es uns, Zahnersatz und Prothesen direkt vor Ort anzufertigen. Dies garantiert höchste Qualität und kurze Wartezeiten.
+          </p>
+          <div class="space-y-4">
+            <div class="flex items-start space-x-3">
+              <div class="w-6 h-6 bg-teal-500 rounded-full flex items-center justify-center mt-1">
+                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-800" data-translate="labor.advantage1.title">Schnelligkeit & Effizienz</h4>
+                <p class="text-gray-600" data-translate="labor.advantage1.text">Anpassungen und Reparaturen sofort möglich, ohne Wartezeiten durch externe Labore</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <div class="w-6 h-6 bg-teal-500 rounded-full flex items-center justify-center mt-1">
+                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-800" data-translate="labor.advantage2.title">Qualitätskontrolle</h4>
+                <p class="text-gray-600" data-translate="labor.advantage2.text">Direkte Überwachung garantiert höchste Präzision und Passgenauigkeit</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <div class="w-6 h-6 bg-teal-500 rounded-full flex items-center justify-center mt-1">
+                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-800" data-translate="labor.advantage3.title">Individualisierung</h4>
+                <p class="text-gray-600" data-translate="labor.advantage3.text">Jeder Zahnersatz wird exakt nach Ihren Bedürfnissen und Wünschen gefertigt</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <div class="w-6 h-6 bg-teal-500 rounded-full flex items-center justify-center mt-1">
+                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-800" data-translate="labor.advantage4.title">Direkte Kommunikation</h4>
+                <p class="text-gray-600" data-translate="labor.advantage4.text">Optimale Zusammenarbeit zwischen Zahnarzt und Techniker für beste Ergebnisse</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16 scroll-reveal">
+        <h2 class="text-4xl font-bold text-gray-800 mb-4" data-translate="contact.title">Kontaktieren Sie uns</h2>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto" data-translate="contact.subtitle">
+          Vereinbaren Sie einen Termin oder kontaktieren Sie uns für weitere Informationen
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <!-- Location 1: Schwarzbach -->
+        <div class="bg-gray-50 rounded-2xl shadow-lg p-8 scroll-reveal">
+          <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="contact.location1.title">Standort Schwarzbach</h3>
+          <div class="space-y-4">
+            <div class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+              <div>
+                <p class="font-semibold text-gray-800" data-translate="contact.address">Adresse</p>
+                <p class="text-gray-600">Schwarzbach 2<br>42277 Wuppertal</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+              </svg>
+              <div>
+                <p class="font-semibold text-gray-800" data-translate="contact.phone">Telefon</p>
+                <a href="tel:0202660828" class="text-teal-500 hover:text-teal-600">0202 660828</a>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+              <div>
+                <p class="font-semibold text-gray-800" data-translate="contact.email">E-Mail</p>
+                <a href="mailto:schwarzbach@seitschenko-dinh.de" class="text-teal-500 hover:text-teal-600">schwarzbach@seitschenko-dinh.de</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Location 2: Wall -->
+        <div class="bg-gray-50 rounded-2xl shadow-lg p-8 scroll-reveal">
+          <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="contact.location2.title">Standort Wall</h3>
+          <div class="space-y-4">
+            <div class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+              <div>
+                <p class="font-semibold text-gray-800" data-translate="contact.address">Adresse</p>
+                <p class="text-gray-600">Wall 3<br>42103 Wuppertal</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+              </svg>
+              <div>
+                <p class="font-semibold text-gray-800" data-translate="contact.phone">Telefon</p>
+                <a href="tel:0202451642" class="text-teal-500 hover:text-teal-600">0202 451642</a>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+              <div>
+                <p class="font-semibold text-gray-800" data-translate="contact.email">E-Mail</p>
+                <a href="mailto:wall@seitschenko-dinh.de" class="text-teal-500 hover:text-teal-600">wall@seitschenko-dinh.de</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer-bg text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid md:grid-cols-4 gap-8">
+        <!-- Logo & Description -->
+        <div class="md:col-span-2">
+          <div class="flex items-center space-x-3 mb-4">
+            <img src="assets/img/logo.svg" alt="Seitschenko-Dinh Logo" class="w-12 h-12">
+            <span class="text-2xl font-bold">Seitschenko-Dinh</span>
+          </div>
+          <p class="text-gray-400 mb-4" data-translate="footer.description">
+            Moderne Zahnmedizin in Wuppertal mit zwei Standorten. Professionelle Behandlung in entspannter Atmosphäre.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-lg font-semibold mb-4" data-translate="footer.quickLinks">Schnellzugriff</h4>
+          <ul class="space-y-2">
+            <li><a href="#home" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.home">Start</a></li>
+            <li><a href="#about" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.about">Über uns</a></li>
+            <li><a href="#services" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.services">Leistungen</a></li>
+            <li><a href="#labor" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.labor">Labor</a></li>
+            <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.contact">Kontakt</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div>
+          <h4 class="text-lg font-semibold mb-4" data-translate="footer.contact">Kontakt</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><strong>Schwarzbach:</strong><br>0202 660828</li>
+            <li><strong>Wall:</strong><br>0202 451642</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+        <p class="text-gray-400" data-translate="footer.copyright">
+          © 2025 Seitschenko-Dinh. Alle Rechte vorbehalten.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript for Language Switching and Functionality -->
+  <script>
+    // Language data
+    const languages = {
+      de: {
+        meta: {
+          title: "Zahnarztpraxen Seitschenko-Dinh - Moderne Zahnmedizin in Wuppertal",
+          description: "Professionelle Zahnmedizin in Wohlfühl-Ambiente in Wuppertal - Ihre Gesundheit und Ihr Wohlbefinden stehen an erster Stelle"
+        },
+        nav: {
+          home: "Start",
+          about: "Über uns",
+          services: "Leistungen",
+          labor: "Labor",
+          contact: "Kontakt"
+        },
+        language: {
+          current: "Sprache:"
+        },
+        hero: {
+          title: "Moderne Zahnmedizin im Wohlfühl-Ambiente",
+          subtitle: "Ihre Gesundheit und Ihr Wohlbefinden stehen bei uns an erster Stelle",
+          exploreBtn: "Mehr erfahren",
+          contactBtn: "Termin vereinbaren"
+        },
+        about: {
+          title: "Über unsere Praxis",
+          subtitle: "Wir nehmen uns die nötige Zeit für sorgfältige Diagnosen und ausführliche Beratungen",
+          philosophy: {
+            title: "Unsere Philosophie",
+            description: "Wir legen besonderen Wert auf Zeit - Zeit für Sie, Zeit für sorgfältige Diagnosen und ausführliche Beratungen. Unsere professionelle Zahnmedizin verbindet modernste Techniken mit menschlicher Zuwendung."
+          },
+          feature1: "Mehrsprachige Beratung (Deutsch, Russisch, Arabisch, Türkisch, Französisch, Englisch)",
+          feature2: "Modernste Behandlungstechniken und biokompatible Materialien",
+          feature3: "Strenge Hygieneprotokolle für risikofreie Behandlung",
+          feature4: "Regelmäßige Fortbildungen des gesamten Teams",
+          team: {
+            title: "Unser Team",
+            member1: "Leitende Zahnärztin an beiden Standorten",
+            member2: "Praxisleitung",
+            member3: "Praxisleitung"
+          }
+        },
+        services: {
+          title: "Unsere Leistungen",
+          subtitle: "Umfassende zahnmedizinische Versorgung für die ganze Familie",
+          service1: {
+            title: "Kinderzahnheilkunde",
+            description: "Spezialisierte Behandlung für junge Patienten mit sanften, stressfreien Methoden"
+          },
+          service2: {
+            title: "Angstpatienten",
+            description: "Einfühlsame Betreuung für Patienten mit Zahnarztangst"
+          },
+          service3: {
+            title: "Prophylaxe",
+            description: "Früherkennung und Vorsorge für langfristige Zahngesundheit"
+          },
+          service4: {
+            title: "Zahnerhaltung",
+            description: "Erhalt und Schutz natürlicher Zähne durch moderne Verfahren"
+          },
+          service5: {
+            title: "Ästhetische Zahnheilkunde",
+            description: "Verschönerung Ihres Lächelns mit modernen ästhetischen Lösungen"
+          },
+          service6: {
+            title: "Zahnersatz",
+            description: "Hochwertiger Zahnersatz für Ästhetik und Funktion"
+          },
+          service7: {
+            title: "Oralchirurgie",
+            description: "Umfassende chirurgische Behandlung von komplexen Zahnproblemen"
+          },
+          service8: {
+            title: "Implantologie",
+            description: "Hochwertige Implantate für dauerhaften Zahnersatz"
+          }
+        },
+        labor: {
+          title: "Unser eigenes Labor",
+          subtitle: "Modernste Labortechnik für präzisen und individuellen Zahnersatz",
+          description: {
+            title: "Vorteile unseres Praxislabors",
+            text: "Unser modernes Praxislabor ermöglicht es uns, Zahnersatz und Prothesen direkt vor Ort anzufertigen. Dies garantiert höchste Qualität und kurze Wartezeiten."
+          },
+          advantage1: {
+            title: "Schnelligkeit & Effizienz",
+            text: "Anpassungen und Reparaturen sofort möglich, ohne Wartezeiten durch externe Labore"
+          },
+          advantage2: {
+            title: "Qualitätskontrolle",
+            text: "Direkte Überwachung garantiert höchste Präzision und Passgenauigkeit"
+          },
+          advantage3: {
+            title: "Individualisierung",
+            text: "Jeder Zahnersatz wird exakt nach Ihren Bedürfnissen und Wünschen gefertigt"
+          },
+          advantage4: {
+            title: "Direkte Kommunikation",
+            text: "Optimale Zusammenarbeit zwischen Zahnarzt und Techniker für beste Ergebnisse"
+          }
+        },
+        contact: {
+          title: "Kontaktieren Sie uns",
+          subtitle: "Vereinbaren Sie einen Termin oder kontaktieren Sie uns für weitere Informationen",
+          location1: {
+            title: "Standort Schwarzbach"
+          },
+          location2: {
+            title: "Standort Wall"
+          },
+          address: "Adresse",
+          phone: "Telefon",
+          email: "E-Mail"
+        },
+        footer: {
+          description: "Moderne Zahnmedizin in Wuppertal mit zwei Standorten. Professionelle Behandlung in entspannter Atmosphäre.",
+          quickLinks: "Schnellzugriff",
+          contact: "Kontakt",
+          copyright: "© 2025 Zahnarztpraxen Seitschenko-Dinh. Alle Rechte vorbehalten."
+        }
+      },
+      en: {
+        meta: {
+          title: "Seitschenko-Dinh Dental Practices - Modern Dentistry in Wuppertal",
+          description: "Professional dentistry in a comfortable atmosphere in Wuppertal - Your health and wellbeing are our top priority"
+        },
+        nav: {
+          home: "Home",
+          about: "About Us",
+          services: "Services",
+          labor: "Laboratory",
+          contact: "Contact"
+        },
+        language: {
+          current: "Language:"
+        },
+        hero: {
+          title: "Modern Dentistry in a Comfortable Atmosphere",
+          subtitle: "Your health and wellbeing are our top priority",
+          exploreBtn: "Learn More",
+          contactBtn: "Book Appointment"
+        },
+        about: {
+          title: "About Our Practice",
+          subtitle: "We take the necessary time for careful diagnoses and thorough consultations",
+          philosophy: {
+            title: "Our Philosophy",
+            description: "We place special emphasis on time - time for you, time for careful diagnoses and thorough consultations. Our professional dentistry combines state-of-the-art techniques with human care."
+          },
+          feature1: "Multilingual consultation (German, Russian, Arabic, Turkish, French, English)",
+          feature2: "State-of-the-art treatment techniques and biocompatible materials",
+          feature3: "Strict hygiene protocols for risk-free treatment",
+          feature4: "Regular continuing education for the entire team",
+          team: {
+            title: "Our Team",
+            member1: "Lead Dentist at Both Locations",
+            member2: "Practice Management",
+            member3: "Practice Management"
+          }
+        },
+        services: {
+          title: "Our Services",
+          subtitle: "Comprehensive dental care for the whole family",
+          service1: {
+            title: "Children's Dentistry",
+            description: "Specialized treatment for young patients with gentle, stress-free methods"
+          },
+          service2: {
+            title: "Anxious Patients",
+            description: "Compassionate care for patients with dental anxiety"
+          },
+          service3: {
+            title: "Preventive Care",
+            description: "Early detection and prevention for long-term dental health"
+          },
+          service4: {
+            title: "Restorative Dentistry",
+            description: "Preservation and protection of natural teeth through modern procedures"
+          },
+          service5: {
+            title: "Cosmetic Dentistry",
+            description: "Enhancing your smile with modern aesthetic solutions"
+          },
+          service6: {
+            title: "Dentures",
+            description: "High-quality dental prosthetics for aesthetics and function"
+          },
+          service7: {
+            title: "Oral Surgery",
+            description: "Comprehensive surgical treatment of complex dental problems"
+          },
+          service8: {
+            title: "Implantology",
+            description: "High-quality implants for permanent tooth replacement"
+          }
+        },
+        labor: {
+          title: "Our In-House Laboratory",
+          subtitle: "State-of-the-art laboratory technology for precise and individual dental prosthetics",
+          description: {
+            title: "Advantages of Our Practice Laboratory",
+            text: "Our modern practice laboratory enables us to fabricate dentures and prosthetics directly on-site. This guarantees the highest quality and short waiting times."
+          },
+          advantage1: {
+            title: "Speed & Efficiency",
+            text: "Adjustments and repairs immediately possible, without waiting times from external laboratories"
+          },
+          advantage2: {
+            title: "Quality Control",
+            text: "Direct oversight guarantees highest precision and fit accuracy"
+          },
+          advantage3: {
+            title: "Personalization",
+            text: "Every denture is made exactly according to your needs and wishes"
+          },
+          advantage4: {
+            title: "Direct Communication",
+            text: "Optimal collaboration between dentist and technician for best results"
+          }
+        },
+        contact: {
+          title: "Contact Us",
+          subtitle: "Book an appointment or contact us for more information",
+          location1: {
+            title: "Schwarzbach Location"
+          },
+          location2: {
+            title: "Wall Location"
+          },
+          address: "Address",
+          phone: "Phone",
+          email: "Email"
+        },
+        footer: {
+          description: "Modern dentistry in Wuppertal with two locations. Professional treatment in a relaxed atmosphere.",
+          quickLinks: "Quick Links",
+          contact: "Contact",
+          copyright: "© 2025 Seitschenko-Dinh Dental Practices. All rights reserved."
+        }
+      },
+      vi: {
+        meta: {
+          title: "Phòng khám Nha khoa Seitschenko-Dinh - Nha khoa Hiện đại tại Wuppertal",
+          description: "Nha khoa chuyên nghiệp trong không gian thoải mái tại Wuppertal - Sức khỏe và hạnh phúc của bạn là ưu tiên hàng đầu"
+        },
+        nav: {
+          home: "Trang chủ",
+          about: "Giới thiệu",
+          services: "Dịch vụ",
+          labor: "Phòng Lab",
+          contact: "Liên hệ"
+        },
+        language: {
+          current: "Ngôn ngữ:"
+        },
+        hero: {
+          title: "Nha khoa Hiện đại trong Không gian Thoải mái",
+          subtitle: "Sức khỏe và hạnh phúc của bạn là ưu tiên hàng đầu của chúng tôi",
+          exploreBtn: "Tìm hiểu thêm",
+          contactBtn: "Đặt lịch hẹn"
+        },
+        about: {
+          title: "Về phòng khám của chúng tôi",
+          subtitle: "Chúng tôi dành đủ thời gian để chẩn đoán cẩn thận và tư vấn chi tiết",
+          philosophy: {
+            title: "Triết lý của chúng tôi",
+            description: "Chúng tôi đặc biệt coi trọng thời gian - thời gian dành cho bạn, thời gian để chẩn đoán cẩn thận và tư vấn chi tiết. Nha khoa chuyên nghiệp của chúng tôi kết hợp kỹ thuật hiện đại nhất với sự quan tâm con người."
+          },
+          feature1: "Tư vấn đa ngôn ngữ (Đức, Nga, Ả Rập, Thổ Nhĩ Kỳ, Pháp, Anh)",
+          feature2: "Kỹ thuật điều trị tiên tiến nhất và vật liệu tương thích sinh học",
+          feature3: "Quy trình vệ sinh nghiêm ngặt đảm bảo điều trị an toàn",
+          feature4: "Đào tạo thường xuyên cho toàn bộ đội ngũ",
+          team: {
+            title: "Đội ngũ của chúng tôi",
+            member1: "Nha sĩ trưởng tại cả hai địa điểm",
+            member2: "Quản lý phòng khám",
+            member3: "Quản lý phòng khám"
+          }
+        },
+        services: {
+          title: "Dịch vụ của chúng tôi",
+          subtitle: "Chăm sóc nha khoa toàn diện cho cả gia đình",
+          service1: {
+            title: "Nha khoa Trẻ em",
+            description: "Điều trị chuyên biệt cho bệnh nhân nhỏ tuổi với phương pháp nhẹ nhàng, không căng thẳng"
+          },
+          service2: {
+            title: "Bệnh nhân Lo lắng",
+            description: "Chăm sóc chu đáo cho bệnh nhân sợ nha khoa"
+          },
+          service3: {
+            title: "Phòng ngừa",
+            description: "Phát hiện sớm và phòng ngừa cho sức khỏe răng miệng lâu dài"
+          },
+          service4: {
+            title: "Bảo tồn Răng",
+            description: "Bảo vệ và giữ gìn răng tự nhiên bằng các phương pháp hiện đại"
+          },
+          service5: {
+            title: "Nha khoa Thẩm mỹ",
+            description: "Làm đẹp nụ cười của bạn với các giải pháp thẩm mỹ hiện đại"
+          },
+          service6: {
+            title: "Răng giả",
+            description: "Răng giả chất lượng cao cho thẩm mỹ và chức năng"
+          },
+          service7: {
+            title: "Phẫu thuật Răng miệng",
+            description: "Điều trị phẫu thuật toàn diện các vấn đề răng phức tạp"
+          },
+          service8: {
+            title: "Cấy ghép Implant",
+            description: "Implant chất lượng cao để thay thế răng vĩnh viễn"
+          }
+        },
+        labor: {
+          title: "Phòng Lab Riêng của chúng tôi",
+          subtitle: "Công nghệ phòng lab hiện đại nhất cho răng giả chính xác và cá nhân hóa",
+          description: {
+            title: "Ưu điểm của Phòng Lab Phòng khám",
+            text: "Phòng lab hiện đại của chúng tôi cho phép sản xuất răng giả và protit trực tiếp tại chỗ. Điều này đảm bảo chất lượng cao nhất và thời gian chờ ngắn."
+          },
+          advantage1: {
+            title: "Nhanh chóng & Hiệu quả",
+            text: "Điều chỉnh và sửa chữa ngay lập tức, không cần chờ đợi từ phòng lab bên ngoài"
+          },
+          advantage2: {
+            title: "Kiểm soát Chất lượng",
+            text: "Giám sát trực tiếp đảm bảo độ chính xác và độ vừa vặn cao nhất"
+          },
+          advantage3: {
+            title: "Cá nhân hóa",
+            text: "Mỗi răng giả được làm chính xác theo nhu cầu và mong muốn của bạn"
+          },
+          advantage4: {
+            title: "Giao tiếp Trực tiếp",
+            text: "Hợp tác tối ưu giữa nha sĩ và kỹ thuật viên cho kết quả tốt nhất"
+          }
+        },
+        contact: {
+          title: "Liên hệ với chúng tôi",
+          subtitle: "Đặt lịch hẹn hoặc liên hệ với chúng tôi để biết thêm thông tin",
+          location1: {
+            title: "Địa điểm Schwarzbach"
+          },
+          location2: {
+            title: "Địa điểm Wall"
+          },
+          address: "Địa chỉ",
+          phone: "Điện thoại",
+          email: "Email"
+        },
+        footer: {
+          description: "Nha khoa hiện đại tại Wuppertal với hai địa điểm. Điều trị chuyên nghiệp trong không gian thoải mái.",
+          quickLinks: "Liên kết nhanh",
+          contact: "Liên hệ",
+          copyright: "© 2025 Phòng khám Nha khoa Seitschenko-Dinh. Bảo lưu mọi quyền."
+        }
+      },
+      ru: {
+        meta: {
+          title: "Стоматологические клиники Зайчшенко-Динь - Современная стоматология в Вуппертале",
+          description: "Профессиональная стоматология в комфортной атмосфере в Вуппертале - Ваше здоровье и благополучие на первом месте"
+        },
+        nav: {
+          home: "Главная",
+          about: "О нас",
+          services: "Услуги",
+          labor: "Лаборатория",
+          contact: "Контакты"
+        },
+        language: {
+          current: "Язык:"
+        },
+        hero: {
+          title: "Современная стоматология в комфортной атмосфере",
+          subtitle: "Ваше здоровье и благополучие являются нашим главным приоритетом",
+          exploreBtn: "Узнать больше",
+          contactBtn: "Записаться на прием"
+        },
+        about: {
+          title: "О нашей клинике",
+          subtitle: "Мы уделяем необходимое время для тщательной диагностики и подробных консультаций",
+          philosophy: {
+            title: "Наша философия",
+            description: "Мы особенно ценим время - время для Вас, время для тщательной диагностики и подробных консультаций. Наша профессиональная стоматология сочетает новейшие технологии с человеческим вниманием."
+          },
+          feature1: "Многоязычные консультации (немецкий, русский, арабский, турецкий, французский, английский)",
+          feature2: "Современные методы лечения и биосовместимые материалы",
+          feature3: "Строгие протоколы гигиены для безопасного лечения",
+          feature4: "Регулярное повышение квалификации всей команды",
+          team: {
+            title: "Наша команда",
+            member1: "Главный стоматолог обеих клиник",
+            member2: "Управляющий клиникой",
+            member3: "Управляющий клиникой"
+          }
+        },
+        services: {
+          title: "Наши услуги",
+          subtitle: "Комплексная стоматологическая помощь для всей семьи",
+          service1: {
+            title: "Детская стоматология",
+            description: "Специализированное лечение для маленьких пациентов щадящими, безстрессовыми методами"
+          },
+          service2: {
+            title: "Лечение тревожных пациентов",
+            description: "Чуткий уход за пациентами с дентофобией"
+          },
+          service3: {
+            title: "Профилактика",
+            description: "Раннее выявление и профилактика для долгосрочного здоровья зубов"
+          },
+          service4: {
+            title: "Сохранение зубов",
+            description: "Сохранение и защита естественных зубов современными методами"
+          },
+          service5: {
+            title: "Эстетическая стоматология",
+            description: "Украшение Вашей улыбки современными эстетическими решениями"
+          },
+          service6: {
+            title: "Зубные протезы",
+            description: "Высококачественные зубные протезы для эстетики и функциональности"
+          },
+          service7: {
+            title: "Челюстно-лицевая хирургия",
+            description: "Комплексное хирургическое лечение сложных стоматологических проблем"
+          },
+          service8: {
+            title: "Имплантология",
+            description: "Высококачественные импланты для постоянного протезирования"
+          }
+        },
+        labor: {
+          title: "Наша собственная лаборатория",
+          subtitle: "Современнейшие лабораторные технологии для точного и индивидуального протезирования",
+          description: {
+            title: "Преимущества нашей зуботехнической лаборатории",
+            text: "Наша современная зуботехническая лаборатория позволяет нам изготавливать зубные протезы непосредственно на месте. Это гарантирует высочайшее качество и короткие сроки ожидания."
+          },
+          advantage1: {
+            title: "Скорость и эффективность",
+            text: "Корректировки и ремонт возможны немедленно, без ожидания внешних лабораторий"
+          },
+          advantage2: {
+            title: "Контроль качества",
+            text: "Прямой контроль гарантирует высочайшую точность и идеальную посадку"
+          },
+          advantage3: {
+            title: "Индивидуальность",
+            text: "Каждый протез изготавливается точно в соответствии с Вашими потребностями и пожеланиями"
+          },
+          advantage4: {
+            title: "Прямое общение",
+            text: "Оптимальное сотрудничество между стоматологом и техником для наилучшего результата"
+          }
+        },
+        contact: {
+          title: "Свяжитесь с нами",
+          subtitle: "Запишитесь на прием или свяжитесь с нами для получения дополнительной информации",
+          location1: {
+            title: "Клиника Шварцбах"
+          },
+          location2: {
+            title: "Клиника Валь"
+          },
+          address: "Адрес",
+          phone: "Телефон",
+          email: "Электронная почта"
+        },
+        footer: {
+          description: "Современная стоматология в Вуппертале с двумя клиниками. Профессиональное лечение в расслабленной атмосфере.",
+          quickLinks: "Быстрые ссылки",
+          contact: "Контакты",
+          copyright: "© 2025 Стоматологические клиники Зайчшенко-Динь. Все права защищены."
+        }
+      }
+    };
+
+    // Language configuration
+    const languageConfig = {
+      de: { flag: "https://flagcdn.com/24x18/de.png", code: "DE", alt: "Deutsch" },
+      en: { flag: "https://flagcdn.com/24x18/us.png", code: "EN", alt: "English" },
+      vi: { flag: "https://flagcdn.com/24x18/vn.png", code: "VN", alt: "Tiếng Việt" },
+      ru: { flag: "https://flagcdn.com/24x18/ru.png", code: "RU", alt: "Русский" }
+    };
+
+    // Current language
+    let currentLanguage = localStorage.getItem('preferredLanguage') || 'de';
+
+    // DOM elements
+    const htmlRoot = document.getElementById('html-root');
+    const pageTitle = document.getElementById('page-title');
+    const pageDescription = document.getElementById('page-description');
+
+    // Function to update language display
+    function updateLanguageDisplay() {
+      const config = languageConfig[currentLanguage];
+
+      // Update desktop language switcher
+      const currentLangSpan = document.getElementById('current-lang');
+      const currentFlag = document.getElementById('current-flag');
+      const mobileLangSpan = document.getElementById('mobile-current-lang');
+      const mobileFlag = document.getElementById('mobile-current-flag');
+
+      if (currentLangSpan) currentLangSpan.textContent = config.code;
+      if (currentFlag) {
+        currentFlag.src = config.flag;
+        currentFlag.alt = config.alt;
+      }
+      if (mobileLangSpan) mobileLangSpan.textContent = config.code;
+      if (mobileFlag) {
+        mobileFlag.src = config.flag;
+        mobileFlag.alt = config.alt;
+      }
+
+      // Update active state for options
+      document.querySelectorAll('.language-option, .language-option-mobile').forEach(option => {
+        option.classList.remove('active');
+        if (option.dataset.lang === currentLanguage) {
+          option.classList.add('active');
+        }
+      });
+    }
+
+    // Function to translate content
+    function translateContent(targetLanguage) {
+      const data = languages[targetLanguage];
+      if (!data) {
+        console.error(`Language data not found for '${targetLanguage}', falling back to German`);
+        translateContent('de');
+        return;
+      }
+
+      // Add transition effect
+      document.body.classList.add('lang-transition', 'changing');
+
+      setTimeout(() => {
+        try {
+          // Update meta tags
+          htmlRoot.lang = targetLanguage;
+          pageTitle.textContent = data.meta.title;
+          pageDescription.content = data.meta.description;
+
+          // Update all translatable elements
+          document.querySelectorAll('[data-translate]').forEach(element => {
+            const key = element.getAttribute('data-translate');
+            const keys = key.split('.');
+            let value = data;
+
+            for (let k of keys) {
+              value = value[k];
+              if (!value) break;
+            }
+
+            if (value) {
+              element.textContent = value;
+            }
+          });
+
+          // Remove transition effect
+          document.body.classList.remove('changing');
+        } catch (error) {
+          console.error('Error during content translation:', error);
+          document.body.classList.remove('changing');
+        }
+      }, 150);
+
+      setTimeout(() => {
+        document.body.classList.remove('lang-transition');
+      }, 450);
+    }
+
+    // Function to change language
+    function changeLanguage(newLanguage) {
+      if (newLanguage === currentLanguage) return;
+
+      currentLanguage = newLanguage;
+      localStorage.setItem('preferredLanguage', newLanguage);
+
+      // Close dropdowns after selecting language
+      document.querySelectorAll('.language-menu, .language-menu-mobile').forEach(menu => {
+        menu.classList.remove('show');
+      });
+
+      updateLanguageDisplay();
+      translateContent(newLanguage);
+    }
+
+    // Language switcher event listeners
+    document.getElementById('language-btn').addEventListener('click', function(e) {
+      e.stopPropagation();
+      const menu = document.getElementById('language-menu');
+      menu.classList.toggle('show');
+    });
+
+    document.getElementById('mobile-language-btn').addEventListener('click', function(e) {
+      e.stopPropagation();
+      const menu = document.getElementById('mobile-language-menu');
+      menu.classList.toggle('show');
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function() {
+      document.querySelectorAll('.language-menu, .language-menu-mobile').forEach(menu => {
+        menu.classList.remove('show');
+      });
+    });
+
+    // Prevent dropdown from closing when clicking inside options
+    document.querySelectorAll('.language-menu, .language-menu-mobile').forEach(menu => {
+      menu.addEventListener('click', function(e) {
+        e.stopPropagation();
+      });
+    });
+
+    // Mobile menu toggle
+    document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href === '#' || this.hasAttribute('onclick')) {
+          return;
+        }
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Scroll reveal animation
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.scroll-reveal').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Active navigation link
+    window.addEventListener('scroll', function() {
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('nav a[href^="#"]');
+
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        if (scrollY >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      const supportedLanguages = ['de', 'en', 'vi'];
+
+      if (!supportedLanguages.includes(currentLanguage)) {
+        currentLanguage = 'de';
+        localStorage.setItem('preferredLanguage', 'de');
+      }
+
+      updateLanguageDisplay();
+      translateContent(currentLanguage);
+    });
+  </script>
+
+  <!-- Initialize Chatbot -->
+  <script src="js/chatbot.js"></script>
+  <script>
+    window.addEventListener('load', function() {
+      const chatbot = new DigitizedBrainsChatbot({
+        iframeSrc: 'https://ducnguyen1978-digitizedgemini.hf.space',
+        widgetTitle: 'Dental Assistant',
+        position: { bottom: '30px', right: '30px' },
+        size: { width: '420px', height: '600px' }
+      });
+    });
+  </script>
+</body>
+</html>

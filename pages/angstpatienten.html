@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<!--
+  Angstpatienten - Anxiety Patients Service Page
+  ===============================================
+  Compassionate care for patients with dental anxiety using gentle techniques.
+-->
+<html lang="de" id="html-root">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title id="page-title">Behandlung für Angstpatienten - Seitschenko-Dinh</title>
+  <meta name="description" content="Einfühlsame Betreuung für Patienten mit Zahnarztangst - sanfte Methoden und entspannte Atmosphäre" id="page-description">
+  <link href="../css/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="bg-white text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-white shadow-lg fixed top-0 left-0 right-0 z-50">
+    <div class="container mx-auto px-4">
+      <div class="flex items-center justify-between py-4">
+        <div class="flex items-center space-x-3">
+          <img src="../assets/img/logo.svg" alt="Seitschenko-Dinh Logo" class="w-12 h-12">
+          <a href="../index.html" class="text-2xl font-bold text-gray-800">Seitschenko-Dinh</a>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-4">
+          <nav class="flex space-x-2">
+            <a href="../index.html#home" class="nav-link" data-translate="nav.home">Start</a>
+            <a href="../index.html#about" class="nav-link" data-translate="nav.about">Über uns</a>
+            <a href="../index.html#services" class="nav-link active" data-translate="nav.services">Leistungen</a>
+            <a href="../index.html#labor" class="nav-link" data-translate="nav.labor">Labor</a>
+            <a href="../index.html#contact" class="nav-link" data-translate="nav.contact">Kontakt</a>
+          </nav>
+
+          <div class="language-switcher">
+            <button id="language-btn" class="flex items-center space-x-1 px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+              <img id="current-flag" src="https://flagcdn.com/24x18/de.png" alt="Deutsch" class="language-flag">
+              <span id="current-lang">DE</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div id="language-menu" class="language-menu">
+              <a href="#" onclick="changeLanguage('de')" class="language-option" data-lang="de">
+                <img src="https://flagcdn.com/24x18/de.png" alt="Deutsch" class="language-flag">
+                Deutsch
+              </a>
+              <a href="#" onclick="changeLanguage('en')" class="language-option" data-lang="en">
+                <img src="https://flagcdn.com/24x18/us.png" alt="English" class="language-flag">
+                English
+              </a>
+              <a href="#" onclick="changeLanguage('vi')" class="language-option" data-lang="vi">
+                <img src="https://flagcdn.com/24x18/vn.png" alt="Tiếng Việt" class="language-flag">
+                Tiếng Việt
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <button id="mobile-menu-btn" class="md:hidden p-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+
+      <div id="mobile-menu" class="md:hidden hidden pb-4">
+        <div class="flex flex-col space-y-2">
+          <a href="../index.html#home" class="nav-link" data-translate="nav.home">Start</a>
+          <a href="../index.html#about" class="nav-link" data-translate="nav.about">Über uns</a>
+          <a href="../index.html#services" class="nav-link active" data-translate="nav.services">Leistungen</a>
+          <a href="../index.html#labor" class="nav-link" data-translate="nav.labor">Labor</a>
+          <a href="../index.html#contact" class="nav-link" data-translate="nav.contact">Kontakt</a>
+
+          <div class="pt-2 border-t border-gray-200">
+            <div class="language-switcher-mobile">
+              <button id="mobile-language-btn" class="flex items-center justify-between w-full px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+                <span data-translate="language.current">Sprache:</span>
+                <div class="flex items-center space-x-1">
+                  <img id="mobile-current-flag" src="https://flagcdn.com/24x18/de.png" alt="Deutsch" class="language-flag">
+                  <span id="mobile-current-lang">DE</span>
+                </div>
+              </button>
+              <div id="mobile-language-menu" class="language-menu-mobile">
+                <a href="#" onclick="changeLanguage('de')" class="language-option-mobile" data-lang="de">
+                  <img src="https://flagcdn.com/24x18/de.png" alt="Deutsch" class="language-flag">
+                  Deutsch
+                </a>
+                <a href="#" onclick="changeLanguage('en')" class="language-option-mobile" data-lang="en">
+                  <img src="https://flagcdn.com/24x18/us.png" alt="English" class="language-flag">
+                  English
+                </a>
+                <a href="#" onclick="changeLanguage('vi')" class="language-option-mobile" data-lang="vi">
+                  <img src="https://flagcdn.com/24x18/vn.png" alt="Tiếng Việt" class="language-flag">
+                  Tiếng Việt
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-bg py-20 relative overflow-hidden">
+    <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+    <div class="relative z-10 text-center max-w-4xl mx-auto px-4">
+      <h1 class="text-4xl md:text-6xl font-bold text-white mb-6" data-translate="hero.title">
+        Behandlung für Angstpatienten
+      </h1>
+      <p class="text-xl text-white mb-8 font-light max-w-2xl mx-auto" data-translate="hero.subtitle">
+        Mit Verständnis und Einfühlungsvermögen gegen Zahnarztangst
+      </p>
+    </div>
+  </section>
+
+  <!-- Introduction Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+        <div class="scroll-reveal img-circle-frame">
+          <img src="../assets/img/z7157290503424_5f2c470b119071762194c49541ba5574.jpg" alt="Angstpatienten" class="shadow-2xl">
+        </div>
+        <div class="scroll-reveal">
+          <h2 class="text-3xl font-bold text-gray-800 mb-6" data-translate="intro.title">
+            Sie sind nicht allein mit Ihrer Angst
+          </h2>
+          <p class="text-lg text-gray-600 mb-4 leading-relaxed" data-translate="intro.text1">
+            Viele Menschen leiden unter Zahnarztangst - Sie sind damit nicht allein. Wir verstehen, dass ein Zahnarztbesuch für manche Patienten mit großer Angst und Stress verbunden ist. Negative Erfahrungen in der Vergangenheit, Angst vor Schmerzen oder das Gefühl von Kontrollverlust können Ursachen sein.
+          </p>
+          <p class="text-lg text-gray-600 leading-relaxed" data-translate="intro.text2">
+            In unserer Praxis nehmen wir Ihre Ängste ernst und gehen individuell auf Sie ein. Unser Ziel ist es, dass Sie sich bei uns wohl und sicher fühlen. Mit modernster Technik, sanften Behandlungsmethoden und viel Zeit schaffen wir eine entspannte Atmosphäre, in der Ihre Zahnbehandlung stressfrei ablaufen kann.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center" data-translate="benefits.title">
+          Unser Ansatz für Angstpatienten
+        </h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Benefit 1 -->
+          <div class="bg-white rounded-2xl p-6 shadow-lg">
+            <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="benefits.benefit1.title">
+              Einfühlsame Betreuung
+            </h3>
+            <p class="text-gray-600" data-translate="benefits.benefit1.text">
+              Wir verstehen Ihre Ängste und nehmen sie ernst. Gemeinsam finden wir einen Weg, der für Sie passend ist.
+            </p>
+          </div>
+
+          <!-- Benefit 2 -->
+          <div class="bg-white rounded-2xl p-6 shadow-lg">
+            <div class="w-12 h-12 bg-gradient-to-r from-teal-500 to-teal-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="benefits.benefit2.title">
+              Viel Zeit ohne Druck
+            </h3>
+            <p class="text-gray-600" data-translate="benefits.benefit2.text">
+              Wir nehmen uns ausreichend Zeit für Sie. Kein Zeitdruck, keine Hektik - nur Ruhe und Verständnis.
+            </p>
+          </div>
+
+          <!-- Benefit 3 -->
+          <div class="bg-white rounded-2xl p-6 shadow-lg">
+            <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="benefits.benefit3.title">
+              Sanfte Behandlungsmethoden
+            </h3>
+            <p class="text-gray-600" data-translate="benefits.benefit3.text">
+              Moderne, schmerzarme Verfahren und sanfte Anästhesie sorgen für eine angenehme Behandlung.
+            </p>
+          </div>
+
+          <!-- Benefit 4 -->
+          <div class="bg-white rounded-2xl p-6 shadow-lg">
+            <div class="w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="benefits.benefit4.title">
+              Transparente Kommunikation
+            </h3>
+            <p class="text-gray-600" data-translate="benefits.benefit4.text">
+              Wir erklären jeden Schritt und informieren Sie vorab über alle Behandlungsschritte. Sie behalten die Kontrolle.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Treatment Options Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center" data-translate="methods.title">
+          Methoden gegen Zahnarztangst
+        </h2>
+        <div class="space-y-6">
+          <!-- Method 1 -->
+          <div class="flex items-start space-x-4 bg-gray-50 rounded-xl p-6">
+            <div class="flex-shrink-0 w-12 h-12 bg-teal-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
+              1
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-2" data-translate="methods.method1.title">
+                Ausführliches Vorgespräch
+              </h3>
+              <p class="text-gray-600" data-translate="methods.method1.text">
+                Beim ersten Termin lernen wir uns in Ruhe kennen. Sie erzählen uns von Ihren Ängsten und wir besprechen gemeinsam, wie wir vorgehen können. Es findet keine Behandlung statt - nur ein vertrauensvolles Gespräch.
+              </p>
+            </div>
+          </div>
+
+          <!-- Method 2 -->
+          <div class="flex items-start space-x-4 bg-gray-50 rounded-xl p-6">
+            <div class="flex-shrink-0 w-12 h-12 bg-teal-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
+              2
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-2" data-translate="methods.method2.title">
+                Lokale Betäubung mit sanfter Technik
+              </h3>
+              <p class="text-gray-600" data-translate="methods.method2.text">
+                Wir verwenden besonders dünne Nadeln und moderne Anästhesietechniken, die den Einstich nahezu schmerzfrei machen. Vor der Spritze betäuben wir die Stelle mit einem Gel oberflächlich.
+              </p>
+            </div>
+          </div>
+
+          <!-- Method 3 -->
+          <div class="flex items-start space-x-4 bg-gray-50 rounded-xl p-6">
+            <div class="flex-shrink-0 w-12 h-12 bg-teal-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
+              3
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-2" data-translate="methods.method3.title">
+                Sedierung (Dämmerschlaf)
+              </h3>
+              <p class="text-gray-600" data-translate="methods.method3.text">
+                Bei größeren Eingriffen oder starker Angst bieten wir Behandlungen unter Sedierung an. Sie sind dabei entspannt und schläfrig, spüren keine Angst und haben hinterher kaum Erinnerung an die Behandlung.
+              </p>
+            </div>
+          </div>
+
+          <!-- Method 4 -->
+          <div class="flex items-start space-x-4 bg-gray-50 rounded-xl p-6">
+            <div class="flex-shrink-0 w-12 h-12 bg-teal-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
+              4
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-2" data-translate="methods.method4.title">
+                Hypnose und Entspannungstechniken
+              </h3>
+              <p class="text-gray-600" data-translate="methods.method4.text">
+                Auf Wunsch können wir Hypnosetechniken oder geführte Entspannungsübungen einsetzen, um Sie während der Behandlung in einen ruhigen, entspannten Zustand zu versetzen.
+              </p>
+            </div>
+          </div>
+
+          <!-- Method 5 -->
+          <div class="flex items-start space-x-4 bg-gray-50 rounded-xl p-6">
+            <div class="flex-shrink-0 w-12 h-12 bg-teal-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
+              5
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-2" data-translate="methods.method5.title">
+                Modernste Technik für kurze Behandlungszeiten
+              </h3>
+              <p class="text-gray-600" data-translate="methods.method5.text">
+                Dank moderner Geräte und Verfahren können wir viele Behandlungen deutlich schneller durchführen. Kürzere Sitzungen bedeuten weniger Stress für Sie.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center" data-translate="faq.title">
+          Häufig gestellte Fragen
+        </h2>
+        <div class="space-y-6">
+          <!-- FAQ 1 -->
+          <div class="bg-white rounded-xl p-6 shadow-md">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="faq.question1">
+              Was kann ich tun, wenn ich große Angst vor dem Zahnarzt habe?
+            </h3>
+            <p class="text-gray-600" data-translate="faq.answer1">
+              Der wichtigste Schritt ist, uns von Ihrer Angst zu erzählen. Vereinbaren Sie zunächst einen Termin nur für ein Gespräch - ohne Behandlung. Gemeinsam finden wir einen Weg, wie wir Ihre Angst Schritt für Schritt abbauen können.
+            </p>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="bg-white rounded-xl p-6 shadow-md">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="faq.question2">
+              Ist eine Behandlung unter Sedierung sicher?
+            </h3>
+            <p class="text-gray-600" data-translate="faq.answer2">
+              Ja, Sedierung ist eine sichere und erprobte Methode. Sie werden während der gesamten Behandlung professionell überwacht. Im Gegensatz zur Vollnarkose können Sie selbstständig atmen und auf Anweisungen reagieren. Nach der Behandlung müssen Sie allerdings abgeholt werden.
+            </p>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="bg-white rounded-xl p-6 shadow-md">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="faq.question3">
+              Kann ich während der Behandlung ein Zeichen geben, wenn ich eine Pause brauche?
+            </h3>
+            <p class="text-gray-600" data-translate="faq.answer3">
+              Auf jeden Fall! Wir vereinbaren vor der Behandlung ein Handzeichen, mit dem Sie jederzeit signalisieren können, dass Sie eine Pause benötigen. Ihre Kontrolle und Ihr Wohlbefinden stehen an erster Stelle.
+            </p>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="bg-white rounded-xl p-6 shadow-md">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="faq.question4">
+              Wie lange dauert es, bis die Angst verschwindet?
+            </h3>
+            <p class="text-gray-600" data-translate="faq.answer4">
+              Das ist sehr individuell. Manche Patienten fühlen sich bereits nach wenigen positiven Erfahrungen deutlich sicherer. Wichtig ist, dass wir in kleinen Schritten vorgehen und Sie jedes Mal eine gute Erfahrung machen. Mit der Zeit wird Vertrauen aufgebaut und die Angst lässt nach.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-gray-800 mb-4" data-translate="contact.title">Lassen Sie uns reden</h2>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto" data-translate="contact.subtitle">
+          Vereinbaren Sie ein unverbindliches Gespräch - ohne Behandlung, nur zum Kennenlernen
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <!-- Location 1 -->
+        <div class="bg-gray-50 rounded-2xl shadow-lg p-8">
+          <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="contact.location1.title">Standort Schwarzbach</h3>
+          <div class="space-y-4">
+            <div class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+              <div>
+                <p class="font-semibold text-gray-800" data-translate="contact.address">Adresse</p>
+                <p class="text-gray-600">Schwarzbach 2<br>42277 Wuppertal</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+              </svg>
+              <div>
+                <p class="font-semibold text-gray-800" data-translate="contact.phone">Telefon</p>
+                <a href="tel:0202660828" class="text-teal-500 hover:text-teal-600">0202 660828</a>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+              <div>
+                <p class="font-semibold text-gray-800" data-translate="contact.email">E-Mail</p>
+                <a href="mailto:schwarzbach@seitschenko-dinh.de" class="text-teal-500 hover:text-teal-600">schwarzbach@seitschenko-dinh.de</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Location 2 -->
+        <div class="bg-gray-50 rounded-2xl shadow-lg p-8">
+          <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="contact.location2.title">Standort Wall</h3>
+          <div class="space-y-4">
+            <div class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+              <div>
+                <p class="font-semibold text-gray-800" data-translate="contact.address">Adresse</p>
+                <p class="text-gray-600">Wall 3<br>42103 Wuppertal</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+              </svg>
+              <div>
+                <p class="font-semibold text-gray-800" data-translate="contact.phone">Telefon</p>
+                <a href="tel:0202451642" class="text-teal-500 hover:text-teal-600">0202 451642</a>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+              <div>
+                <p class="font-semibold text-gray-800" data-translate="contact.email">E-Mail</p>
+                <a href="mailto:wall@seitschenko-dinh.de" class="text-teal-500 hover:text-teal-600">wall@seitschenko-dinh.de</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer-bg text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid md:grid-cols-4 gap-8">
+        <div class="md:col-span-2">
+          <div class="flex items-center space-x-3 mb-4">
+            <img src="../assets/img/logo.svg" alt="Seitschenko-Dinh Logo" class="w-12 h-12">
+            <span class="text-2xl font-bold">Seitschenko-Dinh</span>
+          </div>
+          <p class="text-gray-400 mb-4" data-translate="footer.description">
+            Moderne Zahnmedizin in Wuppertal mit zwei Standorten. Professionelle Behandlung in entspannter Atmosphäre.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-semibold mb-4" data-translate="footer.quickLinks">Schnellzugriff</h4>
+          <ul class="space-y-2">
+            <li><a href="../index.html#home" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.home">Start</a></li>
+            <li><a href="../index.html#about" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.about">Über uns</a></li>
+            <li><a href="../index.html#services" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.services">Leistungen</a></li>
+            <li><a href="../index.html#labor" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.labor">Labor</a></li>
+            <li><a href="../index.html#contact" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.contact">Kontakt</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-semibold mb-4" data-translate="footer.contact">Kontakt</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><strong>Schwarzbach:</strong><br>0202 660828</li>
+            <li><strong>Wall:</strong><br>0202 451642</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+        <p class="text-gray-400" data-translate="footer.copyright">
+          © 2025 Seitschenko-Dinh. Alle Rechte vorbehalten.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="../js/service-translations.js"></script>
+
+  <!-- Chatbot -->
+  <script src="../js/chatbot.js"></script>
+  <script>
+    window.addEventListener('load', function() {
+      const chatbot = new DigitizedBrainsChatbot({
+        iframeSrc: 'https://ducnguyen1978-digitizedgemini.hf.space',
+        widgetTitle: 'Dental Assistant',
+        position: { bottom: '30px', right: '30px' },
+        size: { width: '420px', height: '600px' }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<!--
+  Aesthetische Zahnheilkunde - Cosmetic Dentistry Service Page
+  =============================================================
+  Beautiful teeth for better quality of life with modern cosmetic dentistry.
+-->
+<html lang="de" id="html-root">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title id="page-title">Ästhetische Zahnheilkunde - Seitschenko-Dinh</title>
+  <meta name="description" content="Ihr strahlendes Lächeln mit moderner ästhetischer Zahnheilkunde" id="page-description">
+  <link href="../css/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="bg-white text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-white shadow-lg fixed top-0 left-0 right-0 z-50">
+    <div class="container mx-auto px-4">
+      <div class="flex items-center justify-between py-4">
+        <!-- Logo -->
+        <div class="flex items-center space-x-3">
+          <img src="../assets/img/logo.svg" alt="Seitschenko-Dinh Logo" class="w-12 h-12">
+          <a href="../index.html" class="text-2xl font-bold text-gray-800">Seitschenko-Dinh</a>
+        </div>
+
+        <!-- Navigation and Language Switcher -->
+        <div class="hidden md:flex items-center space-x-4">
+          <nav class="flex space-x-2">
+            <a href="../index.html#home" class="nav-link" data-translate="nav.home">Start</a>
+            <a href="../index.html#about" class="nav-link" data-translate="nav.about">Über uns</a>
+            <a href="../index.html#services" class="nav-link active" data-translate="nav.services">Leistungen</a>
+            <a href="../index.html#labor" class="nav-link" data-translate="nav.labor">Labor</a>
+            <a href="../index.html#contact" class="nav-link" data-translate="nav.contact">Kontakt</a>
+          </nav>
+
+          <!-- Language Switcher -->
+          <div class="language-switcher">
+            <button id="language-btn" class="flex items-center space-x-1 px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+              <img id="current-flag" src="https://flagcdn.com/24x18/de.png" alt="Deutsch" class="language-flag">
+              <span id="current-lang">DE</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div id="language-menu" class="language-menu">
+              <a href="#" onclick="changeLanguage('de')" class="language-option" data-lang="de">
+                <img src="https://flagcdn.com/24x18/de.png" alt="Deutsch" class="language-flag">
+                Deutsch
+              </a>
+              <a href="#" onclick="changeLanguage('en')" class="language-option" data-lang="en">
+                <img src="https://flagcdn.com/24x18/us.png" alt="English" class="language-flag">
+                English
+              </a>
+              <a href="#" onclick="changeLanguage('vi')" class="language-option" data-lang="vi">
+                <img src="https://flagcdn.com/24x18/vn.png" alt="Tiếng Việt" class="language-flag">
+                Tiếng Việt
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="md:hidden p-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="md:hidden hidden pb-4">
+        <div class="flex flex-col space-y-2">
+          <a href="../index.html#home" class="nav-link" data-translate="nav.home">Start</a>
+          <a href="../index.html#about" class="nav-link" data-translate="nav.about">Über uns</a>
+          <a href="../index.html#services" class="nav-link active" data-translate="nav.services">Leistungen</a>
+          <a href="../index.html#labor" class="nav-link" data-translate="nav.labor">Labor</a>
+          <a href="../index.html#contact" class="nav-link" data-translate="nav.contact">Kontakt</a>
+
+          <!-- Mobile Language Switcher -->
+          <div class="pt-2 border-t border-gray-200">
+            <div class="language-switcher-mobile">
+              <button id="mobile-language-btn" class="flex items-center justify-between w-full px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+                <span data-translate="language.current">Sprache:</span>
+                <div class="flex items-center space-x-1">
+                  <img id="mobile-current-flag" src="https://flagcdn.com/24x18/de.png" alt="Deutsch" class="language-flag">
+                  <span id="mobile-current-lang">DE</span>
+                </div>
+              </button>
+              <div id="mobile-language-menu" class="language-menu-mobile">
+                <a href="#" onclick="changeLanguage('de')" class="language-option-mobile" data-lang="de">
+                  <img src="https://flagcdn.com/24x18/de.png" alt="Deutsch" class="language-flag">
+                  Deutsch
+                </a>
+                <a href="#" onclick="changeLanguage('en')" class="language-option-mobile" data-lang="en">
+                  <img src="https://flagcdn.com/24x18/us.png" alt="English" class="language-flag">
+                  English
+                </a>
+                <a href="#" onclick="changeLanguage('vi')" class="language-option-mobile" data-lang="vi">
+                  <img src="https://flagcdn.com/24x18/vn.png" alt="Tiếng Việt" class="language-flag">
+                  Tiếng Việt
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-bg py-20 relative overflow-hidden">
+    <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+    <div class="relative z-10 text-center max-w-4xl mx-auto px-4">
+      <h1 class="text-4xl md:text-6xl font-bold text-white mb-6" data-translate="aesthetische.hero.title">
+        Ästhetische Zahnheilkunde
+      </h1>
+      <p class="text-xl text-white mb-8 font-light max-w-2xl mx-auto" data-translate="aesthetische.hero.subtitle">
+        Ihr strahlendes Lächeln - unsere Leidenschaft
+      </p>
+    </div>
+  </section>
+
+  <!-- Introduction Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+        <div class="scroll-reveal img-circle-frame">
+          <img src="../assets/img/z7157290546884_480c00c761067033f7e30c5799d12830.jpg" alt="Aesthetische Zahnheilkunde" class="shadow-2xl">
+        </div>
+        <div class="scroll-reveal">
+          <h2 class="text-3xl font-bold text-gray-800 mb-6" data-translate="aesthetische.intro.title">
+            Schöne Zähne für mehr Lebensqualität
+          </h2>
+          <p class="text-lg text-gray-600 mb-4 leading-relaxed" data-translate="aesthetische.intro.text1">
+            Ein strahlendes Lächeln öffnet Türen - im Beruf wie im Privatleben. Schöne, gepflegte Zähne vermitteln Sympathie, Gesundheit und Selbstbewusstsein. Wenn Sie sich mit Ihren Zähnen nicht wohlfühlen, leidet oft auch Ihre Lebensqualität.
+          </p>
+          <p class="text-lg text-gray-600 leading-relaxed" data-translate="aesthetische.intro.text2">
+            In unserer Praxis verbinden wir modernste Zahnmedizin mit ästhetischem Anspruch. Ob Zahnaufhellung, Veneers oder Smile Design - wir verwirklichen Ihren Traum vom perfekten Lächeln mit sanften, zahnschonenden Methoden.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center" data-translate="aesthetische.benefits.title">
+          Vorteile ästhetischer Zahnheilkunde
+        </h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Benefit 1 -->
+          <div class="bg-white rounded-2xl p-6 shadow-lg">
+            <div class="w-12 h-12 bg-gradient-to-r from-pink-500 to-rose-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="aesthetische.benefits.benefit1.title">
+              Mehr Selbstvertrauen
+            </h3>
+            <p class="text-gray-600" data-translate="aesthetische.benefits.benefit1.text">
+              Schöne Zähne lassen Sie selbstbewusster lächeln und auftreten.
+            </p>
+          </div>
+
+          <!-- Benefit 2 -->
+          <div class="bg-white rounded-2xl p-6 shadow-lg">
+            <div class="w-12 h-12 bg-gradient-to-r from-teal-500 to-teal-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="aesthetische.benefits.benefit2.title">
+              Natürliche Ästhetik
+            </h3>
+            <p class="text-gray-600" data-translate="aesthetische.benefits.benefit2.text">
+              Moderne Materialien sorgen für ein natürlich aussehendes Ergebnis.
+            </p>
+          </div>
+
+          <!-- Benefit 3 -->
+          <div class="bg-white rounded-2xl p-6 shadow-lg">
+            <div class="w-12 h-12 bg-gradient-to-r from-teal-500 to-teal-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="aesthetische.benefits.benefit3.title">
+              Zahnschonend
+            </h3>
+            <p class="text-gray-600" data-translate="aesthetische.benefits.benefit3.text">
+              Minimal-invasive Verfahren erhalten maximale Zahnsubstanz.
+            </p>
+          </div>
+
+          <!-- Benefit 4 -->
+          <div class="bg-white rounded-2xl p-6 shadow-lg">
+            <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="aesthetische.benefits.benefit4.title">
+              Langlebige Ergebnisse
+            </h3>
+            <p class="text-gray-600" data-translate="aesthetische.benefits.benefit4.text">
+              Hochwertige Materialien garantieren lange Haltbarkeit.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center" data-translate="aesthetische.services.title">
+          Unsere ästhetischen Leistungen
+        </h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Service 1: Bleaching -->
+          <div class="bg-gradient-to-br from-teal-50 to-teal-100 rounded-2xl p-8 shadow-md">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-gradient-to-r from-teal-500 to-teal-600 rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-800 ml-4" data-translate="aesthetische.services.service1.title">
+                Bleaching (Zahnaufhellung)
+              </h3>
+            </div>
+            <p class="text-gray-700 leading-relaxed" data-translate="aesthetische.services.service1.text">
+              Professionelle Aufhellung für strahlend weiße Zähne - in der Praxis oder zu Hause mit individuellen Schienen.
+            </p>
+          </div>
+
+          <!-- Service 2: Veneers -->
+          <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 shadow-md">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-800 ml-4" data-translate="aesthetische.services.service2.title">
+                Veneers (Keramikschalen)
+              </h3>
+            </div>
+            <p class="text-gray-700 leading-relaxed" data-translate="aesthetische.services.service2.text">
+              Hauchdünne Keramikschalen für perfekt geformte, makellos weiße Zähne ohne großen Substanzverlust.
+            </p>
+          </div>
+
+          <!-- Service 3: Bonding -->
+          <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-2xl p-8 shadow-md">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-600 rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"></path>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-800 ml-4" data-translate="aesthetische.services.service3.title">
+                Bonding
+              </h3>
+            </div>
+            <p class="text-gray-700 leading-relaxed" data-translate="aesthetische.services.service3.text">
+              Korrektur kleiner Zahndefekte mit zahnfarbenem Kunststoff in nur einer Sitzung.
+            </p>
+          </div>
+
+          <!-- Service 4: Smile Design -->
+          <div class="bg-gradient-to-br from-orange-50 to-rose-50 rounded-2xl p-8 shadow-md">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-gradient-to-r from-orange-500 to-rose-600 rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-800 ml-4" data-translate="aesthetische.services.service4.title">
+                Smile Design
+              </h3>
+            </div>
+            <p class="text-gray-700 leading-relaxed" data-translate="aesthetische.services.service4.text">
+              Ganzheitliche Planung Ihres neuen Lächelns mit digitaler Vorschau des Ergebnisses.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center" data-translate="faq.title">
+          Häufig gestellte Fragen
+        </h2>
+        <div class="space-y-6">
+          <!-- FAQ 1 -->
+          <div class="bg-white rounded-xl p-6 shadow-md">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="aesthetische.faq.question1">
+              Wie lange hält ein Bleaching?
+            </h3>
+            <p class="text-gray-600" data-translate="aesthetische.faq.answer1">
+              Je nach Lebensgewohnheiten (Kaffee, Tee, Rauchen) hält ein professionelles Bleaching 1-3 Jahre. Mit guter Pflege und gelegentlichen Auffrischungen kann der Effekt länger erhalten bleiben.
+            </p>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="bg-white rounded-xl p-6 shadow-md">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="aesthetische.faq.question2">
+              Schädigt Bleaching die Zähne?
+            </h3>
+            <p class="text-gray-600" data-translate="aesthetische.faq.answer2">
+              Nein, bei professioneller Durchführung ist Bleaching unbedenklich. Vorübergehende Empfindlichkeiten verschwinden nach wenigen Tagen. Wichtig ist eine vorherige Kontrolle und gesunde Zähne.
+            </p>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="bg-white rounded-xl p-6 shadow-md">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="aesthetische.faq.question3">
+              Wie lange halten Veneers?
+            </h3>
+            <p class="text-gray-600" data-translate="aesthetische.faq.answer3">
+              Bei guter Pflege halten Veneers 10-15 Jahre oder länger. Sie sind sehr stabil und verfärben sich nicht wie natürliche Zähne.
+            </p>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="bg-white rounded-xl p-6 shadow-md">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="aesthetische.faq.question4">
+              Übernimmt die Krankenkasse die Kosten?
+            </h3>
+            <p class="text-gray-600" data-translate="aesthetische.faq.answer4">
+              Ästhetische Zahnheilkunde ist eine Privatleistung und wird von gesetzlichen Krankenkassen nicht übernommen. Wir erstellen Ihnen gerne einen transparenten Kostenvoranschlag.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-gray-800 mb-4" data-translate="contact.title">Termin vereinbaren</h2>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto" data-translate="contact.subtitle">
+          Vereinbaren Sie einen Termin in einer unserer Praxen
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <!-- Location 1: Schwarzbach -->
+        <div class="bg-gray-50 rounded-2xl shadow-lg p-8">
+          <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="contact.location1.title">Standort Schwarzbach</h3>
+          <div class="space-y-4">
+            <div class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+              <div>
+                <p class="font-semibold text-gray-800" data-translate="contact.address">Adresse</p>
+                <p class="text-gray-600">Schwarzbach 2<br>42277 Wuppertal</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+              </svg>
+              <div>
+                <p class="font-semibold text-gray-800" data-translate="contact.phone">Telefon</p>
+                <a href="tel:0202660828" class="text-teal-500 hover:text-teal-600">0202 660828</a>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+              <div>
+                <p class="font-semibold text-gray-800" data-translate="contact.email">E-Mail</p>
+                <a href="mailto:schwarzbach@seitschenko-dinh.de" class="text-teal-500 hover:text-teal-600">schwarzbach@seitschenko-dinh.de</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Location 2: Wall -->
+        <div class="bg-gray-50 rounded-2xl shadow-lg p-8">
+          <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="contact.location2.title">Standort Wall</h3>
+          <div class="space-y-4">
+            <div class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+              <div>
+                <p class="font-semibold text-gray-800" data-translate="contact.address">Adresse</p>
+                <p class="text-gray-600">Wall 3<br>42103 Wuppertal</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+              </svg>
+              <div>
+                <p class="font-semibold text-gray-800" data-translate="contact.phone">Telefon</p>
+                <a href="tel:0202451642" class="text-teal-500 hover:text-teal-600">0202 451642</a>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+              <div>
+                <p class="font-semibold text-gray-800" data-translate="contact.email">E-Mail</p>
+                <a href="mailto:wall@seitschenko-dinh.de" class="text-teal-500 hover:text-teal-600">wall@seitschenko-dinh.de</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer-bg text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid md:grid-cols-4 gap-8">
+        <!-- Logo & Description -->
+        <div class="md:col-span-2">
+          <div class="flex items-center space-x-3 mb-4">
+            <img src="../assets/img/logo.svg" alt="Seitschenko-Dinh Logo" class="w-12 h-12">
+            <span class="text-2xl font-bold">Seitschenko-Dinh</span>
+          </div>
+          <p class="text-gray-400 mb-4" data-translate="footer.description">
+            Moderne Zahnmedizin in Wuppertal mit zwei Standorten. Professionelle Behandlung in entspannter Atmosphäre.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-lg font-semibold mb-4" data-translate="footer.quickLinks">Schnellzugriff</h4>
+          <ul class="space-y-2">
+            <li><a href="../index.html#home" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.home">Start</a></li>
+            <li><a href="../index.html#about" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.about">Über uns</a></li>
+            <li><a href="../index.html#services" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.services">Leistungen</a></li>
+            <li><a href="../index.html#labor" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.labor">Labor</a></li>
+            <li><a href="../index.html#contact" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.contact">Kontakt</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div>
+          <h4 class="text-lg font-semibold mb-4" data-translate="footer.contact">Kontakt</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><strong>Schwarzbach:</strong><br>0202 660828</li>
+            <li><strong>Wall:</strong><br>0202 451642</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+        <p class="text-gray-400" data-translate="footer.copyright">
+          © 2025 Seitschenko-Dinh. Alle Rechte vorbehalten.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript for Language Switching and Functionality -->
+  <script src="../js/service-translations.js"></script>
+
+  <!-- Initialize Chatbot -->
+  <script src="../js/chatbot.js"></script>
+  <script>
+    window.addEventListener('load', function() {
+      const chatbot = new DigitizedBrainsChatbot({
+        iframeSrc: 'https://ducnguyen1978-digitizedgemini.hf.space',
+        widgetTitle: 'Dental Assistant',
+        position: { bottom: '30px', right: '30px' },
+        size: { width: '420px', height: '600px' }
+      });
+    });
+  </script>
+</body>
+</html>

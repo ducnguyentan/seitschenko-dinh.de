@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="de" id="html-root">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title id="page-title">Zahnerhaltung - Seitschenko-Dinh</title>
+  <meta name="description" content="Erhalt und Schutz natürlicher Zähne durch moderne Verfahren" id="page-description">
+  <link href="../css/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="bg-white text-gray-800">
+
+  <header class="bg-white shadow-lg fixed top-0 left-0 right-0 z-50">
+    <div class="container mx-auto px-4">
+      <div class="flex items-center justify-between py-4">
+        <div class="flex items-center space-x-3">
+          <img src="../assets/img/logo.svg" alt="Seitschenko-Dinh Logo" class="w-12 h-12">
+          <a href="../index.html" class="text-2xl font-bold text-gray-800">Seitschenko-Dinh</a>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-4">
+          <nav class="flex space-x-2">
+            <a href="../index.html#home" class="nav-link" data-translate="nav.home">Start</a>
+            <a href="../index.html#about" class="nav-link" data-translate="nav.about">Über uns</a>
+            <a href="../index.html#services" class="nav-link active" data-translate="nav.services">Leistungen</a>
+            <a href="../index.html#labor" class="nav-link" data-translate="nav.labor">Labor</a>
+            <a href="../index.html#contact" class="nav-link" data-translate="nav.contact">Kontakt</a>
+          </nav>
+
+          <div class="language-switcher">
+            <button id="language-btn" class="flex items-center space-x-1 px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+              <img id="current-flag" src="https://flagcdn.com/24x18/de.png" alt="Deutsch" class="language-flag">
+              <span id="current-lang">DE</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div id="language-menu" class="language-menu">
+              <a href="#" onclick="changeLanguage('de')" class="language-option" data-lang="de">
+                <img src="https://flagcdn.com/24x18/de.png" alt="Deutsch" class="language-flag">Deutsch
+              </a>
+              <a href="#" onclick="changeLanguage('en')" class="language-option" data-lang="en">
+                <img src="https://flagcdn.com/24x18/us.png" alt="English" class="language-flag">English
+              </a>
+              <a href="#" onclick="changeLanguage('vi')" class="language-option" data-lang="vi">
+                <img src="https://flagcdn.com/24x18/vn.png" alt="Tiếng Việt" class="language-flag">Tiếng Việt
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <button id="mobile-menu-btn" class="md:hidden p-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+
+      <div id="mobile-menu" class="md:hidden hidden pb-4">
+        <div class="flex flex-col space-y-2">
+          <a href="../index.html#home" class="nav-link" data-translate="nav.home">Start</a>
+          <a href="../index.html#about" class="nav-link" data-translate="nav.about">Über uns</a>
+          <a href="../index.html#services" class="nav-link active" data-translate="nav.services">Leistungen</a>
+          <a href="../index.html#labor" class="nav-link" data-translate="nav.labor">Labor</a>
+          <a href="../index.html#contact" class="nav-link" data-translate="nav.contact">Kontakt</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero-bg py-20 relative overflow-hidden">
+    <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+    <div class="relative z-10 text-center max-w-4xl mx-auto px-4">
+      <h1 class="text-4xl md:text-6xl font-bold text-white mb-6" data-translate="hero.title">Zahnerhaltung</h1>
+      <p class="text-xl text-white mb-8 font-light max-w-2xl mx-auto" data-translate="hero.subtitle">
+        Natürliche Zähne erhalten - mit modernen, schonenden Verfahren
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+        <div class="scroll-reveal img-circle-frame">
+          <img src="../assets/img/z7157290503450_4ab2d9dc40011ba47b65c0f00af7b9ab.jpg" alt="Zahnerhaltung" class="shadow-2xl">
+        </div>
+        <div class="scroll-reveal">
+          <h2 class="text-3xl font-bold text-gray-800 mb-6" data-translate="intro.title">
+            Der Erhalt Ihrer natürlichen Zähne steht im Mittelpunkt
+          </h2>
+          <p class="text-lg text-gray-600 mb-4 leading-relaxed" data-translate="intro.text1">
+            Nichts ist so gut wie Ihre eigenen, natürlichen Zähne. Deshalb setzen wir alles daran, diese so lange wie möglich zu erhalten. Moderne zahnerhaltende Verfahren ermöglichen es uns heute, auch stark geschädigte Zähne zu retten und ihre Funktion wiederherzustellen.
+          </p>
+          <p class="text-lg text-gray-600 leading-relaxed" data-translate="intro.text2">
+            Von der Behandlung kleinster Kariesstellen bis zur komplexen Wurzelkanalbehandlung - wir nutzen modernste Techniken und Materialien, um Ihre Zähne langfristig gesund zu halten. Dabei legen wir großen Wert auf schmerzarme, schonende Behandlungen und ästhetisch ansprechende Ergebnisse.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center" data-translate="treatments.title">
+          Unsere zahnerhaltenden Behandlungen
+        </h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-white rounded-2xl p-6 shadow-lg">
+            <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="treatments.treatment1.title">Füllungstherapie</h3>
+            <p class="text-gray-600" data-translate="treatments.treatment1.text">
+              Hochwertige Kompositfüllungen (zahnfarbene Kunststofffüllungen) für ästhetische und langlebige Ergebnisse. Sie sind biokompatibel und nahezu unsichtbar.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 shadow-lg">
+            <div class="w-12 h-12 bg-gradient-to-r from-teal-500 to-teal-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="treatments.treatment2.title">Wurzelkanalbehandlung (Endodontie)</h3>
+            <p class="text-gray-600" data-translate="treatments.treatment2.text">
+              Rettung entzündeter oder abgestorbener Zähne durch moderne Endodontie. Mit speziellen Instrumenten und Materialien erhalten wir auch schwer geschädigte Zähne.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 shadow-lg">
+            <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="treatments.treatment3.title">Parodontologie</h3>
+            <p class="text-gray-600" data-translate="treatments.treatment3.text">
+              Behandlung von Zahnfleischerkrankungen und Parodontitis. Gesundes Zahnfleisch ist die Grundlage für langfristig gesunde Zähne.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 shadow-lg">
+            <div class="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="treatments.treatment4.title">Inlays und Onlays</h3>
+            <p class="text-gray-600" data-translate="treatments.treatment4.text">
+              Hochwertige Einlagefüllungen aus Keramik oder Gold für größere Defekte. Sie sind besonders langlebig und passen sich perfekt an den Zahn an.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center" data-translate="process.title">
+          Ablauf einer Wurzelkanalbehandlung
+        </h2>
+        <div class="space-y-6">
+          <div class="flex items-start space-x-4 bg-gray-50 rounded-xl p-6">
+            <div class="flex-shrink-0 w-12 h-12 bg-teal-500 rounded-full flex items-center justify-center text-white font-bold text-xl">1</div>
+            <div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-2" data-translate="process.step1.title">Diagnose und Röntgenbild</h3>
+              <p class="text-gray-600" data-translate="process.step1.text">
+                Zunächst untersuchen wir den Zahn gründlich und fertigen ein Röntgenbild an, um das Ausmaß der Entzündung zu bestimmen.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-start space-x-4 bg-gray-50 rounded-xl p-6">
+            <div class="flex-shrink-0 w-12 h-12 bg-teal-500 rounded-full flex items-center justify-center text-white font-bold text-xl">2</div>
+            <div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-2" data-translate="process.step2.title">Örtliche Betäubung</h3>
+              <p class="text-gray-600" data-translate="process.step2.text">
+                Der Zahn wird lokal betäubt, sodass die Behandlung schmerzfrei verläuft. Für Ihre Sicherheit verwenden wir einen Kofferdamm (Gummituch) zur Isolierung des Zahns.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-start space-x-4 bg-gray-50 rounded-xl p-6">
+            <div class="flex-shrink-0 w-12 h-12 bg-teal-500 rounded-full flex items-center justify-center text-white font-bold text-xl">3</div>
+            <div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-2" data-translate="process.step3.title">Reinigung der Wurzelkanäle</h3>
+              <p class="text-gray-600" data-translate="process.step3.text">
+                Mit feinen Instrumenten entfernen wir entzündetes oder abgestorbenes Gewebe aus den Wurzelkanälen und reinigen diese gründlich.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-start space-x-4 bg-gray-50 rounded-xl p-6">
+            <div class="flex-shrink-0 w-12 h-12 bg-teal-500 rounded-full flex items-center justify-center text-white font-bold text-xl">4</div>
+            <div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-2" data-translate="process.step4.title">Füllung der Wurzelkanäle</h3>
+              <p class="text-gray-600" data-translate="process.step4.text">
+                Die sauberen Kanäle werden mit einem biokompatiblen Material dicht verschlossen, um eine erneute Infektion zu verhindern.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-start space-x-4 bg-gray-50 rounded-xl p-6">
+            <div class="flex-shrink-0 w-12 h-12 bg-teal-500 rounded-full flex items-center justify-center text-white font-bold text-xl">5</div>
+            <div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-2" data-translate="process.step5.title">Wiederherstellung der Zahnkrone</h3>
+              <p class="text-gray-600" data-translate="process.step5.text">
+                Abschließend wird der Zahn mit einer Füllung oder Krone versorgt, um seine Funktion und Ästhetik vollständig wiederherzustellen.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center" data-translate="faq.title">Häufig gestellte Fragen</h2>
+        <div class="space-y-6">
+          <div class="bg-white rounded-xl p-6 shadow-md">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="faq.question1">Ist eine Wurzelkanalbehandlung schmerzhaft?</h3>
+            <p class="text-gray-600" data-translate="faq.answer1">
+              Nein, durch moderne Anästhesie ist die Behandlung schmerzfrei. Viele Patienten berichten, dass sie während der Behandlung kaum etwas spüren. Nach der Behandlung kann es zu leichten Beschwerden kommen, die aber gut mit Schmerzmitteln zu beherrschen sind.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-xl p-6 shadow-md">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="faq.question2">Wie lange hält eine Kompositfüllung?</h3>
+            <p class="text-gray-600" data-translate="faq.answer2">
+              Bei guter Pflege und regelmäßigen Kontrollen halten moderne Kompositfüllungen durchschnittlich 7-10 Jahre oder länger. Die Haltbarkeit hängt von der Größe der Füllung und der Mundhygiene ab.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-xl p-6 shadow-md">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="faq.question3">Können wurzelbehandelte Zähne überkront werden?</h3>
+            <p class="text-gray-600" data-translate="faq.answer3">
+              Ja, in vielen Fällen ist es sogar empfehlenswert, wurzelbehandelte Zähne mit einer Krone zu versorgen. Diese stabilisiert den Zahn und schützt ihn vor Bruch, da wurzelbehandelte Zähne spröder werden können.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-xl p-6 shadow-md">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="faq.question4">Was ist besser: Füllung oder Inlay?</h3>
+            <p class="text-gray-600" data-translate="faq.answer4">
+              Bei kleinen bis mittleren Defekten sind Kompositfüllungen eine sehr gute Wahl. Für größere Defekte empfehlen wir Inlays oder Onlays, da diese stabiler und langlebiger sind. Wir beraten Sie individuell, welche Lösung für Sie am besten geeignet ist.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-gray-800 mb-4" data-translate="contact.title">Termin vereinbaren</h2>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto" data-translate="contact.subtitle">
+          Vereinbaren Sie einen Termin in einer unserer Praxen
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div class="bg-gray-50 rounded-2xl shadow-lg p-8">
+          <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="contact.location1.title">Standort Schwarzbach</h3>
+          <div class="space-y-4">
+            <div class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+              <div>
+                <p class="font-semibold text-gray-800" data-translate="contact.address">Adresse</p>
+                <p class="text-gray-600">Schwarzbach 2<br>42277 Wuppertal</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+              </svg>
+              <div>
+                <p class="font-semibold text-gray-800" data-translate="contact.phone">Telefon</p>
+                <a href="tel:0202660828" class="text-teal-500 hover:text-teal-600">0202 660828</a>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+              <div>
+                <p class="font-semibold text-gray-800" data-translate="contact.email">E-Mail</p>
+                <a href="mailto:schwarzbach@seitschenko-dinh.de" class="text-teal-500 hover:text-teal-600">schwarzbach@seitschenko-dinh.de</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gray-50 rounded-2xl shadow-lg p-8">
+          <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="contact.location2.title">Standort Wall</h3>
+          <div class="space-y-4">
+            <div class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+              <div>
+                <p class="font-semibold text-gray-800" data-translate="contact.address">Adresse</p>
+                <p class="text-gray-600">Wall 3<br>42103 Wuppertal</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+              </svg>
+              <div>
+                <p class="font-semibold text-gray-800" data-translate="contact.phone">Telefon</p>
+                <a href="tel:0202451642" class="text-teal-500 hover:text-teal-600">0202 451642</a>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+              <div>
+                <p class="font-semibold text-gray-800" data-translate="contact.email">E-Mail</p>
+                <a href="mailto:wall@seitschenko-dinh.de" class="text-teal-500 hover:text-teal-600">wall@seitschenko-dinh.de</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer-bg text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid md:grid-cols-4 gap-8">
+        <div class="md:col-span-2">
+          <div class="flex items-center space-x-3 mb-4">
+            <img src="../assets/img/logo.svg" alt="Seitschenko-Dinh Logo" class="w-12 h-12">
+            <span class="text-2xl font-bold">Seitschenko-Dinh</span>
+          </div>
+          <p class="text-gray-400 mb-4" data-translate="footer.description">
+            Moderne Zahnmedizin in Wuppertal mit zwei Standorten. Professionelle Behandlung in entspannter Atmosphäre.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-semibold mb-4" data-translate="footer.quickLinks">Schnellzugriff</h4>
+          <ul class="space-y-2">
+            <li><a href="../index.html#home" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.home">Start</a></li>
+            <li><a href="../index.html#about" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.about">Über uns</a></li>
+            <li><a href="../index.html#services" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.services">Leistungen</a></li>
+            <li><a href="../index.html#labor" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.labor">Labor</a></li>
+            <li><a href="../index.html#contact" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.contact">Kontakt</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-semibold mb-4" data-translate="footer.contact">Kontakt</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><strong>Schwarzbach:</strong><br>0202 660828</li>
+            <li><strong>Wall:</strong><br>0202 451642</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+        <p class="text-gray-400" data-translate="footer.copyright">
+          © 2025 Seitschenko-Dinh. Alle Rechte vorbehalten.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/service-translations.js"></script>
+  <script src="../js/chatbot.js"></script>
+  <script>
+    window.addEventListener('load', function() {
+      const chatbot = new DigitizedBrainsChatbot({
+        iframeSrc: 'https://ducnguyen1978-digitizedgemini.hf.space',
+        widgetTitle: 'Dental Assistant',
+        position: { bottom: '30px', right: '30px' },
+        size: { width: '420px', height: '600px' }
+      });
+    });
+  </script>
+</body>
+</html>
