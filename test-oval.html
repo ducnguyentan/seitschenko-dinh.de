@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Oval Frame</title>
+  <link href="css/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-white p-8">
+  <h1 class="text-3xl font-bold mb-8">Test Oval Frame</h1>
+
+  <div class="container mx-auto px-4">
+    <div class="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+      <div class="img-oval-frame" style="border: 2px solid red;">
+        <img src="assets/img/implantologie.jpg" alt="Test" class="shadow-2xl">
+      </div>
+      <div>
+        <h2 class="text-2xl font-bold">Test Content</h2>
+        <p>If you can see the image with red border around the container and teal border around the oval image, CSS is working.</p>
+        <p>Check browser console for any errors.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-8 p-4 bg-gray-100">
+    <h3 class="font-bold">Debug Info:</h3>
+    <p>Image path: assets/img/implantologie.jpg</p>
+    <p>CSS file: css/style.css</p>
+    <p>Open browser DevTools (F12) to check:</p>
+    <ul class="list-disc ml-6">
+      <li>Network tab - is CSS file loading?</li>
+      <li>Network tab - is image file loading?</li>
+      <li>Console tab - any errors?</li>
+      <li>Elements tab - inspect .img-oval-frame styles</li>
+    </ul>
+  </div>
+</body>
+</html>

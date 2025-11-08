@@ -7,11 +7,11 @@ Website nha khoa chuyên nghiệp dựa trên nội dung từ https://seitschenk
 ## Cấu trúc Website
 
 ### Trang chủ
-- **File**: `index.html`
+- **File**: `zahnarzt-index.html`
 - **Nội dung**: Giới thiệu phòng khám, đội ngũ, 8 dịch vụ chính, phòng lab, liên hệ
 - **Ngôn ngữ**: Tiếng Đức (mặc định), Tiếng Anh, Tiếng Việt
 
-### Các trang dịch vụ (Thư mục: `pages/`)
+### Các trang dịch vụ (Thư mục: `zahnarzt-pages/`)
 
 1. **kinderzahnheilkunde.html** - Nha khoa Trẻ em
    - Không gian thân thiện cho trẻ
