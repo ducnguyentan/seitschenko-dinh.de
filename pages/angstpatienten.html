@@ -20,9 +20,13 @@
   <header class="bg-white shadow-lg fixed top-0 left-0 right-0 z-50">
     <div class="container mx-auto px-4">
       <div class="flex items-center justify-between py-4">
+        <!-- Logo -->
         <div class="flex items-center space-x-3">
           <img src="../assets/img/logo.svg" alt="Seitschenko-Dinh Logo" class="w-12 h-12">
-          <a href="../index.html" class="text-2xl font-bold text-gray-800">Seitschenko-Dinh</a>
+          <a href="../index.html" class="flex flex-col leading-tight">
+            <span class="text-sm font-bold text-gray-800 tracking-wide" data-translate="header.practice_name1">ZAHNARZTPRAXEN</span>
+            <span class="text-sm font-bold text-gray-800 tracking-wide" data-translate="header.practice_name2">SEITSCHENKO-DINH</span>
+          </a>
         </div>
 
         <div class="hidden md:flex items-center space-x-4">
@@ -54,6 +58,14 @@
               <a href="#" onclick="changeLanguage('vi')" class="language-option" data-lang="vi">
                 <img src="https://flagcdn.com/24x18/vn.png" alt="Tiếng Việt" class="language-flag">
                 Tiếng Việt
+              </a>
+              <a href="#" onclick="changeLanguage('ru')" class="language-option" data-lang="ru">
+                <img src="https://flagcdn.com/24x18/ru.png" alt="Русский" class="language-flag">
+                Русский
+              </a>
+              <a href="#" onclick="changeLanguage('ar')" class="language-option" data-lang="ar">
+                <img src="https://flagcdn.com/24x18/sa.png" alt="العربية" class="language-flag">
+                العربية
               </a>
             </div>
           </div>
@@ -96,6 +108,14 @@
                   <img src="https://flagcdn.com/24x18/vn.png" alt="Tiếng Việt" class="language-flag">
                   Tiếng Việt
                 </a>
+                <a href="#" onclick="changeLanguage('ru')" class="language-option-mobile" data-lang="ru">
+                  <img src="https://flagcdn.com/24x18/ru.png" alt="Русский" class="language-flag">
+                  Русский
+                </a>
+                <a href="#" onclick="changeLanguage('ar')" class="language-option-mobile" data-lang="ar">
+                  <img src="https://flagcdn.com/24x18/sa.png" alt="العربية" class="language-flag">
+                  العربية
+                </a>
               </div>
             </div>
           </div>
@@ -121,8 +141,8 @@
   <section class="py-16 bg-white">
     <div class="container mx-auto px-4">
       <div class="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-        <div class="scroll-reveal img-circle-frame">
-          <img src="../assets/img/z7157290503424_5f2c470b119071762194c49541ba5574.jpg" alt="Angstpatienten" class="shadow-2xl">
+        <div class="scroll-reveal img-oval-frame">
+          <img src="../assets/img/angstpatienten.jpg" alt="Angstpatienten" class="shadow-2xl">
         </div>
         <div class="scroll-reveal">
           <h2 class="text-3xl font-bold text-gray-800 mb-6" data-translate="intro.title">
@@ -398,7 +418,7 @@
 
         <!-- Location 2 -->
         <div class="bg-gray-50 rounded-2xl shadow-lg p-8">
-          <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="contact.location2.title">Standort Wall</h3>
+          <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="contact.location2.title">Standort Loher</h3>
           <div class="space-y-4">
             <div class="flex items-start space-x-3">
               <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -407,7 +427,7 @@
               </svg>
               <div>
                 <p class="font-semibold text-gray-800" data-translate="contact.address">Adresse</p>
-                <p class="text-gray-600">Wall 3<br>42103 Wuppertal</p>
+                <p class="text-gray-600">Loher Str. 40<br>42283 Wuppertal</p>
               </div>
             </div>
             <div class="flex items-start space-x-3">
@@ -425,7 +445,7 @@
               </svg>
               <div>
                 <p class="font-semibold text-gray-800" data-translate="contact.email">E-Mail</p>
-                <a href="mailto:wall@seitschenko-dinh.de" class="text-teal-500 hover:text-teal-600">wall@seitschenko-dinh.de</a>
+                <a href="mailto:loherstr@seitschenko-dinh.de" class="text-teal-500 hover:text-teal-600">loherstr@seitschenko-dinh.de</a>
               </div>
             </div>
           </div>
@@ -435,42 +455,49 @@
   </section>
 
   <!-- Footer -->
-  <footer class="footer-bg text-white py-12">
+  <footer class="footer-brown text-white py-8">
     <div class="container mx-auto px-4">
-      <div class="grid md:grid-cols-4 gap-8">
-        <div class="md:col-span-2">
-          <div class="flex items-center space-x-3 mb-4">
-            <img src="../assets/img/logo.svg" alt="Seitschenko-Dinh Logo" class="w-12 h-12">
-            <span class="text-2xl font-bold">Seitschenko-Dinh</span>
+      <div class="grid md:grid-cols-3 gap-6 items-center">
+        <!-- Logo & Practice Name -->
+        <div class="flex items-center space-x-3">
+          <img src="../assets/img/logo.svg" alt="Seitschenko-Dinh Logo" class="w-12 h-12 flex-shrink-0">
+          <div class="flex flex-col">
+            <h3 class="text-base font-bold uppercase tracking-wide leading-tight" data-translate="footer.practice_name1">ZAHNARZTPRAXEN</h3>
+            <h3 class="text-base font-bold uppercase tracking-wide leading-tight" data-translate="footer.practice_name2">SEITSCHENKO-DINH</h3>
           </div>
-          <p class="text-gray-400 mb-4" data-translate="footer.description">
-            Moderne Zahnmedizin in Wuppertal mit zwei Standorten. Professionelle Behandlung in entspannter Atmosphäre.
-          </p>
         </div>
 
-        <div>
-          <h4 class="text-lg font-semibold mb-4" data-translate="footer.quickLinks">Schnellzugriff</h4>
-          <ul class="space-y-2">
-            <li><a href="../index.html#home" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.home">Start</a></li>
-            <li><a href="../index.html#about" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.about">Über uns</a></li>
-            <li><a href="../index.html#services" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.services">Leistungen</a></li>
-            <li><a href="../index.html#labor" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.labor">Labor</a></li>
-            <li><a href="../index.html#contact" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.contact">Kontakt</a></li>
-          </ul>
+        <!-- Location 1: Schwarzbach -->
+        <div class="flex items-center space-x-3">
+          <div class="flex-shrink-0">
+            <div class="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center">
+              <span class="text-lg font-bold">1</span>
+            </div>
+          </div>
+          <div class="flex flex-col leading-tight">
+            <p class="text-sm" data-translate="footer.location1.line1">Schwarzbach 2 | 42277 Wuppertal</p>
+            <p class="text-sm" data-translate="footer.location1.line2">Tel.: 0202 660828</p>
+          </div>
         </div>
 
-        <div>
-          <h4 class="text-lg font-semibold mb-4" data-translate="footer.contact">Kontakt</h4>
-          <ul class="space-y-2 text-gray-400">
-            <li><strong>Schwarzbach:</strong><br>0202 660828</li>
-            <li><strong>Wall:</strong><br>0202 451642</li>
-          </ul>
+        <!-- Location 2: Loher Str. -->
+        <div class="flex items-center space-x-3">
+          <div class="flex-shrink-0">
+            <div class="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center">
+              <span class="text-lg font-bold">2</span>
+            </div>
+          </div>
+          <div class="flex flex-col leading-tight">
+            <p class="text-sm" data-translate="footer.location2.line1">Loher Str. 40 | 42283 Wuppertal</p>
+            <p class="text-sm" data-translate="footer.location2.line2">Tel.: 0202 451642</p>
+          </div>
         </div>
       </div>
 
-      <div class="border-t border-gray-700 mt-8 pt-8 text-center">
-        <p class="text-gray-400" data-translate="footer.copyright">
-          © 2025 Seitschenko-Dinh. Alle Rechte vorbehalten.
+      <!-- Copyright -->
+      <div class="mt-6 pt-4 text-center border-t border-white border-opacity-20">
+        <p class="text-xs" data-translate="footer.copyright">
+          © 2024 Datenschutzerklärung
         </p>
       </div>
     </div>

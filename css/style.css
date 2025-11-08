@@ -138,6 +138,15 @@ html, body {
   position: relative;
 }
 
+/* Footer section - brown background with image */
+.footer-brown {
+  background-image: linear-gradient(rgba(74, 52, 40, 0.60), rgba(74, 52, 40, 0.70)), url('../assets/img/img_0370-scaled.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+}
+
 /* Button styles */
 .btn-primary {
   background: linear-gradient(135deg, #5eb3b3 0%, #4a9d9d 100%);
@@ -163,14 +172,21 @@ html, body {
 
 /* Service card animations */
 .service-card {
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
   border: 1px solid #e5e7eb;
 }
 
 .service-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
   border-color: #5eb3b3;
+  z-index: 10;
+}
+
+/* Fade sibling cards when one is hovered */
+#services .grid:has(.service-card:hover) .service-card:not(:hover) {
+  opacity: 0.5;
+  transform: scale(0.97);
 }
 
 /* Scroll reveal animation */
@@ -195,29 +211,164 @@ html, body {
   justify-content: center;
 }
 
-/* Image styling with teal border - circular frame */
+/* Image styling with teal border - asymmetric design with rounded right edge */
 .img-circle-frame {
   position: relative;
-  display: inline-block;
+  display: block;
+  width: calc(100% + 6rem);
+  aspect-ratio: 16/10;
+  overflow: visible;
+  padding: 15px;
+  margin: 0;
+  margin-left: -6rem;
 }
 
 .img-circle-frame img {
-  border-radius: 50%;
+  border-radius: 0 40% 40% 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: opacity 1s ease-in-out;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  display: block;
 }
 
-.img-circle-frame::after {
+/* Image styling with teal border - oval design */
+.img-oval-frame {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: visible;
+  padding: 15px;
+  margin: 0;
+  margin-left: 0;
+}
+
+/* Override scroll-reveal for img-oval-frame to ensure image is always visible */
+.img-oval-frame.scroll-reveal {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.img-oval-frame img {
+  border-radius: 50%;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  object-fit: cover;
+  transition: opacity 1s ease-in-out;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  display: block !important;
+  visibility: visible !important;
+}
+
+/* Perfect circle frame with teal border - for kinderzahnheilkunde page */
+.img-circle-frame.scroll-reveal {
+  opacity: 1 !important;
+  transform: none !important;
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0;
+  aspect-ratio: 1 / 1 !important;
+}
+
+.img-circle-frame.scroll-reveal img {
+  border-radius: 50% !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  display: block !important;
+  visibility: visible !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.img-circle-frame.scroll-reveal::before {
+  content: '' !important;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: 3px solid #5eb3b3;
+  border-radius: 50% !important;
+  pointer-events: none;
+  z-index: 2;
+  display: block !important;
+}
+
+/* Slideshow support */
+.img-circle-frame img.slideshow-image {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  width: calc(100% - 30px);
+  height: calc(100% - 30px);
+  opacity: 0;
+}
+
+.img-circle-frame img.slideshow-image.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.img-circle-frame::before {
   content: '';
   position: absolute;
-  top: -8px;
-  right: -8px;
-  bottom: -8px;
-  left: -8px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-top: 3px solid #5eb3b3;
+  border-right: 3px solid #5eb3b3;
+  border-bottom: 3px solid #5eb3b3;
+  border-left: none;
+  border-radius: 0 40% 40% 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.img-oval-frame::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   border: 3px solid #5eb3b3;
   border-radius: 50%;
   pointer-events: none;
+  z-index: 2;
+}
+
+/* Slideshow navigation dots */
+.slideshow-dots {
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+  display: flex;
+  gap: 10px;
+  z-index: 3;
+}
+
+.slideshow-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.slideshow-dot.active {
+  background-color: #5eb3b3;
+  transform: scale(1.2);
 }
 
 /* Teal color replacements for blue */
@@ -306,14 +457,53 @@ html, body {
 
   .img-circle-frame {
     margin-bottom: 2rem;
+    padding: 12px;
+    margin-left: -1.5rem;
+    width: calc(100% + 1.5rem);
   }
 
-  .img-circle-frame::after {
-    top: -4px;
-    right: -4px;
-    bottom: -4px;
-    left: -4px;
-    border-width: 2px;
+  .img-circle-frame img {
+    border-radius: 0 40% 40% 0;
+  }
+
+  .img-circle-frame img.slideshow-image {
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    width: calc(100% - 24px);
+    height: calc(100% - 24px);
+  }
+
+  .img-circle-frame::before {
+    border-radius: 0 40% 40% 0;
+    border-width: 3px;
+  }
+
+  .img-oval-frame {
+    margin-bottom: 2rem;
+    padding: 12px;
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .img-oval-frame img {
+    border-radius: 50%;
+  }
+
+  .img-oval-frame::before {
+    border-radius: 50%;
+    border-width: 3px;
+  }
+
+  .slideshow-dots {
+    bottom: 15px;
+    right: 20px;
+  }
+
+  .slideshow-dot {
+    width: 10px;
+    height: 10px;
   }
 
   .service-card {
@@ -348,11 +538,43 @@ html, body {
     margin-bottom: 1rem;
   }
 
-  .img-circle-frame::after {
-    top: -6px;
-    right: -6px;
-    bottom: -6px;
-    left: -6px;
+  .img-circle-frame {
+    padding: 13px;
+    margin-left: -1.5rem;
+    width: calc(100% + 1.5rem);
+  }
+
+  .img-circle-frame img {
+    border-radius: 0 40% 40% 0;
+  }
+
+  .img-circle-frame img.slideshow-image {
+    top: 13px;
+    left: 13px;
+    right: 13px;
+    bottom: 13px;
+    width: calc(100% - 26px);
+    height: calc(100% - 26px);
+  }
+
+  .img-circle-frame::before {
+    border-width: 4px;
+    border-radius: 0 40% 40% 0;
+  }
+
+  .img-oval-frame {
+    padding: 13px;
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .img-oval-frame img {
+    border-radius: 50%;
+  }
+
+  .img-oval-frame::before {
+    border-width: 4px;
+    border-radius: 50%;
   }
 }
 
@@ -404,4 +626,135 @@ footer .grid-cols-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+}
+
+/* Contact Section with Background Image */
+#contact {
+  position: relative;
+  background-image: url('../assets/img/praxis-02-scaled.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+#contact::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.92);
+  z-index: 1;
+}
+
+#contact > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Contact Location Cards with Hover Effect */
+.contact-card-wrapper {
+  transition: all 0.4s ease;
+}
+
+.contact-card-wrapper:hover {
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+.contact-card-wrapper:hover ~ .contact-card-wrapper {
+  opacity: 0.6;
+  transform: scale(0.95);
+}
+
+.contact-card-wrapper .location-card {
+  transition: all 0.4s ease;
+  background: white;
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+/* Numbered Circles for Children's Dentistry Page */
+.number-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid rgba(94, 179, 179, 0.3);
+  color: rgba(94, 179, 179, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 400;
+  box-shadow: 0 2px 6px rgba(94, 179, 179, 0.08);
+  flex-shrink: 0;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.number-circle:hover {
+  transform: scale(1.15);
+  box-shadow: 0 3px 10px rgba(94, 179, 179, 0.15);
+  border-color: rgba(94, 179, 179, 0.5);
+  color: rgba(94, 179, 179, 0.75);
+  background: rgba(94, 179, 179, 0.03);
+}
+
+.number-circle-active {
+  background: white;
+  border: 2.5px solid #5eb3b3;
+  color: #4a9d9d;
+  box-shadow: 0 4px 16px rgba(94, 179, 179, 0.35);
+  transform: scale(1.15);
+  font-weight: 700;
+}
+
+.number-circle-active::after {
+  content: '';
+  position: absolute;
+  width: 52px;
+  height: 52px;
+  border: 2px solid rgba(94, 179, 179, 0.5);
+  border-radius: 50%;
+  top: -8px;
+  left: -8px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+}
+
+@media (max-width: 768px) {
+  .number-circle {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+
+  .number-circle-active {
+    border: 2px solid #5eb3b3;
+  }
+
+  .number-circle-active::after {
+    width: 47px;
+    height: 47px;
+    top: -7px;
+    left: -7px;
+  }
 }

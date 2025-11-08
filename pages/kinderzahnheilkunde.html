@@ -23,7 +23,10 @@
         <!-- Logo -->
         <div class="flex items-center space-x-3">
           <img src="../assets/img/logo.svg" alt="Seitschenko-Dinh Logo" class="w-12 h-12">
-          <a href="../index.html" class="text-2xl font-bold text-gray-800">Seitschenko-Dinh</a>
+          <a href="../index.html" class="flex flex-col leading-tight">
+            <span class="text-sm font-bold text-gray-800 tracking-wide" data-translate="header.practice_name1">ZAHNARZTPRAXEN</span>
+            <span class="text-sm font-bold text-gray-800 tracking-wide" data-translate="header.practice_name2">SEITSCHENKO-DINH</span>
+          </a>
         </div>
 
         <!-- Navigation and Language Switcher -->
@@ -57,6 +60,14 @@
               <a href="#" onclick="changeLanguage('vi')" class="language-option" data-lang="vi">
                 <img src="https://flagcdn.com/24x18/vn.png" alt="Tiếng Việt" class="language-flag">
                 Tiếng Việt
+              </a>
+              <a href="#" onclick="changeLanguage('ru')" class="language-option" data-lang="ru">
+                <img src="https://flagcdn.com/24x18/ru.png" alt="Русский" class="language-flag">
+                Русский
+              </a>
+              <a href="#" onclick="changeLanguage('ar')" class="language-option" data-lang="ar">
+                <img src="https://flagcdn.com/24x18/sa.png" alt="العربية" class="language-flag">
+                العربية
               </a>
             </div>
           </div>
@@ -102,6 +113,14 @@
                   <img src="https://flagcdn.com/24x18/vn.png" alt="Tiếng Việt" class="language-flag">
                   Tiếng Việt
                 </a>
+                <a href="#" onclick="changeLanguage('ru')" class="language-option-mobile" data-lang="ru">
+                  <img src="https://flagcdn.com/24x18/ru.png" alt="Русский" class="language-flag">
+                  Русский
+                </a>
+                <a href="#" onclick="changeLanguage('ar')" class="language-option-mobile" data-lang="ar">
+                  <img src="https://flagcdn.com/24x18/sa.png" alt="العربية" class="language-flag">
+                  العربية
+                </a>
               </div>
             </div>
           </div>
@@ -114,11 +133,11 @@
   <section class="hero-bg py-20 relative overflow-hidden">
     <div class="absolute inset-0 bg-black bg-opacity-20"></div>
     <div class="relative z-10 text-center max-w-4xl mx-auto px-4">
-      <h1 class="text-4xl md:text-6xl font-bold text-white mb-6" data-translate="hero.title">
-        Kinderzahnheilkunde
+      <h1 class="text-4xl md:text-6xl font-bold text-white mb-6" data-translate="kinderzahnheilkunde.hero.title">
+        Behandlungen von Kindern
       </h1>
-      <p class="text-xl text-white mb-8 font-light max-w-2xl mx-auto" data-translate="hero.subtitle">
-        Sanfte und liebevolle Zahnpflege für unsere jüngsten Patienten
+      <p class="text-xl text-white mb-8 font-light max-w-2xl mx-auto" data-translate="kinderzahnheilkunde.hero.subtitle">
+        Wir konzentrieren uns auf die speziellen Bedürfnisse von Kindern
       </p>
     </div>
   </section>
@@ -126,20 +145,49 @@
   <!-- Introduction Section -->
   <section class="py-16 bg-white">
     <div class="container mx-auto px-4">
-      <div class="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-        <div class="scroll-reveal img-circle-frame">
-          <img src="../assets/img/z7157290503408_a0751d09a6ae2c92eccf00e33a23664d.jpg" alt="Kinderzahnheilkunde" class="shadow-2xl">
-        </div>
-        <div class="scroll-reveal">
-          <h2 class="text-3xl font-bold text-gray-800 mb-6" data-translate="intro.title">
-            Kinderzahnheilkunde in unserer Praxis
-          </h2>
-          <p class="text-lg text-gray-600 mb-4 leading-relaxed" data-translate="intro.text1">
-            Kinder sind keine kleinen Erwachsenen - sie brauchen eine spezielle, auf ihre Bedürfnisse zugeschnittene zahnmedizinische Versorgung. In unserer Praxis bieten wir eine kindgerechte Atmosphäre, in der sich Ihr Kind wohlfühlt und spielerisch lernt, wie wichtig gesunde Zähne sind.
-          </p>
-          <p class="text-lg text-gray-600 leading-relaxed" data-translate="intro.text2">
-            Unser Ziel ist es, dass Ihr Kind positive Erfahrungen beim Zahnarztbesuch sammelt und so eine lebenslange gute Beziehung zur Zahngesundheit aufbaut. Wir nehmen uns viel Zeit, erklären alles kindgerecht und arbeiten mit sanften, modernen Methoden.
-          </p>
+      <div class="max-w-7xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-12 text-center" data-translate="kinderzahnheilkunde.intro.title">
+          Spezialisierte Behandlung für Kinder
+        </h2>
+
+        <div class="grid md:grid-cols-12 gap-8 items-start">
+          <!-- Numbered Circles Column -->
+          <div class="md:col-span-2 flex md:flex-col flex-row md:space-y-6 space-x-4 md:space-x-0 justify-center">
+            <a href="kinderzahnheilkunde.html" class="number-circle number-circle-active" title="Behandlungen von Kindern">1</a>
+            <a href="angstpatienten.html" class="number-circle" title="Angstpatienten">2</a>
+            <a href="prophylaxe.html" class="number-circle" title="Vorsorge">3</a>
+            <a href="zahnerhaltung.html" class="number-circle" title="Erhaltende Zahnmedizin">4</a>
+            <a href="aesthetische-zahnheilkunde.html" class="number-circle" title="Ästhetische Zahnmedizin">5</a>
+            <a href="zahnersatz.html" class="number-circle" title="Zahnersatz">6</a>
+            <a href="oralchirurgie.html" class="number-circle" title="Oralchirurgie">7</a>
+            <a href="implantologie.html" class="number-circle" title="Implantologie">8</a>
+          </div>
+
+          <!-- Content Column -->
+          <div class="md:col-span-5">
+            <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="kinderzahnheilkunde.intro.content.title">
+              Behandlungen von Kindern
+            </h3>
+            <div class="space-y-4 text-gray-600 leading-relaxed">
+              <p data-translate="kinderzahnheilkunde.intro.content.para1">
+                Herzlich willkommen in unserer kinderfreundlichen Zahnarztpraxis! Wir konzentrieren uns auf die speziellen Bedürfnisse von Kindern und bieten ihnen die bestmögliche zahnärztliche Versorgung.
+              </p>
+              <p data-translate="kinderzahnheilkunde.intro.content.para2">
+                Unser Team aus spezialisierten Kinderzahnärzten verfügt über umfangreiche Erfahrung und Fachwissen. Jede Behandlung verläuft so sanft und stressfrei wie möglich. Mit viel Einfühlungsvermögen nehmen wir Ängste und sorgen für eine entspannte Atmosphäre.
+              </p>
+              <p data-translate="kinderzahnheilkunde.intro.content.para3">
+                Wir informieren und beraten Eltern ausführlich über die Zahngesundheit ihrer Kinder und geben wertvolle Tipps zur richtigen Mundhygiene. Besuchen Sie uns und erleben Sie, wie wir die Zahngesundheit Ihres Kindes in den Mittelpunkt stellen.
+              </p>
+              <p data-translate="kinderzahnheilkunde.intro.content.para4">
+                Vereinbaren Sie noch heute einen Termin und sorgen wir gemeinsam dafür, dass die Zähne Ihres Kindes gesund und stark bleiben!
+              </p>
+            </div>
+          </div>
+
+          <!-- Circle Image Column -->
+          <div class="md:col-span-5 scroll-reveal img-circle-frame">
+            <img src="../assets/img/img_0373-scaled.jpeg" alt="Behandlungen von Kindern" class="shadow-2xl">
+          </div>
         </div>
       </div>
     </div>
@@ -149,7 +197,7 @@
   <section class="py-16 bg-gray-50">
     <div class="container mx-auto px-4">
       <div class="max-w-5xl mx-auto">
-        <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center" data-translate="benefits.title">
+        <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center" data-translate="kinderzahnheilkunde.benefits.title">
           Vorteile unserer Kinderzahnheilkunde
         </h2>
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -160,10 +208,10 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
             </div>
-            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="benefits.benefit1.title">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="kinderzahnheilkunde.benefits.benefit1.title">
               Kindgerechte Atmosphäre
             </h3>
-            <p class="text-gray-600" data-translate="benefits.benefit1.text">
+            <p class="text-gray-600" data-translate="kinderzahnheilkunde.benefits.benefit1.text">
               Buntes, freundliches Ambiente und spielerischer Umgang schaffen eine entspannte Atmosphäre ohne Angst.
             </p>
           </div>
@@ -175,10 +223,10 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
             </div>
-            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="benefits.benefit2.title">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="kinderzahnheilkunde.benefits.benefit2.title">
               Viel Zeit und Geduld
             </h3>
-            <p class="text-gray-600" data-translate="benefits.benefit2.text">
+            <p class="text-gray-600" data-translate="kinderzahnheilkunde.benefits.benefit2.text">
               Wir nehmen uns ausreichend Zeit für jedes Kind und gehen individuell auf seine Bedürfnisse ein.
             </p>
           </div>
@@ -190,10 +238,10 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
               </svg>
             </div>
-            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="benefits.benefit3.title">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="kinderzahnheilkunde.benefits.benefit3.title">
               Spielerische Aufklärung
             </h3>
-            <p class="text-gray-600" data-translate="benefits.benefit3.text">
+            <p class="text-gray-600" data-translate="kinderzahnheilkunde.benefits.benefit3.text">
               Wir erklären Kindern altersgerecht, warum Zahnpflege wichtig ist und wie sie ihre Zähne richtig pflegen.
             </p>
           </div>
@@ -205,10 +253,10 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
               </svg>
             </div>
-            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="benefits.benefit4.title">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="kinderzahnheilkunde.benefits.benefit4.title">
               Sanfte Behandlungsmethoden
             </h3>
-            <p class="text-gray-600" data-translate="benefits.benefit4.text">
+            <p class="text-gray-600" data-translate="kinderzahnheilkunde.benefits.benefit4.text">
               Moderne, schonende Verfahren sorgen für schmerzfreie Behandlungen und positive Erfahrungen.
             </p>
           </div>
@@ -217,11 +265,125 @@
     </div>
   </section>
 
-  <!-- Treatment Process Section -->
+  <!-- Services Section -->
   <section class="py-16 bg-white">
     <div class="container mx-auto px-4">
       <div class="max-w-5xl mx-auto">
-        <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center" data-translate="process.title">
+        <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center" data-translate="kinderzahnheilkunde.services.title">
+          Unsere Leistungen für Kinder
+        </h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Service 1 -->
+          <div class="bg-gradient-to-br from-teal-50 to-teal-100 rounded-2xl p-8 shadow-md">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-gradient-to-r from-teal-500 to-teal-600 rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-gray-800 ml-4" data-translate="kinderzahnheilkunde.services.service1.title">
+                Frühkindliche Zahnprophylaxe
+              </h3>
+            </div>
+            <p class="text-gray-700 leading-relaxed" data-translate="kinderzahnheilkunde.services.service1.text">
+              Vorbeugung ist der beste Schutz. Wir untersuchen die Zähne Ihres Kindes regelmäßig und geben Tipps zur richtigen Zahnpflege von Anfang an.
+            </p>
+          </div>
+
+          <!-- Service 2 -->
+          <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-2xl p-8 shadow-md">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-600 rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-gray-800 ml-4" data-translate="kinderzahnheilkunde.services.service2.title">
+                Professionelle Zahnreinigung
+              </h3>
+            </div>
+            <p class="text-gray-700 leading-relaxed" data-translate="kinderzahnheilkunde.services.service2.text">
+              Spezielle Zahnreinigung für Kinder, die Beläge entfernt und die Zähne auf sanfte Weise sauber und gesund hält.
+            </p>
+          </div>
+
+          <!-- Service 3 -->
+          <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 shadow-md">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.618 5.984A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016zM12 9v2m0 4h.01"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-gray-800 ml-4" data-translate="kinderzahnheilkunde.services.service3.title">
+                Fissurenversiegelung
+              </h3>
+            </div>
+            <p class="text-gray-700 leading-relaxed" data-translate="kinderzahnheilkunde.services.service3.text">
+              Schützender Überzug auf den Kauflächen der Backenzähne verhindert Karies in den Rillen und Vertiefungen.
+            </p>
+          </div>
+
+          <!-- Service 4 -->
+          <div class="bg-gradient-to-br from-orange-50 to-rose-50 rounded-2xl p-8 shadow-md">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-gradient-to-r from-orange-500 to-rose-600 rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-gray-800 ml-4" data-translate="kinderzahnheilkunde.services.service4.title">
+                Fluoridbehandlungen
+              </h3>
+            </div>
+            <p class="text-gray-700 leading-relaxed" data-translate="kinderzahnheilkunde.services.service4.text">
+              Fluorid stärkt den Zahnschmelz und macht die Zähne widerstandsfähiger gegen Karies-Bakterien.
+            </p>
+          </div>
+
+          <!-- Service 5 -->
+          <div class="bg-gradient-to-br from-cyan-50 to-blue-50 rounded-2xl p-8 shadow-md">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-gray-800 ml-4" data-translate="kinderzahnheilkunde.services.service5.title">
+                Kariesbehandlung
+              </h3>
+            </div>
+            <p class="text-gray-700 leading-relaxed" data-translate="kinderzahnheilkunde.services.service5.text">
+              Sanfte Behandlung von Karies mit modernsten Methoden und kindgerechten Materialien.
+            </p>
+          </div>
+
+          <!-- Service 6 -->
+          <div class="bg-gradient-to-br from-pink-50 to-rose-50 rounded-2xl p-8 shadow-md">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-gradient-to-r from-pink-500 to-rose-600 rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-gray-800 ml-4" data-translate="kinderzahnheilkunde.services.service6.title">
+                Kieferorthopädische Beratung
+              </h3>
+            </div>
+            <p class="text-gray-700 leading-relaxed" data-translate="kinderzahnheilkunde.services.service6.text">
+              Wir erkennen Fehlstellungen frühzeitig und beraten Sie zur optimalen kieferorthopädischen Behandlung.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Treatment Process Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center" data-translate="kinderzahnheilkunde.process.title">
           Ablauf der Kinderbehandlung
         </h2>
         <div class="space-y-6">
@@ -231,10 +393,10 @@
               1
             </div>
             <div>
-              <h3 class="text-xl font-semibold text-gray-800 mb-2" data-translate="process.step1.title">
+              <h3 class="text-xl font-semibold text-gray-800 mb-2" data-translate="kinderzahnheilkunde.process.step1.title">
                 Kennenlerntermin
               </h3>
-              <p class="text-gray-600" data-translate="process.step1.text">
+              <p class="text-gray-600" data-translate="kinderzahnheilkunde.process.step1.text">
                 Beim ersten Besuch lernen wir uns kennen. Ihr Kind kann die Praxis erkunden, den Behandlungsstuhl ausprobieren und sich mit der Umgebung vertraut machen - ganz ohne Behandlung.
               </p>
             </div>
@@ -246,10 +408,10 @@
               2
             </div>
             <div>
-              <h3 class="text-xl font-semibold text-gray-800 mb-2" data-translate="process.step2.title">
+              <h3 class="text-xl font-semibold text-gray-800 mb-2" data-translate="kinderzahnheilkunde.process.step2.title">
                 Spielerische Untersuchung
               </h3>
-              <p class="text-gray-600" data-translate="process.step2.text">
+              <p class="text-gray-600" data-translate="kinderzahnheilkunde.process.step2.text">
                 Wir untersuchen die Zähne Ihres Kindes behutsam und erklären jeden Schritt. Mit kindgerechten Worten machen wir die Behandlung zu einem positiven Erlebnis.
               </p>
             </div>
@@ -261,10 +423,10 @@
               3
             </div>
             <div>
-              <h3 class="text-xl font-semibold text-gray-800 mb-2" data-translate="process.step3.title">
+              <h3 class="text-xl font-semibold text-gray-800 mb-2" data-translate="kinderzahnheilkunde.process.step3.title">
                 Prophylaxe und Aufklärung
               </h3>
-              <p class="text-gray-600" data-translate="process.step3.text">
+              <p class="text-gray-600" data-translate="kinderzahnheilkunde.process.step3.text">
                 Wir zeigen Ihrem Kind, wie es die Zähne richtig putzt, und führen eine professionelle Zahnreinigung durch. Fluoridierung stärkt den Zahnschmelz zusätzlich.
               </p>
             </div>
@@ -276,10 +438,10 @@
               4
             </div>
             <div>
-              <h3 class="text-xl font-semibold text-gray-800 mb-2" data-translate="process.step4.title">
+              <h3 class="text-xl font-semibold text-gray-800 mb-2" data-translate="kinderzahnheilkunde.process.step4.title">
                 Sanfte Behandlung bei Bedarf
               </h3>
-              <p class="text-gray-600" data-translate="process.step4.text">
+              <p class="text-gray-600" data-translate="kinderzahnheilkunde.process.step4.text">
                 Falls nötig, behandeln wir Karies oder andere Probleme mit modernsten, schmerzfreien Methoden. Bei größeren Eingriffen besprechen wir vorab alle Möglichkeiten mit Ihnen.
               </p>
             </div>
@@ -291,10 +453,10 @@
               5
             </div>
             <div>
-              <h3 class="text-xl font-semibold text-gray-800 mb-2" data-translate="process.step5.title">
+              <h3 class="text-xl font-semibold text-gray-800 mb-2" data-translate="kinderzahnheilkunde.process.step5.title">
                 Belohnung und nächster Termin
               </h3>
-              <p class="text-gray-600" data-translate="process.step5.text">
+              <p class="text-gray-600" data-translate="kinderzahnheilkunde.process.step5.text">
                 Nach der Behandlung gibt es eine kleine Belohnung. Wir vereinbaren den nächsten Kontrolltermin und geben Tipps für die Zahnpflege zu Hause mit.
               </p>
             </div>
@@ -305,49 +467,49 @@
   </section>
 
   <!-- FAQ Section -->
-  <section class="py-16 bg-gray-50">
+  <section class="py-16 bg-white">
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto">
-        <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center" data-translate="faq.title">
+        <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center" data-translate="kinderzahnheilkunde.faq.title">
           Häufig gestellte Fragen
         </h2>
         <div class="space-y-6">
           <!-- FAQ 1 -->
           <div class="bg-white rounded-xl p-6 shadow-md">
-            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="faq.question1">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="kinderzahnheilkunde.faq.question1">
               Ab welchem Alter sollte mein Kind zum Zahnarzt?
             </h3>
-            <p class="text-gray-600" data-translate="faq.answer1">
+            <p class="text-gray-600" data-translate="kinderzahnheilkunde.faq.answer1">
               Idealerweise sollte der erste Zahnarztbesuch erfolgen, sobald der erste Milchzahn durchbricht - meist zwischen dem 6. und 12. Lebensmonat. Frühe Besuche helfen, Vertrauen aufzubauen und Probleme frühzeitig zu erkennen.
             </p>
           </div>
 
           <!-- FAQ 2 -->
           <div class="bg-white rounded-xl p-6 shadow-md">
-            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="faq.question2">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="kinderzahnheilkunde.faq.question2">
               Wie bereite ich mein Kind auf den Zahnarztbesuch vor?
             </h3>
-            <p class="text-gray-600" data-translate="faq.answer2">
+            <p class="text-gray-600" data-translate="kinderzahnheilkunde.faq.answer2">
               Sprechen Sie positiv über den Zahnarzt und vermeiden Sie Wörter wie "Schmerz" oder "Angst". Erklären Sie spielerisch, dass der Zahnarzt die Zähne zählt und sauber macht. Lesen Sie Kinderbücher über Zahnarztbesuche oder spielen Sie "Zahnarzt" zu Hause.
             </p>
           </div>
 
           <!-- FAQ 3 -->
           <div class="bg-white rounded-xl p-6 shadow-md">
-            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="faq.question3">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="kinderzahnheilkunde.faq.question3">
               Sind Milchzähne wirklich so wichtig?
             </h3>
-            <p class="text-gray-600" data-translate="faq.answer3">
+            <p class="text-gray-600" data-translate="kinderzahnheilkunde.faq.answer3">
               Ja! Milchzähne sind Platzhalter für die bleibenden Zähne und wichtig für die Sprachentwicklung, das Kauen und das Kieferwachstum. Kranke Milchzähne können die nachfolgenden bleibenden Zähne schädigen.
             </p>
           </div>
 
           <!-- FAQ 4 -->
           <div class="bg-white rounded-xl p-6 shadow-md">
-            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="faq.question4">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="kinderzahnheilkunde.faq.question4">
               Was tue ich, wenn mein Kind Zahnarztangst hat?
             </h3>
-            <p class="text-gray-600" data-translate="faq.answer4">
+            <p class="text-gray-600" data-translate="kinderzahnheilkunde.faq.answer4">
               Wir sind speziell geschult im Umgang mit ängstlichen Kindern. Mit viel Geduld, Einfühlungsvermögen und spielerischen Methoden bauen wir Vertrauen auf. In schweren Fällen können auch Sedierung oder Behandlung in Vollnarkose erwogen werden.
             </p>
           </div>
@@ -357,7 +519,7 @@
   </section>
 
   <!-- Contact Section -->
-  <section class="py-20 bg-white">
+  <section class="py-20 bg-gray-50">
     <div class="container mx-auto px-4">
       <div class="text-center mb-16">
         <h2 class="text-4xl font-bold text-gray-800 mb-4" data-translate="contact.title">Termin vereinbaren</h2>
@@ -404,7 +566,7 @@
 
         <!-- Location 2: Wall -->
         <div class="bg-gray-50 rounded-2xl shadow-lg p-8">
-          <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="contact.location2.title">Standort Wall</h3>
+          <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="contact.location2.title">Standort Loher</h3>
           <div class="space-y-4">
             <div class="flex items-start space-x-3">
               <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -413,7 +575,7 @@
               </svg>
               <div>
                 <p class="font-semibold text-gray-800" data-translate="contact.address">Adresse</p>
-                <p class="text-gray-600">Wall 3<br>42103 Wuppertal</p>
+                <p class="text-gray-600">Loher Str. 40<br>42283 Wuppertal</p>
               </div>
             </div>
             <div class="flex items-start space-x-3">
@@ -431,7 +593,7 @@
               </svg>
               <div>
                 <p class="font-semibold text-gray-800" data-translate="contact.email">E-Mail</p>
-                <a href="mailto:wall@seitschenko-dinh.de" class="text-teal-500 hover:text-teal-600">wall@seitschenko-dinh.de</a>
+                <a href="mailto:loherstr@seitschenko-dinh.de" class="text-teal-500 hover:text-teal-600">loherstr@seitschenko-dinh.de</a>
               </div>
             </div>
           </div>
@@ -441,45 +603,49 @@
   </section>
 
   <!-- Footer -->
-  <footer class="footer-bg text-white py-12">
+  <footer class="footer-brown text-white py-8">
     <div class="container mx-auto px-4">
-      <div class="grid md:grid-cols-4 gap-8">
-        <!-- Logo & Description -->
-        <div class="md:col-span-2">
-          <div class="flex items-center space-x-3 mb-4">
-            <img src="../assets/img/logo.svg" alt="Seitschenko-Dinh Logo" class="w-12 h-12">
-            <span class="text-2xl font-bold">Seitschenko-Dinh</span>
+      <div class="grid md:grid-cols-3 gap-6 items-center">
+        <!-- Logo & Practice Name -->
+        <div class="flex items-center space-x-3">
+          <img src="../assets/img/logo.svg" alt="Seitschenko-Dinh Logo" class="w-12 h-12 flex-shrink-0">
+          <div class="flex flex-col">
+            <h3 class="text-base font-bold uppercase tracking-wide leading-tight" data-translate="footer.practice_name1">ZAHNARZTPRAXEN</h3>
+            <h3 class="text-base font-bold uppercase tracking-wide leading-tight" data-translate="footer.practice_name2">SEITSCHENKO-DINH</h3>
           </div>
-          <p class="text-gray-400 mb-4" data-translate="footer.description">
-            Moderne Zahnmedizin in Wuppertal mit zwei Standorten. Professionelle Behandlung in entspannter Atmosphäre.
-          </p>
         </div>
 
-        <!-- Quick Links -->
-        <div>
-          <h4 class="text-lg font-semibold mb-4" data-translate="footer.quickLinks">Schnellzugriff</h4>
-          <ul class="space-y-2">
-            <li><a href="../index.html#home" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.home">Start</a></li>
-            <li><a href="../index.html#about" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.about">Über uns</a></li>
-            <li><a href="../index.html#services" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.services">Leistungen</a></li>
-            <li><a href="../index.html#labor" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.labor">Labor</a></li>
-            <li><a href="../index.html#contact" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.contact">Kontakt</a></li>
-          </ul>
+        <!-- Location 1: Schwarzbach -->
+        <div class="flex items-center space-x-3">
+          <div class="flex-shrink-0">
+            <div class="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center">
+              <span class="text-lg font-bold">1</span>
+            </div>
+          </div>
+          <div class="flex flex-col leading-tight">
+            <p class="text-sm" data-translate="footer.location1.line1">Schwarzbach 2 | 42277 Wuppertal</p>
+            <p class="text-sm" data-translate="footer.location1.line2">Tel.: 0202 660828</p>
+          </div>
         </div>
 
-        <!-- Contact Info -->
-        <div>
-          <h4 class="text-lg font-semibold mb-4" data-translate="footer.contact">Kontakt</h4>
-          <ul class="space-y-2 text-gray-400">
-            <li><strong>Schwarzbach:</strong><br>0202 660828</li>
-            <li><strong>Wall:</strong><br>0202 451642</li>
-          </ul>
+        <!-- Location 2: Loher Str. -->
+        <div class="flex items-center space-x-3">
+          <div class="flex-shrink-0">
+            <div class="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center">
+              <span class="text-lg font-bold">2</span>
+            </div>
+          </div>
+          <div class="flex flex-col leading-tight">
+            <p class="text-sm" data-translate="footer.location2.line1">Loher Str. 40 | 42283 Wuppertal</p>
+            <p class="text-sm" data-translate="footer.location2.line2">Tel.: 0202 451642</p>
+          </div>
         </div>
       </div>
 
-      <div class="border-t border-gray-700 mt-8 pt-8 text-center">
-        <p class="text-gray-400" data-translate="footer.copyright">
-          © 2025 Seitschenko-Dinh. Alle Rechte vorbehalten.
+      <!-- Copyright -->
+      <div class="mt-6 pt-4 text-center border-t border-white border-opacity-20">
+        <p class="text-xs" data-translate="footer.copyright">
+          © 2024 Datenschutzerklärung
         </p>
       </div>
     </div>

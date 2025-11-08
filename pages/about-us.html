@@ -23,7 +23,10 @@
         <!-- Logo -->
         <div class="flex items-center space-x-3">
           <img src="../assets/img/logo.svg" alt="Seitschenko-Dinh Logo" class="w-12 h-12">
-          <a href="../index.html" class="text-2xl font-bold text-gray-800">Seitschenko-Dinh</a>
+          <a href="../index.html" class="flex flex-col leading-tight">
+            <span class="text-sm font-bold text-gray-800 tracking-wide" data-translate="header.practice_name1">ZAHNARZTPRAXEN</span>
+            <span class="text-sm font-bold text-gray-800 tracking-wide" data-translate="header.practice_name2">SEITSCHENKO-DINH</span>
+          </a>
         </div>
 
         <!-- Navigation and Language Switcher -->
@@ -61,6 +64,10 @@
               <a href="#" onclick="changeLanguage('ru')" class="language-option" data-lang="ru">
                 <img src="https://flagcdn.com/24x18/ru.png" alt="Русский" class="language-flag">
                 Русский
+              </a>
+              <a href="#" onclick="changeLanguage('ar')" class="language-option" data-lang="ar">
+                <img src="https://flagcdn.com/24x18/sa.png" alt="العربية" class="language-flag">
+                العربية
               </a>
             </div>
           </div>
@@ -111,6 +118,10 @@
                   <img src="https://flagcdn.com/24x18/ru.png" alt="Русский" class="language-flag">
                   Русский
                 </a>
+                <a href="#" onclick="changeLanguage('ar')" class="language-option-mobile" data-lang="ar">
+                  <img src="https://flagcdn.com/24x18/sa.png" alt="العربية" class="language-flag">
+                  العربية
+                </a>
               </div>
             </div>
           </div>
@@ -135,8 +146,8 @@
   <section class="py-16 bg-white">
     <div class="container mx-auto px-4">
       <div class="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-        <div class="scroll-reveal img-circle-frame">
-          <img src="../assets/img/praxis-02-scaled.jpeg" alt="Zahnarztpraxis" class="shadow-2xl">
+        <div class="scroll-reveal img-oval-frame">
+          <img src="../assets/img/implantologie.jpg" alt="Implantologie" class="shadow-2xl">
         </div>
         <div class="scroll-reveal">
           <h2 class="text-3xl font-bold text-gray-800 mb-6" data-translate="aboutus.intro.title">
@@ -317,9 +328,9 @@
           </div>
         </div>
 
-        <!-- Wall Location -->
+        <!-- Loher Location -->
         <div class="bg-white rounded-2xl p-8 shadow-lg scroll-reveal">
-          <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="aboutus.location2.title">Standort Wall</h3>
+          <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="aboutus.location2.title">Standort Loher</h3>
 
           <div class="space-y-4">
             <div class="flex items-start space-x-4">
@@ -329,7 +340,7 @@
               </svg>
               <div>
                 <p class="font-semibold text-gray-800" data-translate="contact.address">Adresse</p>
-                <p class="text-gray-600">Wall 3<br>42103 Wuppertal</p>
+                <p class="text-gray-600">Loher Str. 40<br>42283 Wuppertal</p>
               </div>
             </div>
 
@@ -349,7 +360,7 @@
               </svg>
               <div>
                 <p class="font-semibold text-gray-800" data-translate="contact.email">E-Mail</p>
-                <a href="mailto:wall@seitschenko-dinh.de" class="text-teal-500 hover:text-teal-600">wall@seitschenko-dinh.de</a>
+                <a href="mailto:loherstr@seitschenko-dinh.de" class="text-teal-500 hover:text-teal-600">loherstr@seitschenko-dinh.de</a>
               </div>
             </div>
           </div>
@@ -359,45 +370,49 @@
   </section>
 
   <!-- Footer -->
-  <footer class="footer-bg text-white py-12">
+  <footer class="footer-brown text-white py-8">
     <div class="container mx-auto px-4">
-      <div class="grid md:grid-cols-4 gap-8">
-        <!-- Logo & Description -->
-        <div class="md:col-span-2">
-          <div class="flex items-center space-x-3 mb-4">
-            <img src="../assets/img/logo.svg" alt="Seitschenko-Dinh Logo" class="w-12 h-12">
-            <span class="text-2xl font-bold">Seitschenko-Dinh</span>
+      <div class="grid md:grid-cols-3 gap-6 items-center">
+        <!-- Logo & Practice Name -->
+        <div class="flex items-center space-x-3">
+          <img src="../assets/img/logo.svg" alt="Seitschenko-Dinh Logo" class="w-12 h-12 flex-shrink-0">
+          <div class="flex flex-col">
+            <h3 class="text-base font-bold uppercase tracking-wide leading-tight" data-translate="footer.practice_name1">ZAHNARZTPRAXEN</h3>
+            <h3 class="text-base font-bold uppercase tracking-wide leading-tight" data-translate="footer.practice_name2">SEITSCHENKO-DINH</h3>
           </div>
-          <p class="text-gray-400 mb-4" data-translate="footer.description">
-            Moderne Zahnmedizin in Wuppertal mit zwei Standorten. Professionelle Behandlung in entspannter Atmosphäre.
-          </p>
         </div>
 
-        <!-- Quick Links -->
-        <div>
-          <h4 class="text-lg font-semibold mb-4" data-translate="footer.quickLinks">Schnellzugriff</h4>
-          <ul class="space-y-2">
-            <li><a href="../index.html#home" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.home">Start</a></li>
-            <li><a href="about-us.html" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.about">Über uns</a></li>
-            <li><a href="../index.html#services" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.services">Leistungen</a></li>
-            <li><a href="../index.html#labor" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.labor">Labor</a></li>
-            <li><a href="../index.html#contact" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.contact">Kontakt</a></li>
-          </ul>
+        <!-- Location 1: Schwarzbach -->
+        <div class="flex items-center space-x-3">
+          <div class="flex-shrink-0">
+            <div class="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center">
+              <span class="text-lg font-bold">1</span>
+            </div>
+          </div>
+          <div class="flex flex-col leading-tight">
+            <p class="text-sm" data-translate="footer.location1.line1">Schwarzbach 2 | 42277 Wuppertal</p>
+            <p class="text-sm" data-translate="footer.location1.line2">Tel.: 0202 660828</p>
+          </div>
         </div>
 
-        <!-- Contact Info -->
-        <div>
-          <h4 class="text-lg font-semibold mb-4" data-translate="footer.contact">Kontakt</h4>
-          <ul class="space-y-2 text-gray-400">
-            <li><strong>Schwarzbach:</strong><br>0202 660828</li>
-            <li><strong>Wall:</strong><br>0202 451642</li>
-          </ul>
+        <!-- Location 2: Wall -->
+        <div class="flex items-center space-x-3">
+          <div class="flex-shrink-0">
+            <div class="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center">
+              <span class="text-lg font-bold">2</span>
+            </div>
+          </div>
+          <div class="flex flex-col leading-tight">
+            <p class="text-sm" data-translate="footer.location2.line1">Loher Str. 40 | 42283 Wuppertal</p>
+            <p class="text-sm" data-translate="footer.location2.line2">Tel.: 0202 451642</p>
+          </div>
         </div>
       </div>
 
-      <div class="border-t border-gray-700 mt-8 pt-8 text-center">
-        <p class="text-gray-400" data-translate="footer.copyright">
-          © 2025 Seitschenko-Dinh. Alle Rechte vorbehalten.
+      <!-- Copyright -->
+      <div class="mt-6 pt-4 text-center border-t border-white border-opacity-20">
+        <p class="text-xs" data-translate="footer.copyright">
+          © 2024 Datenschutzerklärung
         </p>
       </div>
     </div>
@@ -468,6 +483,10 @@
           labor: "Labor",
           contact: "Kontakt"
         },
+        header: {
+          practice_name1: "ZAHNARZTPRAXEN",
+          practice_name2: "SEITSCHENKO-DINH"
+        },
         aboutus: {
           hero: {
             title: "Was Sie bei uns erwarten können",
@@ -475,14 +494,14 @@
           },
           intro: {
             title: "Zeit für Sie",
-            description: "Wir nehmen uns die nötige Zeit für sorgfältige Diagnosen und ausführliche Beratungen in vier Sprachen: Deutsch, Englisch, Russisch und Vietnamesisch."
+            description: "Wir nehmen uns die nötige Zeit für sorgfältige Diagnosen und ausführliche Beratungen in fünf Sprachen: Deutsch, Englisch, Russisch, Vietnamesisch und Arabisch."
           },
           promises: {
             title: "Unsere Versprechen an Sie"
           },
           promise1: {
             title: "Zeit für Sie",
-            text: "Sorgfältige Diagnosen und ausführliche Beratungen in sechs Sprachen"
+            text: "Sorgfältige Diagnosen und ausführliche Beratungen in fünf Sprachen"
           },
           promise2: {
             title: "Zeit für Ihre Behandlung",
@@ -524,7 +543,7 @@
             title: "Standort Schwarzbach"
           },
           location2: {
-            title: "Standort Wall"
+            title: "Standort Loher"
           }
         },
         contact: {
@@ -533,10 +552,17 @@
           email: "E-Mail"
         },
         footer: {
-          description: "Moderne Zahnmedizin in Wuppertal mit zwei Standorten. Professionelle Behandlung in entspannter Atmosphäre.",
-          quickLinks: "Schnellzugriff",
-          contact: "Kontakt",
-          copyright: "© 2025 Seitschenko-Dinh. Alle Rechte vorbehalten."
+          practice_name1: "ZAHNARZTPRAXEN",
+          practice_name2: "SEITSCHENKO-DINH",
+          location1: {
+            line1: "Schwarzbach 2 | 42277 Wuppertal",
+            line2: "Tel.: 0202 660828"
+          },
+          location2: {
+            line1: "Loher Str. 40 | 42283 Wuppertal",
+            line2: "Tel.: 0202 451642"
+          },
+          copyright: "© 2024 Datenschutzerklärung"
         }
       },
       en: {
@@ -551,6 +577,10 @@
           labor: "Laboratory",
           contact: "Contact"
         },
+        header: {
+          practice_name1: "DENTAL PRACTICES",
+          practice_name2: "SEITSCHENKO-DINH"
+        },
         aboutus: {
           hero: {
             title: "What You Can Expect From Us",
@@ -558,14 +588,14 @@
           },
           intro: {
             title: "Time for You",
-            description: "We take the necessary time for careful diagnoses and detailed consultations in four languages: German, English, Russian and Vietnamese."
+            description: "We take the necessary time for careful diagnoses and detailed consultations in five languages: German, English, Russian, Vietnamese and Arabic."
           },
           promises: {
             title: "Our Promises to You"
           },
           promise1: {
             title: "Time for You",
-            text: "Careful diagnoses and detailed consultations in four languages"
+            text: "Careful diagnoses and detailed consultations in five languages"
           },
           promise2: {
             title: "Time for Your Treatment",
@@ -607,7 +637,7 @@
             title: "Schwarzbach Location"
           },
           location2: {
-            title: "Wall Location"
+            title: "Loher Location"
           }
         },
         contact: {
@@ -616,10 +646,17 @@
           email: "Email"
         },
         footer: {
-          description: "Modern dentistry in Wuppertal with two locations. Professional treatment in a relaxed atmosphere.",
-          quickLinks: "Quick Links",
-          contact: "Contact",
-          copyright: "© 2025 Seitschenko-Dinh. All rights reserved."
+          practice_name1: "DENTAL PRACTICES",
+          practice_name2: "SEITSCHENKO-DINH",
+          location1: {
+            line1: "Schwarzbach 2 | 42277 Wuppertal",
+            line2: "Tel.: 0202 660828"
+          },
+          location2: {
+            line1: "Loher Str. 40 | 42283 Wuppertal",
+            line2: "Tel.: 0202 451642"
+          },
+          copyright: "© 2024 Privacy Policy"
         }
       },
       vi: {
@@ -634,6 +671,10 @@
           labor: "Phòng Lab",
           contact: "Liên hệ"
         },
+        header: {
+          practice_name1: "PHÒNG KHÁM NHA KHOA",
+          practice_name2: "SEITSCHENKO-DINH"
+        },
         aboutus: {
           hero: {
             title: "Những gì bạn có thể mong đợi từ chúng tôi",
@@ -641,14 +682,14 @@
           },
           intro: {
             title: "Thời gian cho bạn",
-            description: "Chúng tôi dành đủ thời gian để chẩn đoán cẩn thận và tư vấn chi tiết bằng bốn ngôn ngữ: Đức, Anh, Nga và Việt."
+            description: "Chúng tôi dành đủ thời gian để chẩn đoán cẩn thận và tư vấn chi tiết bằng năm ngôn ngữ: Đức, Anh, Nga, Việt và Ả Rập."
           },
           promises: {
             title: "Cam kết của chúng tôi với bạn"
           },
           promise1: {
             title: "Thời gian cho bạn",
-            text: "Chẩn đoán cẩn thận và tư vấn chi tiết bằng bốn ngôn ngữ"
+            text: "Chẩn đoán cẩn thận và tư vấn chi tiết bằng năm ngôn ngữ"
           },
           promise2: {
             title: "Thời gian cho điều trị của bạn",
@@ -690,7 +731,7 @@
             title: "Địa điểm Schwarzbach"
           },
           location2: {
-            title: "Địa điểm Wall"
+            title: "Địa điểm Loher"
           }
         },
         contact: {
@@ -699,10 +740,17 @@
           email: "Email"
         },
         footer: {
-          description: "Nha khoa hiện đại tại Wuppertal với hai địa điểm. Điều trị chuyên nghiệp trong không gian thoải mái.",
-          quickLinks: "Liên kết nhanh",
-          contact: "Liên hệ",
-          copyright: "© 2025 Seitschenko-Dinh. Bảo lưu mọi quyền."
+          practice_name1: "PHÒNG KHÁM NHA KHOA",
+          practice_name2: "SEITSCHENKO-DINH",
+          location1: {
+            line1: "Schwarzbach 2 | 42277 Wuppertal",
+            line2: "Tel.: 0202 660828"
+          },
+          location2: {
+            line1: "Loher Str. 40 | 42283 Wuppertal",
+            line2: "Tel.: 0202 451642"
+          },
+          copyright: "© 2024 Chính sách bảo mật dữ liệu"
         }
       },
       ru: {
@@ -717,6 +765,10 @@
           labor: "Лаборатория",
           contact: "Контакты"
         },
+        header: {
+          practice_name1: "СТОМАТОЛОГИЧЕСКИЕ КЛИНИКИ",
+          practice_name2: "ЗАЙЧШЕНКО-ДИНЬ"
+        },
         aboutus: {
           hero: {
             title: "Что вы можете ожидать от нас",
@@ -724,14 +776,14 @@
           },
           intro: {
             title: "Время для вас",
-            description: "Мы уделяем необходимое время для тщательной диагностики и подробных консультаций на четырёх языках: немецком, английском, русском и вьетнамском."
+            description: "Мы уделяем необходимое время для тщательной диагностики и подробных консультаций на пяти языках: немецком, английском, русском, вьетнамском и арабском."
           },
           promises: {
             title: "Наши обещания вам"
           },
           promise1: {
             title: "Время для вас",
-            text: "Тщательная диагностика и подробные консультации на четырёх языках"
+            text: "Тщательная диагностика и подробные консультации на пяти языках"
           },
           promise2: {
             title: "Время для вашего лечения",
@@ -773,7 +825,7 @@
             title: "Клиника Шварцбах"
           },
           location2: {
-            title: "Клиника Валь"
+            title: "Клиника Лохер"
           }
         },
         contact: {
@@ -782,10 +834,111 @@
           email: "Email"
         },
         footer: {
-          description: "Современная стоматология в Вуппертале с двумя клиниками. Профессиональное лечение в расслабленной атмосфере.",
-          quickLinks: "Быстрые ссылки",
-          contact: "Контакты",
-          copyright: "© 2025 Seitschenko-Dinh. Все права защищены."
+          practice_name1: "СТОМАТОЛОГИЧЕСКИЕ КЛИНИКИ",
+          practice_name2: "ЗАЙЧШЕНКО-ДИНЬ",
+          location1: {
+            line1: "Schwarzbach 2 | 42277 Wuppertal",
+            line2: "Tel.: 0202 660828"
+          },
+          location2: {
+            line1: "Loher Str. 40 | 42283 Wuppertal",
+            line2: "Tel.: 0202 451642"
+          },
+          copyright: "© 2024 Политика конфиденциальности"
+        }
+      },
+      ar: {
+        meta: {
+          title: "من نحن - سايتشينكو-دينه",
+          description: "رعاية أسنان احترافية، مشورة مختصة ونتائج دائمة مع وقت لك"
+        },
+        nav: {
+          home: "الرئيسية",
+          about: "من نحن",
+          services: "الخدمات",
+          labor: "المختبر",
+          contact: "اتصل بنا"
+        },
+        header: {
+          practice_name1: "عيادات الأسنان",
+          practice_name2: "سايتشينكو-دينه"
+        },
+        aboutus: {
+          hero: {
+            title: "ما يمكنك توقعه منا",
+            subtitle: "رعاية أسنان احترافية، مشورة مختصة ونتائج دائمة. ما يفتقده مجتمع الخدمات في كثير من الأحيان: الوقت."
+          },
+          intro: {
+            title: "وقت لك",
+            description: "نأخذ الوقت اللازم للتشخيصات الدقيقة والاستشارات التفصيلية بخمس لغات: الألمانية، الإنجليزية، الروسية، الفيتنامية والعربية."
+          },
+          promises: {
+            title: "وعودنا لك"
+          },
+          promise1: {
+            title: "وقت لك",
+            text: "تشخيصات دقيقة واستشارات تفصيلية بخمس لغات"
+          },
+          promise2: {
+            title: "وقت لعلاجك",
+            text: "رعاية احترافية على أعلى مستوى بأحدث التقنيات والمواد المتوافقة حيوياً"
+          },
+          promise3: {
+            title: "وقت للجودة والسلامة",
+            text: "بروتوكولات نظافة صارمة لعلاج خالٍ من المخاطر"
+          },
+          promise4: {
+            title: "وقت للتدريب",
+            text: "تدريب منتظم في أحدث الخبرات الطبية والتقنيات التقدمية"
+          },
+          promise5: {
+            title: "وقت للوقاية",
+            text: "الرعاية الوقائية الاحترافية هي محور فلسفتنا العلاجية"
+          },
+          promise6: {
+            title: "وقت للخدمة",
+            text: "جدولة المواعيد الفعالة تقلل من أوقات الانتظار"
+          },
+          team: {
+            title: "فريقنا",
+            subtitle: "أطباء أسنان ذوو خبرة وموظفون مؤهلون في كلا الموقعين",
+            member1: {
+              name: "فيرا سايتشينكو-دينه",
+              role: "طبيبة أسنان رئيسية",
+              location: "كلا الموقعين"
+            },
+            member2: {
+              name: "براندون دينه",
+              role: "مدير العيادة"
+            }
+          },
+          locations: {
+            title: "مواقعنا"
+          },
+          location1: {
+            title: "موقع شفارتسباخ"
+          },
+          location2: {
+            title: "موقع لوهر"
+          }
+        },
+        contact: {
+          address: "العنوان",
+          phone: "الهاتف",
+          email: "البريد الإلكتروني"
+        },
+        footer: {
+          practice_name1: "عيادات الأسنان",
+          practice_name2: "سايتشينكو-دينه",
+          location1: {
+            line1: "Schwarzbach 2 | 42277 Wuppertal",
+            line2: "Tel.: 0202 660828"
+          },
+          location2: {
+            line1: "Loher Str. 40 | 42283 Wuppertal",
+            line2: "Tel.: 0202 451642"
+          },
+          copyright: "© 2024 سياسة الخصوصية"
         }
       }
     };
@@ -795,7 +948,8 @@
       de: { flag: "https://flagcdn.com/24x18/de.png", code: "DE", alt: "Deutsch" },
       en: { flag: "https://flagcdn.com/24x18/us.png", code: "EN", alt: "English" },
       vi: { flag: "https://flagcdn.com/24x18/vn.png", code: "VN", alt: "Tiếng Việt" },
-      ru: { flag: "https://flagcdn.com/24x18/ru.png", code: "RU", alt: "Русский" }
+      ru: { flag: "https://flagcdn.com/24x18/ru.png", code: "RU", alt: "Русский" },
+      ar: { flag: "https://flagcdn.com/24x18/sa.png", code: "AR", alt: "العربية" }
     };
 
     // Current language

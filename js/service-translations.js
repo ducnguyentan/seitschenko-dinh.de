@@ -51,13 +51,20 @@ const serviceTranslations = {
     // Kinderzahnheilkunde (Children's Dentistry)
     kinderzahnheilkunde: {
       hero: {
-        title: "Kinderzahnheilkunde",
-        subtitle: "Sanfte und liebevolle Zahnpflege für unsere jüngsten Patienten"
+        title: "Behandlungen von Kindern",
+        subtitle: "Wir konzentrieren uns auf die speziellen Bedürfnisse von Kindern"
       },
       intro: {
-        title: "Kinderzahnheilkunde in unserer Praxis",
-        text1: "Kinder sind keine kleinen Erwachsenen - sie brauchen eine spezielle, auf ihre Bedürfnisse zugeschnittene zahnmedizinische Versorgung. In unserer Praxis bieten wir eine kindgerechte Atmosphäre, in der sich Ihr Kind wohlfühlt und spielerisch lernt, wie wichtig gesunde Zähne sind.",
-        text2: "Unser Ziel ist es, dass Ihr Kind positive Erfahrungen beim Zahnarztbesuch sammelt und so eine lebenslange gute Beziehung zur Zahngesundheit aufbaut. Wir nehmen uns viel Zeit, erklären alles kindgerecht und arbeiten mit sanften, modernen Methoden."
+        title: "Spezialisierte Behandlung für Kinder",
+        text1: "Kinder haben spezielle Bedürfnisse, wenn es um zahnärztliche Behandlungen geht. Unser erfahrenes Team von Zahnärzten ist darauf spezialisiert, eine sanfte und stressfreie Atmosphäre zu schaffen, in der sich Ihr Kind wohl und sicher fühlt.",
+        text2: "Wir legen großen Wert auf Prävention und Aufklärung, damit Ihr Kind von Anfang an eine positive Beziehung zur Zahngesundheit entwickelt. Mit spielerischen Methoden und viel Geduld begleiten wir Ihre Kinder auf dem Weg zu gesunden Zähnen.",
+        content: {
+          title: "Behandlungen von Kindern",
+          para1: "Herzlich willkommen in unserer kinderfreundlichen Zahnarztpraxis! Wir konzentrieren uns auf die speziellen Bedürfnisse von Kindern und bieten ihnen die bestmögliche zahnärztliche Versorgung.",
+          para2: "Unser Team aus spezialisierten Kinderzahnärzten verfügt über umfangreiche Erfahrung und Fachwissen. Jede Behandlung verläuft so sanft und stressfrei wie möglich. Mit viel Einfühlungsvermögen nehmen wir Ängste und sorgen für eine entspannte Atmosphäre.",
+          para3: "Wir informieren und beraten Eltern ausführlich über die Zahngesundheit ihrer Kinder und geben wertvolle Tipps zur richtigen Mundhygiene. Besuchen Sie uns und erleben Sie, wie wir die Zahngesundheit Ihres Kindes in den Mittelpunkt stellen.",
+          para4: "Vereinbaren Sie noch heute einen Termin und sorgen wir gemeinsam dafür, dass die Zähne Ihres Kindes gesund und stark bleiben!"
+        }
       },
       benefits: {
         title: "Vorteile unserer Kinderzahnheilkunde",
@@ -76,6 +83,33 @@ const serviceTranslations = {
         benefit4: {
           title: "Sanfte Behandlungsmethoden",
           text: "Moderne, schonende Verfahren sorgen für schmerzfreie Behandlungen und positive Erfahrungen."
+        }
+      },
+      services: {
+        title: "Unsere Leistungen für Kinder",
+        service1: {
+          title: "Frühkindliche Zahnprophylaxe",
+          text: "Vorbeugung ist der beste Schutz. Wir untersuchen die Zähne Ihres Kindes regelmäßig und geben Tipps zur richtigen Zahnpflege von Anfang an."
+        },
+        service2: {
+          title: "Professionelle Zahnreinigung",
+          text: "Spezielle Zahnreinigung für Kinder, die Beläge entfernt und die Zähne auf sanfte Weise sauber und gesund hält."
+        },
+        service3: {
+          title: "Fissurenversiegelung",
+          text: "Schützender Überzug auf den Kauflächen der Backenzähne verhindert Karies in den Rillen und Vertiefungen."
+        },
+        service4: {
+          title: "Fluoridbehandlungen",
+          text: "Fluorid stärkt den Zahnschmelz und macht die Zähne widerstandsfähiger gegen Karies-Bakterien."
+        },
+        service5: {
+          title: "Kariesbehandlung",
+          text: "Sanfte Behandlung von Karies mit modernsten Methoden und kindgerechten Materialien."
+        },
+        service6: {
+          title: "Kieferorthopädische Beratung",
+          text: "Wir erkennen Fehlstellungen frühzeitig und beraten Sie zur optimalen kieferorthopädischen Behandlung."
         }
       },
       process: {
@@ -143,23 +177,27 @@ const serviceTranslations = {
           text: "Musik, Hypnose oder Lachgas helfen Ihnen, sich zu entspannen."
         }
       },
-      process: {
-        title: "Ablauf für Angstpatienten",
-        step1: {
-          title: "Beratungsgespräch",
-          text: "In einem ruhigen Erstgespräch lernen wir uns kennen und besprechen Ihre Ängste und Wünsche."
+      methods: {
+        title: "Methoden gegen Zahnarztangst",
+        method1: {
+          title: "Ausführliches Vorgespräch",
+          text: "Beim ersten Termin lernen wir uns in Ruhe kennen. Sie erzählen uns von Ihren Ängsten und wir besprechen gemeinsam, wie wir vorgehen können. Es findet keine Behandlung statt - nur ein vertrauensvolles Gespräch."
         },
-        step2: {
-          title: "Sanfte Untersuchung",
-          text: "Wir untersuchen Ihre Zähne behutsam und erklären Ihnen alle Befunde verständlich."
+        method2: {
+          title: "Lokale Betäubung mit sanfter Technik",
+          text: "Wir verwenden besonders dünne Nadeln und moderne Betäubungstechniken, die die Spritze nahezu schmerzfrei machen. Vor der Injektion betäuben wir die Stelle oberflächlich mit einem Gel."
         },
-        step3: {
-          title: "Individuelle Behandlungsplanung",
-          text: "Gemeinsam erstellen wir einen Behandlungsplan, der auf Ihre Bedürfnisse zugeschnitten ist."
+        method3: {
+          title: "Sedierung (Dämmerschlaf)",
+          text: "Bei größeren Eingriffen oder schwerer Angst bieten wir Behandlungen unter Sedierung an. Sie sind entspannt und schläfrig, verspüren keine Angst und haben hinterher wenig Erinnerung an die Behandlung."
         },
-        step4: {
-          title: "Stressfreie Behandlung",
-          text: "Mit modernen Methoden und viel Geduld führen wir die Behandlung schmerzfrei durch."
+        method4: {
+          title: "Hypnose und Entspannungstechniken",
+          text: "Auf Wunsch können wir Hypnosetechniken oder geführte Entspannungsübungen einsetzen, um Sie während der Behandlung in einen ruhigen, entspannten Zustand zu versetzen."
+        },
+        method5: {
+          title: "Modernste Technik für kurze Behandlungszeiten",
+          text: "Dank moderner Geräte und Verfahren können wir viele Behandlungen deutlich schneller durchführen. Kürzere Sitzungen bedeuten weniger Stress für Sie."
         }
       },
       faq: {
@@ -192,16 +230,39 @@ const serviceTranslations = {
           text: "Entfernung von Belägen und Bakterien verhindert Karies und Zahnfleischentzündungen."
         },
         benefit2: {
-          title: "Frischer Atem",
-          text: "Professionelle Reinigung beseitigt Bakterien, die Mundgeruch verursachen."
+          title: "Gesundes Zahnfleisch",
+          text: "Regelmäßige PZR beugt Zahnfleischentzündungen und Parodontitis wirksam vor."
         },
         benefit3: {
-          title: "Zahnerhalt",
-          text: "Regelmäßige Vorsorge erhält Ihre natürlichen Zähne länger gesund."
+          title: "Frischer Atem",
+          text: "Entfernung von Bakterien sorgt für dauerhaft frischen Atem."
         },
         benefit4: {
-          title: "Kostenersparnis",
-          text: "Prophylaxe ist günstiger als spätere aufwendige Behandlungen."
+          title: "Hellere Zähne",
+          text: "Verfärbungen durch Kaffee, Tee und Nikotin werden entfernt - die Zähne wirken sichtbar heller."
+        }
+      },
+      process: {
+        title: "Ablauf der professionellen Zahnreinigung",
+        step1: {
+          title: "Untersuchung und Beratung",
+          text: "Zunächst untersuchen wir Ihre Zähne und Ihr Zahnfleisch gründlich. Wir besprechen mit Ihnen den Zustand Ihrer Mundgesundheit und geben individuelle Tipps."
+        },
+        step2: {
+          title: "Entfernung von Zahnstein",
+          text: "Mit Ultraschall- und Handinstrumenten entfernen wir schonend harte Beläge und Zahnstein von den Zähnen und unter dem Zahnfleischrand."
+        },
+        step3: {
+          title: "Professionelle Politur",
+          text: "Die Zahnoberflächen werden mit speziellen Pasten poliert. Dadurch werden Verfärbungen entfernt und neue Beläge können sich schwerer festsetzen."
+        },
+        step4: {
+          title: "Fluoridierung",
+          text: "Zum Abschluss wird ein Fluorid-Lack aufgetragen, der den Zahnschmelz stärkt und vor Karies schützt."
+        },
+        step5: {
+          title: "Mundhygiene-Tipps",
+          text: "Sie erhalten individuelle Tipps zur richtigen Zahnputztechnik und Verwendung von Zahnseide, Interdentalbürsten und Mundspülung."
         }
       },
       services: {
@@ -224,12 +285,14 @@ const serviceTranslations = {
         }
       },
       faq: {
-        question1: "Wie oft sollte eine professionelle Zahnreinigung durchgeführt werden?",
-        answer1: "Empfohlen wird eine PZR alle 6 Monate. Bei erhöhtem Karies- oder Parodontitis-Risiko kann auch eine häufigere Reinigung (alle 3-4 Monate) sinnvoll sein.",
-        question2: "Tut eine professionelle Zahnreinigung weh?",
-        answer2: "In der Regel ist die PZR schmerzfrei. Bei empfindlichen Zähnen oder entzündetem Zahnfleisch kann es zu leichten Beschwerden kommen. Auf Wunsch betäuben wir die betroffenen Stellen.",
+        question1: "Wie oft sollte ich zur Prophylaxe?",
+        answer1: "Empfohlen wird eine professionelle Zahnreinigung alle 6 Monate. Bei erhöhtem Karies- oder Parodontitis-Risiko kann eine häufigere Prophylaxe (alle 3-4 Monate) sinnvoll sein.",
+        question2: "Ist die Prophylaxe schmerzhaft?",
+        answer2: "Nein, die professionelle Zahnreinigung ist in der Regel schmerzfrei. Bei empfindlichem Zahnfleisch kann es zu leichten Missempfindungen kommen, die aber gut auszuhalten sind.",
         question3: "Übernimmt die Krankenkasse die Kosten?",
-        answer3: "Viele gesetzliche Krankenkassen bezuschussen die PZR im Rahmen von Bonusprogrammen. Private Versicherungen übernehmen die Kosten oft vollständig. Wir beraten Sie gerne."
+        answer3: "Die professionelle Zahnreinigung ist eine private Zusatzleistung. Viele Krankenkassen bezuschussen die Prophylaxe jedoch mit 30-100 Euro pro Jahr. Fragen Sie bei Ihrer Kasse nach.",
+        question4: "Wie lange dauert eine professionelle Zahnreinigung?",
+        answer4: "Eine gründliche professionelle Zahnreinigung dauert in der Regel 45-60 Minuten. Wir nehmen uns bewusst viel Zeit für Sie, um optimale Ergebnisse zu erzielen."
       }
     },
 
@@ -263,24 +326,46 @@ const serviceTranslations = {
           text: "Zahnerhaltung ist langfristig günstiger als Zahnersatz."
         }
       },
-      services: {
-        title: "Unsere Zahnerhaltungs-Leistungen",
-        service1: {
+      process: {
+        title: "Ablauf einer Wurzelkanalbehandlung",
+        step1: {
+          title: "Diagnose und Röntgenbild",
+          text: "Zunächst untersuchen wir den Zahn gründlich und fertigen Röntgenaufnahmen an, um das Ausmaß der Entzündung festzustellen."
+        },
+        step2: {
+          title: "Örtliche Betäubung",
+          text: "Der Zahn wird betäubt, sodass die Behandlung völlig schmerzfrei verläuft. Sie spüren während des Eingriffs keine Schmerzen."
+        },
+        step3: {
+          title: "Reinigung der Wurzelkanäle",
+          text: "Mit feinen Instrumenten werden die entzündeten Nerven und Bakterien aus den Wurzelkanälen entfernt und die Kanäle gründlich gereinigt."
+        },
+        step4: {
+          title: "Füllung der Wurzelkanäle",
+          text: "Die gereinigten Kanäle werden mit einem biokompatiblen Material dicht verschlossen, um erneute Infektionen zu verhindern."
+        },
+        step5: {
+          title: "Wiederherstellung der Zahnkrone",
+          text: "Abschließend wird der Zahn mit einer Füllung oder Krone versorgt, um seine Funktion und Ästhetik vollständig wiederherzustellen."
+        }
+      },
+      treatments: {
+        title: "Unsere Zahnerhaltungs-Behandlungen",
+        treatment1: {
           title: "Füllungstherapie",
           text: "Hochwertige Kunststofffüllungen in Zahnfarbe für ästhetische und langlebige Versorgung."
         },
-        service2: {
+        treatment2: {
           title: "Wurzelkanalbehandlung (Endodontie)",
           text: "Rettung entzündeter oder abgestorbener Zähne mit modernsten maschinellen Verfahren."
         },
-        service3: {
-          title: "Parodontitis-Therapie",
-          title: "Parodontitis-Therapie",
-          text: "Behandlung von Zahnfleischerkrankungen zum Erhalt von Zähnen und Zahnfleisch."
+        treatment3: {
+          title: "Parodontologie",
+          text: "Behandlung von Zahnfleischerkrankungen und Parodontitis. Gesundes Zahnfleisch ist die Grundlage für langfristig gesunde Zähne."
         },
-        service4: {
+        treatment4: {
           title: "Inlays und Onlays",
-          text: "Passgenaue Einlagefüllungen aus Keramik für größere Defekte - ästhetisch und langlebig."
+          text: "Hochwertige Einlagefüllungen aus Keramik oder Gold für größere Defekte. Sie sind besonders langlebig und passen sich perfekt an den Zahn an."
         }
       },
       faq: {
@@ -622,13 +707,20 @@ const serviceTranslations = {
     // Children's Dentistry
     kinderzahnheilkunde: {
       hero: {
-        title: "Children's Dentistry",
-        subtitle: "Gentle and loving dental care for our youngest patients"
+        title: "Treatment for Children",
+        subtitle: "We focus on the special needs of children"
       },
       intro: {
-        title: "Children's Dentistry at Our Practice",
-        text1: "Children are not small adults - they need specialized dental care tailored to their needs. In our practice, we offer a child-friendly atmosphere where your child feels comfortable and learns playfully how important healthy teeth are.",
-        text2: "Our goal is for your child to have positive experiences at the dentist and thus build a lifelong good relationship with dental health. We take plenty of time, explain everything in child-friendly terms, and work with gentle, modern methods."
+        title: "Specialized Treatment for Children",
+        text1: "Children have special needs when it comes to dental treatment. Our experienced team of dentists specializes in creating a gentle and stress-free atmosphere where your child feels comfortable and safe.",
+        text2: "We place great emphasis on prevention and education so that your child develops a positive relationship with dental health from the start. With playful methods and lots of patience, we accompany your children on their way to healthy teeth.",
+        content: {
+          title: "Treatment for Children",
+          para1: "Welcome to our child-friendly dental practice! We focus on the special needs of children and offer them the best possible dental care.",
+          para2: "Our team of specialized pediatric dentists has extensive experience and expertise. Every treatment is as gentle and stress-free as possible. With great empathy, we alleviate fears and ensure a relaxed atmosphere.",
+          para3: "We inform and advise parents in detail about their children's dental health and provide valuable tips for proper oral hygiene. Visit us and experience how we make your child's dental health our priority.",
+          para4: "Make an appointment today and let's work together to keep your child's teeth healthy and strong!"
+        }
       },
       benefits: {
         title: "Advantages of Our Children's Dentistry",
@@ -647,6 +739,33 @@ const serviceTranslations = {
         benefit4: {
           title: "Gentle Treatment Methods",
           text: "Modern, gentle procedures ensure pain-free treatments and positive experiences."
+        }
+      },
+      services: {
+        title: "Our Services for Children",
+        service1: {
+          title: "Early Childhood Dental Prophylaxis",
+          text: "Prevention is the best protection. We examine your child's teeth regularly and provide tips for proper dental care from the start."
+        },
+        service2: {
+          title: "Professional Teeth Cleaning",
+          text: "Special teeth cleaning for children that removes plaque and keeps teeth clean and healthy in a gentle way."
+        },
+        service3: {
+          title: "Fissure Sealing",
+          text: "Protective coating on the chewing surfaces of molars prevents cavities in the grooves and depressions."
+        },
+        service4: {
+          title: "Fluoride Treatments",
+          text: "Fluoride strengthens tooth enamel and makes teeth more resistant to cavity-causing bacteria."
+        },
+        service5: {
+          title: "Cavity Treatment",
+          text: "Gentle treatment of cavities with the most modern methods and child-friendly materials."
+        },
+        service6: {
+          title: "Orthodontic Consultation",
+          text: "We identify misalignments early and advise you on optimal orthodontic treatment."
         }
       },
       process: {
@@ -714,23 +833,27 @@ const serviceTranslations = {
           text: "Music, hypnosis, or laughing gas help you relax."
         }
       },
-      process: {
-        title: "Process for Anxious Patients",
-        step1: {
-          title: "Consultation",
-          text: "In a quiet initial consultation, we get to know each other and discuss your fears and wishes."
+      methods: {
+        title: "Methods against dental anxiety",
+        method1: {
+          title: "Detailed preliminary discussion",
+          text: "At the first appointment we get to know each other calmly. You tell us about your fears and we discuss together how we can proceed. No treatment takes place - just a trusting conversation."
         },
-        step2: {
-          title: "Gentle Examination",
-          text: "We examine your teeth carefully and explain all findings clearly."
+        method2: {
+          title: "Local anesthesia with gentle technique",
+          text: "We use particularly thin needles and modern anesthetic techniques that make the injection almost painless. Before the injection, we superficially anesthetize the area with a gel."
         },
-        step3: {
-          title: "Individual Treatment Planning",
-          text: "Together we create a treatment plan tailored to your needs."
+        method3: {
+          title: "Sedation (twilight sleep)",
+          text: "For larger procedures or severe anxiety, we offer treatments under sedation. You are relaxed and drowsy, feel no fear and have little memory of the treatment afterwards."
         },
-        step4: {
-          title: "Stress-Free Treatment",
-          text: "With modern methods and much patience, we perform the treatment pain-free."
+        method4: {
+          title: "Hypnosis and relaxation techniques",
+          text: "On request, we can use hypnosis techniques or guided relaxation exercises to put you in a calm, relaxed state during treatment."
+        },
+        method5: {
+          title: "State-of-the-art technology for short treatment times",
+          text: "Thanks to modern equipment and procedures, we can perform many treatments much faster. Shorter sessions mean less stress for you."
         }
       },
       faq: {
@@ -773,6 +896,29 @@ const serviceTranslations = {
         benefit4: {
           title: "Cost Savings",
           text: "Prevention is cheaper than later extensive treatments."
+        }
+      },
+      process: {
+        title: "Process of Professional Teeth Cleaning",
+        step1: {
+          title: "Examination and Consultation",
+          text: "First, we thoroughly examine your teeth and gums. We discuss your oral health status and provide individual tips."
+        },
+        step2: {
+          title: "Removal of Tartar",
+          text: "We gently remove hard deposits and tartar from the teeth and below the gum line using ultrasound and hand instruments."
+        },
+        step3: {
+          title: "Professional Polishing",
+          text: "Tooth surfaces are polished with special pastes. This removes discolorations and makes it harder for new plaque to adhere."
+        },
+        step4: {
+          title: "Fluoridation",
+          text: "Finally, fluoride varnish is applied to strengthen the enamel and protect against cavities."
+        },
+        step5: {
+          title: "Oral Hygiene Tips",
+          text: "You receive individual tips on proper brushing technique and use of dental floss, interdental brushes, and mouthwash."
         }
       },
       services: {
@@ -834,23 +980,46 @@ const serviceTranslations = {
           text: "Tooth preservation is cheaper long-term than prosthetics."
         }
       },
-      services: {
-        title: "Our Tooth Preservation Services",
-        service1: {
+      process: {
+        title: "Root Canal Treatment Process",
+        step1: {
+          title: "Diagnosis and X-ray",
+          text: "First, we thoroughly examine the tooth and take X-rays to determine the extent of the inflammation."
+        },
+        step2: {
+          title: "Local Anesthesia",
+          text: "The tooth is anesthetized so the treatment is completely painless. You won't feel any pain during the procedure."
+        },
+        step3: {
+          title: "Cleaning of Root Canals",
+          text: "Using fine instruments, inflamed nerves and bacteria are removed from the root canals and the canals are thoroughly cleaned."
+        },
+        step4: {
+          title: "Filling of Root Canals",
+          text: "The cleaned canals are sealed tightly with biocompatible material to prevent re-infection."
+        },
+        step5: {
+          title: "Restoration of Tooth Crown",
+          text: "Finally, the tooth is restored with a filling or crown to fully restore its function and aesthetics."
+        }
+      },
+      treatments: {
+        title: "Our Tooth Preservation Treatments",
+        treatment1: {
           title: "Filling Therapy",
           text: "High-quality tooth-colored composite fillings for aesthetic and durable restoration."
         },
-        service2: {
+        treatment2: {
           title: "Root Canal Treatment (Endodontics)",
           text: "Saving inflamed or dead teeth with state-of-the-art machine procedures."
         },
-        service3: {
-          title: "Periodontitis Therapy",
-          text: "Treatment of gum disease to preserve teeth and gums."
+        treatment3: {
+          title: "Periodontology",
+          text: "Treatment of gum diseases and periodontitis. Healthy gums are the foundation for long-term healthy teeth."
         },
-        service4: {
+        treatment4: {
           title: "Inlays and Onlays",
-          text: "Precisely fitting ceramic inlay fillings for larger defects - aesthetic and durable."
+          text: "High-quality inlay fillings made of ceramic or gold for larger defects. They are particularly durable and fit perfectly to the tooth."
         }
       },
       faq: {
@@ -1198,7 +1367,14 @@ const serviceTranslations = {
       intro: {
         title: "Nha khoa trẻ em tại phòng khám",
         text1: "Trẻ em không phải là người lớn thu nhỏ - chúng cần chăm sóc nha khoa đặc biệt phù hợp với nhu cầu của mình. Tại phòng khám, chúng tôi tạo không gian thân thiện với trẻ em, nơi con bạn cảm thấy thoải mái và học cách chăm sóc răng miệng một cách vui vẻ.",
-        text2: "Mục tiêu của chúng tôi là giúp con bạn có những trải nghiệm tích cực khi đến nha sĩ, từ đó xây dựng mối quan hệ tốt đẹp với sức khỏe răng miệng suốt đời. Chúng tôi dành nhiều thời gian, giải thích mọi thứ phù hợp với lứa tuổi và sử dụng các phương pháp hiện đại, nhẹ nhàng."
+        text2: "Mục tiêu của chúng tôi là giúp con bạn có những trải nghiệm tích cực khi đến nha sĩ, từ đó xây dựng mối quan hệ tốt đẹp với sức khỏe răng miệng suốt đời. Chúng tôi dành nhiều thời gian, giải thích mọi thứ phù hợp với lứa tuổi và sử dụng các phương pháp hiện đại, nhẹ nhàng.",
+        content: {
+          title: "Điều trị cho trẻ em",
+          para1: "Chào mừng bạn đến với phòng khám nha khoa thân thiện với trẻ em! Chúng tôi tập trung vào nhu cầu đặc biệt của trẻ em và cung cấp dịch vụ chăm sóc răng miệng tốt nhất có thể.",
+          para2: "Đội ngũ nha sĩ nhi khoa chuyên biệt của chúng tôi có kinh nghiệm và chuyên môn phong phú. Mỗi ca điều trị đều nhẹ nhàng và không gây căng thẳng nhất có thể. Với sự thấu hiểu sâu sắc, chúng tôi xoa dịu nỗi sợ hãi và đảm bảo bầu không khí thoải mái.",
+          para3: "Chúng tôi thông tin và tư vấn chi tiết cho phụ huynh về sức khỏe răng miệng của con em họ và cung cấp những lời khuyên quý giá về vệ sinh răng miệng đúng cách. Hãy đến thăm chúng tôi và trải nghiệm cách chúng tôi đặt sức khỏe răng miệng của con bạn lên hàng đầu.",
+          para4: "Hãy đặt lịch hẹn ngay hôm nay và cùng nhau giữ cho răng của con bạn khỏe mạnh và chắc khỏe!"
+        }
       },
       benefits: {
         title: "Ưu điểm nha khoa trẻ em của chúng tôi",
@@ -1217,6 +1393,33 @@ const serviceTranslations = {
         benefit4: {
           title: "Phương pháp điều trị nhẹ nhàng",
           text: "Các quy trình hiện đại, êm dịu đảm bảo điều trị không đau và trải nghiệm tích cực."
+        }
+      },
+      services: {
+        title: "Dịch vụ của chúng tôi cho trẻ em",
+        service1: {
+          title: "Phòng ngừa răng miệng cho trẻ nhỏ",
+          text: "Phòng ngừa là biện pháp bảo vệ tốt nhất. Chúng tôi kiểm tra răng của con bạn thường xuyên và đưa ra lời khuyên về cách chăm sóc răng đúng cách từ khi còn nhỏ."
+        },
+        service2: {
+          title: "Vệ sinh răng miệng chuyên nghiệp",
+          text: "Vệ sinh răng đặc biệt cho trẻ em giúp loại bỏ mảng bám và giữ răng sạch sẽ, khỏe mạnh một cách nhẹ nhàng."
+        },
+        service3: {
+          title: "Trám khe răng",
+          text: "Lớp phủ bảo vệ trên bề mặt nhai của răng hàm ngăn sâu răng trong các rãnh và kẽ hở."
+        },
+        service4: {
+          title: "Điều trị fluor",
+          text: "Fluor giúp tăng cường men răng và làm cho răng kháng lại vi khuẩn gây sâu răng."
+        },
+        service5: {
+          title: "Điều trị sâu răng",
+          text: "Điều trị sâu răng nhẹ nhàng với các phương pháp hiện đại nhất và vật liệu phù hợp với trẻ em."
+        },
+        service6: {
+          title: "Tư vấn chỉnh nha",
+          text: "Chúng tôi phát hiện sớm các khuyết tật và tư vấn cho bạn về phương pháp điều trị chỉnh nha tối ưu."
         }
       },
       process: {
@@ -1243,6 +1446,7 @@ const serviceTranslations = {
         }
       },
       faq: {
+        title: "Câu hỏi thường gặp",
         question1: "Con tôi nên đến nha sĩ từ lúc nào?",
         answer1: "Lý tưởng nhất là lần khám nha khoa đầu tiên nên được thực hiện ngay khi răng sữa đầu tiên mọc - thường từ 6-12 tháng tuổi. Các lần khám sớm giúp xây dựng lòng tin và phát hiện vấn đề kịp thời.",
         question2: "Làm thế nào để chuẩn bị cho con đi khám nha sĩ?",
@@ -1284,23 +1488,27 @@ const serviceTranslations = {
           text: "Nhạc, thôi miên hoặc khí cười giúp bạn thư giãn."
         }
       },
-      process: {
-        title: "Quy trình cho bệnh nhân lo lắng",
-        step1: {
-          title: "Tư vấn",
-          text: "Trong buổi tư vấn đầu tiên yên tĩnh, chúng ta làm quen và thảo luận về nỗi sợ và mong muốn của bạn."
+      methods: {
+        title: "Phương pháp chống lo lắng nha khoa",
+        method1: {
+          title: "Cuộc thảo luận sơ bộ chi tiết",
+          text: "Tại cuộc hẹn đầu tiên, chúng ta làm quen với nhau một cách bình tĩnh. Bạn kể cho chúng tôi về nỗi sợ hãi của mình và chúng ta thảo luận cùng nhau về cách tiến hành. Không có điều trị nào diễn ra - chỉ là một cuộc trò chuyện đầy tin cậy."
         },
-        step2: {
-          title: "Khám nhẹ nhàng",
-          text: "Chúng tôi khám răng cẩn thận và giải thích rõ ràng tất cả phát hiện."
+        method2: {
+          title: "Gây tê tại chỗ với kỹ thuật nhẹ nhàng",
+          text: "Chúng tôi sử dụng kim đặc biệt mỏng và kỹ thuật gây tê hiện đại giúp việc tiêm gần như không đau. Trước khi tiêm, chúng tôi gây tê bề mặt vùng đó bằng gel."
         },
-        step3: {
-          title: "Lập kế hoạch điều trị cá nhân",
-          text: "Cùng nhau chúng ta tạo kế hoạch điều trị phù hợp với nhu cầu của bạn."
+        method3: {
+          title: "An thần (giấc ngủ lơ mơ)",
+          text: "Đối với các thủ thuật lớn hơn hoặc lo lắng nghiêm trọng, chúng tôi cung cấp điều trị dưới sự an thần. Bạn thư giãn và buồn ngủ, không cảm thấy sợ hãi và có ít ký ức về điều trị sau đó."
         },
-        step4: {
-          title: "Điều trị không căng thẳng",
-          text: "Với phương pháp hiện đại và nhiều kiên nhẫn, chúng tôi thực hiện điều trị không đau."
+        method4: {
+          title: "Thôi miên và kỹ thuật thư giãn",
+          text: "Theo yêu cầu, chúng tôi có thể sử dụng kỹ thuật thôi miên hoặc bài tập thư giãn có hướng dẫn để đưa bạn vào trạng thái bình tĩnh, thư giãn trong quá trình điều trị."
+        },
+        method5: {
+          title: "Công nghệ hiện đại cho thời gian điều trị ngắn",
+          text: "Nhờ thiết bị và quy trình hiện đại, chúng tôi có thể thực hiện nhiều điều trị nhanh hơn nhiều. Phiên ngắn hơn có nghĩa là ít căng thẳng hơn cho bạn."
         }
       },
       faq: {
@@ -1343,6 +1551,29 @@ const serviceTranslations = {
         benefit4: {
           title: "Tiết kiệm chi phí",
           text: "Phòng ngừa rẻ hơn các điều trị phức tạp sau này."
+        }
+      },
+      process: {
+        title: "Quy trình vệ sinh răng miệng chuyên nghiệp",
+        step1: {
+          title: "Kiểm tra và tư vấn",
+          text: "Trước tiên, chúng tôi kiểm tra kỹ lưỡng răng và nướu của bạn. Chúng tôi thảo luận về tình trạng sức khỏe răng miệng và đưa ra lời khuyên cá nhân."
+        },
+        step2: {
+          title: "Loại bỏ cao răng",
+          text: "Chúng tôi nhẹ nhàng loại bỏ các cặn bám cứng và cao răng từ răng và dưới nướu bằng dụng cụ siêu âm và dụng cụ cầm tay."
+        },
+        step3: {
+          title: "Đánh bóng chuyên nghiệp",
+          text: "Bề mặt răng được đánh bóng bằng kem đặc biệt. Điều này loại bỏ vết ố và khiến mảng bám mới khó bám vào hơn."
+        },
+        step4: {
+          title: "Bôi fluor",
+          text: "Cuối cùng, men bóng fluor được bôi lên để củng cố men răng và bảo vệ chống sâu răng."
+        },
+        step5: {
+          title: "Lời khuyên vệ sinh răng miệng",
+          text: "Bạn nhận được lời khuyên cá nhân về kỹ thuật đánh răng đúng cách và sử dụng chỉ nha khoa, bàn chải kẽ răng và nước súc miệng."
         }
       },
       services: {
@@ -1404,23 +1635,46 @@ const serviceTranslations = {
           text: "Bảo tồn răng rẻ hơn về lâu dài so với răng giả."
         }
       },
-      services: {
-        title: "Dịch vụ bảo tồn răng",
-        service1: {
+      process: {
+        title: "Quy trình điều trị tủy răng",
+        step1: {
+          title: "Chẩn đoán và chụp X-quang",
+          text: "Đầu tiên, chúng tôi kiểm tra răng kỹ lưỡng và chụp X-quang để xác định mức độ viêm nhiễm."
+        },
+        step2: {
+          title: "Gây tê tại chỗ",
+          text: "Răng được gây tê để điều trị hoàn toàn không đau. Bạn sẽ không cảm thấy đau trong quá trình điều trị."
+        },
+        step3: {
+          title: "Làm sạch ống tủy",
+          text: "Sử dụng dụng cụ mỏng, các dây thần kinh viêm và vi khuẩn được loại bỏ khỏi ống tủy và các ống được làm sạch kỹ lưỡng."
+        },
+        step4: {
+          title: "Trám ống tủy",
+          text: "Các ống đã làm sạch được trám kín bằng vật liệu tương thích sinh học để ngăn tái nhiễm trùng."
+        },
+        step5: {
+          title: "Phục hồi thân răng",
+          text: "Cuối cùng, răng được phục hồi bằng trám hoặc mão răng để khôi phục hoàn toàn chức năng và thẩm mỹ."
+        }
+      },
+      treatments: {
+        title: "Các phương pháp điều trị bảo tồn răng",
+        treatment1: {
           title: "Liệu pháp trám răng",
           text: "Trám composite màu răng chất lượng cao cho phục hồi thẩm mỹ và bền."
         },
-        service2: {
+        treatment2: {
           title: "Điều trị tủy (Nội nha)",
           text: "Cứu răng bị viêm hoặc chết tủy bằng quy trình máy móc tiên tiến."
         },
-        service3: {
-          title: "Liệu pháp viêm nha chu",
-          text: "Điều trị bệnh nướu để bảo tồn răng và nướu."
+        treatment3: {
+          title: "Nha chu học",
+          text: "Điều trị bệnh nướu và viêm nha chu. Nướu khỏe mạnh là nền tảng cho răng khỏe lâu dài."
         },
-        service4: {
+        treatment4: {
           title: "Inlay và Onlay",
-          text: "Trám gắn vừa khít bằng sứ cho khuyết tật lớn - thẩm mỹ và bền."
+          text: "Trám gắn chất lượng cao bằng sứ hoặc vàng cho khuyết tật lớn. Chúng đặc biệt bền và vừa khít hoàn hảo với răng."
         }
       },
       faq: {
@@ -1718,6 +1972,1278 @@ const serviceTranslations = {
         answer4: "Hầu hết mọi người đều có thể nhận cấy ghép. Điều kiện là đủ xương hàm và sức khỏe tổng quát tốt. Với mất xương thường có thể ghép xương. Chúng tôi kiểm tra tình trạng cá nhân của bạn."
       }
     }
+  },
+
+  // Russian translations
+  ru: {
+    // Navigation
+    nav: {
+      home: "Главная",
+      about: "О нас",
+      services: "Услуги",
+      labor: "Лаборатория",
+      contact: "Контакты"
+    },
+
+    // Language selector
+    language: {
+      current: "Язык:"
+    },
+
+    // Footer
+    footer: {
+      description: "Современная стоматология в Вуппертале с двумя филиалами. Профессиональное лечение в комфортной атмосфере.",
+      quickLinks: "Быстрый доступ",
+      contact: "Контакты",
+      copyright: "© 2025 Стоматологические клиники Зайтшенко-Динь. Все права защищены."
+    },
+
+    // Contact section
+    contact: {
+      title: "Записаться на прием",
+      subtitle: "Запишитесь на прием в одну из наших клиник",
+      address: "Адрес",
+      phone: "Телефон",
+      email: "Эл. почта",
+      location1: {
+        title: "Филиал Шварцбах"
+      },
+      location2: {
+        title: "Филиал Валль"
+      }
+    },
+
+    // Common FAQ
+    faq: {
+      title: "Часто задаваемые вопросы"
+    },
+
+    // Kinderzahnheilkunde (Children's Dentistry)
+    kinderzahnheilkunde: {
+      hero: {
+        title: "Детская стоматология",
+        subtitle: "Бережный и заботливый уход за зубами наших самых маленьких пациентов"
+      },
+      intro: {
+        title: "Детская стоматология в нашей клинике",
+        text1: "Дети — это не маленькие взрослые, им требуется специальный стоматологический уход, адаптированный к их потребностям. В нашей клинике мы создали дружелюбную атмосферу для детей, где ваш ребенок чувствует себя комфортно и через игру узнает, насколько важны здоровые зубы.",
+        text2: "Наша цель — чтобы ваш ребенок приобрел положительный опыт посещения стоматолога и на всю жизнь сохранил хорошее отношение к здоровью зубов. Мы уделяем много времени, объясняем все в доступной для детей форме и используем щадящие современные методы.",
+        content: {
+          title: "Лечение детей",
+          para1: "Добро пожаловать в нашу детскую стоматологическую клинику! Мы уделяем особое внимание потребностям детей и предлагаем им лучшее стоматологическое обслуживание.",
+          para2: "Наша команда специализированных детских стоматологов обладает обширным опытом и знаниями. Каждое лечение проходит максимально бережно и без стресса. С большим пониманием мы снимаем страхи и обеспечиваем спокойную атмосферу.",
+          para3: "Мы подробно информируем и консультируем родителей о здоровье зубов их детей и даём ценные советы по правильной гигиене полости рта. Посетите нас и узнайте, как мы делаем здоровье зубов вашего ребёнка нашим приоритетом.",
+          para4: "Запишитесь на приём сегодня и давайте вместе сохраним зубы вашего ребёнка здоровыми и крепкими!"
+        }
+      },
+      benefits: {
+        title: "Преимущества нашей детской стоматологии",
+        benefit1: {
+          title: "Атмосфера для детей",
+          text: "Яркая, дружелюбная обстановка и игровой подход создают расслабленную атмосферу без страха."
+        },
+        benefit2: {
+          title: "Много времени и терпения",
+          text: "Мы уделяем достаточно времени каждому ребенку и индивидуально подходим к его потребностям."
+        },
+        benefit3: {
+          title: "Обучение через игру",
+          text: "Мы объясняем детям соответственно возрасту, почему важен уход за зубами и как правильно чистить зубы."
+        },
+        benefit4: {
+          title: "Щадящие методы лечения",
+          text: "Современные бережные процедуры обеспечивают безболезненное лечение и положительные впечатления."
+        }
+      },
+      process: {
+        title: "Процесс лечения детей",
+        step1: {
+          title: "Знакомство",
+          text: "При первом посещении мы знакомимся. Ваш ребенок может исследовать клинику, попробовать кресло и привыкнуть к обстановке — совершенно без лечения."
+        },
+        step2: {
+          title: "Игровой осмотр",
+          text: "Мы бережно осматриваем зубы вашего ребенка и объясняем каждый шаг. Детскими словами мы превращаем лечение в положительное событие."
+        },
+        step3: {
+          title: "Профилактика и просвещение",
+          text: "Мы показываем вашему ребенку, как правильно чистить зубы, и проводим профессиональную чистку. Фторирование дополнительно укрепляет эмаль."
+        },
+        step4: {
+          title: "Бережное лечение при необходимости",
+          text: "При необходимости мы лечим кариес или другие проблемы современными безболезненными методами. При больших вмешательствах мы заранее обсуждаем с вами все возможности."
+        },
+        step5: {
+          title: "Награда и следующий прием",
+          text: "За храбрость ваш ребенок получает небольшой подарок. Мы договариваемся о следующем осмотре и даем советы по уходу за зубами дома."
+        }
+      },
+      faq: {
+        question1: "Когда нужен первый визит к стоматологу?",
+        answer1: "Первый визит следует запланировать, когда появится первый молочный зуб, обычно в возрасте 6-12 месяцев. Раннее посещение помогает ребенку привыкнуть к стоматологу.",
+        question2: "Как подготовить ребенка к визиту?",
+        answer2: "Говорите позитивно о посещении, избегайте таких слов, как 'боль' или 'укол'. Объясните, что стоматолог считает зубы и проверяет их здоровье. Не передавайте собственные страхи.",
+        question3: "Как часто нужны осмотры?",
+        answer3: "Мы рекомендуем осмотр каждые 6 месяцев. Так мы можем обнаружить проблемы рано и привыкание к визитам происходит естественно.",
+        question4: "Что если ребенок боится?",
+        answer4: "Это совершенно нормально. Мы очень терпеливы и адаптируемся к темпу ребенка. Часто помогает, если родитель присутствует. При сильном страхе мы можем работать пошагово."
+      }
+    },
+
+    // Angstpatienten (Anxiety Patients)
+    angstpatienten: {
+      hero: {
+        title: "Пациенты с тревожностью",
+        subtitle: "Понимающее и бережное лечение для тревожных пациентов"
+      },
+      intro: {
+        title: "Стоматология без страха",
+        text1: "Боязнь стоматолога — распространенное явление, которым страдают многие люди. Плохие впечатления, страх боли или чувство беспомощности могут привести к избеганию необходимого лечения. Мы серьезно относимся к вашим страхам и создали специальную концепцию для тревожных пациентов.",
+        text2: "В спокойной атмосфере мы уделяем особенно много времени вам. Мы подробно объясняем каждый шаг и работаем только с вашего согласия. Наша цель — вернуть вам положительные впечатления от стоматолога."
+      },
+      benefits: {
+        title: "Преимущества для тревожных пациентов",
+        benefit1: {
+          title: "Особенно много времени",
+          text: "Мы не торопим вас и адаптируемся полностью к вашим потребностям."
+        },
+        benefit2: {
+          title: "Полная прозрачность",
+          text: "Мы объясняем каждый шаг и работаем только с вашего одобрения."
+        },
+        benefit3: {
+          title: "Современные безболезненные методы",
+          text: "Щадящие техники и эффективное обезболивание минимизируют дискомфорт."
+        },
+        benefit4: {
+          title: "Понимающая команда",
+          text: "Весь наш персонал обучен работе с тревожными пациентами и относится с эмпатией."
+        }
+      },
+      methods: {
+        title: "Методы против стоматологической тревожности",
+        method1: {
+          title: "Подробное предварительное обсуждение",
+          text: "На первом приеме мы спокойно знакомимся друг с другом. Вы рассказываете нам о своих страхах, и мы вместе обсуждаем, как можем действовать. Никакое лечение не проводится - только доверительная беседа."
+        },
+        method2: {
+          title: "Местная анестезия с мягкой техникой",
+          text: "Мы используем особенно тонкие иглы и современные анестетические техники, которые делают укол почти безболезненным. Перед инъекцией мы поверхностно обезболиваем область гелем."
+        },
+        method3: {
+          title: "Седация (полусон)",
+          text: "Для больших процедур или сильной тревожности мы предлагаем лечение под седацией. Вы расслаблены и сонливы, не чувствуете страха и имеете мало воспоминаний о лечении впоследствии."
+        },
+        method4: {
+          title: "Гипноз и техники релаксации",
+          text: "По запросу мы можем использовать техники гипноза или управляемые упражнения на расслабление, чтобы привести вас в спокойное, расслабленное состояние во время лечения."
+        },
+        method5: {
+          title: "Современнейшая технология для коротких времен лечения",
+          text: "Благодаря современному оборудованию и процедурам мы можем выполнять многие процедуры намного быстрее. Более короткие сеансы означают меньше стресса для вас."
+        }
+      },
+      faq: {
+        question1: "Что такое лечение закисью азота?",
+        answer1: "Закись азота — это мягкое седативное средство, которое вдыхается через носовую маску. Вы остаетесь в сознании, но расслаблены и спокойны. Эффект проходит сразу после лечения.",
+        question2: "Можно ли спать во время лечения?",
+        answer2: "Да, для обширного лечения мы предлагаем седацию анестезиологом. Вы спите во время лечения и ничего не замечаете. Это особенно подходит при сильном страхе.",
+        question3: "Сколько стоит лечение с седацией?",
+        answer3: "Стоимость зависит от метода и продолжительности. Закись азота стоит примерно 100-150 евро, седация дороже. Мы создадим прозрачную смету.",
+        question4: "Может ли сопровождающее лицо присутствовать?",
+        answer4: "Да, вы можете привести доверенное лицо. Многим пациентам это придает дополнительную уверенность."
+      }
+    },
+
+    // Prophylaxe (Prophylaxis)
+    prophylaxe: {
+      hero: {
+        title: "Профилактика",
+        subtitle: "Предотвращение вместо лечения - для здоровых зубов на всю жизнь"
+      },
+      intro: {
+        title: "Профессиональная профилактика в нашей клинике",
+        text1: "Лучшее лечение — это то, которое не требуется. С регулярной профилактикой вы можете эффективно предотвратить кариес, воспаление десен и пародонтит. Наша опытная команда профилактики предлагает индивидуальные концепции профилактики для всех возрастов.",
+        text2: "Профессиональная чистка зубов (PZR) удаляет налет и зубной камень даже из труднодоступных мест, где ваша зубная щетка не достает. Регулярная PZR — лучшее вложение в здоровье ваших зубов."
+      },
+      benefits: {
+        title: "Преимущества регулярной профилактики",
+        benefit1: {
+          title: "Предотвращение кариеса и пародонтита",
+          text: "Регулярная профессиональная чистка значительно снижает риск заболеваний зубов."
+        },
+        benefit2: {
+          title: "Свежее дыхание",
+          text: "Удаление бактерий обеспечивает длительную свежесть дыхания."
+        },
+        benefit3: {
+          title: "Яркие зубы",
+          text: "Удаление пятен от кофе, чая и табака делает зубы видимо ярче."
+        },
+        benefit4: {
+          title: "Долгосрочная экономия",
+          text: "Профилактика дешевле лечения. Вы избегаете дорогостоящих реставраций."
+        }
+      },
+      process: {
+        title: "Процесс профессиональной чистки зубов",
+        step1: {
+          title: "Обследование и консультация",
+          text: "Сначала мы тщательно обследуем ваши зубы и десны. Мы обсуждаем состояние вашего здоровья полости рта и даем индивидуальные советы."
+        },
+        step2: {
+          title: "Удаление зубного камня",
+          text: "Мы бережно удаляем твердые отложения и зубной камень с зубов и под десневым краем с помощью ультразвука и ручных инструментов."
+        },
+        step3: {
+          title: "Профессиональная полировка",
+          text: "Поверхности зубов полируются специальными пастами. Это удаляет обесцвечивания и затрудняет прикрепление нового налета."
+        },
+        step4: {
+          title: "Фторирование",
+          text: "В завершение наносится фторидный лак, который укрепляет эмаль и защищает от кариеса."
+        },
+        step5: {
+          title: "Советы по гигиене полости рта",
+          text: "Вы получаете индивидуальные советы по правильной технике чистки зубов и использованию зубной нити, межзубных щеток и ополаскивателя для полости рта."
+        }
+      },
+      services: {
+        title: "Наши профилактические услуги",
+        service1: {
+          title: "Профессиональная чистка зубов (PZR)",
+          text: "Тщательная чистка всех зубов, удаление зубного камня, полировка и фторирование."
+        },
+        service2: {
+          title: "Осмотр пародонта",
+          text: "Раннее выявление воспаления десен для своевременной терапии."
+        },
+        service3: {
+          title: "Инструкции по уходу за полостью рта",
+          text: "Индивидуальные советы по правильной технике чистки и средствам ухода."
+        },
+        service4: {
+          title: "Детская профилактика",
+          text: "Игровое обучение детей правильному уходу за зубами и герметизация фиссур."
+        }
+      },
+      faq: {
+        question1: "Как часто нужна профессиональная чистка зубов?",
+        answer1: "Мы рекомендуем PZR каждые 6 месяцев. При пародонтите или повышенном риске кариеса могут быть полезны более короткие интервалы в 3-4 месяца.",
+        question2: "Болезненна ли профессиональная чистка зубов?",
+        answer2: "Нет, PZR обычно безболезненна. При чувствительных зубах или воспаленных деснах может быть неприятно, но мы можем использовать местную анестезию.",
+        question3: "Сколько стоит PZR?",
+        answer3: "Стоимость зависит от времени и количества зубов, обычно 80-120 евро. Многие частные страховки и некоторые государственные страховки оплачивают часть стоимости.",
+        question4: "Оплачивает ли медицинская страховка PZR?",
+        answer4: "Государственные страховки обычно не оплачивают PZR, но часто предлагают бонусные программы. Частные страховки часто оплачивают 1-2 чистки в год. Мы поможем с выставлением счетов."
+      }
+    },
+
+    // Zahnerhaltung (Tooth Preservation)
+    zahnerhaltung: {
+      hero: {
+        title: "Сохранение зубов",
+        subtitle: "Сохранение ваших естественных зубов с современными методами"
+      },
+      intro: {
+        title: "Сохранение зубов в нашей клинике",
+        text1: "Наша главная цель — сохранить ваши естественные зубы как можно дольше. Современная стоматология предлагает множество возможностей для восстановления поврежденных зубов и их долгосрочного сохранения.",
+        text2: "От малых пломб до сложного лечения корневых каналов — мы используем новейшие методы и высококачественные материалы, чтобы ваши зубы оставались здоровыми и функциональными на долгое время."
+      },
+      benefits: {
+        title: "Преимущества сохранения зубов",
+        benefit1: {
+          title: "Естественная эстетика",
+          text: "Ваши собственные зубы выглядят естественнее любого протеза."
+        },
+        benefit2: {
+          title: "Лучшая функция",
+          text: "Естественные зубы обеспечивают оптимальную жевательную функцию и ощущение прикуса."
+        },
+        benefit3: {
+          title: "Защита кости",
+          text: "Сохраненные зубы защищают челюстную кость от разрушения."
+        },
+        benefit4: {
+          title: "Экономия затрат",
+          text: "Сохранение зубов дешевле в долгосрочной перспективе, чем протезирование."
+        }
+      },
+      process: {
+        title: "Процесс лечения корневых каналов",
+        step1: {
+          title: "Диагностика и рентген",
+          text: "Сначала мы тщательно осматриваем зуб и делаем рентгеновские снимки, чтобы определить степень воспаления."
+        },
+        step2: {
+          title: "Местная анестезия",
+          text: "Зуб обезболивается, поэтому лечение проходит совершенно безболезненно. Вы не почувствуете боли во время процедуры."
+        },
+        step3: {
+          title: "Очистка корневых каналов",
+          text: "Тонкими инструментами воспаленные нервы и бактерии удаляются из корневых каналов, и каналы тщательно очищаются."
+        },
+        step4: {
+          title: "Пломбирование корневых каналов",
+          text: "Очищенные каналы плотно запечатываются биосовместимым материалом для предотвращения повторной инфекции."
+        },
+        step5: {
+          title: "Восстановление коронки зуба",
+          text: "Наконец, зуб восстанавливается пломбой или коронкой, чтобы полностью восстановить его функцию и эстетику."
+        }
+      },
+      treatments: {
+        title: "Наши методы лечения по сохранению зубов",
+        treatment1: {
+          title: "Пломбы",
+          text: "Высококачественные пломбы из композита цвета зуба для эстетичного и долговечного восстановления."
+        },
+        treatment2: {
+          title: "Лечение корневых каналов (эндодонтия)",
+          text: "Спасение воспаленных или мертвых зубов с помощью современных машинных процедур."
+        },
+        treatment3: {
+          title: "Пародонтология",
+          text: "Лечение заболеваний десен и пародонтита. Здоровые десны - основа для долгосрочного здоровья зубов."
+        },
+        treatment4: {
+          title: "Инлеи и онлеи",
+          text: "Высококачественные вкладки из керамики или золота для больших дефектов. Они особенно долговечны и идеально подходят к зубу."
+        }
+      },
+      faq: {
+        question1: "Что лучше: пломба или инлей?",
+        answer1: "При небольших дефектах достаточно композитной пломбы. При больших дефектах керамические инлеи стабильнее и долговечнее. Мы консультируем индивидуально.",
+        question2: "Болезненно ли лечение корневых каналов?",
+        answer2: "Нет, лечение проводится под местной анестезией и безболезненно. Часто лечение снимает существующую боль от воспаления.",
+        question3: "Как долго служит композитная пломба?",
+        answer3: "При хорошем уходе композитные пломбы служат 5-10 лет или дольше. Качество зависит от размера пломбы и ухода.",
+        question4: "Оплачивает ли страховка лечение корневых каналов?",
+        answer4: "Государственная страховка оплачивает стандартное лечение передних зубов и малых коренных зубов. Для моляров существуют особые правила. Мы консультируем заранее."
+      }
+    },
+
+    // Aesthetische Zahnheilkunde (Aesthetic Dentistry)
+    aesthetische: {
+      hero: {
+        title: "Эстетическая стоматология",
+        subtitle: "Красивая улыбка для большей уверенности в себе"
+      },
+      intro: {
+        title: "Эстетическая стоматология в нашей клинике",
+        text1: "Красивая улыбка — ваша визитная карточка. Здоровые, ухоженные зубы повышают вашу уверенность в себе и создают положительное первое впечатление. С современными методами эстетической стоматологии мы можем исполнить ваши пожелания о красивых зубах.",
+        text2: "От щадящего отбеливания до виниров — мы предлагаем вам индивидуальные решения для идеальной улыбки. При этом мы всегда уделяем внимание естественному виду и здоровью ваших зубов."
+      },
+      benefits: {
+        title: "Преимущества эстетической стоматологии",
+        benefit1: {
+          title: "Больше уверенности в себе",
+          text: "Красивые зубы позволяют вам улыбаться и держаться с большей уверенностью."
+        },
+        benefit2: {
+          title: "Естественная эстетика",
+          text: "Современные материалы обеспечивают естественный вид результата."
+        },
+        benefit3: {
+          title: "Щадящие для зубов",
+          text: "Минимально инвазивные процедуры сохраняют максимум зубного вещества."
+        },
+        benefit4: {
+          title: "Долговечные результаты",
+          text: "Высококачественные материалы гарантируют длительную прочность."
+        }
+      },
+      services: {
+        title: "Наши эстетические услуги",
+        service1: {
+          title: "Отбеливание зубов",
+          text: "Профессиональное отбеливание для ослепительно белых зубов — в клинике или дома с индивидуальными капами."
+        },
+        service2: {
+          title: "Виниры (керамические оболочки)",
+          text: "Ультратонкие керамические оболочки для идеально сформированных, безупречно белых зубов без большой потери вещества."
+        },
+        service3: {
+          title: "Бондинг",
+          text: "Коррекция небольших дефектов зубов композитом цвета зуба всего за один сеанс."
+        },
+        service4: {
+          title: "Дизайн улыбки",
+          text: "Комплексное планирование вашей новой улыбки с цифровым предпросмотром результата."
+        }
+      },
+      faq: {
+        question1: "Как долго держится отбеливание?",
+        answer1: "В зависимости от образа жизни (кофе, чай, курение) профессиональное отбеливание держится 1-3 года. При хорошем уходе и периодическом подкрашивании эффект можно сохранить дольше.",
+        question2: "Вредит ли отбеливание зубам?",
+        answer2: "Нет, при профессиональном проведении отбеливание безвредно. Временная чувствительность исчезает через несколько дней. Важны предварительный осмотр и здоровые зубы.",
+        question3: "Как долго служат виниры?",
+        answer3: "При хорошем уходе виниры служат 10-15 лет или дольше. Они очень стабильны и не обесцвечиваются, как естественные зубы.",
+        question4: "Оплачивает ли страховка расходы?",
+        answer4: "Эстетическая стоматология — это частная услуга и не оплачивается государственной страховкой. Мы с удовольствием создадим прозрачную смету."
+      }
+    },
+
+    // Zahnersatz (Dental Prosthetics)
+    zahnersatz: {
+      hero: {
+        title: "Зубные протезы",
+        subtitle: "Естественная замена для лучшего качества жизни"
+      },
+      intro: {
+        title: "Высококачественные протезы в нашей клинике",
+        text1: "Отсутствующие зубы влияют не только на внешний вид, но и на жевательную функцию, произношение и могут привести к проблемам с челюстным суставом. Современные протезы закрывают эти пробелы и восстанавливают качество жизни.",
+        text2: "В тесном сотрудничестве с собственной лабораторией мы создаем индивидуальные высококачественные протезы — от частичных коронок до мостов и полных протезов. Мы ценим эстетику, функцию и долговечность."
+      },
+      benefits: {
+        title: "Преимущества наших протезов",
+        benefit1: {
+          title: "Естественная эстетика",
+          text: "Протезы из цельной керамики почти неотличимы от естественных зубов."
+        },
+        benefit2: {
+          title: "Улучшенная жевательная функция",
+          text: "Ешьте снова то, что хотите - без ограничений."
+        },
+        benefit3: {
+          title: "Защита от последующих повреждений",
+          text: "Протезы предотвращают смещение зубов и проблемы с челюстным суставом."
+        },
+        benefit4: {
+          title: "Из собственной лаборатории",
+          text: "Короткие расстояния, личные договоренности и быстрые корректировки."
+        }
+      },
+      services: {
+        title: "Наши услуги протезирования",
+        service1: {
+          title: "Частичные коронки и коронки",
+          text: "Защита поврежденных зубов от дальнейшего разрушения и восстановление функции и эстетики."
+        },
+        service2: {
+          title: "Мосты",
+          text: "Фиксированная замена одного или нескольких отсутствующих зубов — стабильная и эстетичная."
+        },
+        service3: {
+          title: "Частичные протезы",
+          text: "Съемные протезы для нескольких отсутствующих зубов — комфортные и экономичные."
+        },
+        service4: {
+          title: "Полные протезы",
+          text: "Полностью съемные протезы для беззубых челюстей — для естественного вида и хорошей функции."
+        }
+      },
+      faq: {
+        question1: "Что лучше: мост или имплант?",
+        answer1: "И то, и другое имеет плюсы и минусы. Импланты щадят соседние зубы, но дороже. Мосты проверены временем и экономичнее, но требуют обточки соседних зубов. Мы консультируем индивидуально.",
+        question2: "Как долго служит коронка?",
+        answer2: "При хорошем уходе коронка служит 10-15 лет или дольше. Керамические коронки особенно долговечны и эстетичны.",
+        question3: "Сколько стоят протезы?",
+        answer3: "Стоимость зависит от типа и материала. Государственная страховка выплачивает фиксированную субсидию. Мы создадим подробный план лечения и смету.",
+        question4: "Можно ли нормально есть с протезами?",
+        answer4: "Да, после короткого периода привыкания с протезами можно нормально есть. Фиксированные протезы функционируют почти как естественные зубы."
+      }
+    },
+
+    // Oralchirurgie (Oral Surgery)
+    oralchirurgie: {
+      hero: {
+        title: "Хирургическая стоматология",
+        subtitle: "Бережные хирургические процедуры для здоровья ваших зубов"
+      },
+      intro: {
+        title: "Стоматологическая хирургия в нашей клинике",
+        text1: "Иногда консервативного лечения недостаточно для решения проблем с зубами. В этих случаях необходимы хирургические процедуры. Благодаря современным технологиям и бережным процедурам мы можем выполнять многие операции амбулаторно в нашей клинике.",
+        text2: "От удаления зубов мудрости до резекции верхушки корня и более сложных процедур — мы лечим вас с максимальной заботой и современными методами. Ваше благополучие всегда наш приоритет."
+      },
+      benefits: {
+        title: "Преимущества нашей хирургической стоматологии",
+        benefit1: {
+          title: "Современная техника",
+          text: "Цифровая рентгенодиагностика и бережные хирургические процедуры для оптимальных результатов."
+        },
+        benefit2: {
+          title: "Безболезненное лечение",
+          text: "Местная анестезия или по желанию седация для процедур без страха."
+        },
+        benefit3: {
+          title: "Быстрое заживление",
+          text: "Минимально инвазивные техники способствуют быстрому заживлению ран."
+        },
+        benefit4: {
+          title: "Комплексный последующий уход",
+          text: "Мы сопровождаем вас после процедуры до полного выздоровления."
+        }
+      },
+      services: {
+        title: "Наши хирургические услуги",
+        service1: {
+          title: "Удаление зубов мудрости",
+          text: "Бережное удаление проблемных зубов мудрости под местной анестезией или седацией."
+        },
+        service2: {
+          title: "Резекция верхушки корня",
+          text: "Спасение зубов с хроническим воспалением у верхушки корня минимально инвазивной процедурой."
+        },
+        service3: {
+          title: "Обнажение зуба",
+          text: "Обнажение смещенных зубов для ортодонтического лечения."
+        },
+        service4: {
+          title: "Наращивание кости",
+          text: "Наращивание челюстной кости в подготовке к имплантации."
+        }
+      },
+      process: {
+        title: "Процесс хирургического лечения полости рта",
+        step1: {
+          title: "Подробная диагностика",
+          text: "Цифровые рентгеновские снимки и 3D-диагностика для точного планирования."
+        },
+        step2: {
+          title: "Консультация и разъяснение",
+          text: "Мы подробно объясним вам запланированную процедуру и ответим на все вопросы."
+        },
+        step3: {
+          title: "Бережная процедура",
+          text: "Операция в стерильных условиях с современнейшей техникой."
+        },
+        step4: {
+          title: "Последующий уход и контроль",
+          text: "Регулярные проверки и личный уход до полного выздоровления."
+        }
+      },
+      faq: {
+        question1: "Когда нужно удалять зубы мудрости?",
+        answer1: "Зубы мудрости следует удалять, когда они вызывают боль, растут криво, повреждают соседние зубы или воспаляются. Их также можно удалить профилактически, если недостаточно места в челюсти.",
+        question2: "Как долго заживает рана после удаления зуба мудрости?",
+        answer2: "Рана обычно заживает в течение 1-2 недель. Отек и легкая боль проходят через 3-5 дней. Полное заживление кости занимает несколько месяцев.",
+        question3: "Что можно есть после хирургической процедуры?",
+        answer3: "В первые дни ешьте мягкую, прохладную пищу (йогурт, пудинг, супы). Избегайте горячих напитков, алкоголя и твердой пищи минимум 3 дня.",
+        question4: "Какие обезболивающие можно принимать после операции?",
+        answer4: "Мы рекомендуем ибупрофен или парацетамол. Избегайте аспирина, так как он тормозит свертывание крови. Вы получите конкретные рекомендации после процедуры."
+      }
+    },
+
+    // Implantologie (Implantology)
+    implantologie: {
+      hero: {
+        title: "Имплантология",
+        subtitle: "Фиксированные протезы как настоящие зубы"
+      },
+      intro: {
+        title: "Зубные импланты — лучшее решение при потере зубов",
+        text1: "Зубные импланты — это искусственные корни зубов из титана или керамики, которые прочно закрепляются в челюстной кости. Они предлагают самую стабильную и естественную форму протезирования и ощущаются как собственные зубы.",
+        text2: "Благодаря нашему многолетнему опыту в имплантологии мы предлагаем вам высококачественные имплантационные решения. От восстановления одного зуба до восстановления беззубой челюсти — мы находим оптимальное решение для каждого случая."
+      },
+      benefits: {
+        title: "Преимущества зубных имплантов",
+        benefit1: {
+          title: "Как собственные зубы",
+          text: "Импланты выглядят, ощущаются и функционируют как естественные зубы."
+        },
+        benefit2: {
+          title: "Пожизненное решение",
+          text: "При хорошем уходе импланты могут служить всю жизнь."
+        },
+        benefit3: {
+          title: "Защита кости",
+          text: "Импланты сохраняют челюстную кость и предотвращают потерю кости."
+        },
+        benefit4: {
+          title: "Щадят соседние зубы",
+          text: "Нет повреждения здоровых соседних зубов, как при мостах."
+        }
+      },
+      process: {
+        title: "Процесс имплантационного лечения",
+        step1: {
+          title: "Планирование и диагностика",
+          text: "3D-рентген и цифровое планирование для точного позиционирования имплантов."
+        },
+        step2: {
+          title: "Установка импланта",
+          text: "Установка импланта под местной анестезией — безболезненно и бережно."
+        },
+        step3: {
+          title: "Фаза заживления",
+          text: "Имплант прочно срастается с костью в течение 3-6 месяцев (остеоинтеграция)."
+        },
+        step4: {
+          title: "Изготовление коронки",
+          text: "После успешной интеграции устанавливается индивидуально изготовленная керамическая коронка."
+        },
+        step5: {
+          title: "Последующий уход",
+          text: "Регулярные осмотры и профессиональная чистка обеспечивают долгосрочный успех."
+        }
+      },
+      services: {
+        title: "Наши услуги имплантологии",
+        service1: {
+          title: "Импланты одного зуба",
+          text: "Замена отдельных отсутствующих зубов без обточки соседних зубов."
+        },
+        service2: {
+          title: "Имплантационные мосты",
+          text: "Фиксированная замена нескольких зубов на имплантах."
+        },
+        service3: {
+          title: "Протезы на имплантах",
+          text: "Стабильное крепление полных протезов на имплантах — больше никакого скольжения."
+        },
+        service4: {
+          title: "Терапия собственной кровью (PRF)",
+          text: "Ускоренное заживление и образование кости через собственные факторы роста организма."
+        }
+      },
+      faq: {
+        question1: "Болезненна ли установка импланта?",
+        answer1: "Нет, процедура проводится под местной анестезией и безболезненна. После процедуры может быть небольшой отек, который хорошо лечится обезболивающими.",
+        question2: "Как долго служат импланты?",
+        answer2: "При хорошей гигиене полости рта и регулярных осмотрах импланты могут служить всю жизнь. Исследования показывают уровень успеха более 95% через 10 лет.",
+        question3: "Сколько стоит имплантация?",
+        answer3: "Стоимость зависит от сложности и необходимого предварительного лечения (например, наращивание кости). Государственная страховка выплачивает фиксированную субсидию на коронку. Мы составим подробный план расходов.",
+        question4: "Подхожу ли я для имплантации?",
+        answer4: "Большинство людей могут получить импланты. Условие — достаточно челюстной кости и хорошее общее здоровье. При потере кости часто можно нарастить кость. Мы проверим ваше индивидуальное состояние."
+      }
+    }
+  },
+
+  // Arabic translations
+  ar: {
+    // Navigation
+    nav: {
+      home: "الرئيسية",
+      about: "من نحن",
+      services: "الخدمات",
+      labor: "المختبر",
+      contact: "اتصل بنا"
+    },
+
+    // Language selector
+    language: {
+      current: "اللغة:"
+    },
+
+    // Footer
+    footer: {
+      description: "طب أسنان حديث في فوبرتال مع فرعين. علاج احترافي في جو مريح.",
+      quickLinks: "روابط سريعة",
+      contact: "اتصل بنا",
+      copyright: "© 2025 عيادات سايتشينكو-دينه لطب الأسنان. جميع الحقوق محفوظة."
+    },
+
+    // Contact section
+    contact: {
+      title: "احجز موعد",
+      subtitle: "احجز موعدًا في إحدى عياداتنا",
+      address: "العنوان",
+      phone: "الهاتف",
+      email: "البريد الإلكتروني",
+      location1: {
+        title: "فرع شفارتسباخ"
+      },
+      location2: {
+        title: "فرع فال"
+      }
+    },
+
+    // Common FAQ
+    faq: {
+      title: "الأسئلة الشائعة"
+    },
+
+    // Kinderzahnheilkunde (Children's Dentistry)
+    kinderzahnheilkunde: {
+      hero: {
+        title: "طب أسنان الأطفال",
+        subtitle: "رعاية لطيفة ومحبة لأسنان أصغر مرضانا"
+      },
+      intro: {
+        title: "طب أسنان الأطفال في عيادتنا",
+        text1: "الأطفال ليسوا بالغين صغار - إنهم يحتاجون إلى رعاية أسنان خاصة مصممة خصيصًا لاحتياجاتهم. في عيادتنا، نوفر جوًا مناسبًا للأطفال حيث يشعر طفلك بالراحة ويتعلم بطريقة مرحة مدى أهمية الأسنان الصحية.",
+        text2: "هدفنا هو أن يكتسب طفلك تجارب إيجابية عند زيارة طبيب الأسنان وبالتالي يبني علاقة جيدة مدى الحياة مع صحة الأسنان. نخصص الكثير من الوقت، ونشرح كل شيء بطريقة مناسبة للأطفال ونعمل بأساليب لطيفة وحديثة.",
+        content: {
+          title: "علاج الأطفال",
+          para1: "مرحباً بكم في عيادتنا لطب أسنان الأطفال! نحن نركز على الاحتياجات الخاصة للأطفال ونقدم لهم أفضل رعاية أسنان ممكنة.",
+          para2: "فريقنا من أطباء أسنان الأطفال المتخصصين لديه خبرة ومعرفة واسعة. كل علاج يتم بلطف وبدون إجهاد قدر الإمكان. مع تعاطف كبير، نخفف المخاوف ونضمن جواً مريحاً.",
+          para3: "نحن نخبر ونستشير الآباء بالتفصيل حول صحة أسنان أطفالهم ونقدم نصائح قيمة حول نظافة الفم الصحيحة. قم بزيارتنا واكتشف كيف نجعل صحة أسنان طفلك أولويتنا.",
+          para4: "احجز موعداً اليوم ودعونا نعمل معاً للحفاظ على أسنان طفلك صحية وقوية!"
+        }
+      },
+      benefits: {
+        title: "مزايا طب أسنان الأطفال لدينا",
+        benefit1: {
+          title: "جو مناسب للأطفال",
+          text: "بيئة ملونة وودية ونهج مرح يخلقان جوًا مريحًا بدون خوف."
+        },
+        benefit2: {
+          title: "الكثير من الوقت والصبر",
+          text: "نخصص وقتًا كافيًا لكل طفل ونتعامل بشكل فردي مع احتياجاته."
+        },
+        benefit3: {
+          title: "التثقيف من خلال اللعب",
+          text: "نشرح للأطفال بما يتناسب مع أعمارهم لماذا العناية بالأسنان مهمة وكيفية تنظيف أسنانهم بشكل صحيح."
+        },
+        benefit4: {
+          title: "أساليب علاج لطيفة",
+          text: "الإجراءات الحديثة اللطيفة تضمن علاجًا غير مؤلم وتجارب إيجابية."
+        }
+      },
+      process: {
+        title: "عملية علاج الأطفال",
+        step1: {
+          title: "موعد التعارف",
+          text: "في الزيارة الأولى نتعرف على بعضنا البعض. يمكن لطفلك استكشاف العيادة، وتجربة كرسي العلاج والتعود على البيئة - بدون أي علاج على الإطلاق."
+        },
+        step2: {
+          title: "الفحص بطريقة مرحة",
+          text: "نفحص أسنان طفلك بلطف ونشرح كل خطوة. بكلمات مناسبة للأطفال، نحول العلاج إلى تجربة إيجابية."
+        },
+        step3: {
+          title: "الوقاية والتثقيف",
+          text: "نوضح لطفلك كيفية تنظيف الأسنان بشكل صحيح ونجري تنظيفًا احترافيًا للأسنان. الفلورايد يقوي المينا بشكل إضافي."
+        },
+        step4: {
+          title: "العلاج اللطيف عند الحاجة",
+          text: "إذا لزم الأمر، نعالج التسوس أو المشاكل الأخرى بأحدث الطرق غير المؤلمة. في حالة الإجراءات الأكبر، نناقش جميع الخيارات معك مسبقًا."
+        },
+        step5: {
+          title: "المكافأة والموعد التالي",
+          text: "مقابل شجاعته، يحصل طفلك على هدية صغيرة. نحدد موعد الفحص التالي ونعطي نصائح للعناية بالأسنان في المنزل."
+        }
+      },
+      faq: {
+        question1: "متى يجب أن تكون الزيارة الأولى لطبيب الأسنان؟",
+        answer1: "يجب التخطيط للزيارة الأولى عندما يظهر أول سن لبني، عادة في عمر 6-12 شهرًا. الزيارة المبكرة تساعد الطفل على التعود على طبيب الأسنان.",
+        question2: "كيف أحضّر طفلي للزيارة؟",
+        answer2: "تحدث بإيجابية عن الزيارة، وتجنب كلمات مثل 'ألم' أو 'حقنة'. اشرح أن طبيب الأسنان يعد الأسنان ويفحص صحتها. لا تنقل مخاوفك الخاصة.",
+        question3: "كم مرة يجب إجراء الفحوصات؟",
+        answer3: "نوصي بإجراء فحص كل 6 أشهر. بهذه الطريقة يمكننا اكتشاف المشاكل مبكرًا ويحدث التعود على الزيارات بشكل طبيعي.",
+        question4: "ماذا لو كان طفلي خائفًا؟",
+        answer4: "هذا أمر طبيعي تمامًا. نحن صبورون جدًا ونتكيف مع وتيرة الطفل. غالبًا ما يساعد إذا كان أحد الوالدين حاضرًا. في حالة الخوف الشديد، يمكننا العمل خطوة بخطوة."
+      }
+    },
+
+    // Angstpatienten (Anxiety Patients)
+    angstpatienten: {
+      hero: {
+        title: "المرضى القلقون",
+        subtitle: "علاج متفهم ولطيف للمرضى القلقين"
+      },
+      intro: {
+        title: "طب الأسنان بدون خوف",
+        text1: "الخوف من طبيب الأسنان ظاهرة شائعة يعاني منها كثير من الناس. التجارب السيئة أو الخوف من الألم أو الشعور بالعجز يمكن أن تؤدي إلى تجنب العلاج الضروري. نحن نأخذ مخاوفك على محمل الجد وقد أنشأنا مفهومًا خاصًا للمرضى القلقين.",
+        text2: "في جو هادئ، نخصص وقتًا إضافيًا لك بشكل خاص. نشرح كل خطوة بالتفصيل ونعمل فقط بموافقتك. هدفنا هو إعادة التجارب الإيجابية مع طبيب الأسنان لك."
+      },
+      benefits: {
+        title: "مزايا للمرضى القلقين",
+        benefit1: {
+          title: "الكثير من الوقت",
+          text: "لا نستعجلك ونتكيف تمامًا مع احتياجاتك."
+        },
+        benefit2: {
+          title: "شفافية كاملة",
+          text: "نشرح كل خطوة ونعمل فقط بموافقتك."
+        },
+        benefit3: {
+          title: "أساليب حديثة غير مؤلمة",
+          text: "التقنيات اللطيفة والتخدير الفعال يقللان من الانزعاج."
+        },
+        benefit4: {
+          title: "فريق متفهم",
+          text: "كل موظفينا مدربون على التعامل مع المرضى القلقين ويتعاملون بتعاطف."
+        }
+      },
+      methods: {
+        title: "طرق مكافحة قلق الأسنان",
+        method1: {
+          title: "مناقشة أولية تفصيلية",
+          text: "في الموعد الأول نتعرف على بعضنا البعض بهدوء. تخبرنا عن مخاوفك ونناقش معًا كيف يمكننا المتابعة. لا يتم إجراء أي علاج - فقط محادثة ثقة."
+        },
+        method2: {
+          title: "تخدير موضعي بتقنية لطيفة",
+          text: "نستخدم إبرًا رفيعة بشكل خاص وتقنيات تخدير حديثة تجعل الحقن غير مؤلم تقريبًا. قبل الحقن، نخدر المنطقة سطحيًا بجل."
+        },
+        method3: {
+          title: "التخدير (النوم الخفيف)",
+          text: "للإجراءات الكبيرة أو القلق الشديد، نقدم علاجات تحت التخدير. أنت مسترخي وناعس، لا تشعر بالخوف ولديك ذاكرة قليلة عن العلاج بعد ذلك."
+        },
+        method4: {
+          title: "التنويم المغناطيسي وتقنيات الاسترخاء",
+          text: "عند الطلب، يمكننا استخدام تقنيات التنويم المغناطيسي أو تمارين الاسترخاء الموجهة لوضعك في حالة هادئة ومسترخية أثناء العلاج."
+        },
+        method5: {
+          title: "أحدث التقنيات لأوقات علاج قصيرة",
+          text: "بفضل المعدات والإجراءات الحديثة، يمكننا إجراء العديد من العلاجات بشكل أسرع بكثير. الجلسات الأقصر تعني ضغطًا أقل عليك."
+        }
+      },
+      faq: {
+        question1: "ما هو العلاج بغاز الضحك؟",
+        answer1: "غاز الضحك هو مهدئ لطيف يُستنشق عبر قناع الأنف. تبقى واعيًا، لكنك مسترخ وهادئ. يتلاشى التأثير مباشرة بعد العلاج.",
+        question2: "هل يمكنني النوم أثناء العلاج؟",
+        answer2: "نعم، للعلاج الواسع نقدم التخدير مع طبيب التخدير. تنام أثناء العلاج ولا تلاحظ شيئًا. هذا مناسب بشكل خاص للخوف الشديد.",
+        question3: "كم تكلفة العلاج مع التخدير؟",
+        answer3: "التكلفة تعتمد على الطريقة والمدة. غاز الضحك يكلف حوالي 100-150 يورو، التخدير أغلى. سنقوم بإعداد تقدير تكلفة شفاف.",
+        question4: "هل يمكن لشخص مرافق أن يكون حاضرًا؟",
+        answer4: "نعم، يمكنك إحضار شخص موثوق. هذا يعطي العديد من المرضى أمانًا إضافيًا."
+      }
+    },
+
+    // Prophylaxe (Prophylaxis)
+    prophylaxe: {
+      hero: {
+        title: "الوقاية",
+        subtitle: "الوقاية بدلاً من العلاج - لأسنان صحية مدى الحياة"
+      },
+      intro: {
+        title: "الوقاية المهنية في عيادتنا",
+        text1: "أفضل علاج هو الذي لا تحتاجه. مع الوقاية المنتظمة، يمكنك منع التسوس والتهاب اللثة والتهاب دواعم السن بشكل فعال. يقدم فريق الوقاية ذو الخبرة لدينا مفاهيم وقاية فردية لجميع الأعمار.",
+        text2: "التنظيف المهني للأسنان (PZR) يزيل البلاك والجير حتى من الأماكن التي يصعب الوصول إليها حيث لا تصل فرشاة أسنانك. PZR المنتظم هو أفضل استثمار في صحة أسنانك."
+      },
+      benefits: {
+        title: "مزايا الوقاية المنتظمة",
+        benefit1: {
+          title: "منع التسوس والتهاب دواعم السن",
+          text: "التنظيف المهني المنتظم يقلل بشكل كبير من خطر الإصابة بأمراض الأسنان."
+        },
+        benefit2: {
+          title: "نفَس منعش",
+          text: "إزالة البكتيريا تضمن انتعاشًا طويل الأمد للنفَس."
+        },
+        benefit3: {
+          title: "أسنان أكثر إشراقًا",
+          text: "إزالة البقع من القهوة والشاي والتبغ تجعل الأسنان أكثر إشراقًا بشكل ملحوظ."
+        },
+        benefit4: {
+          title: "توفير على المدى الطويل",
+          text: "الوقاية أرخص من العلاج. تتجنب الترميمات المكلفة."
+        }
+      },
+      process: {
+        title: "عملية التنظيف المهني للأسنان",
+        step1: {
+          title: "الفحص والاستشارة",
+          text: "أولاً، نفحص أسنانك ولثتك بدقة. نناقش حالة صحة فمك ونقدم نصائح فردية."
+        },
+        step2: {
+          title: "إزالة الجير",
+          text: "نزيل بلطف الرواسب الصلبة والجير من الأسنان وتحت خط اللثة باستخدام الموجات فوق الصوتية والأدوات اليدوية."
+        },
+        step3: {
+          title: "التلميع المهني",
+          text: "يتم تلميع أسطح الأسنان بمعاجين خاصة. هذا يزيل التصبغات ويجعل من الصعب التصاق البلاك الجديد."
+        },
+        step4: {
+          title: "الفلورايد",
+          text: "أخيرًا، يتم وضع ورنيش الفلورايد الذي يقوي المينا ويحمي من التسوس."
+        },
+        step5: {
+          title: "نصائح صحة الفم",
+          text: "تحصل على نصائح فردية حول تقنية التنظيف الصحيحة واستخدام خيط الأسنان وفرش ما بين الأسنان وغسول الفم."
+        }
+      },
+      services: {
+        title: "خدمات الوقاية لدينا",
+        service1: {
+          title: "التنظيف المهني للأسنان (PZR)",
+          text: "تنظيف شامل لجميع الأسنان، وإزالة الجير، والتلميع والفلورايد."
+        },
+        service2: {
+          title: "فحص دواعم السن",
+          text: "الكشف المبكر عن التهاب اللثة للعلاج في الوقت المناسب."
+        },
+        service3: {
+          title: "تعليمات العناية بالفم",
+          text: "نصائح فردية حول تقنية التنظيف الصحيحة ومنتجات العناية."
+        },
+        service4: {
+          title: "الوقاية للأطفال",
+          text: "تعليم الأطفال بطريقة مرحة للعناية الصحيحة بالأسنان وختم الشقوق."
+        }
+      },
+      faq: {
+        question1: "كم مرة يجب إجراء التنظيف المهني للأسنان؟",
+        answer1: "نوصي بـ PZR كل 6 أشهر. في حالة التهاب دواعم السن أو زيادة خطر التسوس، قد تكون الفترات الأقصر 3-4 أشهر مفيدة.",
+        question2: "هل التنظيف المهني للأسنان مؤلم؟",
+        answer2: "لا، PZR عادة غير مؤلم. مع الأسنان الحساسة أو اللثة الملتهبة قد يكون غير مريح، لكن يمكننا استخدام تخدير موضعي.",
+        question3: "كم تكلفة PZR؟",
+        answer3: "التكلفة تعتمد على الوقت وعدد الأسنان، عادة 80-120 يورو. العديد من التأمينات الخاصة وبعض التأمينات العامة تدفع جزءًا من التكلفة.",
+        question4: "هل يدفع التأمين الصحي PZR؟",
+        answer4: "التأمينات العامة عادة لا تدفع PZR، لكن غالبًا تقدم برامج مكافآت. التأمينات الخاصة غالبًا تدفع 1-2 تنظيف في السنة. نساعدك في إعداد الفواتير."
+      }
+    },
+
+    // Zahnerhaltung (Tooth Preservation)
+    zahnerhaltung: {
+      hero: {
+        title: "الحفاظ على الأسنان",
+        subtitle: "الحفاظ على أسنانك الطبيعية بأساليب حديثة"
+      },
+      intro: {
+        title: "الحفاظ على الأسنان في عيادتنا",
+        text1: "هدفنا الرئيسي هو الحفاظ على أسنانك الطبيعية لأطول فترة ممكنة. طب الأسنان الحديث يقدم العديد من الخيارات لاستعادة الأسنان التالفة والحفاظ عليها على المدى الطويل.",
+        text2: "من الحشوات الصغيرة إلى علاج قناة الجذر المعقد - نستخدم أحدث الأساليب والمواد عالية الجودة للحفاظ على أسنانك صحية وفعالة لفترة طويلة."
+      },
+      benefits: {
+        title: "مزايا الحفاظ على الأسنان",
+        benefit1: {
+          title: "جمالية طبيعية",
+          text: "أسنانك تبدو أكثر طبيعية من أي طقم أسنان."
+        },
+        benefit2: {
+          title: "وظيفة أفضل",
+          text: "الأسنان الطبيعية توفر وظيفة مضغ وإحساس بالعض مثالية."
+        },
+        benefit3: {
+          title: "حماية العظام",
+          text: "الأسنان المحفوظة تحمي عظم الفك من التدهور."
+        },
+        benefit4: {
+          title: "توفير التكاليف",
+          text: "الحفاظ على الأسنان أرخص على المدى الطويل من الأطقم."
+        }
+      },
+      process: {
+        title: "عملية علاج قناة الجذر",
+        step1: {
+          title: "التشخيص والأشعة السينية",
+          text: "أولاً، نفحص السن بدقة ونأخذ صور أشعة سينية لتحديد مدى الالتهاب."
+        },
+        step2: {
+          title: "التخدير الموضعي",
+          text: "يتم تخدير السن بحيث يكون العلاج غير مؤلم تمامًا. لن تشعر بأي ألم أثناء الإجراء."
+        },
+        step3: {
+          title: "تنظيف قنوات الجذر",
+          text: "باستخدام أدوات دقيقة، يتم إزالة الأعصاب الملتهبة والبكتيريا من قنوات الجذر وتنظيف القنوات بدقة."
+        },
+        step4: {
+          title: "حشو قنوات الجذر",
+          text: "يتم إغلاق القنوات المنظفة بإحكام بمادة متوافقة بيولوجيًا لمنع إعادة العدوى."
+        },
+        step5: {
+          title: "استعادة تاج السن",
+          text: "أخيرًا، يتم استعادة السن بحشوة أو تاج لاستعادة وظيفته وجماله بالكامل."
+        }
+      },
+      treatments: {
+        title: "طرق العلاج لدينا للحفاظ على الأسنان",
+        treatment1: {
+          title: "علاج الحشو",
+          text: "حشوات مركبة عالية الجودة بلون الأسنان للترميم الجمالي والمتين."
+        },
+        treatment2: {
+          title: "علاج قناة الجذر (علاج اللب)",
+          text: "إنقاذ الأسنان الملتهبة أو الميتة بإجراءات آلية حديثة."
+        },
+        treatment3: {
+          title: "علم دواعم السن",
+          text: "علاج أمراض اللثة والتهاب دواعم السن. اللثة الصحية هي أساس الأسنان الصحية على المدى الطويل."
+        },
+        treatment4: {
+          title: "إنليه وأونليه",
+          text: "حشوات عالية الجودة من السيراميك أو الذهب للعيوب الكبيرة. إنها متينة بشكل خاص وتتناسب تمامًا مع السن."
+        }
+      },
+      faq: {
+        question1: "ما هو الأفضل: حشوة أم إنليه؟",
+        answer1: "مع العيوب الصغيرة، حشوة مركبة تكفي. مع العيوب الكبيرة، إنليه خزفية أكثر استقرارًا ومتانة. نقدم استشارة فردية.",
+        question2: "هل علاج قناة الجذر مؤلم؟",
+        answer2: "لا، يتم العلاج تحت التخدير الموضعي وغير مؤلم. غالبًا ما يخفف العلاج الألم الموجود من الالتهاب.",
+        question3: "كم تدوم الحشوة المركبة؟",
+        answer3: "مع العناية الجيدة، تدوم الحشوات المركبة 5-10 سنوات أو أكثر. الجودة تعتمد على حجم الحشوة والعناية.",
+        question4: "هل يدفع التأمين علاج قناة الجذر؟",
+        answer4: "التأمين العام يدفع العلاج القياسي للأسنان الأمامية والضواحك الصغيرة. للأضراس توجد قواعد خاصة. نقدم استشارة مسبقة."
+      }
+    },
+
+    // Aesthetische Zahnheilkunde (Aesthetic Dentistry)
+    aesthetische: {
+      hero: {
+        title: "طب الأسنان التجميلي",
+        subtitle: "ابتسامة جميلة لمزيد من الثقة بالنفس"
+      },
+      intro: {
+        title: "طب الأسنان التجميلي في عيادتنا",
+        text1: "الابتسامة الجميلة هي بطاقة زيارتك. الأسنان الصحية والمعتنى بها تعزز ثقتك بنفسك وتخلق انطباعًا أولًا إيجابيًا. مع الأساليب الحديثة لطب الأسنان التجميلي، يمكننا تحقيق رغباتك في أسنان جميلة.",
+        text2: "من التبييض اللطيف إلى الفينير - نقدم لك حلولًا فردية للابتسامة المثالية. في ذلك نولي دائمًا اهتمامًا بالمظهر الطبيعي وصحة أسنانك."
+      },
+      benefits: {
+        title: "مزايا طب الأسنان التجميلي",
+        benefit1: {
+          title: "مزيد من الثقة بالنفس",
+          text: "الأسنان الجميلة تجعلك تبتسم وتظهر بثقة أكبر."
+        },
+        benefit2: {
+          title: "جمالية طبيعية",
+          text: "المواد الحديثة تضمن نتيجة ذات مظهر طبيعي."
+        },
+        benefit3: {
+          title: "محافظة على الأسنان",
+          text: "الإجراءات طفيفة التدخل تحافظ على أقصى قدر من مادة السن."
+        },
+        benefit4: {
+          title: "نتائج طويلة الأمد",
+          text: "المواد عالية الجودة تضمن المتانة الطويلة."
+        }
+      },
+      services: {
+        title: "خدماتنا التجميلية",
+        service1: {
+          title: "تبييض الأسنان",
+          text: "تبييض احترافي لأسنان بيضاء ناصعة - في العيادة أو في المنزل مع قوالب مخصصة."
+        },
+        service2: {
+          title: "فينير (قشور خزفية)",
+          text: "قشور خزفية رقيقة جدًا لأسنان مشكّلة بشكل مثالي وبيضاء تمامًا بدون فقدان كبير للمادة."
+        },
+        service3: {
+          title: "بوندينغ",
+          text: "تصحيح عيوب الأسنان الصغيرة بمركب بلون الأسنان في جلسة واحدة فقط."
+        },
+        service4: {
+          title: "تصميم الابتسامة",
+          text: "تخطيط شامل لابتسامتك الجديدة مع معاينة رقمية للنتيجة."
+        }
+      },
+      faq: {
+        question1: "كم تدوم عملية التبييض؟",
+        answer1: "حسب عادات نمط الحياة (القهوة، الشاي، التدخين)، يدوم التبييض المهني 1-3 سنوات. مع العناية الجيدة واللمسات الدورية، يمكن الحفاظ على التأثير لفترة أطول.",
+        question2: "هل التبييض يضر بالأسنان؟",
+        answer2: "لا، مع التنفيذ المهني، التبييض غير ضار. الحساسية المؤقتة تختفي بعد بضعة أيام. الفحص المسبق والأسنان الصحية مهمان.",
+        question3: "كم تدوم الفينير؟",
+        answer3: "مع العناية الجيدة، تدوم الفينير 10-15 سنة أو أكثر. إنها مستقرة جدًا ولا تتغير لونها مثل الأسنان الطبيعية.",
+        question4: "هل يغطي التأمين التكاليف؟",
+        answer4: "طب الأسنان التجميلي خدمة خاصة ولا يغطيها التأمين الصحي العام. يسعدنا إعداد تقدير تكلفة شفاف لك."
+      }
+    },
+
+    // Zahnersatz (Dental Prosthetics)
+    zahnersatz: {
+      hero: {
+        title: "تركيبات الأسنان",
+        subtitle: "استبدال طبيعي لجودة حياة أفضل"
+      },
+      intro: {
+        title: "تركيبات عالية الجودة في عيادتنا",
+        text1: "الأسنان المفقودة تؤثر ليس فقط على مظهرك ولكن أيضًا على وظيفة المضغ والنطق ويمكن أن تؤدي إلى مشاكل في مفصل الفك. التركيبات الحديثة تسد هذه الفجوات وتستعيد جودة حياتك.",
+        text2: "بالتعاون الوثيق مع مختبرنا الخاص، نقوم بإنشاء تركيبات فردية عالية الجودة - من التيجان الجزئية إلى الجسور إلى الأطقم الكاملة. نقدر الجمال والوظيفة والمتانة."
+      },
+      benefits: {
+        title: "مزايا تركيباتنا",
+        benefit1: {
+          title: "جمالية طبيعية",
+          text: "التركيبات من السيراميك الكامل بالكاد يمكن تمييزها عن الأسنان الطبيعية."
+        },
+        benefit2: {
+          title: "تحسين وظيفة المضغ",
+          text: "تناول الطعام مرة أخرى كما تريد - بدون قيود."
+        },
+        benefit3: {
+          title: "الحماية من الأضرار اللاحقة",
+          text: "التركيبات تمنع انحراف الأسنان ومشاكل مفصل الفك."
+        },
+        benefit4: {
+          title: "من مختبرنا الخاص",
+          text: "مسافات قصيرة، ترتيبات شخصية وتعديلات سريعة."
+        }
+      },
+      services: {
+        title: "خدمات التركيبات لدينا",
+        service1: {
+          title: "تيجان جزئية وتيجان",
+          text: "حماية الأسنان التالفة من المزيد من التدمير واستعادة الوظيفة والجمال."
+        },
+        service2: {
+          title: "جسور",
+          text: "استبدال ثابت لسن واحد أو أكثر مفقود - مستقر وجمالي."
+        },
+        service3: {
+          title: "أطقم جزئية",
+          text: "تركيبات قابلة للإزالة للعديد من الأسنان المفقودة - مريحة وفعالة من حيث التكلفة."
+        },
+        service4: {
+          title: "أطقم كاملة",
+          text: "تركيبات قابلة للإزالة بالكامل للفكوك الخالية من الأسنان - لمظهر طبيعي ووظيفة جيدة."
+        }
+      },
+      faq: {
+        question1: "ما هو الأفضل: جسر أم زرعة؟",
+        answer1: "كلاهما له إيجابيات وسلبيات. الزراعات تحافظ على الأسنان المجاورة لكنها أغلى. الجسور مثبتة وأكثر فعالية من حيث التكلفة لكن تتطلب برد الأسنان المجاورة. نقدم استشارة فردية.",
+        question2: "كم يدوم التاج؟",
+        answer2: "مع العناية الجيدة، يدوم التاج 10-15 سنة أو أكثر. التيجان الخزفية متينة وجمالية بشكل خاص.",
+        question3: "كم تكلفة التركيبات؟",
+        answer3: "التكلفة تختلف حسب النوع والمادة. التأمين الصحي العام يدفع إعانة ثابتة. نقوم بإعداد خطة علاج وتكلفة تفصيلية لك.",
+        question4: "هل يمكنني الأكل بشكل طبيعي مع التركيبات؟",
+        answer4: "نعم، بعد فترة تكيف قصيرة، يمكنك الأكل بشكل طبيعي مع التركيبات. التركيبات الثابتة تعمل تقريبًا مثل الأسنان الطبيعية."
+      }
+    },
+
+    // Oralchirurgie (Oral Surgery)
+    oralchirurgie: {
+      hero: {
+        title: "جراحة الفم",
+        subtitle: "إجراءات جراحية لطيفة لصحة أسنانك"
+      },
+      intro: {
+        title: "جراحة الأسنان في عيادتنا",
+        text1: "أحيانًا لا يكفي العلاج التحفظي لحل مشاكل الأسنان. في هذه الحالات، تكون الإجراءات الجراحية ضرورية. بفضل التكنولوجيا الحديثة والإجراءات اللطيفة، يمكننا إجراء العديد من العمليات في العيادة الخارجية في عيادتنا.",
+        text2: "من إزالة ضرس العقل إلى استئصال طرف الجذر إلى الإجراءات الأكثر تعقيدًا - نعالجك بأقصى قدر من العناية وأحدث الأساليب. رفاهيتك دائمًا أولويتنا."
+      },
+      benefits: {
+        title: "مزايا جراحة الفم لدينا",
+        benefit1: {
+          title: "تقنية حديثة",
+          text: "تشخيص رقمي بالأشعة السينية وإجراءات جراحية لطيفة لنتائج مثالية."
+        },
+        benefit2: {
+          title: "علاج بدون ألم",
+          text: "تخدير موضعي أو تخدير عند الطلب لإجراءات خالية من القلق."
+        },
+        benefit3: {
+          title: "شفاء سريع",
+          text: "التقنيات طفيفة التوغل تعزز الشفاء السريع للجرح."
+        },
+        benefit4: {
+          title: "رعاية لاحقة شاملة",
+          text: "نرافقك بعد الإجراء حتى الشفاء الكامل."
+        }
+      },
+      services: {
+        title: "خدماتنا الجراحية",
+        service1: {
+          title: "إزالة ضرس العقل",
+          text: "إزالة لطيفة لضروس العقل الإشكالية تحت التخدير الموضعي أو التخدير."
+        },
+        service2: {
+          title: "استئصال طرف الجذر",
+          text: "إنقاذ الأسنان ذات الالتهاب المزمن عند طرف الجذر بإجراء طفيف التوغل."
+        },
+        service3: {
+          title: "كشف السن",
+          text: "كشف الأسنان النازحة للعلاجات التقويمية."
+        },
+        service4: {
+          title: "بناء العظام",
+          text: "بناء عظم الفك استعدادًا للزرع."
+        }
+      },
+      process: {
+        title: "عملية العلاج الجراحي للفم",
+        step1: {
+          title: "تشخيص شامل",
+          text: "صور رقمية بالأشعة السينية وتشخيص ثلاثي الأبعاد للتخطيط الدقيق."
+        },
+        step2: {
+          title: "استشارة وتوضيح",
+          text: "نشرح لك الإجراء المخطط بالتفصيل ونجيب على جميع الأسئلة."
+        },
+        step3: {
+          title: "إجراء لطيف",
+          text: "جراحة في ظروف معقمة بأحدث التقنيات."
+        },
+        step4: {
+          title: "رعاية لاحقة ومراقبة",
+          text: "فحوصات منتظمة ورعاية شخصية حتى الشفاء الكامل."
+        }
+      },
+      faq: {
+        question1: "متى يجب إزالة ضروس العقل؟",
+        answer1: "يجب إزالة ضروس العقل عندما تسبب ألمًا، أو تنمو بشكل معوج، أو تضر بالأسنان المجاورة، أو تلتهب. يمكن أيضًا إزالتها وقائيًا إذا لم يكن هناك مساحة كافية في الفك.",
+        question2: "كم يستغرق الشفاء بعد جراحة ضرس العقل؟",
+        answer2: "عادة ما يلتئم الجرح في غضون 1-2 أسبوع. يتلاشى التورم والألم الخفيف بعد 3-5 أيام. شفاء العظام الكامل يستغرق عدة أشهر.",
+        question3: "ما الذي يمكنني أكله بعد إجراء جراحي؟",
+        answer3: "في الأيام الأولى، تناول أطعمة طرية وباردة (زبادي، بودنغ، شوربة). تجنب المشروبات الساخنة والكحول والأطعمة الصلبة لمدة 3 أيام على الأقل.",
+        question4: "ما المسكنات التي يمكنني تناولها بعد الجراحة؟",
+        answer4: "نوصي بالإيبوبروفين أو الباراسيتامول. تجنب الأسبرين لأنه يثبط تخثر الدم. ستحصل على توصيات محددة بعد الإجراء."
+      }
+    },
+
+    // Implantologie (Implantology)
+    implantologie: {
+      hero: {
+        title: "زراعة الأسنان",
+        subtitle: "تركيبات ثابتة مثل الأسنان الحقيقية"
+      },
+      intro: {
+        title: "زراعة الأسنان - أفضل حل لفقدان الأسنان",
+        text1: "زرعات الأسنان هي جذور أسنان صناعية من التيتانيوم أو السيراميك تُثبت بشكل محكم في عظم الفك. إنها تقدم أكثر أشكال التركيبات استقرارًا وطبيعية وتُحس مثل أسنانك الخاصة.",
+        text2: "بفضل خبرتنا الطويلة في زراعة الأسنان، نقدم لك حلول زرع عالية الجودة. من استعادة سن واحد إلى استعادة الفك الخالي من الأسنان - نجد الحل الأمثل لكل حالة."
+      },
+      benefits: {
+        title: "مزايا زرعات الأسنان",
+        benefit1: {
+          title: "مثل أسنانك الخاصة",
+          text: "الزرعات تبدو وتُحس وتعمل مثل الأسنان الطبيعية."
+        },
+        benefit2: {
+          title: "حل مدى الحياة",
+          text: "مع العناية الجيدة، يمكن أن تدوم الزرعات مدى الحياة."
+        },
+        benefit3: {
+          title: "حماية العظام",
+          text: "الزرعات تحافظ على عظم الفك وتمنع فقدان العظام."
+        },
+        benefit4: {
+          title: "الحفاظ على الأسنان المجاورة",
+          text: "لا ضرر للأسنان المجاورة الصحية كما هو الحال مع الجسور."
+        }
+      },
+      process: {
+        title: "عملية علاج الزرع",
+        step1: {
+          title: "التخطيط والتشخيص",
+          text: "أشعة سينية ثلاثية الأبعاد وتخطيط رقمي لوضع دقيق للزرعات."
+        },
+        step2: {
+          title: "إدخال الزرعة",
+          text: "وضع الزرعة تحت التخدير الموضعي - غير مؤلم ولطيف."
+        },
+        step3: {
+          title: "مرحلة الشفاء",
+          text: "تندمج الزرعة بإحكام مع العظم في 3-6 أشهر (الاندماج العظمي)."
+        },
+        step4: {
+          title: "تصنيع التاج",
+          text: "بعد الاندماج الناجح، يتم تثبيت التاج الخزفي المصنوع بشكل فردي."
+        },
+        step5: {
+          title: "الرعاية اللاحقة",
+          text: "الفحوصات المنتظمة والتنظيف المهني يضمنان النجاح على المدى الطويل."
+        }
+      },
+      services: {
+        title: "خدمات زراعة الأسنان لدينا",
+        service1: {
+          title: "زرعات الأسنان المفردة",
+          text: "استبدال الأسنان المفردة المفقودة بدون برد الأسنان المجاورة."
+        },
+        service2: {
+          title: "جسور على الزرعات",
+          text: "استبدال ثابت لأسنان متعددة على زرعات."
+        },
+        service3: {
+          title: "أطقم مدعومة بالزرعات",
+          text: "تثبيت مستقر للأطقم الكاملة على زرعات - لا مزيد من الانزلاق."
+        },
+        service4: {
+          title: "علاج الدم الذاتي (PRF)",
+          text: "شفاء سريع وبناء عظام من خلال عوامل النمو الخاصة بالجسم."
+        }
+      },
+      faq: {
+        question1: "هل وضع الزرعة مؤلم؟",
+        answer1: "لا، يتم الإجراء تحت التخدير الموضعي وغير مؤلم. بعد الإجراء قد يكون هناك تورم طفيف، يمكن علاجه جيدًا بالمسكنات.",
+        question2: "كم تدوم الزرعات؟",
+        answer2: "مع نظافة الفم الجيدة والفحوصات المنتظمة، يمكن أن تدوم الزرعات مدى الحياة. الدراسات تظهر معدل نجاح أكثر من 95٪ بعد 10 سنوات.",
+        question3: "كم تكلفة الزرع؟",
+        answer3: "التكلفة تختلف حسب التعقيد والعلاج التحضيري اللازم (مثل بناء العظام). التأمين الصحي العام يدفع إعانة ثابتة للتاج. نقوم بإعداد خطة تكلفة تفصيلية.",
+        question4: "هل أنا مناسب للزرع؟",
+        answer4: "معظم الناس يمكنهم الحصول على زرعات. الشرط هو عظم فك كافٍ وصحة عامة جيدة. مع فقدان العظام غالبًا ما يمكن بناء العظم. نفحص حالتك الفردية."
+      }
+    }
   }
 };
 
@@ -1738,8 +3264,35 @@ function changeLanguage(lang) {
 function updatePageContent() {
   const elements = document.querySelectorAll('[data-translate]');
 
+  // Detect which service page we're on
+  const path = window.location.pathname;
+  let serviceName = '';
+
+  if (path.includes('kinderzahnheilkunde')) serviceName = 'kinderzahnheilkunde';
+  else if (path.includes('angstpatienten')) serviceName = 'angstpatienten';
+  else if (path.includes('prophylaxe')) serviceName = 'prophylaxe';
+  else if (path.includes('zahnerhaltung')) serviceName = 'zahnerhaltung';
+  else if (path.includes('aesthetische')) serviceName = 'aesthetische';
+  else if (path.includes('zahnersatz')) serviceName = 'zahnersatz';
+  else if (path.includes('oralchirurgie')) serviceName = 'oralchirurgie';
+  else if (path.includes('implantologie')) serviceName = 'implantologie';
+
   elements.forEach(element => {
-    const key = element.getAttribute('data-translate');
+    let key = element.getAttribute('data-translate');
+
+    // For service-specific content (not nav, footer, contact, language, faq.title)
+    // prepend the service name to the key path
+    const commonPrefixes = ['nav.', 'footer.', 'contact.', 'language.'];
+    const isCommonKey = commonPrefixes.some(prefix => key.startsWith(prefix)) || key === 'faq.title';
+
+    // Check if key already has the service name prefix
+    const alreadyHasPrefix = serviceName && key.startsWith(serviceName + '.');
+
+    if (serviceName && !isCommonKey && !alreadyHasPrefix) {
+      // This is a service-specific key without prefix, prepend service name
+      key = `${serviceName}.${key}`;
+    }
+
     const keys = key.split('.');
     let translation = serviceTranslations[currentLanguage];
 
@@ -1797,13 +3350,17 @@ function updateLanguageUI(lang) {
   const flagMap = {
     'de': 'de',
     'en': 'us',
-    'vi': 'vn'
+    'vi': 'vn',
+    'ru': 'ru',
+    'ar': 'sa'
   };
 
   const langNames = {
     'de': 'DE',
     'en': 'EN',
-    'vi': 'VI'
+    'vi': 'VI',
+    'ru': 'RU',
+    'ar': 'AR'
   };
 
   // Update desktop language selector
