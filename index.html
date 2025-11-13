@@ -33,11 +33,12 @@
         <!-- Navigation and Language Switcher -->
         <div class="hidden md:flex items-center space-x-4">
           <nav class="flex space-x-2">
-            <a href="#home" class="nav-link active" data-translate="nav.home">Start</a>
-            <a href="pages/about-us.html" class="nav-link" data-translate="nav.about">Über uns</a>
-            <a href="#services" class="nav-link" data-translate="nav.services">Leistungen</a>
-            <a href="#labor" class="nav-link" data-translate="nav.labor">Labor</a>
-            <a href="#contact" class="nav-link" data-translate="nav.contact">Kontakt</a>
+            <a href="#home" class="nav-link active" data-translate="nav.home"></a>
+            <a href="pages/about-us.html" class="nav-link" data-translate="nav.about"></a>
+            <a href="#services" class="nav-link" data-translate="nav.services"></a>
+            <a href="pages/labor.html" class="nav-link" data-translate="nav.labor"></a>
+            <a href="pages/karriere.html" class="nav-link" data-translate="nav.karriere"></a>
+            <a href="#contact" class="nav-link" data-translate="nav.contact"></a>
           </nav>
 
           <!-- Language Switcher -->
@@ -85,11 +86,12 @@
       <!-- Mobile Menu -->
       <div id="mobile-menu" class="md:hidden hidden pb-4">
         <div class="flex flex-col space-y-2">
-          <a href="#home" class="nav-link active" data-translate="nav.home">Start</a>
-          <a href="pages/about-us.html" class="nav-link" data-translate="nav.about">Über uns</a>
-          <a href="#services" class="nav-link" data-translate="nav.services">Leistungen</a>
-          <a href="#labor" class="nav-link" data-translate="nav.labor">Labor</a>
-          <a href="#contact" class="nav-link" data-translate="nav.contact">Kontakt</a>
+          <a href="#home" class="nav-link active" data-translate="nav.home"></a>
+          <a href="pages/about-us.html" class="nav-link" data-translate="nav.about"></a>
+          <a href="#services" class="nav-link" data-translate="nav.services"></a>
+          <a href="pages/labor.html" class="nav-link" data-translate="nav.labor"></a>
+          <a href="pages/karriere.html" class="nav-link" data-translate="nav.karriere"></a>
+          <a href="#contact" class="nav-link" data-translate="nav.contact"></a>
 
           <!-- Mobile Language Switcher -->
           <div class="pt-2 border-t border-gray-200">
@@ -161,8 +163,39 @@
         </p>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
-        <div class="scroll-reveal img-circle-frame" id="praxis-slideshow">
+      <!-- Welcome Message - Redesigned -->
+      <div class="mb-16 scroll-reveal">
+        <div class="welcome-box max-w-5xl mx-auto bg-gradient-to-r from-teal-50 to-cyan-50 rounded-3xl p-8 md:p-12 shadow-xl border-l-4 border-teal-500 relative overflow-hidden">
+          <!-- Decorative elements -->
+          <div class="absolute top-0 right-0 w-64 h-64 bg-teal-200 rounded-full opacity-10 -mr-32 -mt-32 welcome-circle-1"></div>
+          <div class="absolute bottom-0 left-0 w-48 h-48 bg-cyan-200 rounded-full opacity-10 -ml-24 -mb-24 welcome-circle-2"></div>
+
+          <!-- Sparkle decorations -->
+          <div class="absolute top-8 right-16 welcome-sparkle" style="animation-delay: 0s;">✨</div>
+          <div class="absolute top-20 right-32 welcome-sparkle" style="animation-delay: 0.5s;">💫</div>
+          <div class="absolute bottom-16 left-20 welcome-sparkle" style="animation-delay: 1s;">⭐</div>
+
+          <div class="relative z-10">
+            <div class="flex items-center justify-center mb-6">
+              <div class="welcome-icon-wrapper">
+                <svg class="w-16 h-16 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <!-- Smile icon -->
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z"/>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-2xl md:text-3xl font-bold text-teal-800 text-center mb-6 welcome-title" data-translate="about.welcomeTitle">
+              Herzlich Willkommen!
+            </h3>
+            <p class="text-lg text-gray-700 leading-relaxed text-center welcome-text" data-translate="about.welcome">
+              Willkommen in unserer Zahnarztpraxis, wo Ihre Gesundheit und Ihr Wohlbefinden an erster Stelle stehen. Entdecken Sie unsere Philosophie, unsere Standorte und unser Team, das sich mit Hingabe um Sie kümmert. Erfahren Sie mehr über unsere modernen Behandlungsmethoden und wie wir Ihnen zu einem strahlenden Lächeln verhelfen können.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-5 gap-8 items-center mb-16">
+        <div class="md:col-span-2 scroll-reveal img-circle-frame" id="praxis-slideshow">
           <img src="assets/img/praxis-02-scaled.jpeg" alt="Moderne Zahnarztpraxis" class="slideshow-image active">
           <img src="assets/img/img_0368-scaled.jpeg" alt="Behandlungsraum" class="slideshow-image">
           <img src="assets/img/img_0370-scaled.jpeg" alt="Praxisraum" class="slideshow-image">
@@ -182,7 +215,7 @@
             <span class="slideshow-dot" data-index="7"></span>
           </div>
         </div>
-        <div class="scroll-reveal">
+        <div class="md:col-span-3 scroll-reveal">
           <h3 class="text-3xl font-bold text-gray-800 mb-6" data-translate="about.philosophy.title">
             Unsere Philosophie
           </h3>
@@ -229,27 +262,65 @@
       <!-- Team Section -->
       <div class="scroll-reveal">
         <h3 class="text-3xl font-bold text-gray-800 mb-8 text-center" data-translate="about.team.title">Unser Team</h3>
-        <div class="grid md:grid-cols-3 gap-8">
-          <div class="bg-white rounded-2xl p-6 shadow-lg text-center">
-            <div class="w-24 h-24 logo-gradient rounded-full mx-auto mb-4 flex items-center justify-center">
-              <span class="text-white text-3xl font-bold">VS</span>
+        <div class="grid md:grid-cols-4 gap-8 team-grid">
+          <!-- Team Member 1 -->
+          <div class="labor-team-card cursor-pointer">
+            <div class="labor-team-image-wrapper">
+              <img src="assets/img/Vera Seitschenko-Dinh.jpg" alt="Leitende Zahnärztin Frau Seitschenko-Dinh" class="labor-team-image">
+              <div class="labor-team-overlay">
+                <h3 class="labor-team-name" data-translate="about.team.name1"></h3>
+              </div>
             </div>
-            <h4 class="text-xl font-semibold text-gray-800 mb-2">Vera Seitschenko-Dinh</h4>
-            <p class="text-gray-600" data-translate="about.team.member1">Leitende Zahnärztin an beiden Standorten</p>
+            <div class="labor-team-info">
+              <p class="labor-team-position" data-translate="about.team.member1">
+                Leitende Zahnärztin an beiden Standorten
+              </p>
+            </div>
           </div>
-          <div class="bg-white rounded-2xl p-6 shadow-lg text-center">
-            <div class="w-24 h-24 logo-gradient rounded-full mx-auto mb-4 flex items-center justify-center">
-              <span class="text-white text-3xl font-bold">BD</span>
+
+          <!-- Team Member 2 -->
+          <div class="labor-team-card cursor-pointer">
+            <div class="labor-team-image-wrapper">
+              <img src="assets/img/Kukadiya.jpg" alt="Zahnärztin Dr. Kukadiya" class="labor-team-image">
+              <div class="labor-team-overlay">
+                <h3 class="labor-team-name" data-translate="about.team.name2"></h3>
+              </div>
             </div>
-            <h4 class="text-xl font-semibold text-gray-800 mb-2">Brandon Dinh</h4>
-            <p class="text-gray-600" data-translate="about.team.member2">Praxisleitung</p>
+            <div class="labor-team-info">
+              <p class="labor-team-position" data-translate="about.team.member2">
+                Zahnärztin
+              </p>
+            </div>
           </div>
-          <div class="bg-white rounded-2xl p-6 shadow-lg text-center">
-            <div class="w-24 h-24 logo-gradient rounded-full mx-auto mb-4 flex items-center justify-center">
-              <span class="text-white text-3xl font-bold">SD</span>
+
+          <!-- Team Member 3 -->
+          <div class="labor-team-card cursor-pointer">
+            <div class="labor-team-image-wrapper">
+              <img src="assets/img/ikkardes.jpeg" alt="Zahnarzt Herr IKIKARDES" class="labor-team-image">
+              <div class="labor-team-overlay">
+                <h3 class="labor-team-name" data-translate="about.team.name3"></h3>
+              </div>
             </div>
-            <h4 class="text-xl font-semibold text-gray-800 mb-2">Sofia Dinh</h4>
-            <p class="text-gray-600" data-translate="about.team.member3">Praxisleitung</p>
+            <div class="labor-team-info">
+              <p class="labor-team-position" data-translate="about.team.member3">
+                Zahnarzt
+              </p>
+            </div>
+          </div>
+
+          <!-- Team Member 4 -->
+          <div class="labor-team-card cursor-pointer">
+            <div class="labor-team-image-wrapper">
+              <img src="assets/img/taifour.jpeg" alt="Zahnarzt Herr TAIFOUR" class="labor-team-image">
+              <div class="labor-team-overlay">
+                <h3 class="labor-team-name" data-translate="about.team.name4"></h3>
+              </div>
+            </div>
+            <div class="labor-team-info">
+              <p class="labor-team-position" data-translate="about.team.member4">
+                Zahnarzt
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -296,10 +367,8 @@
         <!-- Service 3: Preventive Care -->
         <div class="service-card bg-white rounded-2xl p-6 shadow-lg scroll-reveal">
           <a href="pages/prophylaxe.html" class="block">
-            <div class="w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-              </svg>
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: linear-gradient(to right, #06b6d4, #2563eb);">
+              <span class="text-2xl">🦷</span>
             </div>
             <h3 class="text-lg font-semibold text-gray-800 mb-3" data-translate="services.service3.title">Prophylaxe</h3>
             <p class="text-sm text-gray-600" data-translate="services.service3.description">Früherkennung und Vorsorge für langfristige Zahngesundheit</p>
@@ -322,10 +391,8 @@
         <!-- Service 5: Cosmetic Dentistry -->
         <div class="service-card bg-white rounded-2xl p-6 shadow-lg scroll-reveal">
           <a href="pages/aesthetische-zahnheilkunde.html" class="block">
-            <div class="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-600 rounded-xl flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
-              </svg>
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: linear-gradient(to right, #f97316, #dc2626);">
+              <span class="text-2xl">✨</span>
             </div>
             <h3 class="text-lg font-semibold text-gray-800 mb-3" data-translate="services.service5.title">Ästhetische Zahnheilkunde</h3>
             <p class="text-sm text-gray-600" data-translate="services.service5.description">Verschönerung Ihres Lächelns mit modernen ästhetischen Lösungen</p>
@@ -377,69 +444,67 @@
   <!-- Labor Section -->
   <section id="labor" class="py-20 bg-gray-50">
     <div class="container mx-auto px-4">
-      <div class="text-center mb-16 scroll-reveal">
-        <h2 class="text-4xl font-bold text-gray-800 mb-4" data-translate="labor.title">Unser eigenes Labor</h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto" data-translate="labor.subtitle">
-          Modernste Labortechnik für präzisen und individuellen Zahnersatz
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-        <div class="scroll-reveal img-oval-frame">
-          <img src="assets/img/img_0384-scaled.jpeg" alt="Dentallabor" class="shadow-2xl">
-        </div>
+      <div class="grid md:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
+        <!-- Left Column - Text Content -->
         <div class="scroll-reveal">
-          <h3 class="text-3xl font-bold text-gray-800 mb-6" data-translate="labor.description.title">
-            Vorteile unseres Praxislabors
-          </h3>
-          <p class="text-gray-600 text-lg mb-6 leading-relaxed" data-translate="labor.description.text">
-            Unser modernes Praxislabor ermöglicht es uns, Zahnersatz und Prothesen direkt vor Ort anzufertigen. Dies garantiert höchste Qualität und kurze Wartezeiten.
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6" data-translate="labor.title">
+            Wir betreiben ein modernes eigenes Labor
+          </h2>
+          <p class="text-gray-600 text-lg mb-8 leading-relaxed" data-translate="labor.description.text">
+            In unserer Zahnarztpraxis betreiben wir ein modernes eigenes Labor, das es uns ermöglicht, individuell angepassten Zahnersatz und Prothesen direkt vor Ort herzustellen. Diese Einrichtung gewährleistet nicht nur eine hohe Qualität und Präzision, sondern auch eine schnelle und effiziente Versorgung unserer Patienten.
           </p>
-          <div class="space-y-4">
-            <div class="flex items-start space-x-3">
-              <div class="w-6 h-6 bg-teal-500 rounded-full flex items-center justify-center mt-1">
-                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                </svg>
-              </div>
-              <div>
-                <h4 class="font-semibold text-gray-800" data-translate="labor.advantage1.title">Schnelligkeit & Effizienz</h4>
-                <p class="text-gray-600" data-translate="labor.advantage1.text">Anpassungen und Reparaturen sofort möglich, ohne Wartezeiten durch externe Labore</p>
-              </div>
-            </div>
-            <div class="flex items-start space-x-3">
-              <div class="w-6 h-6 bg-teal-500 rounded-full flex items-center justify-center mt-1">
-                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                </svg>
-              </div>
-              <div>
-                <h4 class="font-semibold text-gray-800" data-translate="labor.advantage2.title">Qualitätskontrolle</h4>
-                <p class="text-gray-600" data-translate="labor.advantage2.text">Direkte Überwachung garantiert höchste Präzision und Passgenauigkeit</p>
-              </div>
-            </div>
-            <div class="flex items-start space-x-3">
-              <div class="w-6 h-6 bg-teal-500 rounded-full flex items-center justify-center mt-1">
-                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                </svg>
-              </div>
-              <div>
-                <h4 class="font-semibold text-gray-800" data-translate="labor.advantage3.title">Individualisierung</h4>
-                <p class="text-gray-600" data-translate="labor.advantage3.text">Jeder Zahnersatz wird exakt nach Ihren Bedürfnissen und Wünschen gefertigt</p>
-              </div>
-            </div>
-            <div class="flex items-start space-x-3">
-              <div class="w-6 h-6 bg-teal-500 rounded-full flex items-center justify-center mt-1">
-                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                </svg>
-              </div>
-              <div>
-                <h4 class="font-semibold text-gray-800" data-translate="labor.advantage4.title">Direkte Kommunikation</h4>
-                <p class="text-gray-600" data-translate="labor.advantage4.text">Optimale Zusammenarbeit zwischen Zahnarzt und Techniker für beste Ergebnisse</p>
-              </div>
-            </div>
+
+          <!-- Buttons -->
+          <div class="flex flex-wrap gap-4 mb-12">
+            <a href="pages/labor.html" class="labor-btn btn-outline-teal px-8 py-3 rounded-full font-semibold inline-block" data-translate="labor.btn_more">
+              Mehr erfahren
+            </a>
+            <a href="#contact" class="labor-btn btn-outline-teal px-8 py-3 rounded-full font-semibold inline-block" data-translate="labor.btn_contact">
+              Kontakt
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column - Features Grid -->
+        <div class="grid grid-cols-2 gap-6 scroll-reveal labor-features-grid">
+          <!-- Feature 1: Schnelle Ergebnisse -->
+          <div class="labor-feature-card bg-white rounded-2xl p-6 shadow-lg cursor-pointer">
+            <h3 class="text-lg font-bold text-teal-600 mb-3" data-translate="labor.advantage1.title">
+              Schnelle Ergebnisse
+            </h3>
+            <p class="text-gray-600 text-sm" data-translate="labor.advantage1.text">
+              Wir können Anpassungen und Reparaturen sofort vornehmen, ohne auf externe Labore warten zu müssen.
+            </p>
+          </div>
+
+          <!-- Feature 2: Hohe Qualität -->
+          <div class="labor-feature-card bg-white rounded-2xl p-6 shadow-lg cursor-pointer">
+            <h3 class="text-lg font-bold text-teal-600 mb-3" data-translate="labor.advantage2.title">
+              Hohe Qualität
+            </h3>
+            <p class="text-gray-600 text-sm" data-translate="labor.advantage2.text">
+              Durch direkte Kontrolle und Überwachung garantieren wir die höchste Präzision und Passgenauigkeit.
+            </p>
+          </div>
+
+          <!-- Feature 3: Individuelle Anpassung -->
+          <div class="labor-feature-card bg-white rounded-2xl p-6 shadow-lg cursor-pointer">
+            <h3 class="text-lg font-bold text-teal-600 mb-3" data-translate="labor.advantage3.title">
+              Individuelle Anpassung
+            </h3>
+            <p class="text-gray-600 text-sm" data-translate="labor.advantage3.text">
+              Jeder Zahnersatz wird genau nach den Bedürfnissen und Wünschen des Patienten gefertigt.
+            </p>
+          </div>
+
+          <!-- Feature 4: Kurze Wege -->
+          <div class="labor-feature-card bg-white rounded-2xl p-6 shadow-lg cursor-pointer">
+            <h3 class="text-lg font-bold text-teal-600 mb-3" data-translate="labor.advantage4.title">
+              Kurze Wege
+            </h3>
+            <p class="text-gray-600 text-sm" data-translate="labor.advantage4.text">
+              Der direkte Kontakt zwischen Zahnarzt und Techniker ermöglicht eine effiziente Kommunikation und optimale Ergebnisse.
+            </p>
           </div>
         </div>
       </div>
@@ -494,10 +559,10 @@
         </div>
         </div>
 
-        <!-- Location 2: Loher -->
+        <!-- Location 2: Am Loh -->
         <div class="contact-card-wrapper">
           <div class="location-card">
-          <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="contact.location2.title">Standort Loher</h3>
+          <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="contact.location2.title">Standort Am Loh</h3>
           <div class="space-y-4">
             <div class="flex items-start space-x-3">
               <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -597,6 +662,7 @@
           about: "Über uns",
           services: "Leistungen",
           labor: "Labor",
+          karriere: "Karriere",
           contact: "Kontakt"
         },
         header: {
@@ -615,6 +681,8 @@
         about: {
           title: "Über unsere Praxis",
           subtitle: "Wir nehmen uns die nötige Zeit für sorgfältige Diagnosen und ausführliche Beratungen",
+          welcomeTitle: "Herzlich Willkommen!",
+          welcome: "Willkommen in unserer Zahnarztpraxis, wo Ihre Gesundheit und Ihr Wohlbefinden an erster Stelle stehen. Entdecken Sie unsere Philosophie, unsere Standorte und unser Team, das sich mit Hingabe um Sie kümmert. Erfahren Sie mehr über unsere modernen Behandlungsmethoden und wie wir Ihnen zu einem strahlenden Lächeln verhelfen können.",
           philosophy: {
             title: "Unsere Philosophie",
             description: "Wir legen besonderen Wert auf Zeit - Zeit für Sie, Zeit für sorgfältige Diagnosen und ausführliche Beratungen. Unsere professionelle Zahnmedizin verbindet modernste Techniken mit menschlicher Zuwendung."
@@ -625,9 +693,14 @@
           feature4: "Regelmäßige Fortbildungen des gesamten Teams",
           team: {
             title: "Unser Team",
+            name1: "Leitende Zahnärztin Frau Seitschenko-Dinh",
             member1: "Leitende Zahnärztin an beiden Standorten",
-            member2: "Praxisleitung",
-            member3: "Praxisleitung"
+            name2: "Zahnärztin Dr. Kukadiya",
+            member2: "Zahnärztin",
+            name3: "Zahnarzt Herr IKIKARDES",
+            member3: "Zahnarzt",
+            name4: "Zahnarzt Herr TAIFOUR",
+            member4: "Zahnarzt"
           }
         },
         services: {
@@ -667,27 +740,27 @@
           }
         },
         labor: {
-          title: "Unser eigenes Labor",
-          subtitle: "Modernste Labortechnik für präzisen und individuellen Zahnersatz",
+          title: "Wir betreiben ein modernes eigenes Labor",
+          btn_more: "Mehr erfahren",
+          btn_contact: "Kontakt",
           description: {
-            title: "Vorteile unseres Praxislabors",
-            text: "Unser modernes Praxislabor ermöglicht es uns, Zahnersatz und Prothesen direkt vor Ort anzufertigen. Dies garantiert höchste Qualität und kurze Wartezeiten."
+            text: "In unserer Zahnarztpraxis betreiben wir ein modernes eigenes Labor, das es uns ermöglicht, individuell angepassten Zahnersatz und Prothesen direkt vor Ort herzustellen. Diese Einrichtung gewährleistet nicht nur eine hohe Qualität und Präzision, sondern auch eine schnelle und effiziente Versorgung unserer Patienten."
           },
           advantage1: {
-            title: "Schnelligkeit & Effizienz",
-            text: "Anpassungen und Reparaturen sofort möglich, ohne Wartezeiten durch externe Labore"
+            title: "Schnelle Ergebnisse",
+            text: "Wir können Anpassungen und Reparaturen sofort vornehmen, ohne auf externe Labore warten zu müssen."
           },
           advantage2: {
-            title: "Qualitätskontrolle",
-            text: "Direkte Überwachung garantiert höchste Präzision und Passgenauigkeit"
+            title: "Hohe Qualität",
+            text: "Durch direkte Kontrolle und Überwachung garantieren wir die höchste Präzision und Passgenauigkeit."
           },
           advantage3: {
-            title: "Individualisierung",
-            text: "Jeder Zahnersatz wird exakt nach Ihren Bedürfnissen und Wünschen gefertigt"
+            title: "Individuelle Anpassung",
+            text: "Jeder Zahnersatz wird genau nach den Bedürfnissen und Wünschen des Patienten gefertigt."
           },
           advantage4: {
-            title: "Direkte Kommunikation",
-            text: "Optimale Zusammenarbeit zwischen Zahnarzt und Techniker für beste Ergebnisse"
+            title: "Kurze Wege",
+            text: "Der direkte Kontakt zwischen Zahnarzt und Techniker ermöglicht eine effiziente Kommunikation und optimale Ergebnisse."
           }
         },
         contact: {
@@ -697,7 +770,7 @@
             title: "Standort Schwarzbach"
           },
           location2: {
-            title: "Standort Loher"
+            title: "Standort Am Loh"
           },
           address: "Adresse",
           phone: "Telefon",
@@ -727,6 +800,7 @@
           about: "About Us",
           services: "Services",
           labor: "Laboratory",
+          karriere: "Career",
           contact: "Contact"
         },
         header: {
@@ -745,6 +819,8 @@
         about: {
           title: "About Our Practice",
           subtitle: "We take the necessary time for careful diagnoses and thorough consultations",
+          welcomeTitle: "Warm Welcome!",
+          welcome: "Welcome to our dental practice, where your health and well-being come first. Discover our philosophy, our locations, and our team that will care for you with dedication. Learn more about our modern treatment methods and how we can help you achieve a radiant smile.",
           philosophy: {
             title: "Our Philosophy",
             description: "We place special emphasis on time - time for you, time for careful diagnoses and thorough consultations. Our professional dentistry combines state-of-the-art techniques with human care."
@@ -755,9 +831,14 @@
           feature4: "Regular continuing education for the entire team",
           team: {
             title: "Our Team",
+            name1: "Lead Dentist Mrs. Seitschenko-Dinh",
             member1: "Lead Dentist at Both Locations",
-            member2: "Practice Management",
-            member3: "Practice Management"
+            name2: "Dentist Dr. Kukadiya",
+            member2: "Dentist",
+            name3: "Dentist Mr. IKIKARDES",
+            member3: "Dentist",
+            name4: "Dentist Mr. TAIFOUR",
+            member4: "Dentist"
           }
         },
         services: {
@@ -797,27 +878,27 @@
           }
         },
         labor: {
-          title: "Our In-House Laboratory",
-          subtitle: "State-of-the-art laboratory technology for precise and individual dental prosthetics",
+          title: "We Operate a Modern In-House Laboratory",
+          btn_more: "Learn More",
+          btn_contact: "Contact",
           description: {
-            title: "Advantages of Our Practice Laboratory",
-            text: "Our modern practice laboratory enables us to fabricate dentures and prosthetics directly on-site. This guarantees the highest quality and short waiting times."
+            text: "In our dental practice, we operate a modern in-house laboratory that enables us to produce individually fitted dentures and prosthetics directly on-site. This facility not only ensures high quality and precision, but also fast and efficient care for our patients."
           },
           advantage1: {
-            title: "Speed & Efficiency",
-            text: "Adjustments and repairs immediately possible, without waiting times from external laboratories"
+            title: "Fast Results",
+            text: "We can make adjustments and repairs immediately, without having to wait for external laboratories."
           },
           advantage2: {
-            title: "Quality Control",
-            text: "Direct oversight guarantees highest precision and fit accuracy"
+            title: "High Quality",
+            text: "Through direct control and monitoring, we guarantee the highest precision and fit accuracy."
           },
           advantage3: {
-            title: "Personalization",
-            text: "Every denture is made exactly according to your needs and wishes"
+            title: "Individual Customization",
+            text: "Every denture is made precisely according to the patient's needs and wishes."
           },
           advantage4: {
-            title: "Direct Communication",
-            text: "Optimal collaboration between dentist and technician for best results"
+            title: "Short Distances",
+            text: "Direct contact between dentist and technician enables efficient communication and optimal results."
           }
         },
         contact: {
@@ -827,7 +908,7 @@
             title: "Schwarzbach Location"
           },
           location2: {
-            title: "Loher Location"
+            title: "Am Loh Location"
           },
           address: "Address",
           phone: "Phone",
@@ -857,6 +938,7 @@
           about: "Giới thiệu",
           services: "Dịch vụ",
           labor: "Phòng Lab",
+          karriere: "Nghề nghiệp",
           contact: "Liên hệ"
         },
         header: {
@@ -867,14 +949,16 @@
           current: "Ngôn ngữ:"
         },
         hero: {
-          title: "Nha khoa Hiện đại trong Không gian Thoải mái",
+          title: "NHA KHOA HIỆN ĐẠI TRONG KHÔNG GIAN THOẢI MÁI",
           subtitle: "Sức khỏe và hạnh phúc của bạn là ưu tiên hàng đầu của chúng tôi",
           exploreBtn: "Tìm hiểu thêm",
           contactBtn: "Đặt lịch hẹn"
         },
         about: {
-          title: "Về phòng khám của chúng tôi",
-          subtitle: "Chúng tôi dành đủ thời gian để chẩn đoán cẩn thận và tư vấn chi tiết",
+          title: "Chăm sóc nha khoa với trái tim",
+          subtitle: "Nơi công nghệ hiện đại gặp gỡ sự quan tâm chân thành đến từng bệnh nhân",
+          welcomeTitle: "Chào mừng quý khách!",
+          welcome: "Chào mừng bạn đến với phòng khám nha khoa của chúng tôi, nơi sức khỏe và hạnh phúc của bạn là ưu tiên hàng đầu. Khám phá triết lý, địa điểm và đội ngũ của chúng tôi sẽ tận tình chăm sóc bạn. Tìm hiểu thêm về các phương pháp điều trị hiện đại và cách chúng tôi có thể giúp bạn có được nụ cười rạng rỡ.",
           philosophy: {
             title: "Triết lý của chúng tôi",
             description: "Chúng tôi đặc biệt coi trọng thời gian - thời gian dành cho bạn, thời gian để chẩn đoán cẩn thận và tư vấn chi tiết. Nha khoa chuyên nghiệp của chúng tôi kết hợp kỹ thuật hiện đại nhất với sự quan tâm con người."
@@ -885,9 +969,14 @@
           feature4: "Đào tạo thường xuyên cho toàn bộ đội ngũ",
           team: {
             title: "Đội ngũ của chúng tôi",
+            name1: "Nha sĩ trưởng Bà Seitschenko-Dinh",
             member1: "Nha sĩ trưởng tại cả hai địa điểm",
-            member2: "Quản lý phòng khám",
-            member3: "Quản lý phòng khám"
+            name2: "Nha sĩ Dr. Kukadiya",
+            member2: "Nha sĩ",
+            name3: "Nha sĩ Ông IKIKARDES",
+            member3: "Nha sĩ",
+            name4: "Nha sĩ Ông TAIFOUR",
+            member4: "Nha sĩ"
           }
         },
         services: {
@@ -927,27 +1016,27 @@
           }
         },
         labor: {
-          title: "Phòng Lab Riêng của chúng tôi",
-          subtitle: "Công nghệ phòng lab hiện đại nhất cho răng giả chính xác và cá nhân hóa",
+          title: "Chúng tôi vận hành phòng lab hiện đại riêng",
+          btn_more: "Tìm hiểu thêm",
+          btn_contact: "Liên hệ",
           description: {
-            title: "Ưu điểm của Phòng Lab Phòng khám",
-            text: "Phòng lab hiện đại của chúng tôi cho phép sản xuất răng giả và protit trực tiếp tại chỗ. Điều này đảm bảo chất lượng cao nhất và thời gian chờ ngắn."
+            text: "Tại phòng khám nha khoa của chúng tôi, chúng tôi vận hành một phòng lab hiện đại riêng cho phép chúng tôi sản xuất răng giả và protit được điều chỉnh cá nhân trực tiếp tại chỗ. Cơ sở này không chỉ đảm bảo chất lượng và độ chính xác cao mà còn cung cấp dịch vụ chăm sóc nhanh chóng và hiệu quả cho bệnh nhân của chúng tôi."
           },
           advantage1: {
-            title: "Nhanh chóng & Hiệu quả",
-            text: "Điều chỉnh và sửa chữa ngay lập tức, không cần chờ đợi từ phòng lab bên ngoài"
+            title: "Kết quả Nhanh chóng",
+            text: "Chúng tôi có thể thực hiện điều chỉnh và sửa chữa ngay lập tức, không cần phải chờ đợi các phòng lab bên ngoài."
           },
           advantage2: {
-            title: "Kiểm soát Chất lượng",
-            text: "Giám sát trực tiếp đảm bảo độ chính xác và độ vừa vặn cao nhất"
+            title: "Chất lượng Cao",
+            text: "Thông qua kiểm soát và giám sát trực tiếp, chúng tôi đảm bảo độ chính xác và độ vừa vặn cao nhất."
           },
           advantage3: {
-            title: "Cá nhân hóa",
-            text: "Mỗi răng giả được làm chính xác theo nhu cầu và mong muốn của bạn"
+            title: "Tùy chỉnh Cá nhân",
+            text: "Mỗi răng giả được làm chính xác theo nhu cầu và mong muốn của bệnh nhân."
           },
           advantage4: {
-            title: "Giao tiếp Trực tiếp",
-            text: "Hợp tác tối ưu giữa nha sĩ và kỹ thuật viên cho kết quả tốt nhất"
+            title: "Khoảng cách Ngắn",
+            text: "Liên hệ trực tiếp giữa nha sĩ và kỹ thuật viên cho phép giao tiếp hiệu quả và kết quả tối ưu."
           }
         },
         contact: {
@@ -957,7 +1046,7 @@
             title: "Địa điểm Schwarzbach"
           },
           location2: {
-            title: "Địa điểm Loher"
+            title: "Địa điểm Am Loh"
           },
           address: "Địa chỉ",
           phone: "Điện thoại",
@@ -987,6 +1076,7 @@
           about: "О нас",
           services: "Услуги",
           labor: "Лаборатория",
+          karriere: "Карьера",
           contact: "Контакты"
         },
         header: {
@@ -1005,6 +1095,8 @@
         about: {
           title: "О нашей клинике",
           subtitle: "Мы уделяем необходимое время для тщательной диагностики и подробных консультаций",
+          welcomeTitle: "Добро пожаловать!",
+          welcome: "Добро пожаловать в нашу стоматологическую клинику, где ваше здоровье и благополучие стоят на первом месте. Откройте для себя нашу философию, наши клиники и нашу команду, которая позаботится о вас с преданностью. Узнайте больше о наших современных методах лечения и о том, как мы можем помочь вам обрести сияющую улыбку.",
           philosophy: {
             title: "Наша философия",
             description: "Мы особенно ценим время - время для Вас, время для тщательной диагностики и подробных консультаций. Наша профессиональная стоматология сочетает новейшие технологии с человеческим вниманием."
@@ -1015,9 +1107,14 @@
           feature4: "Регулярное повышение квалификации всей команды",
           team: {
             title: "Наша команда",
+            name1: "Главный стоматолог Фрау Зайтшенко-Динь",
             member1: "Главный стоматолог обеих клиник",
-            member2: "Управляющий клиникой",
-            member3: "Управляющий клиникой"
+            name2: "Стоматолог Др. Кукадия",
+            member2: "Стоматолог",
+            name3: "Стоматолог Господин ИКИКАРДЕС",
+            member3: "Стоматолог",
+            name4: "Стоматолог Господин ТАЙФУР",
+            member4: "Стоматолог"
           }
         },
         services: {
@@ -1057,27 +1154,27 @@
           }
         },
         labor: {
-          title: "Наша собственная лаборатория",
-          subtitle: "Современнейшие лабораторные технологии для точного и индивидуального протезирования",
+          title: "Мы управляем современной собственной лабораторией",
+          btn_more: "Узнать больше",
+          btn_contact: "Контакт",
           description: {
-            title: "Преимущества нашей зуботехнической лаборатории",
-            text: "Наша современная зуботехническая лаборатория позволяет нам изготавливать зубные протезы непосредственно на месте. Это гарантирует высочайшее качество и короткие сроки ожидания."
+            text: "В нашей стоматологической клинике мы управляем современной собственной лабораторией, которая позволяет нам производить индивидуально подогнанные зубные протезы непосредственно на месте. Это оборудование обеспечивает не только высокое качество и точность, но также быстрое и эффективное обслуживание наших пациентов."
           },
           advantage1: {
-            title: "Скорость и эффективность",
-            text: "Корректировки и ремонт возможны немедленно, без ожидания внешних лабораторий"
+            title: "Быстрые результаты",
+            text: "Мы можем выполнять корректировки и ремонт немедленно, не дожидаясь внешних лабораторий."
           },
           advantage2: {
-            title: "Контроль качества",
-            text: "Прямой контроль гарантирует высочайшую точность и идеальную посадку"
+            title: "Высокое качество",
+            text: "Благодаря прямому контролю и мониторингу мы гарантируем высочайшую точность и идеальную посадку."
           },
           advantage3: {
-            title: "Индивидуальность",
-            text: "Каждый протез изготавливается точно в соответствии с Вашими потребностями и пожеланиями"
+            title: "Индивидуальная настройка",
+            text: "Каждый протез изготавливается точно в соответствии с потребностями и пожеланиями пациента."
           },
           advantage4: {
-            title: "Прямое общение",
-            text: "Оптимальное сотрудничество между стоматологом и техником для наилучшего результата"
+            title: "Короткие расстояния",
+            text: "Прямой контакт между стоматологом и техником обеспечивает эффективную коммуникацию и оптимальные результаты."
           }
         },
         contact: {
@@ -1117,6 +1214,7 @@
           about: "من نحن",
           services: "الخدمات",
           labor: "المختبر",
+          karriere: "الوظائف",
           contact: "اتصل بنا"
         },
         header: {
@@ -1135,6 +1233,8 @@
         about: {
           title: "عن عيادتنا",
           subtitle: "نأخذ الوقت اللازم للتشخيصات الدقيقة والاستشارات التفصيلية",
+          welcomeTitle: "مرحباً بكم!",
+          welcome: "مرحباً بك في عيادتنا لطب الأسنان، حيث تأتي صحتك ورفاهيتك في المقام الأول. اكتشف فلسفتنا ومواقعنا وفريقنا الذي سيهتم بك بتفانٍ. تعرف على المزيد حول أساليب العلاج الحديثة لدينا وكيف يمكننا مساعدتك في الحصول على ابتسامة مشرقة.",
           philosophy: {
             title: "فلسفتنا",
             description: "نولي أهمية خاصة للوقت - وقت لك، ووقت للتشخيصات الدقيقة والاستشارات التفصيلية. طب أسناننا الاحترافي يجمع بين أحدث التقنيات والرعاية الإنسانية."
@@ -1145,9 +1245,14 @@
           feature4: "تدريب منتظم لجميع أعضاء الفريق",
           team: {
             title: "فريقنا",
+            name1: "طبيبة أسنان رئيسية السيدة زايتشينكو-دينه",
             member1: "طبيبة أسنان رئيسية في كلا الموقعين",
-            member2: "إدارة العيادة",
-            member3: "إدارة العيادة"
+            name2: "طبيبة أسنان د. كوكاديا",
+            member2: "طبيبة أسنان",
+            name3: "طبيب أسنان السيد إيكيكارديس",
+            member3: "طبيب أسنان",
+            name4: "طبيب أسنان السيد طيفور",
+            member4: "طبيب أسنان"
           }
         },
         services: {
@@ -1187,27 +1292,27 @@
           }
         },
         labor: {
-          title: "مختبرنا الخاص لطب الأسنان",
-          subtitle: "الجودة والسرعة من خلال الخبرة الداخلية",
+          title: "نحن نشغل مختبراً حديثاً خاصاً بنا",
+          btn_more: "اعرف المزيد",
+          btn_contact: "اتصل بنا",
           description: {
-            title: "مزايا مختبرنا الداخلي",
-            text: "يتيح لنا مختبرنا الحديث إنتاج تركيبات الأسنان والأطقم مباشرة في الموقع. هذا يضمن أعلى جودة وأوقات انتظار قصيرة."
+            text: "في عيادتنا لطب الأسنان، نقوم بتشغيل مختبر حديث خاص بنا يتيح لنا إنتاج تركيبات الأسنان والأطقم المصممة بشكل فردي مباشرة في الموقع. هذا المرفق لا يضمن فقط الجودة العالية والدقة، بل أيضاً الرعاية السريعة والفعالة لمرضانا."
           },
           advantage1: {
-            title: "تعديلات سريعة",
-            text: "التعديلات والإصلاحات ممكنة فوراً، دون أوقات انتظار من المختبرات الخارجية"
+            title: "نتائج سريعة",
+            text: "يمكننا إجراء التعديلات والإصلاحات على الفور، دون الحاجة إلى انتظار المختبرات الخارجية."
           },
           advantage2: {
-            title: "مراقبة الجودة",
-            text: "الإشراف المباشر يضمن أعلى دقة وملاءمة"
+            title: "جودة عالية",
+            text: "من خلال الرقابة والمراقبة المباشرة، نضمن أعلى دقة وملاءمة."
           },
           advantage3: {
-            title: "التخصيص",
-            text: "يتم صنع كل طقم أسنان بالضبط وفقاً لاحتياجاتك ورغباتك"
+            title: "تخصيص فردي",
+            text: "يتم صنع كل طقم أسنان بدقة وفقاً لاحتياجات ورغبات المريض."
           },
           advantage4: {
-            title: "التواصل المباشر",
-            text: "تعاون مثالي بين طبيب الأسنان والفني لأفضل النتائج"
+            title: "مسافات قصيرة",
+            text: "الاتصال المباشر بين طبيب الأسنان والفني يتيح التواصل الفعال والنتائج المثلى."
           }
         },
         contact: {

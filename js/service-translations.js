@@ -12,6 +12,7 @@ const serviceTranslations = {
       about: "Über uns",
       services: "Leistungen",
       labor: "Labor",
+      karriere: "Karriere",
       contact: "Kontakt"
     },
 
@@ -154,9 +155,15 @@ const serviceTranslations = {
         subtitle: "Einfühlsame Betreuung für entspannte Zahnarztbesuche"
       },
       intro: {
-        title: "Zahnbehandlung ohne Angst",
+        title: "Sie sind nicht allein mit Ihrer Angst",
         text1: "Zahnarztangst ist weit verbreitet und kein Grund, sich zu schämen. Viele Menschen haben negative Erfahrungen gemacht oder Angst vor Schmerzen. In unserer Praxis verstehen wir Ihre Ängste und haben uns darauf spezialisiert, Ihnen die Behandlung so angenehm wie möglich zu machen.",
-        text2: "Wir nehmen uns viel Zeit für Sie, erklären jeden Schritt transparent und arbeiten nur mit Ihrem Einverständnis. Durch moderne Betäubungsmethoden und sanfte Behandlungstechniken sorgen wir dafür, dass Sie sich wohlfühlen."
+        text2: "Wir nehmen uns viel Zeit für Sie, erklären jeden Schritt transparent und arbeiten nur mit Ihrem Einverständnis. Durch moderne Betäubungsmethoden und sanfte Behandlungstechniken sorgen wir dafür, dass Sie sich wohlfühlen.",
+        content: {
+          title: "Angstpatienten",
+          para1: "Wir verstehen, dass der Zahnarztbesuch für viele Menschen mit Ängsten verbunden ist, und haben es uns zur Aufgabe gemacht, Ihnen eine stressfreie und angenehme Erfahrung zu bieten.",
+          para2: "Unser Team besteht aus erfahrenen Zahnärzten, die speziell im Umgang mit Angstpatienten geschult sind. Wir legen großen Wert auf eine einfühlsame und sanfte Behandlung, um Ihnen die bestmögliche zahnärztliche Versorgung zu gewährleisten.",
+          para3: "Unsere Praxis ist darauf ausgelegt, eine beruhigende und entspannende Atmosphäre zu schaffen, die Ängste abbaut und Vertrauen aufbaut."
+        }
       },
       benefits: {
         title: "Unsere Maßnahmen für Angstpatienten",
@@ -174,41 +181,48 @@ const serviceTranslations = {
         },
         benefit4: {
           title: "Entspannungsoptionen",
-          text: "Musik, Hypnose oder Lachgas helfen Ihnen, sich zu entspannen."
+          text: "Musik hilft Ihnen, sich zu entspannen."
         }
       },
       methods: {
         title: "Methoden gegen Zahnarztangst",
         method1: {
-          title: "Ausführliches Vorgespräch",
-          text: "Beim ersten Termin lernen wir uns in Ruhe kennen. Sie erzählen uns von Ihren Ängsten und wir besprechen gemeinsam, wie wir vorgehen können. Es findet keine Behandlung statt - nur ein vertrauensvolles Gespräch."
+          title: "Angstfreie Zahnbehandlung",
+          text: "Wir setzen moderne Techniken und Methoden ein, um die Behandlung so angenehm und schmerzfrei wie möglich zu gestalten. Dazu gehören Lokalanästhesie, Sedierung und Hypnose."
         },
         method2: {
-          title: "Lokale Betäubung mit sanfter Technik",
-          text: "Wir verwenden besonders dünne Nadeln und moderne Betäubungstechniken, die die Spritze nahezu schmerzfrei machen. Vor der Injektion betäuben wir die Stelle oberflächlich mit einem Gel."
+          title: "Individuelle Beratung und Aufklärung",
+          text: "Vor jeder Behandlung nehmen wir uns ausführlich Zeit, um Ihre Sorgen und Ängste zu besprechen. Eine umfassende Aufklärung über die geplanten Maßnahmen hilft, Unsicherheiten zu reduzieren."
         },
         method3: {
-          title: "Sedierung (Dämmerschlaf)",
-          text: "Bei größeren Eingriffen oder schwerer Angst bieten wir Behandlungen unter Sedierung an. Sie sind entspannt und schläfrig, verspüren keine Angst und haben hinterher wenig Erinnerung an die Behandlung."
+          title: "Sanfte Zahnreinigung",
+          text: "Unsere Prophylaxe-Programme sind speziell auf die Bedürfnisse von Angstpatienten abgestimmt. Mit schonenden Methoden sorgen wir für eine gründliche und gleichzeitig angenehme Zahnreinigung."
         },
         method4: {
-          title: "Hypnose und Entspannungstechniken",
-          text: "Auf Wunsch können wir Hypnosetechniken oder geführte Entspannungsübungen einsetzen, um Sie während der Behandlung in einen ruhigen, entspannten Zustand zu versetzen."
+          title: "Zahnsanierung unter Sedierung",
+          text: "Für umfangreichere Behandlungen bieten wir die Möglichkeit einer Sedierung an. Diese ermöglicht es Ihnen, sich während der Behandlung zu entspannen und Stress abzubauen."
         },
         method5: {
-          title: "Modernste Technik für kurze Behandlungszeiten",
-          text: "Dank moderner Geräte und Verfahren können wir viele Behandlungen deutlich schneller durchführen. Kürzere Sitzungen bedeuten weniger Stress für Sie."
-        }
+          title: "Behandlung von Zahnarztphobie",
+          text: "Wir haben spezielle Programme entwickelt, um Ihnen dabei zu helfen, Ihre Zahnarztphobie zu überwinden. Durch gezielte Gespräche und sanfte Annäherungsschritte gewinnen Sie Vertrauen und Sicherheit zurück."
+        },
+        method6: {
+          title: "Modernste Technik und Ausstattung",
+          text: "Unsere Praxis ist mit modernster Technik ausgestattet, die eine präzise und schonende Behandlung ermöglicht. Dies trägt dazu bei, Behandlungszeiten zu verkürzen und den Komfort zu erhöhen."
+        },
+        method7: {
+          title: "Nachsorge und Betreuung",
+          text: "Auch nach der Behandlung stehen wir Ihnen mit Rat und Tat zur Seite. Regelmäßige Nachsorgetermine helfen, Ihre Zahngesundheit langfristig zu erhalten und zukünftige Ängste abzubauen."
+        },
+        closing: "Wir sind überzeugt, dass jeder Mensch das Recht auf eine angstfreie zahnärztliche Versorgung hat. Besuchen Sie uns und erleben Sie, wie wir Ihre Zahnarztangst ernst nehmen und mit viel Einfühlungsvermögen und Fachkompetenz behandeln. Vereinbaren Sie noch heute einen Termin und lassen Sie uns gemeinsam dafür sorgen, dass Ihr Zahnarztbesuch zu einer positiven Erfahrung wird."
       },
       faq: {
         question1: "Was ist Zahnarztangst?",
         answer1: "Zahnarztangst ist eine weit verbreitete Phobie, die von Unwohlsein bis zu Panikattacken reichen kann. Sie entsteht oft durch negative Erfahrungen oder die Angst vor Kontrollverlust und Schmerzen.",
         question2: "Kann ich auch unter Vollnarkose behandelt werden?",
         answer2: "Ja, bei schwerer Zahnarztangst oder umfangreichen Eingriffen bieten wir Behandlungen unter Vollnarkose an. Wir beraten Sie gerne zu den Möglichkeiten.",
-        question3: "Was kostet eine Behandlung unter Lachgas?",
-        answer3: "Die Kosten für Lachgassedierung variieren je nach Behandlungsdauer. Wir erstellen Ihnen gerne einen individuellen Kostenvoranschlag.",
-        question4: "Wie lange dauert es, bis die Betäubung nachlässt?",
-        answer4: "Eine lokale Betäubung lässt nach etwa 2-3 Stunden nach. Bei Sedierung oder Vollnarkose sollten Sie jemanden mitbringen, der Sie nach Hause fährt."
+        question3: "Wie lange dauert es, bis die Betäubung nachlässt?",
+        answer3: "Eine lokale Betäubung lässt nach etwa 2-3 Stunden nach. Bei Sedierung oder Vollnarkose sollten Sie jemanden mitbringen, der Sie nach Hause fährt."
       }
     },
 
@@ -221,7 +235,13 @@ const serviceTranslations = {
       intro: {
         title: "Professionelle Zahnreinigung und Vorsorge",
         text1: "Vorbeugen ist besser als heilen - dieser Grundsatz gilt besonders in der Zahnmedizin. Regelmäßige Prophylaxe ist der Schlüssel zu gesunden Zähnen und einem strahlenden Lächeln bis ins hohe Alter.",
-        text2: "In unserer Praxis bieten wir Ihnen ein umfassendes Prophylaxe-Programm, das auf Ihre individuellen Bedürfnisse abgestimmt ist. Von der professionellen Zahnreinigung bis zur Ernährungsberatung - wir helfen Ihnen, Ihre Zähne optimal zu pflegen."
+        text2: "In unserer Praxis bieten wir Ihnen ein umfassendes Prophylaxe-Programm, das auf Ihre individuellen Bedürfnisse abgestimmt ist. Von der professionellen Zahnreinigung bis zur Ernährungsberatung - wir helfen Ihnen, Ihre Zähne optimal zu pflegen.",
+        content: {
+          title: "Vorsorge",
+          para1: "Vorsorgeuntersuchungen sind mehr als nur Routinebesuche. Sie sind der Schlüssel zur Früherkennung von Zahnproblemen, bevor sie sich zu größeren, kostspieligeren und schmerzhafteren Behandlungen entwickeln.",
+          para2: "Die regelmäßige Zahnpflege und Vorsorgeuntersuchungen sind von entscheidender Bedeutung für Ihre langfristige Mundgesundheit. Durch vorbeugende Maßnahmen können wir gemeinsam sicherstellen, dass Ihre Zähne und Ihr Zahnfleisch gesund bleiben und schwerwiegende Probleme frühzeitig erkannt und behandelt werden.",
+          para3: "Unser oberstes Ziel ist immer der Erhalt Ihrer natürlichen Zähne. Der Zahnerhalt steht im Mittelpunkt all unserer Behandlungsstrategien, da gesunde, natürliche Zähne durch nichts zu ersetzen sind."
+        }
       },
       benefits: {
         title: "Vorteile regelmäßiger Prophylaxe",
@@ -305,7 +325,13 @@ const serviceTranslations = {
       intro: {
         title: "Zahnerhaltung in unserer Praxis",
         text1: "Nichts ist so gut wie die eigenen, natürlichen Zähne. Deshalb setzen wir alles daran, Ihre Zähne zu erhalten - selbst wenn sie bereits geschädigt sind. Mit modernen Verfahren und Materialien können wir heute auch stark angegriffene Zähne retten.",
-        text2: "Von der Kariesbehandlung über Wurzelkanalbehandlungen bis zur Parodontitis-Therapie - wir bieten das gesamte Spektrum der Zahnerhaltung auf höchstem medizinischen Niveau."
+        text2: "Von der Kariesbehandlung über Wurzelkanalbehandlungen bis zur Parodontitis-Therapie - wir bieten das gesamte Spektrum der Zahnerhaltung auf höchstem medizinischen Niveau.",
+        content: {
+          title: "Erhaltende Zahnmedizin",
+          para1: "Unsere Praxis ist auf erhaltende Zahnmedizin spezialisiert, um die Gesundheit und Funktion Ihrer natürlichen Zähne so lange wie möglich zu bewahren. Dieser Ansatz ist entscheidend, um langfristige Mundgesundheit zu gewährleisten und komplexere Eingriffe zu vermeiden.",
+          para2: "Erhaltende Zahnmedizin zielt darauf ab, die natürlichen Zähne zu schützen und zu erhalten, anstatt sie zu ersetzen. Dies ist wichtig, da natürliche Zähne die beste Funktion und Ästhetik bieten und die Mundstruktur unterstützen. Durch frühzeitige Interventionen und kontinuierliche Pflege können größere Probleme vermieden werden, was sowohl die Gesundheit als auch die Lebensqualität verbessert.",
+          para3: "Unsere Praxis ist auf erhaltende Zahnmedizin spezialisiert. Wir bewahren die Gesundheit und Funktion Ihrer natürlichen Zähne so lange wie möglich. Dies sichert langfristige Mundgesundheit und vermeidet komplexere Eingriffe."
+        }
       },
       benefits: {
         title: "Vorteile der Zahnerhaltung",
@@ -387,7 +413,12 @@ const serviceTranslations = {
       intro: {
         title: "Schöne Zähne für mehr Lebensqualität",
         text1: "Ein strahlendes Lächeln öffnet Türen - im Beruf wie im Privatleben. Schöne, gepflegte Zähne vermitteln Sympathie, Gesundheit und Selbstbewusstsein. Wenn Sie sich mit Ihren Zähnen nicht wohlfühlen, leidet oft auch Ihre Lebensqualität.",
-        text2: "In unserer Praxis verbinden wir modernste Zahnmedizin mit ästhetischem Anspruch. Ob Zahnaufhellung, Veneers oder Smile Design - wir verwirklichen Ihren Traum vom perfekten Lächeln mit sanften, zahnschonenden Methoden."
+        text2: "In unserer Praxis verbinden wir modernste Zahnmedizin mit ästhetischem Anspruch. Ob Zahnaufhellung, Veneers oder Smile Design - wir verwirklichen Ihren Traum vom perfekten Lächeln mit sanften, zahnschonenden Methoden.",
+        content: {
+          title: "Ästhetische Zahnheilkunde",
+          para1: "Ästhetische Zahnheilkunde – Schönheit und Funktionalität vereint",
+          para2: "In unserer Zahnarztpraxis bieten wir ästhetische Zahnheilkunde an, um Ihr Lächeln zu verschönern und die Funktionalität Ihrer Zähne zu optimieren. Diese Behandlungen sind wichtig, um Selbstbewusstsein zu stärken und die Gesamtausstrahlung zu verbessern."
+        }
       },
       benefits: {
         title: "Vorteile ästhetischer Zahnheilkunde",
@@ -448,7 +479,11 @@ const serviceTranslations = {
       intro: {
         title: "Hochwertiger Zahnersatz in unserer Praxis",
         text1: "Fehlende Zähne beeinträchtigen nicht nur Ihr Aussehen, sondern auch Ihre Kaufunktion, Aussprache und können zu Kiefergelenkproblemen führen. Moderner Zahnersatz schließt diese Lücken und gibt Ihnen Lebensqualität zurück.",
-        text2: "In enger Zusammenarbeit mit unserem hauseigenen Labor fertigen wir individuellen, hochwertigen Zahnersatz an - von Teilkronen über Brücken bis zu Vollprothesen. Dabei legen wir Wert auf Ästhetik, Funktion und Langlebigkeit."
+        text2: "In enger Zusammenarbeit mit unserem hauseigenen Labor fertigen wir individuellen, hochwertigen Zahnersatz an - von Teilkronen über Brücken bis zu Vollprothesen. Dabei legen wir Wert auf Ästhetik, Funktion und Langlebigkeit.",
+        content: {
+          title: "Zahnersatz",
+          para1: "Unsere Zahnarztpraxis bietet hochwertigen Zahnersatz, der sowohl ästhetische als auch funktionelle Bedürfnisse erfüllt. Zahnersatz ist wichtig, um verlorene Zähne zu ersetzen und das Kauen, Sprechen und das ästhetische Erscheinungsbild zu verbessern."
+        }
       },
       benefits: {
         title: "Vorteile unseres Zahnersatzes",
@@ -509,7 +544,11 @@ const serviceTranslations = {
       intro: {
         title: "Zahnchirurgie in unserer Praxis",
         text1: "Manchmal reichen konservative Behandlungen nicht aus, um Zahnprobleme zu lösen. In diesen Fällen sind oralchirurgische Eingriffe notwendig. Dank moderner Technik und schonender Verfahren können wir viele Operationen ambulant in unserer Praxis durchführen.",
-        text2: "Von der Weisheitszahn-Entfernung über Wurzelspitzenresektionen bis zu komplexeren Eingriffen - wir behandeln Sie mit größter Sorgfalt und modernsten Methoden. Ihr Wohlbefinden steht dabei immer im Mittelpunkt."
+        text2: "Von der Weisheitszahn-Entfernung über Wurzelspitzenresektionen bis zu komplexeren Eingriffen - wir behandeln Sie mit größter Sorgfalt und modernsten Methoden. Ihr Wohlbefinden steht dabei immer im Mittelpunkt.",
+        content: {
+          title: "Oralchirurgie",
+          para1: "Unsere Zahnarztpraxis bietet umfassende Oralchirurgie an, um komplexe zahnärztliche Probleme effektiv zu behandeln und die Mundgesundheit unserer Patienten zu erhalten. Oralchirurgie ist entscheidend für die Behandlung von schweren Zahnproblemen und Kiefererkrankungen sowie für ästhetische Korrekturen."
+        }
       },
       benefits: {
         title: "Vorteile unserer Oralchirurgie",
@@ -589,7 +628,11 @@ const serviceTranslations = {
       intro: {
         title: "Zahnimplantate - die beste Lösung bei Zahnverlust",
         text1: "Zahnimplantate sind künstliche Zahnwurzeln aus Titan oder Keramik, die fest im Kieferknochen verankert werden. Sie bieten die stabilste und natürlichste Form des Zahnersatzes und fühlen sich an wie eigene Zähne.",
-        text2: "Mit unserer langjährigen Erfahrung in der Implantologie bieten wir Ihnen hochwertige Implantatlösungen. Von der Einzelzahnversorgung bis zur Versorgung zahnloser Kiefer - wir finden für jeden Fall die optimale Lösung."
+        text2: "Mit unserer langjährigen Erfahrung in der Implantologie bieten wir Ihnen hochwertige Implantatlösungen. Von der Einzelzahnversorgung bis zur Versorgung zahnloser Kiefer - wir finden für jeden Fall die optimale Lösung.",
+        content: {
+          title: "Implantologie",
+          para1: "In unserer Zahnarztpraxis bieten wir hochwertige Implantate an, um verlorene Zähne effektiv zu ersetzen und die Lebensqualität unserer Patienten zu verbessern. Implantate sind entscheidend für die Wiederherstellung von Zahnlücken und bieten eine langfristige Lösung für fehlende Zähne."
+        }
       },
       benefits: {
         title: "Vorteile von Zahnimplantaten",
@@ -672,6 +715,7 @@ const serviceTranslations = {
       about: "About Us",
       services: "Services",
       labor: "Laboratory",
+      karriere: "Career",
       contact: "Contact"
     },
 
@@ -810,9 +854,15 @@ const serviceTranslations = {
         subtitle: "Compassionate care for relaxed dental visits"
       },
       intro: {
-        title: "Dental Treatment Without Fear",
+        title: "You Are Not Alone with Your Fear",
         text1: "Dental anxiety is widespread and nothing to be ashamed of. Many people have had negative experiences or fear pain. At our practice, we understand your fears and specialize in making treatment as pleasant as possible for you.",
-        text2: "We take plenty of time for you, explain every step transparently, and work only with your consent. Through modern anesthesia methods and gentle treatment techniques, we ensure that you feel comfortable."
+        text2: "We take plenty of time for you, explain every step transparently, and work only with your consent. Through modern anesthesia methods and gentle treatment techniques, we ensure that you feel comfortable.",
+        content: {
+          title: "Anxious Patients",
+          para1: "We understand that visiting the dentist is associated with anxiety for many people, and we have made it our mission to provide you with a stress-free and pleasant experience.",
+          para2: "Our team consists of experienced dentists who are specially trained in dealing with anxious patients. We place great emphasis on empathetic and gentle treatment to ensure you receive the best possible dental care.",
+          para3: "Our practice is designed to create a calming and relaxing atmosphere that reduces anxiety and builds trust."
+        }
       },
       benefits: {
         title: "Our Measures for Anxious Patients",
@@ -830,41 +880,48 @@ const serviceTranslations = {
         },
         benefit4: {
           title: "Relaxation Options",
-          text: "Music, hypnosis, or laughing gas help you relax."
+          text: "Music helps you relax."
         }
       },
       methods: {
         title: "Methods against dental anxiety",
         method1: {
-          title: "Detailed preliminary discussion",
-          text: "At the first appointment we get to know each other calmly. You tell us about your fears and we discuss together how we can proceed. No treatment takes place - just a trusting conversation."
+          title: "Anxiety-Free Dental Treatment",
+          text: "We use modern techniques and methods to make treatment as comfortable and pain-free as possible. These include local anesthesia, sedation, and hypnosis."
         },
         method2: {
-          title: "Local anesthesia with gentle technique",
-          text: "We use particularly thin needles and modern anesthetic techniques that make the injection almost painless. Before the injection, we superficially anesthetize the area with a gel."
+          title: "Individual Consultation and Education",
+          text: "Before each treatment, we take extensive time to discuss your concerns and anxieties. Comprehensive education about planned procedures helps reduce uncertainties."
         },
         method3: {
-          title: "Sedation (twilight sleep)",
-          text: "For larger procedures or severe anxiety, we offer treatments under sedation. You are relaxed and drowsy, feel no fear and have little memory of the treatment afterwards."
+          title: "Gentle Teeth Cleaning",
+          text: "Our prophylaxis programs are specially tailored to the needs of anxious patients. With gentle methods, we ensure thorough yet pleasant teeth cleaning."
         },
         method4: {
-          title: "Hypnosis and relaxation techniques",
-          text: "On request, we can use hypnosis techniques or guided relaxation exercises to put you in a calm, relaxed state during treatment."
+          title: "Dental Restoration under Sedation",
+          text: "For more extensive treatments, we offer the option of sedation. This allows you to relax during treatment and reduce stress."
         },
         method5: {
-          title: "State-of-the-art technology for short treatment times",
-          text: "Thanks to modern equipment and procedures, we can perform many treatments much faster. Shorter sessions mean less stress for you."
-        }
+          title: "Treatment of Dental Phobia",
+          text: "We have developed special programs to help you overcome your dental phobia. Through targeted conversations and gentle approach steps, you regain trust and confidence."
+        },
+        method6: {
+          title: "State-of-the-Art Technology and Equipment",
+          text: "Our practice is equipped with state-of-the-art technology that enables precise and gentle treatment. This helps shorten treatment times and increase comfort."
+        },
+        method7: {
+          title: "Aftercare and Support",
+          text: "Even after treatment, we are at your side with advice and assistance. Regular follow-up appointments help maintain your dental health long-term and reduce future anxieties."
+        },
+        closing: "We are convinced that every person has the right to anxiety-free dental care. Visit us and experience how we take your dental anxiety seriously and treat it with great empathy and expertise. Make an appointment today and let us work together to ensure that your dental visit becomes a positive experience."
       },
       faq: {
         question1: "What is dental anxiety?",
         answer1: "Dental anxiety is a widespread phobia that can range from discomfort to panic attacks. It often arises from negative experiences or fear of loss of control and pain.",
         question2: "Can I be treated under general anesthesia?",
         answer2: "Yes, for severe dental anxiety or extensive procedures, we offer treatments under general anesthesia. We're happy to advise you on the options.",
-        question3: "What does treatment under laughing gas cost?",
-        answer3: "The costs for laughing gas sedation vary depending on treatment duration. We're happy to create an individual cost estimate for you.",
-        question4: "How long does it take for the anesthesia to wear off?",
-        answer4: "Local anesthesia wears off after about 2-3 hours. With sedation or general anesthesia, you should bring someone to drive you home."
+        question3: "How long does it take for the anesthesia to wear off?",
+        answer3: "Local anesthesia wears off after about 2-3 hours. With sedation or general anesthesia, you should bring someone to drive you home."
       }
     },
 
@@ -877,7 +934,13 @@ const serviceTranslations = {
       intro: {
         title: "Professional Teeth Cleaning and Prevention",
         text1: "Prevention is better than cure - this principle applies especially in dentistry. Regular prevention is the key to healthy teeth and a radiant smile into old age.",
-        text2: "At our practice, we offer you a comprehensive prevention program tailored to your individual needs. From professional teeth cleaning to nutritional counseling - we help you optimally care for your teeth."
+        text2: "At our practice, we offer you a comprehensive prevention program tailored to your individual needs. From professional teeth cleaning to nutritional counseling - we help you optimally care for your teeth.",
+        content: {
+          title: "Prevention",
+          para1: "Preventive examinations are more than just routine visits. They are the key to early detection of dental problems before they develop into larger, more expensive, and more painful treatments.",
+          para2: "Regular dental care and preventive examinations are crucial for your long-term oral health. Through preventive measures, we can work together to ensure that your teeth and gums remain healthy and serious problems are detected and treated early.",
+          para3: "Our primary goal is always the preservation of your natural teeth. Tooth preservation is at the center of all our treatment strategies, as healthy, natural teeth cannot be replaced by anything."
+        }
       },
       benefits: {
         title: "Benefits of Regular Prevention",
@@ -959,7 +1022,13 @@ const serviceTranslations = {
       intro: {
         title: "Tooth Preservation at Our Practice",
         text1: "Nothing is as good as your own natural teeth. That's why we do everything to preserve your teeth - even if they're already damaged. With modern procedures and materials, we can save even severely compromised teeth today.",
-        text2: "From cavity treatment to root canal treatments to periodontitis therapy - we offer the entire spectrum of tooth preservation at the highest medical level."
+        text2: "From cavity treatment to root canal treatments to periodontitis therapy - we offer the entire spectrum of tooth preservation at the highest medical level.",
+        content: {
+          title: "Restorative Dentistry",
+          para1: "Our practice specializes in restorative dentistry to preserve the health and function of your natural teeth for as long as possible. This approach is crucial to ensure long-term oral health and avoid more complex interventions.",
+          para2: "Restorative dentistry aims to protect and preserve natural teeth rather than replace them. This is important because natural teeth provide the best function and aesthetics while supporting the oral structure. Through early interventions and continuous care, larger problems can be avoided, improving both health and quality of life.",
+          para3: "Our practice specializes in restorative dentistry. We preserve the health and function of your natural teeth for as long as possible. This ensures long-term oral health and avoids more complex interventions."
+        }
       },
       benefits: {
         title: "Advantages of Tooth Preservation",
@@ -1041,7 +1110,12 @@ const serviceTranslations = {
       intro: {
         title: "Beautiful Teeth for Better Quality of Life",
         text1: "A radiant smile opens doors - professionally and privately. Beautiful, well-cared-for teeth convey sympathy, health, and self-confidence. If you don't feel comfortable with your teeth, your quality of life often suffers.",
-        text2: "At our practice, we combine state-of-the-art dentistry with aesthetic standards. Whether teeth whitening, veneers, or smile design - we realize your dream of the perfect smile with gentle, tooth-preserving methods."
+        text2: "At our practice, we combine state-of-the-art dentistry with aesthetic standards. Whether teeth whitening, veneers, or smile design - we realize your dream of the perfect smile with gentle, tooth-preserving methods.",
+        content: {
+          title: "Cosmetic Dentistry",
+          para1: "Cosmetic Dentistry – Beauty and Functionality Combined",
+          para2: "At our dental practice, we offer cosmetic dentistry to beautify your smile and optimize the functionality of your teeth. These treatments are important to boost self-confidence and improve your overall appearance."
+        }
       },
       benefits: {
         title: "Advantages of Cosmetic Dentistry",
@@ -1102,7 +1176,11 @@ const serviceTranslations = {
       intro: {
         title: "High-Quality Prosthetics at Our Practice",
         text1: "Missing teeth affect not only your appearance but also your chewing function, pronunciation, and can lead to jaw joint problems. Modern prosthetics close these gaps and restore your quality of life.",
-        text2: "In close cooperation with our in-house laboratory, we create individual, high-quality prosthetics - from partial crowns to bridges to complete dentures. We value aesthetics, function, and longevity."
+        text2: "In close cooperation with our in-house laboratory, we create individual, high-quality prosthetics - from partial crowns to bridges to complete dentures. We value aesthetics, function, and longevity.",
+        content: {
+          title: "Dental Prosthetics",
+          para1: "Our dental practice offers high-quality dental prosthetics that meet both aesthetic and functional needs. Dental prosthetics are important for replacing lost teeth and improving chewing, speaking, and aesthetic appearance."
+        }
       },
       benefits: {
         title: "Advantages of Our Prosthetics",
@@ -1163,7 +1241,11 @@ const serviceTranslations = {
       intro: {
         title: "Dental Surgery at Our Practice",
         text1: "Sometimes conservative treatments aren't enough to solve dental problems. In these cases, oral surgical procedures are necessary. Thanks to modern technology and gentle procedures, we can perform many operations on an outpatient basis at our practice.",
-        text2: "From wisdom tooth removal to root tip resections to more complex procedures - we treat you with the greatest care and most modern methods. Your well-being is always our priority."
+        text2: "From wisdom tooth removal to root tip resections to more complex procedures - we treat you with the greatest care and most modern methods. Your well-being is always our priority.",
+        content: {
+          title: "Oral Surgery",
+          para1: "Our dental practice offers comprehensive oral surgery to effectively treat complex dental problems and maintain our patients' oral health. Oral surgery is crucial for treating severe dental problems and jaw diseases, as well as aesthetic corrections."
+        }
       },
       benefits: {
         title: "Advantages of Our Oral Surgery",
@@ -1243,7 +1325,11 @@ const serviceTranslations = {
       intro: {
         title: "Dental Implants - The Best Solution for Tooth Loss",
         text1: "Dental implants are artificial tooth roots made of titanium or ceramic that are firmly anchored in the jawbone. They offer the most stable and natural form of prosthetics and feel like your own teeth.",
-        text2: "With our many years of experience in implantology, we offer you high-quality implant solutions. From single tooth restoration to edentulous jaw restoration - we find the optimal solution for every case."
+        text2: "With our many years of experience in implantology, we offer you high-quality implant solutions. From single tooth restoration to edentulous jaw restoration - we find the optimal solution for every case.",
+        content: {
+          title: "Implantology",
+          para1: "At our dental practice, we offer high-quality implants to effectively replace lost teeth and improve our patients' quality of life. Implants are crucial for restoring tooth gaps and provide a long-term solution for missing teeth."
+        }
       },
       benefits: {
         title: "Advantages of Dental Implants",
@@ -1326,6 +1412,7 @@ const serviceTranslations = {
       about: "Về chúng tôi",
       services: "Dịch vụ",
       labor: "Phòng lab",
+      karriere: "Nghề nghiệp",
       contact: "Liên hệ"
     },
 
@@ -1465,9 +1552,15 @@ const serviceTranslations = {
         subtitle: "Chăm sóc thấu hiểu cho các lần khám nha khoa thoải mái"
       },
       intro: {
-        title: "Điều trị nha khoa không sợ hãi",
+        title: "Bạn không cô đơn với nỗi sợ hãi của mình",
         text1: "Sợ nha sĩ rất phổ biến và không có gì phải xấu hổ. Nhiều người đã có trải nghiệm tiêu cực hoặc sợ đau. Tại phòng khám, chúng tôi hiểu nỗi sợ của bạn và chuyên về việc làm cho điều trị trở nên dễ chịu nhất có thể.",
-        text2: "Chúng tôi dành nhiều thời gian cho bạn, giải thích từng bước một cách minh bạch và chỉ làm việc với sự đồng ý của bạn. Thông qua phương pháp gây tê hiện đại và kỹ thuật điều trị nhẹ nhàng, chúng tôi đảm bảo bạn cảm thấy thoải mái."
+        text2: "Chúng tôi dành nhiều thời gian cho bạn, giải thích từng bước một cách minh bạch và chỉ làm việc với sự đồng ý của bạn. Thông qua phương pháp gây tê hiện đại và kỹ thuật điều trị nhẹ nhàng, chúng tôi đảm bảo bạn cảm thấy thoải mái.",
+        content: {
+          title: "Bệnh nhân lo lắng",
+          para1: "Chúng tôi hiểu rằng việc đến nha sĩ gắn liền với lo lắng đối với nhiều người, và chúng tôi đã đặt ra sứ mệnh mang đến cho bạn trải nghiệm không căng thẳng và dễ chịu.",
+          para2: "Đội ngũ của chúng tôi bao gồm các nha sĩ giàu kinh nghiệm được đào tạo đặc biệt trong việc đối phó với bệnh nhân lo lắng. Chúng tôi đặc biệt coi trọng việc điều trị thấu cảm và nhẹ nhàng để đảm bảo bạn nhận được dịch vụ chăm sóc nha khoa tốt nhất có thể.",
+          para3: "Phòng khám của chúng tôi được thiết kế để tạo ra bầu không khí êm dịu và thư giãn, giúp giảm lo lắng và xây dựng lòng tin."
+        }
       },
       benefits: {
         title: "Biện pháp của chúng tôi cho bệnh nhân lo lắng",
@@ -1485,41 +1578,48 @@ const serviceTranslations = {
         },
         benefit4: {
           title: "Lựa chọn thư giãn",
-          text: "Nhạc, thôi miên hoặc khí cười giúp bạn thư giãn."
+          text: "Nhạc giúp bạn thư giãn."
         }
       },
       methods: {
         title: "Phương pháp chống lo lắng nha khoa",
         method1: {
-          title: "Cuộc thảo luận sơ bộ chi tiết",
-          text: "Tại cuộc hẹn đầu tiên, chúng ta làm quen với nhau một cách bình tĩnh. Bạn kể cho chúng tôi về nỗi sợ hãi của mình và chúng ta thảo luận cùng nhau về cách tiến hành. Không có điều trị nào diễn ra - chỉ là một cuộc trò chuyện đầy tin cậy."
+          title: "Điều trị nha khoa không lo lắng",
+          text: "Chúng tôi sử dụng các kỹ thuật và phương pháp hiện đại để làm cho việc điều trị trở nên thoải mái và không đau nhất có thể. Bao gồm gây tê tại chỗ, an thần và thôi miên."
         },
         method2: {
-          title: "Gây tê tại chỗ với kỹ thuật nhẹ nhàng",
-          text: "Chúng tôi sử dụng kim đặc biệt mỏng và kỹ thuật gây tê hiện đại giúp việc tiêm gần như không đau. Trước khi tiêm, chúng tôi gây tê bề mặt vùng đó bằng gel."
+          title: "Tư vấn và giáo dục cá nhân",
+          text: "Trước mỗi lần điều trị, chúng tôi dành nhiều thời gian để thảo luận về mối lo ngại và nỗi sợ hãi của bạn. Giáo dục toàn diện về các biện pháp đã lên kế hoạch giúp giảm bớt sự không chắc chắn."
         },
         method3: {
-          title: "An thần (giấc ngủ lơ mơ)",
-          text: "Đối với các thủ thuật lớn hơn hoặc lo lắng nghiêm trọng, chúng tôi cung cấp điều trị dưới sự an thần. Bạn thư giãn và buồn ngủ, không cảm thấy sợ hãi và có ít ký ức về điều trị sau đó."
+          title: "Vệ sinh răng nhẹ nhàng",
+          text: "Các chương trình phòng ngừa của chúng tôi được thiết kế đặc biệt cho nhu cầu của bệnh nhân lo lắng. Với các phương pháp nhẹ nhàng, chúng tôi đảm bảo vệ sinh răng kỹ lưỡng và đồng thời dễ chịu."
         },
         method4: {
-          title: "Thôi miên và kỹ thuật thư giãn",
-          text: "Theo yêu cầu, chúng tôi có thể sử dụng kỹ thuật thôi miên hoặc bài tập thư giãn có hướng dẫn để đưa bạn vào trạng thái bình tĩnh, thư giãn trong quá trình điều trị."
+          title: "Phục hồi răng dưới sự an thần",
+          text: "Đối với các điều trị phức tạp hơn, chúng tôi cung cấp tùy chọn an thần. Điều này cho phép bạn thư giãn trong quá trình điều trị và giảm căng thẳng."
         },
         method5: {
-          title: "Công nghệ hiện đại cho thời gian điều trị ngắn",
-          text: "Nhờ thiết bị và quy trình hiện đại, chúng tôi có thể thực hiện nhiều điều trị nhanh hơn nhiều. Phiên ngắn hơn có nghĩa là ít căng thẳng hơn cho bạn."
-        }
+          title: "Điều trị chứng sợ nha sĩ",
+          text: "Chúng tôi đã phát triển các chương trình đặc biệt để giúp bạn vượt qua chứng sợ nha sĩ. Thông qua các cuộc trò chuyện có mục tiêu và các bước tiếp cận nhẹ nhàng, bạn sẽ lấy lại niềm tin và sự tự tin."
+        },
+        method6: {
+          title: "Công nghệ và thiết bị hiện đại nhất",
+          text: "Phòng khám của chúng tôi được trang bị công nghệ hiện đại nhất cho phép điều trị chính xác và nhẹ nhàng. Điều này giúp rút ngắn thời gian điều trị và tăng sự thoải mái."
+        },
+        method7: {
+          title: "Chăm sóc và hỗ trợ sau điều trị",
+          text: "Ngay cả sau điều trị, chúng tôi vẫn ở bên cạnh bạn với lời khuyên và hỗ trợ. Các cuộc hẹn theo dõi định kỳ giúp duy trì sức khỏe răng miệng lâu dài và giảm bớt những lo lắng trong tương lai."
+        },
+        closing: "Chúng tôi tin tưởng rằng mọi người đều có quyền được chăm sóc nha khoa không lo lắng. Hãy đến thăm chúng tôi và trải nghiệm cách chúng tôi xem trọng nỗi sợ nha sĩ của bạn và điều trị bằng sự thấu hiểu và chuyên môn cao. Đặt lịch hẹn ngay hôm nay và hãy để chúng tôi cùng nhau đảm bảo rằng chuyến thăm nha sĩ của bạn sẽ trở thành trải nghiệm tích cực."
       },
       faq: {
         question1: "Sợ nha sĩ là gì?",
         answer1: "Sợ nha sĩ là nỗi sợ phổ biến có thể từ khó chịu đến hoảng loạn. Nó thường phát sinh từ trải nghiệm tiêu cực hoặc sợ mất kiểm soát và đau đớn.",
         question2: "Tôi có thể được điều trị dưới gây mê toàn thân không?",
         answer2: "Có, với nỗi sợ nha sĩ nghiêm trọng hoặc thủ thuật phức tạp, chúng tôi cung cấp điều trị dưới gây mê toàn thân. Chúng tôi sẵn lòng tư vấn các lựa chọn.",
-        question3: "Chi phí điều trị với khí cười là bao nhiêu?",
-        answer3: "Chi phí an thần khí cười thay đổi tùy thời gian điều trị. Chúng tôi sẵn lòng lập dự toán chi phí cá nhân cho bạn.",
-        question4: "Mất bao lâu để thuốc tê hết tác dụng?",
-        answer4: "Gây tê tại chỗ hết tác dụng sau khoảng 2-3 giờ. Với an thần hoặc gây mê toàn thân, bạn nên có người đưa về nhà."
+        question3: "Mất bao lâu để thuốc tê hết tác dụng?",
+        answer3: "Gây tê tại chỗ hết tác dụng sau khoảng 2-3 giờ. Với an thần hoặc gây mê toàn thân, bạn nên có người đưa về nhà."
       }
     },
 
@@ -1532,7 +1632,13 @@ const serviceTranslations = {
       intro: {
         title: "Vệ sinh răng miệng chuyên nghiệp và phòng ngừa",
         text1: "Phòng bệnh hơn chữa bệnh - nguyên tắc này đặc biệt đúng trong nha khoa. Phòng ngừa thường xuyên là chìa khóa cho răng khỏe và nụ cười rạng rỡ đến tuổi già.",
-        text2: "Tại phòng khám, chúng tôi cung cấp chương trình phòng ngừa toàn diện phù hợp với nhu cầu riêng của bạn. Từ vệ sinh răng miệng chuyên nghiệp đến tư vấn dinh dưỡng - chúng tôi giúp bạn chăm sóc răng miệng tối ưu."
+        text2: "Tại phòng khám, chúng tôi cung cấp chương trình phòng ngừa toàn diện phù hợp với nhu cầu riêng của bạn. Từ vệ sinh răng miệng chuyên nghiệp đến tư vấn dinh dưỡng - chúng tôi giúp bạn chăm sóc răng miệng tối ưu.",
+        content: {
+          title: "Phòng ngừa",
+          para1: "Các cuộc khám phòng ngừa không chỉ là các lần khám định kỳ. Chúng là chìa khóa để phát hiện sớm các vấn đề về răng trước khi chúng phát triển thành các phương pháp điều trị lớn hơn, tốn kém hơn và đau đớn hơn.",
+          para2: "Chăm sóc răng miệng định kỳ và khám phòng ngừa có ý nghĩa quyết định đối với sức khỏe răng miệng lâu dài của bạn. Thông qua các biện pháp phòng ngừa, chúng ta có thể cùng nhau đảm bảo răng và nướu của bạn luôn khỏe mạnh và các vấn đề nghiêm trọng được phát hiện và điều trị sớm.",
+          para3: "Mục tiêu hàng đầu của chúng tôi luôn là bảo tồn răng tự nhiên của bạn. Bảo tồn răng là trọng tâm của tất cả các chiến lược điều trị của chúng tôi, vì răng tự nhiên khỏe mạnh không thể được thay thế bằng bất cứ thứ gì."
+        }
       },
       benefits: {
         title: "Lợi ích phòng ngừa thường xuyên",
@@ -1614,7 +1720,13 @@ const serviceTranslations = {
       intro: {
         title: "Bảo tồn răng tại phòng khám",
         text1: "Không gì tốt bằng răng tự nhiên của bạn. Đó là lý do chúng tôi làm mọi thứ để bảo tồn răng - ngay cả khi đã bị hỏng. Với quy trình và vật liệu hiện đại, ngày nay chúng tôi có thể cứu cả những răng bị tổn thương nghiêm trọng.",
-        text2: "Từ điều trị sâu răng đến điều trị tủy đến liệu pháp viêm nha chu - chúng tôi cung cấp toàn bộ phổ bảo tồn răng ở trình độ y khoa cao nhất."
+        text2: "Từ điều trị sâu răng đến điều trị tủy đến liệu pháp viêm nha chu - chúng tôi cung cấp toàn bộ phổ bảo tồn răng ở trình độ y khoa cao nhất.",
+        content: {
+          title: "Nha khoa phục hồi",
+          para1: "Phòng khám của chúng tôi chuyên về nha khoa phục hồi để bảo tồn sức khỏe và chức năng của răng tự nhiên của bạn càng lâu càng tốt. Phương pháp này rất quan trọng để đảm bảo sức khỏe răng miệng lâu dài và tránh các can thiệp phức tạp hơn.",
+          para2: "Nha khoa phục hồi nhằm mục đích bảo vệ và giữ gìn răng tự nhiên thay vì thay thế chúng. Điều này quan trọng vì răng tự nhiên cung cấp chức năng và thẩm mỹ tốt nhất đồng thời hỗ trợ cấu trúc răng miệng. Thông qua can thiệp sớm và chăm sóc liên tục, các vấn đề lớn hơn có thể được tránh, cải thiện cả sức khỏe và chất lượng cuộc sống.",
+          para3: "Phòng khám của chúng tôi chuyên về nha khoa phục hồi. Chúng tôi bảo tồn sức khỏe và chức năng của răng tự nhiên của bạn càng lâu càng tốt. Điều này đảm bảo sức khỏe răng miệng lâu dài và tránh các can thiệp phức tạp hơn."
+        }
       },
       benefits: {
         title: "Ưu điểm bảo tồn răng",
@@ -1696,7 +1808,12 @@ const serviceTranslations = {
       intro: {
         title: "Răng đẹp cho chất lượng cuộc sống tốt hơn",
         text1: "Nụ cười rạng rỡ mở ra cánh cửa - trong công việc lẫn đời sống riêng tư. Răng đẹp, được chăm sóc truyền tải sự cảm thông, sức khỏe và tự tin. Nếu bạn không thoải mái với răng mình, chất lượng cuộc sống thường bị ảnh hưởng.",
-        text2: "Tại phòng khám, chúng tôi kết hợp nha khoa tiên tiến nhất với tiêu chuẩn thẩm mỹ. Dù là tẩy trắng răng, veneer hay thiết kế nụ cười - chúng tôi hiện thực hóa giấc mơ về nụ cười hoàn hảo bằng phương pháp nhẹ nhàng, bảo tồn răng."
+        text2: "Tại phòng khám, chúng tôi kết hợp nha khoa tiên tiến nhất với tiêu chuẩn thẩm mỹ. Dù là tẩy trắng răng, veneer hay thiết kế nụ cười - chúng tôi hiện thực hóa giấc mơ về nụ cười hoàn hảo bằng phương pháp nhẹ nhàng, bảo tồn răng.",
+        content: {
+          title: "Nha khoa thẩm mỹ",
+          para1: "Nha khoa thẩm mỹ – Kết hợp vẻ đẹp và chức năng",
+          para2: "Tại phòng khám nha khoa của chúng tôi, chúng tôi cung cấp nha khoa thẩm mỹ để làm đẹp nụ cười của bạn và tối ưu hóa chức năng của răng. Các phương pháp điều trị này rất quan trọng để tăng cường sự tự tin và cải thiện diện mạo tổng thể của bạn."
+        }
       },
       benefits: {
         title: "Ưu điểm nha khoa thẩm mỹ",
@@ -1757,7 +1874,11 @@ const serviceTranslations = {
       intro: {
         title: "Răng giả chất lượng cao tại phòng khám",
         text1: "Răng mất không chỉ ảnh hưởng ngoại hình mà còn chức năng nhai, phát âm và có thể dẫn đến vấn đề khớp hàm. Răng giả hiện đại lấp đầy những khoảng trống này và trả lại chất lượng cuộc sống cho bạn.",
-        text2: "Hợp tác chặt chẽ với phòng lab riêng, chúng tôi chế tác răng giả cá nhân, chất lượng cao - từ mão răng bán phần đến cầu răng đến hàm giả toàn phần. Chúng tôi chú trọng thẩm mỹ, chức năng và độ bền."
+        text2: "Hợp tác chặt chẽ với phòng lab riêng, chúng tôi chế tác răng giả cá nhân, chất lượng cao - từ mão răng bán phần đến cầu răng đến hàm giả toàn phần. Chúng tôi chú trọng thẩm mỹ, chức năng và độ bền.",
+        content: {
+          title: "Răng giả",
+          para1: "Phòng khám nha khoa của chúng tôi cung cấp răng giả chất lượng cao, đáp ứng cả nhu cầu thẩm mỹ và chức năng. Răng giả quan trọng để thay thế răng mất và cải thiện khả năng nhai, nói và vẻ ngoài thẩm mỹ."
+        }
       },
       benefits: {
         title: "Ưu điểm răng giả của chúng tôi",
@@ -1818,7 +1939,11 @@ const serviceTranslations = {
       intro: {
         title: "Phẫu thuật nha khoa tại phòng khám",
         text1: "Đôi khi điều trị bảo tồn không đủ để giải quyết vấn đề răng. Trong những trường hợp này, cần thủ thuật phẫu thuật răng hàm mặt. Nhờ công nghệ hiện đại và quy trình nhẹ nhàng, chúng tôi có thể thực hiện nhiều ca phẫu thuật ngoại trú tại phòng khám.",
-        text2: "Từ nhổ răng khôn đến cắt chóp chân răng đến các thủ thuật phức tạp hơn - chúng tôi điều trị bạn với sự cẩn thận tối đa và phương pháp hiện đại nhất. Sức khỏe của bạn luôn là ưu tiên."
+        text2: "Từ nhổ răng khôn đến cắt chóp chân răng đến các thủ thuật phức tạp hơn - chúng tôi điều trị bạn với sự cẩn thận tối đa và phương pháp hiện đại nhất. Sức khỏe của bạn luôn là ưu tiên.",
+        content: {
+          title: "Phẫu thuật răng hàm mặt",
+          para1: "Phòng khám nha khoa của chúng tôi cung cấp phẫu thuật răng hàm mặt toàn diện để điều trị hiệu quả các vấn đề nha khoa phức tạp và duy trì sức khỏe răng miệng cho bệnh nhân. Phẫu thuật răng hàm mặt rất quan trọng để điều trị các vấn đề răng nặng và bệnh hàm cũng như điều chỉnh thẩm mỹ."
+        }
       },
       benefits: {
         title: "Ưu điểm phẫu thuật răng hàm mặt",
@@ -1898,7 +2023,11 @@ const serviceTranslations = {
       intro: {
         title: "Cấy ghép răng - Giải pháp tốt nhất cho mất răng",
         text1: "Cấy ghép răng là chân răng nhân tạo bằng titan hoặc sứ được cố định chắc chắn trong xương hàm. Chúng cung cấp hình thức răng giả ổn định và tự nhiên nhất, cảm giác như răng thật.",
-        text2: "Với nhiều năm kinh nghiệm trong cấy ghép, chúng tôi cung cấp giải pháp cấy ghép chất lượng cao. Từ phục hồi răng đơn đến phục hồi hàm không răng - chúng tôi tìm giải pháp tối ưu cho mọi trường hợp."
+        text2: "Với nhiều năm kinh nghiệm trong cấy ghép, chúng tôi cung cấp giải pháp cấy ghép chất lượng cao. Từ phục hồi răng đơn đến phục hồi hàm không răng - chúng tôi tìm giải pháp tối ưu cho mọi trường hợp.",
+        content: {
+          title: "Cấy ghép",
+          para1: "Tại phòng khám nha khoa của chúng tôi, chúng tôi cung cấp cấy ghép chất lượng cao để thay thế hiệu quả răng đã mất và cải thiện chất lượng cuộc sống của bệnh nhân. Cấy ghép rất quan trọng để phục hồi khoảng trống răng và cung cấp giải pháp dài hạn cho răng mất."
+        }
       },
       benefits: {
         title: "Ưu điểm cấy ghép răng",
@@ -1982,6 +2111,7 @@ const serviceTranslations = {
       about: "О нас",
       services: "Услуги",
       labor: "Лаборатория",
+      karriere: "Карьера",
       contact: "Контакты"
     },
 
@@ -2099,7 +2229,13 @@ const serviceTranslations = {
       intro: {
         title: "Стоматология без страха",
         text1: "Боязнь стоматолога — распространенное явление, которым страдают многие люди. Плохие впечатления, страх боли или чувство беспомощности могут привести к избеганию необходимого лечения. Мы серьезно относимся к вашим страхам и создали специальную концепцию для тревожных пациентов.",
-        text2: "В спокойной атмосфере мы уделяем особенно много времени вам. Мы подробно объясняем каждый шаг и работаем только с вашего согласия. Наша цель — вернуть вам положительные впечатления от стоматолога."
+        text2: "В спокойной атмосфере мы уделяем особенно много времени вам. Мы подробно объясняем каждый шаг и работаем только с вашего согласия. Наша цель — вернуть вам положительные впечатления от стоматолога.",
+        content: {
+          title: "Пациенты с тревожностью",
+          para1: "Мы понимаем, что посещение стоматолога связано с тревогой для многих людей, и мы поставили перед собой задачу обеспечить вам безстрессовый и приятный опыт.",
+          para2: "Наша команда состоит из опытных стоматологов, которые специально обучены работе с тревожными пациентами. Мы придаём большое значение чуткому и бережному лечению, чтобы обеспечить вам наилучшую стоматологическую помощь.",
+          para3: "Наша практика спроектирована так, чтобы создать успокаивающую и расслабляющую атмосферу, которая снижает тревогу и укрепляет доверие."
+        }
       },
       benefits: {
         title: "Преимущества для тревожных пациентов",
@@ -2123,35 +2259,42 @@ const serviceTranslations = {
       methods: {
         title: "Методы против стоматологической тревожности",
         method1: {
-          title: "Подробное предварительное обсуждение",
-          text: "На первом приеме мы спокойно знакомимся друг с другом. Вы рассказываете нам о своих страхах, и мы вместе обсуждаем, как можем действовать. Никакое лечение не проводится - только доверительная беседа."
+          title: "Стоматологическое лечение без страха",
+          text: "Мы используем современные техники и методы, чтобы сделать лечение максимально комфортным и безболезненным. К ним относятся местная анестезия, седация и гипноз."
         },
         method2: {
-          title: "Местная анестезия с мягкой техникой",
-          text: "Мы используем особенно тонкие иглы и современные анестетические техники, которые делают укол почти безболезненным. Перед инъекцией мы поверхностно обезболиваем область гелем."
+          title: "Индивидуальная консультация и обучение",
+          text: "Перед каждым лечением мы уделяем много времени обсуждению ваших тревог и страхов. Всестороннее информирование о запланированных мерах помогает снизить неопределенность."
         },
         method3: {
-          title: "Седация (полусон)",
-          text: "Для больших процедур или сильной тревожности мы предлагаем лечение под седацией. Вы расслаблены и сонливы, не чувствуете страха и имеете мало воспоминаний о лечении впоследствии."
+          title: "Бережная чистка зубов",
+          text: "Наши профилактические программы специально адаптированы к потребностям тревожных пациентов. Бережными методами мы обеспечиваем тщательную и в то же время приятную чистку зубов."
         },
         method4: {
-          title: "Гипноз и техники релаксации",
-          text: "По запросу мы можем использовать техники гипноза или управляемые упражнения на расслабление, чтобы привести вас в спокойное, расслабленное состояние во время лечения."
+          title: "Санация зубов под седацией",
+          text: "Для более обширных процедур мы предлагаем возможность седации. Это позволяет вам расслабиться во время лечения и снизить стресс."
         },
         method5: {
-          title: "Современнейшая технология для коротких времен лечения",
-          text: "Благодаря современному оборудованию и процедурам мы можем выполнять многие процедуры намного быстрее. Более короткие сеансы означают меньше стресса для вас."
-        }
+          title: "Лечение стоматофобии",
+          text: "Мы разработали специальные программы, чтобы помочь вам преодолеть стоматофобию. Через целенаправленные беседы и мягкие шаги сближения вы вернете доверие и уверенность."
+        },
+        method6: {
+          title: "Современнейшая технология и оборудование",
+          text: "Наша практика оснащена самым современным оборудованием, которое обеспечивает точное и бережное лечение. Это способствует сокращению времени лечения и повышению комфорта."
+        },
+        method7: {
+          title: "Последующий уход и поддержка",
+          text: "Даже после лечения мы остаемся рядом с вами с советом и помощью. Регулярные последующие приемы помогают долгосрочно поддерживать здоровье ваших зубов и снижать будущие страхи."
+        },
+        closing: "Мы убеждены, что каждый человек имеет право на стоматологическую помощь без страха. Посетите нас и испытайте, как мы серьезно относимся к вашему страху перед стоматологом и лечим его с большой эмпатией и компетентностью. Запишитесь на прием сегодня и давайте вместе сделаем ваш визит к стоматологу положительным опытом."
       },
       faq: {
-        question1: "Что такое лечение закисью азота?",
-        answer1: "Закись азота — это мягкое седативное средство, которое вдыхается через носовую маску. Вы остаетесь в сознании, но расслаблены и спокойны. Эффект проходит сразу после лечения.",
+        question1: "Что такое страх перед стоматологом?",
+        answer1: "Страх перед стоматологом - распространенная фобия, которая может варьироваться от легкого дискомфорта до панических атак. Часто возникает из-за негативного опыта или страха потери контроля и боли.",
         question2: "Можно ли спать во время лечения?",
         answer2: "Да, для обширного лечения мы предлагаем седацию анестезиологом. Вы спите во время лечения и ничего не замечаете. Это особенно подходит при сильном страхе.",
-        question3: "Сколько стоит лечение с седацией?",
-        answer3: "Стоимость зависит от метода и продолжительности. Закись азота стоит примерно 100-150 евро, седация дороже. Мы создадим прозрачную смету.",
-        question4: "Может ли сопровождающее лицо присутствовать?",
-        answer4: "Да, вы можете привести доверенное лицо. Многим пациентам это придает дополнительную уверенность."
+        question3: "Может ли сопровождающее лицо присутствовать?",
+        answer3: "Да, вы можете привести доверенное лицо. Многим пациентам это придает дополнительную уверенность."
       }
     },
 
@@ -2164,7 +2307,13 @@ const serviceTranslations = {
       intro: {
         title: "Профессиональная профилактика в нашей клинике",
         text1: "Лучшее лечение — это то, которое не требуется. С регулярной профилактикой вы можете эффективно предотвратить кариес, воспаление десен и пародонтит. Наша опытная команда профилактики предлагает индивидуальные концепции профилактики для всех возрастов.",
-        text2: "Профессиональная чистка зубов (PZR) удаляет налет и зубной камень даже из труднодоступных мест, где ваша зубная щетка не достает. Регулярная PZR — лучшее вложение в здоровье ваших зубов."
+        text2: "Профессиональная чистка зубов (PZR) удаляет налет и зубной камень даже из труднодоступных мест, где ваша зубная щетка не достает. Регулярная PZR — лучшее вложение в здоровье ваших зубов.",
+        content: {
+          title: "Профилактика",
+          para1: "Профилактические обследования - это больше, чем просто плановые визиты. Они являются ключом к раннему выявлению проблем с зубами, прежде чем они превратятся в более серьезные, дорогостоящие и болезненные методы лечения.",
+          para2: "Регулярный уход за зубами и профилактические обследования имеют решающее значение для вашего долгосрочного здоровья полости рта. Благодаря профилактическим мерам мы можем совместно гарантировать, что ваши зубы и десны останутся здоровыми, а серьезные проблемы будут обнаружены и вылечены на ранней стадии.",
+          para3: "Наша главная цель - всегда сохранение ваших естественных зубов. Сохранение зубов находится в центре всех наших стратегий лечения, поскольку здоровые естественные зубы ничем нельзя заменить."
+        }
       },
       benefits: {
         title: "Преимущества регулярной профилактики",
@@ -2248,7 +2397,13 @@ const serviceTranslations = {
       intro: {
         title: "Сохранение зубов в нашей клинике",
         text1: "Наша главная цель — сохранить ваши естественные зубы как можно дольше. Современная стоматология предлагает множество возможностей для восстановления поврежденных зубов и их долгосрочного сохранения.",
-        text2: "От малых пломб до сложного лечения корневых каналов — мы используем новейшие методы и высококачественные материалы, чтобы ваши зубы оставались здоровыми и функциональными на долгое время."
+        text2: "От малых пломб до сложного лечения корневых каналов — мы используем новейшие методы и высококачественные материалы, чтобы ваши зубы оставались здоровыми и функциональными на долгое время.",
+        content: {
+          title: "Восстановительная стоматология",
+          para1: "Наша практика специализируется на восстановительной стоматологии, чтобы сохранить здоровье и функцию ваших естественных зубов как можно дольше. Этот подход имеет решающее значение для обеспечения долгосрочного здоровья полости рта и предотвращения более сложных вмешательств.",
+          para2: "Восстановительная стоматология направлена на защиту и сохранение естественных зубов, а не на их замену. Это важно, потому что естественные зубы обеспечивают наилучшую функцию и эстетику, поддерживая структуру полости рта. Благодаря раннему вмешательству и постоянному уходу можно избежать более серьезных проблем, улучшая как здоровье, так и качество жизни.",
+          para3: "Наша практика специализируется на восстановительной стоматологии. Мы сохраняем здоровье и функцию ваших естественных зубов как можно дольше. Это обеспечивает долгосрочное здоровье полости рта и предотвращает более сложные вмешательства."
+        }
       },
       benefits: {
         title: "Преимущества сохранения зубов",
@@ -2332,7 +2487,12 @@ const serviceTranslations = {
       intro: {
         title: "Эстетическая стоматология в нашей клинике",
         text1: "Красивая улыбка — ваша визитная карточка. Здоровые, ухоженные зубы повышают вашу уверенность в себе и создают положительное первое впечатление. С современными методами эстетической стоматологии мы можем исполнить ваши пожелания о красивых зубах.",
-        text2: "От щадящего отбеливания до виниров — мы предлагаем вам индивидуальные решения для идеальной улыбки. При этом мы всегда уделяем внимание естественному виду и здоровью ваших зубов."
+        text2: "От щадящего отбеливания до виниров — мы предлагаем вам индивидуальные решения для идеальной улыбки. При этом мы всегда уделяем внимание естественному виду и здоровью ваших зубов.",
+        content: {
+          title: "Эстетическая стоматология",
+          para1: "Эстетическая стоматология – Красота и функциональность объединены",
+          para2: "В нашей стоматологической практике мы предлагаем эстетическую стоматологию, чтобы украсить вашу улыбку и оптимизировать функциональность ваших зубов. Эти процедуры важны для укрепления уверенности в себе и улучшения общего внешнего вида."
+        }
       },
       benefits: {
         title: "Преимущества эстетической стоматологии",
@@ -2393,7 +2553,11 @@ const serviceTranslations = {
       intro: {
         title: "Высококачественные протезы в нашей клинике",
         text1: "Отсутствующие зубы влияют не только на внешний вид, но и на жевательную функцию, произношение и могут привести к проблемам с челюстным суставом. Современные протезы закрывают эти пробелы и восстанавливают качество жизни.",
-        text2: "В тесном сотрудничестве с собственной лабораторией мы создаем индивидуальные высококачественные протезы — от частичных коронок до мостов и полных протезов. Мы ценим эстетику, функцию и долговечность."
+        text2: "В тесном сотрудничестве с собственной лабораторией мы создаем индивидуальные высококачественные протезы — от частичных коронок до мостов и полных протезов. Мы ценим эстетику, функцию и долговечность.",
+        content: {
+          title: "Зубные протезы",
+          para1: "Наша стоматологическая клиника предлагает высококачественные зубные протезы, которые отвечают как эстетическим, так и функциональным потребностям. Зубные протезы важны для замены потерянных зубов и улучшения жевания, речи и эстетического внешнего вида."
+        }
       },
       benefits: {
         title: "Преимущества наших протезов",
@@ -2454,7 +2618,11 @@ const serviceTranslations = {
       intro: {
         title: "Стоматологическая хирургия в нашей клинике",
         text1: "Иногда консервативного лечения недостаточно для решения проблем с зубами. В этих случаях необходимы хирургические процедуры. Благодаря современным технологиям и бережным процедурам мы можем выполнять многие операции амбулаторно в нашей клинике.",
-        text2: "От удаления зубов мудрости до резекции верхушки корня и более сложных процедур — мы лечим вас с максимальной заботой и современными методами. Ваше благополучие всегда наш приоритет."
+        text2: "От удаления зубов мудрости до резекции верхушки корня и более сложных процедур — мы лечим вас с максимальной заботой и современными методами. Ваше благополучие всегда наш приоритет.",
+        content: {
+          title: "Хирургическая стоматология",
+          para1: "Наша стоматологическая клиника предлагает комплексную хирургическую стоматологию для эффективного лечения сложных стоматологических проблем и поддержания здоровья полости рта наших пациентов. Хирургическая стоматология имеет решающее значение для лечения серьезных проблем с зубами и заболеваний челюсти, а также для эстетических коррекций."
+        }
       },
       benefits: {
         title: "Преимущества нашей хирургической стоматологии",
@@ -2534,7 +2702,11 @@ const serviceTranslations = {
       intro: {
         title: "Зубные импланты — лучшее решение при потере зубов",
         text1: "Зубные импланты — это искусственные корни зубов из титана или керамики, которые прочно закрепляются в челюстной кости. Они предлагают самую стабильную и естественную форму протезирования и ощущаются как собственные зубы.",
-        text2: "Благодаря нашему многолетнему опыту в имплантологии мы предлагаем вам высококачественные имплантационные решения. От восстановления одного зуба до восстановления беззубой челюсти — мы находим оптимальное решение для каждого случая."
+        text2: "Благодаря нашему многолетнему опыту в имплантологии мы предлагаем вам высококачественные имплантационные решения. От восстановления одного зуба до восстановления беззубой челюсти — мы находим оптимальное решение для каждого случая.",
+        content: {
+          title: "Имплантология",
+          para1: "В нашей стоматологической клинике мы предлагаем высококачественные импланты для эффективной замены потерянных зубов и улучшения качества жизни наших пациентов. Импланты имеют решающее значение для восстановления зубных промежутков и обеспечивают долгосрочное решение для отсутствующих зубов."
+        }
       },
       benefits: {
         title: "Преимущества зубных имплантов",
@@ -2618,6 +2790,7 @@ const serviceTranslations = {
       about: "من نحن",
       services: "الخدمات",
       labor: "المختبر",
+      karriere: "الوظائف",
       contact: "اتصل بنا"
     },
 
@@ -2735,7 +2908,13 @@ const serviceTranslations = {
       intro: {
         title: "طب الأسنان بدون خوف",
         text1: "الخوف من طبيب الأسنان ظاهرة شائعة يعاني منها كثير من الناس. التجارب السيئة أو الخوف من الألم أو الشعور بالعجز يمكن أن تؤدي إلى تجنب العلاج الضروري. نحن نأخذ مخاوفك على محمل الجد وقد أنشأنا مفهومًا خاصًا للمرضى القلقين.",
-        text2: "في جو هادئ، نخصص وقتًا إضافيًا لك بشكل خاص. نشرح كل خطوة بالتفصيل ونعمل فقط بموافقتك. هدفنا هو إعادة التجارب الإيجابية مع طبيب الأسنان لك."
+        text2: "في جو هادئ، نخصص وقتًا إضافيًا لك بشكل خاص. نشرح كل خطوة بالتفصيل ونعمل فقط بموافقتك. هدفنا هو إعادة التجارب الإيجابية مع طبيب الأسنان لك.",
+        content: {
+          title: "المرضى القلقون",
+          para1: "نحن نفهم أن زيارة طبيب الأسنان مرتبطة بالقلق لدى كثير من الناس، وقد جعلنا مهمتنا تزويدك بتجربة خالية من التوتر وممتعة.",
+          para2: "يتألف فريقنا من أطباء أسنان ذوي خبرة مدربين بشكل خاص على التعامل مع المرضى القلقين. نحن نولي أهمية كبيرة للعلاج المتعاطف واللطيف لضمان حصولك على أفضل رعاية أسنان ممكنة.",
+          para3: "تم تصميم عيادتنا لخلق جو مهدئ ومريح يقلل من القلق ويبني الثقة."
+        }
       },
       benefits: {
         title: "مزايا للمرضى القلقين",
@@ -2759,35 +2938,42 @@ const serviceTranslations = {
       methods: {
         title: "طرق مكافحة قلق الأسنان",
         method1: {
-          title: "مناقشة أولية تفصيلية",
-          text: "في الموعد الأول نتعرف على بعضنا البعض بهدوء. تخبرنا عن مخاوفك ونناقش معًا كيف يمكننا المتابعة. لا يتم إجراء أي علاج - فقط محادثة ثقة."
+          title: "علاج الأسنان بدون قلق",
+          text: "نستخدم تقنيات وطرق حديثة لجعل العلاج مريحًا وغير مؤلم قدر الإمكان. وتشمل هذه التخدير الموضعي والتخدير والتنويم المغناطيسي."
         },
         method2: {
-          title: "تخدير موضعي بتقنية لطيفة",
-          text: "نستخدم إبرًا رفيعة بشكل خاص وتقنيات تخدير حديثة تجعل الحقن غير مؤلم تقريبًا. قبل الحقن، نخدر المنطقة سطحيًا بجل."
+          title: "استشارة وتوعية فردية",
+          text: "قبل كل علاج، نخصص وقتًا طويلاً لمناقشة مخاوفك وقلقك. التثقيف الشامل حول الإجراءات المخططة يساعد على تقليل حالات عدم اليقين."
         },
         method3: {
-          title: "التخدير (النوم الخفيف)",
-          text: "للإجراءات الكبيرة أو القلق الشديد، نقدم علاجات تحت التخدير. أنت مسترخي وناعس، لا تشعر بالخوف ولديك ذاكرة قليلة عن العلاج بعد ذلك."
+          title: "تنظيف أسنان لطيف",
+          text: "برامج الوقاية لدينا مصممة خصيصًا لاحتياجات المرضى القلقين. بالطرق اللطيفة، نضمن تنظيف أسنان شاملاً وفي نفس الوقت مريحاً."
         },
         method4: {
-          title: "التنويم المغناطيسي وتقنيات الاسترخاء",
-          text: "عند الطلب، يمكننا استخدام تقنيات التنويم المغناطيسي أو تمارين الاسترخاء الموجهة لوضعك في حالة هادئة ومسترخية أثناء العلاج."
+          title: "ترميم الأسنان تحت التخدير",
+          text: "للعلاجات الأكثر شمولاً، نقدم خيار التخدير. هذا يسمح لك بالاسترخاء أثناء العلاج وتقليل التوتر."
         },
         method5: {
-          title: "أحدث التقنيات لأوقات علاج قصيرة",
-          text: "بفضل المعدات والإجراءات الحديثة، يمكننا إجراء العديد من العلاجات بشكل أسرع بكثير. الجلسات الأقصر تعني ضغطًا أقل عليك."
-        }
+          title: "علاج رهاب الأسنان",
+          text: "لقد طورنا برامج خاصة لمساعدتك على التغلب على رهاب الأسنان. من خلال المحادثات المستهدفة وخطوات الاقتراب اللطيفة، تستعيد الثقة واليقين."
+        },
+        method6: {
+          title: "أحدث التقنيات والمعدات",
+          text: "عيادتنا مجهزة بأحدث التقنيات التي تتيح علاجًا دقيقًا ولطيفًا. هذا يساعد على تقصير أوقات العلاج وزيادة الراحة."
+        },
+        method7: {
+          title: "الرعاية اللاحقة والدعم",
+          text: "حتى بعد العلاج، نبقى إلى جانبك بالمشورة والمساعدة. مواعيد المتابعة المنتظمة تساعد على الحفاظ على صحة أسنانك على المدى الطويل وتقليل القلق المستقبلي."
+        },
+        closing: "نحن مقتنعون بأن كل شخص له الحق في رعاية أسنان خالية من القلق. قم بزيارتنا واختبر كيف نأخذ خوفك من طبيب الأسنان على محمل الجد ونعالجه بتعاطف وخبرة كبيرة. احجز موعدًا اليوم ودعنا نعمل معًا لضمان أن تصبح زيارتك لطبيب الأسنان تجربة إيجابية."
       },
       faq: {
-        question1: "ما هو العلاج بغاز الضحك؟",
-        answer1: "غاز الضحك هو مهدئ لطيف يُستنشق عبر قناع الأنف. تبقى واعيًا، لكنك مسترخ وهادئ. يتلاشى التأثير مباشرة بعد العلاج.",
+        question1: "ما هو الخوف من طبيب الأسنان؟",
+        answer1: "الخوف من طبيب الأسنان هو رهاب منتشر يمكن أن يتراوح من الانزعاج الخفيف إلى نوبات الهلع. غالبًا ما ينشأ من التجارب السلبية أو الخوف من فقدان السيطرة والألم.",
         question2: "هل يمكنني النوم أثناء العلاج؟",
         answer2: "نعم، للعلاج الواسع نقدم التخدير مع طبيب التخدير. تنام أثناء العلاج ولا تلاحظ شيئًا. هذا مناسب بشكل خاص للخوف الشديد.",
-        question3: "كم تكلفة العلاج مع التخدير؟",
-        answer3: "التكلفة تعتمد على الطريقة والمدة. غاز الضحك يكلف حوالي 100-150 يورو، التخدير أغلى. سنقوم بإعداد تقدير تكلفة شفاف.",
-        question4: "هل يمكن لشخص مرافق أن يكون حاضرًا؟",
-        answer4: "نعم، يمكنك إحضار شخص موثوق. هذا يعطي العديد من المرضى أمانًا إضافيًا."
+        question3: "هل يمكن لشخص مرافق أن يكون حاضرًا؟",
+        answer3: "نعم، يمكنك إحضار شخص موثوق. هذا يعطي العديد من المرضى أمانًا إضافيًا."
       }
     },
 
@@ -2800,7 +2986,13 @@ const serviceTranslations = {
       intro: {
         title: "الوقاية المهنية في عيادتنا",
         text1: "أفضل علاج هو الذي لا تحتاجه. مع الوقاية المنتظمة، يمكنك منع التسوس والتهاب اللثة والتهاب دواعم السن بشكل فعال. يقدم فريق الوقاية ذو الخبرة لدينا مفاهيم وقاية فردية لجميع الأعمار.",
-        text2: "التنظيف المهني للأسنان (PZR) يزيل البلاك والجير حتى من الأماكن التي يصعب الوصول إليها حيث لا تصل فرشاة أسنانك. PZR المنتظم هو أفضل استثمار في صحة أسنانك."
+        text2: "التنظيف المهني للأسنان (PZR) يزيل البلاك والجير حتى من الأماكن التي يصعب الوصول إليها حيث لا تصل فرشاة أسنانك. PZR المنتظم هو أفضل استثمار في صحة أسنانك.",
+        content: {
+          title: "الوقاية",
+          para1: "الفحوصات الوقائية هي أكثر من مجرد زيارات روتينية. إنها المفتاح للكشف المبكر عن مشاكل الأسنان قبل أن تتطور إلى علاجات أكبر وأكثر تكلفة وأكثر إيلاماً.",
+          para2: "العناية المنتظمة بالأسنان والفحوصات الوقائية لها أهمية حاسمة لصحة فمك على المدى الطويل. من خلال التدابير الوقائية، يمكننا معاً ضمان بقاء أسنانك ولثتك بصحة جيدة واكتشاف المشاكل الخطيرة وعلاجها مبكراً.",
+          para3: "هدفنا الأسمى دائماً هو الحفاظ على أسنانك الطبيعية. يقع الحفاظ على الأسنان في مركز جميع استراتيجيات العلاج لدينا، لأن الأسنان الطبيعية الصحية لا يمكن استبدالها بأي شيء."
+        }
       },
       benefits: {
         title: "مزايا الوقاية المنتظمة",
@@ -2884,7 +3076,13 @@ const serviceTranslations = {
       intro: {
         title: "الحفاظ على الأسنان في عيادتنا",
         text1: "هدفنا الرئيسي هو الحفاظ على أسنانك الطبيعية لأطول فترة ممكنة. طب الأسنان الحديث يقدم العديد من الخيارات لاستعادة الأسنان التالفة والحفاظ عليها على المدى الطويل.",
-        text2: "من الحشوات الصغيرة إلى علاج قناة الجذر المعقد - نستخدم أحدث الأساليب والمواد عالية الجودة للحفاظ على أسنانك صحية وفعالة لفترة طويلة."
+        text2: "من الحشوات الصغيرة إلى علاج قناة الجذر المعقد - نستخدم أحدث الأساليب والمواد عالية الجودة للحفاظ على أسنانك صحية وفعالة لفترة طويلة.",
+        content: {
+          title: "طب الأسنان الترميمي",
+          para1: "تتخصص عيادتنا في طب الأسنان الترميمي للحفاظ على صحة ووظيفة أسنانك الطبيعية لأطول فترة ممكنة. هذا النهج أمر بالغ الأهمية لضمان صحة الفم على المدى الطويل وتجنب التدخلات الأكثر تعقيداً.",
+          para2: "يهدف طب الأسنان الترميمي إلى حماية والحفاظ على الأسنان الطبيعية بدلاً من استبدالها. هذا مهم لأن الأسنان الطبيعية توفر أفضل وظيفة وجمالية مع دعم هيكل الفم. من خلال التدخلات المبكرة والرعاية المستمرة، يمكن تجنب المشاكل الأكبر، مما يحسن الصحة ونوعية الحياة.",
+          para3: "تتخصص عيادتنا في طب الأسنان الترميمي. نحافظ على صحة ووظيفة أسنانك الطبيعية لأطول فترة ممكنة. هذا يضمن صحة الفم على المدى الطويل ويتجنب التدخلات الأكثر تعقيداً."
+        }
       },
       benefits: {
         title: "مزايا الحفاظ على الأسنان",
@@ -2968,7 +3166,12 @@ const serviceTranslations = {
       intro: {
         title: "طب الأسنان التجميلي في عيادتنا",
         text1: "الابتسامة الجميلة هي بطاقة زيارتك. الأسنان الصحية والمعتنى بها تعزز ثقتك بنفسك وتخلق انطباعًا أولًا إيجابيًا. مع الأساليب الحديثة لطب الأسنان التجميلي، يمكننا تحقيق رغباتك في أسنان جميلة.",
-        text2: "من التبييض اللطيف إلى الفينير - نقدم لك حلولًا فردية للابتسامة المثالية. في ذلك نولي دائمًا اهتمامًا بالمظهر الطبيعي وصحة أسنانك."
+        text2: "من التبييض اللطيف إلى الفينير - نقدم لك حلولًا فردية للابتسامة المثالية. في ذلك نولي دائمًا اهتمامًا بالمظهر الطبيعي وصحة أسنانك.",
+        content: {
+          title: "طب الأسنان التجميلي",
+          para1: "طب الأسنان التجميلي – الجمال والوظيفة متحدان",
+          para2: "في عيادة الأسنان لدينا، نقدم طب الأسنان التجميلي لتجميل ابتسامتك وتحسين وظيفة أسنانك. هذه العلاجات مهمة لتعزيز الثقة بالنفس وتحسين المظهر العام."
+        }
       },
       benefits: {
         title: "مزايا طب الأسنان التجميلي",
@@ -3029,7 +3232,11 @@ const serviceTranslations = {
       intro: {
         title: "تركيبات عالية الجودة في عيادتنا",
         text1: "الأسنان المفقودة تؤثر ليس فقط على مظهرك ولكن أيضًا على وظيفة المضغ والنطق ويمكن أن تؤدي إلى مشاكل في مفصل الفك. التركيبات الحديثة تسد هذه الفجوات وتستعيد جودة حياتك.",
-        text2: "بالتعاون الوثيق مع مختبرنا الخاص، نقوم بإنشاء تركيبات فردية عالية الجودة - من التيجان الجزئية إلى الجسور إلى الأطقم الكاملة. نقدر الجمال والوظيفة والمتانة."
+        text2: "بالتعاون الوثيق مع مختبرنا الخاص، نقوم بإنشاء تركيبات فردية عالية الجودة - من التيجان الجزئية إلى الجسور إلى الأطقم الكاملة. نقدر الجمال والوظيفة والمتانة.",
+        content: {
+          title: "تركيبات الأسنان",
+          para1: "تقدم عيادة الأسنان لدينا تركيبات أسنان عالية الجودة تلبي الاحتياجات الجمالية والوظيفية. تركيبات الأسنان مهمة لاستبدال الأسنان المفقودة وتحسين المضغ والكلام والمظهر الجمالي."
+        }
       },
       benefits: {
         title: "مزايا تركيباتنا",
@@ -3090,7 +3297,11 @@ const serviceTranslations = {
       intro: {
         title: "جراحة الأسنان في عيادتنا",
         text1: "أحيانًا لا يكفي العلاج التحفظي لحل مشاكل الأسنان. في هذه الحالات، تكون الإجراءات الجراحية ضرورية. بفضل التكنولوجيا الحديثة والإجراءات اللطيفة، يمكننا إجراء العديد من العمليات في العيادة الخارجية في عيادتنا.",
-        text2: "من إزالة ضرس العقل إلى استئصال طرف الجذر إلى الإجراءات الأكثر تعقيدًا - نعالجك بأقصى قدر من العناية وأحدث الأساليب. رفاهيتك دائمًا أولويتنا."
+        text2: "من إزالة ضرس العقل إلى استئصال طرف الجذر إلى الإجراءات الأكثر تعقيدًا - نعالجك بأقصى قدر من العناية وأحدث الأساليب. رفاهيتك دائمًا أولويتنا.",
+        content: {
+          title: "جراحة الفم",
+          para1: "تقدم عيادة الأسنان لدينا جراحة الفم الشاملة لعلاج مشاكل الأسنان المعقدة بفعالية والحفاظ على صحة الفم لمرضانا. جراحة الفم حاسمة لعلاج مشاكل الأسنان الشديدة وأمراض الفك بالإضافة إلى التصحيحات الجمالية."
+        }
       },
       benefits: {
         title: "مزايا جراحة الفم لدينا",
@@ -3170,7 +3381,11 @@ const serviceTranslations = {
       intro: {
         title: "زراعة الأسنان - أفضل حل لفقدان الأسنان",
         text1: "زرعات الأسنان هي جذور أسنان صناعية من التيتانيوم أو السيراميك تُثبت بشكل محكم في عظم الفك. إنها تقدم أكثر أشكال التركيبات استقرارًا وطبيعية وتُحس مثل أسنانك الخاصة.",
-        text2: "بفضل خبرتنا الطويلة في زراعة الأسنان، نقدم لك حلول زرع عالية الجودة. من استعادة سن واحد إلى استعادة الفك الخالي من الأسنان - نجد الحل الأمثل لكل حالة."
+        text2: "بفضل خبرتنا الطويلة في زراعة الأسنان، نقدم لك حلول زرع عالية الجودة. من استعادة سن واحد إلى استعادة الفك الخالي من الأسنان - نجد الحل الأمثل لكل حالة.",
+        content: {
+          title: "زراعة الأسنان",
+          para1: "في عيادة الأسنان لدينا، نقدم زراعات عالية الجودة لاستبدال الأسنان المفقودة بفعالية وتحسين نوعية حياة مرضانا. الزراعات حاسمة لاستعادة فجوات الأسنان وتوفر حلاً طويل الأمد للأسنان المفقودة."
+        }
       },
       benefits: {
         title: "مزايا زرعات الأسنان",
@@ -3276,6 +3491,7 @@ function updatePageContent() {
   else if (path.includes('zahnersatz')) serviceName = 'zahnersatz';
   else if (path.includes('oralchirurgie')) serviceName = 'oralchirurgie';
   else if (path.includes('implantologie')) serviceName = 'implantologie';
+  else if (path.includes('labor')) serviceName = 'labor';
 
   elements.forEach(element => {
     let key = element.getAttribute('data-translate');
@@ -3294,7 +3510,9 @@ function updatePageContent() {
     }
 
     const keys = key.split('.');
-    let translation = serviceTranslations[currentLanguage];
+    // Use window.translations if available (for pages with merged translations like labor)
+    // otherwise fall back to serviceTranslations
+    let translation = (window.translations && window.translations[currentLanguage]) || serviceTranslations[currentLanguage];
 
     // Navigate through nested keys
     for (const k of keys) {
@@ -3327,6 +3545,7 @@ function updatePageMeta() {
 
   if (path.includes('kinderzahnheilkunde')) serviceName = 'kinderzahnheilkunde';
   else if (path.includes('angstpatienten')) serviceName = 'angstpatienten';
+  else if (path.includes('labor')) serviceName = 'labor';
   else if (path.includes('prophylaxe')) serviceName = 'prophylaxe';
   else if (path.includes('zahnerhaltung')) serviceName = 'zahnerhaltung';
   else if (path.includes('aesthetische')) serviceName = 'aesthetische';
@@ -3334,13 +3553,27 @@ function updatePageMeta() {
   else if (path.includes('oralchirurgie')) serviceName = 'oralchirurgie';
   else if (path.includes('implantologie')) serviceName = 'implantologie';
 
-  if (serviceName && serviceTranslations[currentLanguage][serviceName]) {
-    const service = serviceTranslations[currentLanguage][serviceName];
-    if (service.hero) {
-      document.title = `${service.hero.title} - Zahnarztpraxen Seitschenko-Dinh`;
-      const metaDesc = document.querySelector('meta[name="description"]');
-      if (metaDesc) {
-        metaDesc.setAttribute('content', service.hero.subtitle);
+  if (serviceName) {
+    // Use window.translations if available (for pages with merged translations like labor)
+    // otherwise fall back to serviceTranslations
+    const translations = (window.translations && window.translations[currentLanguage]) || serviceTranslations[currentLanguage];
+
+    if (translations && translations[serviceName]) {
+      const service = translations[serviceName];
+
+      // For labor page, use meta tags if available, otherwise use hero
+      if (service.meta) {
+        document.title = service.meta.title;
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) {
+          metaDesc.setAttribute('content', service.meta.description);
+        }
+      } else if (service.hero) {
+        document.title = `${service.hero.title} - Zahnarztpraxen Seitschenko-Dinh`;
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) {
+          metaDesc.setAttribute('content', service.hero.subtitle);
+        }
       }
     }
   }

@@ -32,11 +32,12 @@
         <!-- Navigation and Language Switcher -->
         <div class="hidden md:flex items-center space-x-4">
           <nav class="flex space-x-2">
-            <a href="../index.html#home" class="nav-link" data-translate="nav.home">Start</a>
-            <a href="../index.html#about" class="nav-link" data-translate="nav.about">Über uns</a>
-            <a href="../index.html#services" class="nav-link active" data-translate="nav.services">Leistungen</a>
-            <a href="../index.html#labor" class="nav-link" data-translate="nav.labor">Labor</a>
-            <a href="../index.html#contact" class="nav-link" data-translate="nav.contact">Kontakt</a>
+            <a href="../index.html#home" class="nav-link" data-translate="nav.home"></a>
+            <a href="about-us.html" class="nav-link" data-translate="nav.about"></a>
+            <a href="../index.html#services" class="nav-link active" data-translate="nav.services"></a>
+            <a href="labor.html" class="nav-link" data-translate="nav.labor"></a>
+            <a href="karriere.html" class="nav-link" data-translate="nav.karriere"></a>
+            <a href="../index.html#contact" class="nav-link" data-translate="nav.contact"></a>
           </nav>
 
           <!-- Language Switcher -->
@@ -84,11 +85,12 @@
       <!-- Mobile Menu -->
       <div id="mobile-menu" class="md:hidden hidden pb-4">
         <div class="flex flex-col space-y-2">
-          <a href="../index.html#home" class="nav-link" data-translate="nav.home">Start</a>
-          <a href="../index.html#about" class="nav-link" data-translate="nav.about">Über uns</a>
-          <a href="../index.html#services" class="nav-link active" data-translate="nav.services">Leistungen</a>
-          <a href="../index.html#labor" class="nav-link" data-translate="nav.labor">Labor</a>
-          <a href="../index.html#contact" class="nav-link" data-translate="nav.contact">Kontakt</a>
+          <a href="../index.html#home" class="nav-link" data-translate="nav.home"></a>
+          <a href="about-us.html" class="nav-link" data-translate="nav.about"></a>
+          <a href="../index.html#services" class="nav-link active" data-translate="nav.services"></a>
+          <a href="labor.html" class="nav-link" data-translate="nav.labor"></a>
+          <a href="karriere.html" class="nav-link" data-translate="nav.karriere"></a>
+          <a href="../index.html#contact" class="nav-link" data-translate="nav.contact"></a>
 
           <!-- Mobile Language Switcher -->
           <div class="pt-2 border-t border-gray-200">
@@ -185,7 +187,7 @@
           </div>
 
           <!-- Circle Image Column -->
-          <div class="md:col-span-5 scroll-reveal img-circle-frame">
+          <div class="md:col-span-5 scroll-reveal img-perfect-circle">
             <img src="../assets/img/img_0373-scaled.jpeg" alt="Behandlungen von Kindern" class="shadow-2xl">
           </div>
         </div>
@@ -519,9 +521,9 @@
   </section>
 
   <!-- Contact Section -->
-  <section class="py-20 bg-gray-50">
+  <section id="contact" class="py-20">
     <div class="container mx-auto px-4">
-      <div class="text-center mb-16">
+      <div class="text-center mb-16 scroll-reveal">
         <h2 class="text-4xl font-bold text-gray-800 mb-4" data-translate="contact.title">Termin vereinbaren</h2>
         <p class="text-xl text-gray-600 max-w-2xl mx-auto" data-translate="contact.subtitle">
           Vereinbaren Sie einen Termin für Ihr Kind in einer unserer Praxen
@@ -530,7 +532,8 @@
 
       <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
         <!-- Location 1: Schwarzbach -->
-        <div class="bg-gray-50 rounded-2xl shadow-lg p-8">
+        <div class="contact-card-wrapper">
+          <div class="location-card">
           <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="contact.location1.title">Standort Schwarzbach</h3>
           <div class="space-y-4">
             <div class="flex items-start space-x-3">
@@ -563,10 +566,12 @@
             </div>
           </div>
         </div>
+        </div>
 
-        <!-- Location 2: Wall -->
-        <div class="bg-gray-50 rounded-2xl shadow-lg p-8">
-          <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="contact.location2.title">Standort Loher</h3>
+        <!-- Location 2: Am Loh -->
+        <div class="contact-card-wrapper">
+          <div class="location-card">
+          <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="contact.location2.title">Standort Am Loh</h3>
           <div class="space-y-4">
             <div class="flex items-start space-x-3">
               <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -598,6 +603,7 @@
             </div>
           </div>
         </div>
+        </div>
       </div>
     </div>
   </section>
@@ -628,7 +634,7 @@
           </div>
         </div>
 
-        <!-- Location 2: Loher Str. -->
+        <!-- Location 2: Am Loh Str. -->
         <div class="flex items-center space-x-3">
           <div class="flex-shrink-0">
             <div class="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center">

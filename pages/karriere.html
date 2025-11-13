@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<!--
+  Karriere - Career Opportunities Page
+  ========================================================
+  Join our team and grow your career in modern dentistry.
+-->
+<html lang="de" id="html-root">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title id="page-title">Karriere - Seitschenko-Dinh</title>
+  <meta name="description" content="Karrieremöglichkeiten bei Zahnarztpraxen Seitschenko-Dinh in Wuppertal" id="page-description">
+  <link href="../css/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="bg-white text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-white shadow-lg fixed top-0 left-0 right-0 z-50">
+    <div class="container mx-auto px-4">
+      <div class="flex items-center justify-between py-4">
+        <!-- Logo -->
+        <div class="flex items-center space-x-3">
+          <img src="../assets/img/logo.svg" alt="Seitschenko-Dinh Logo" class="w-12 h-12">
+          <a href="../index.html" class="flex flex-col leading-tight">
+            <span class="text-sm font-bold text-gray-800 tracking-wide" data-translate="header.practice_name1">ZAHNARZTPRAXEN</span>
+            <span class="text-sm font-bold text-gray-800 tracking-wide" data-translate="header.practice_name2">SEITSCHENKO-DINH</span>
+          </a>
+        </div>
+
+        <!-- Navigation and Language Switcher -->
+        <div class="hidden md:flex items-center space-x-4">
+          <nav class="flex space-x-2">
+            <a href="../index.html#home" class="nav-link" data-translate="nav.home"></a>
+            <a href="about-us.html" class="nav-link" data-translate="nav.about"></a>
+            <a href="../index.html#services" class="nav-link" data-translate="nav.services"></a>
+            <a href="labor.html" class="nav-link" data-translate="nav.labor"></a>
+            <a href="karriere.html" class="nav-link active" data-translate="nav.karriere"></a>
+            <a href="../index.html#contact" class="nav-link" data-translate="nav.contact"></a>
+          </nav>
+
+          <!-- Language Switcher -->
+          <div class="language-switcher">
+            <button id="language-btn" class="flex items-center space-x-1 px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+              <img id="current-flag" src="https://flagcdn.com/24x18/de.png" alt="Deutsch" class="language-flag">
+              <span id="current-lang">DE</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div id="language-menu" class="language-menu">
+              <a href="#" onclick="changeLanguage('de')" class="language-option" data-lang="de">
+                <img src="https://flagcdn.com/24x18/de.png" alt="Deutsch" class="language-flag">
+                Deutsch
+              </a>
+              <a href="#" onclick="changeLanguage('en')" class="language-option" data-lang="en">
+                <img src="https://flagcdn.com/24x18/us.png" alt="English" class="language-flag">
+                English
+              </a>
+              <a href="#" onclick="changeLanguage('vi')" class="language-option" data-lang="vi">
+                <img src="https://flagcdn.com/24x18/vn.png" alt="Tiếng Việt" class="language-flag">
+                Tiếng Việt
+              </a>
+              <a href="#" onclick="changeLanguage('ru')" class="language-option" data-lang="ru">
+                <img src="https://flagcdn.com/24x18/ru.png" alt="Русский" class="language-flag">
+                Русский
+              </a>
+              <a href="#" onclick="changeLanguage('ar')" class="language-option" data-lang="ar">
+                <img src="https://flagcdn.com/24x18/sa.png" alt="العربية" class="language-flag">
+                العربية
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="md:hidden p-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="md:hidden hidden pb-4">
+        <div class="flex flex-col space-y-2">
+          <a href="../index.html#home" class="nav-link" data-translate="nav.home"></a>
+          <a href="about-us.html" class="nav-link" data-translate="nav.about"></a>
+          <a href="../index.html#services" class="nav-link" data-translate="nav.services"></a>
+          <a href="labor.html" class="nav-link" data-translate="nav.labor"></a>
+          <a href="karriere.html" class="nav-link active" data-translate="nav.karriere"></a>
+          <a href="../index.html#contact" class="nav-link" data-translate="nav.contact"></a>
+
+          <!-- Mobile Language Switcher -->
+          <div class="pt-2 border-t border-gray-200">
+            <div class="language-switcher-mobile">
+              <button id="mobile-language-btn" class="flex items-center justify-between w-full px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+                <span data-translate="language.current">Sprache:</span>
+                <div class="flex items-center space-x-1">
+                  <img id="mobile-current-flag" src="https://flagcdn.com/24x18/de.png" alt="Deutsch" class="language-flag">
+                  <span id="mobile-current-lang">DE</span>
+                </div>
+              </button>
+              <div id="mobile-language-menu" class="language-menu-mobile">
+                <a href="#" onclick="changeLanguage('de')" class="language-option-mobile" data-lang="de">
+                  <img src="https://flagcdn.com/24x18/de.png" alt="Deutsch" class="language-flag">
+                  Deutsch
+                </a>
+                <a href="#" onclick="changeLanguage('en')" class="language-option-mobile" data-lang="en">
+                  <img src="https://flagcdn.com/24x18/us.png" alt="English" class="language-flag">
+                  English
+                </a>
+                <a href="#" onclick="changeLanguage('vi')" class="language-option-mobile" data-lang="vi">
+                  <img src="https://flagcdn.com/24x18/vn.png" alt="Tiếng Việt" class="language-flag">
+                  Tiếng Việt
+                </a>
+                <a href="#" onclick="changeLanguage('ru')" class="language-option-mobile" data-lang="ru">
+                  <img src="https://flagcdn.com/24x18/ru.png" alt="Русский" class="language-flag">
+                  Русский
+                </a>
+                <a href="#" onclick="changeLanguage('ar')" class="language-option-mobile" data-lang="ar">
+                  <img src="https://flagcdn.com/24x18/sa.png" alt="العربية" class="language-flag">
+                  العربية
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-bg py-32 relative overflow-hidden">
+    <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+    <div class="relative z-10 text-center max-w-4xl mx-auto px-4">
+      <h1 class="text-4xl md:text-6xl font-bold text-white mb-6" data-translate="karriere.hero.title">
+        Karriere bei uns
+      </h1>
+      <p class="text-xl text-white font-light max-w-2xl mx-auto" data-translate="karriere.hero.subtitle">
+        Werden Sie Teil unseres engagierten Teams
+      </p>
+    </div>
+  </section>
+
+  <!-- Introduction Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto text-center scroll-reveal">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6" data-translate="karriere.intro.title">
+          Ihre Zukunft in der Zahnmedizin
+        </h2>
+        <p class="text-lg text-gray-600 leading-relaxed mb-8" data-translate="karriere.intro.text">
+          Wir suchen talentierte Fachkräfte, die eine Leidenschaft für Zahnmedizin und Patientenpflege haben. Bei uns finden Sie eine inspirierende Arbeitsumgebung mit kontinuierlicher Weiterbildung und Wachstumsmöglichkeiten in einem engagierten Team.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-12 text-center scroll-reveal" data-translate="karriere.benefits.title">
+          Was wir bieten
+        </h2>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Benefit 1 -->
+          <div class="bg-white rounded-2xl p-8 shadow-lg scroll-reveal hover:shadow-xl transition-shadow">
+            <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 mx-auto" style="background: linear-gradient(to right, #06b6d4, #2563eb);">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-4 text-center" data-translate="karriere.benefit1.title">
+              Weiterbildung
+            </h3>
+            <p class="text-gray-600 text-center" data-translate="karriere.benefit1.text">
+              Kontinuierliche Fort- und Weiterbildungsmöglichkeiten für Ihre berufliche Entwicklung
+            </p>
+          </div>
+
+          <!-- Benefit 2 -->
+          <div class="bg-white rounded-2xl p-8 shadow-lg scroll-reveal hover:shadow-xl transition-shadow">
+            <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 mx-auto" style="background: linear-gradient(to right, #10b981, #0d9488);">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-4 text-center" data-translate="karriere.benefit2.title">
+              Teamwork
+            </h3>
+            <p class="text-gray-600 text-center" data-translate="karriere.benefit2.text">
+              Arbeiten in einem motivierten und kollegialen Team mit flachen Hierarchien
+            </p>
+          </div>
+
+          <!-- Benefit 3 -->
+          <div class="bg-white rounded-2xl p-8 shadow-lg scroll-reveal hover:shadow-xl transition-shadow">
+            <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 mx-auto" style="background: linear-gradient(to right, #a855f7, #ec4899);">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-4 text-center" data-translate="karriere.benefit3.title">
+              Moderne Ausstattung
+            </h3>
+            <p class="text-gray-600 text-center" data-translate="karriere.benefit3.text">
+              Arbeiten mit modernster Technologie und eigenem Labor
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Job Positions Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-12 text-center scroll-reveal" data-translate="karriere.positions.title">
+          Aktuelle Stellenangebote
+        </h2>
+
+        <!-- Position 1: Ärzte -->
+        <div class="bg-gray-50 rounded-2xl p-8 mb-8 scroll-reveal hover:shadow-lg transition-shadow">
+          <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-6">
+            <div>
+              <h3 class="text-2xl font-bold text-gray-800 mb-2" data-translate="karriere.position1.title">
+                Ärzte (m/w/d)
+              </h3>
+              <p class="text-teal-600 font-semibold" data-translate="karriere.position1.type">
+                Vollzeit / Teilzeit
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-4 mb-6">
+            <div>
+              <h4 class="font-semibold text-gray-800 mb-2" data-translate="karriere.position1.requirements.title">Ihre Qualifikationen:</h4>
+              <ul class="list-disc list-inside text-gray-600 space-y-1">
+                <li data-translate="karriere.position1.requirements.item1">Abgeschlossenes Studium der Zahnmedizin</li>
+                <li data-translate="karriere.position1.requirements.item2">Leidenschaft für Patientenpflege und Zahnmedizin</li>
+                <li data-translate="karriere.position1.requirements.item3">Teamfähigkeit und Kommunikationsstärke</li>
+                <li data-translate="karriere.position1.requirements.item4">Bereitschaft zur kontinuierlichen Weiterbildung</li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 class="font-semibold text-gray-800 mb-2" data-translate="karriere.position1.tasks.title">Ihre Aufgaben:</h4>
+              <ul class="list-disc list-inside text-gray-600 space-y-1">
+                <li data-translate="karriere.position1.tasks.item1">Umfassende zahnmedizinische Behandlung unserer Patienten</li>
+                <li data-translate="karriere.position1.tasks.item2">Beratung und Aufklärung der Patienten</li>
+                <li data-translate="karriere.position1.tasks.item3">Zusammenarbeit mit unserem eigenen Labor</li>
+                <li data-translate="karriere.position1.tasks.item4">Mitgestaltung moderner Behandlungskonzepte</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-4">
+            <a href="mailto:b.dinh@seitschenko-dinh.de" class="bg-teal-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-teal-700 transition-colors inline-flex items-center">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+              <span data-translate="karriere.position1.apply">Jetzt bewerben</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- General Application -->
+        <div class="bg-gradient-to-r from-teal-50 to-cyan-50 rounded-2xl p-8 scroll-reveal">
+          <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center" data-translate="karriere.general.title">
+            Initiativbewerbung
+          </h3>
+          <p class="text-gray-600 text-center mb-6" data-translate="karriere.general.text">
+            Sie haben Ihre Traumstelle nicht gefunden? Senden Sie uns gerne eine Initiativbewerbung!
+          </p>
+          <div class="text-center">
+            <a href="mailto:karriere@seitschenko-dinh.de" class="bg-teal-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-teal-700 transition-colors inline-flex items-center">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+              <span data-translate="karriere.general.button">Initiativbewerbung senden</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16 scroll-reveal">
+        <h2 class="text-4xl font-bold text-gray-800 mb-4" data-translate="contact.title">Kontakt aufnehmen</h2>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto" data-translate="contact.subtitle">
+          Vereinbaren Sie einen Termin oder kontaktieren Sie uns für weitere Informationen
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <!-- Location 1: Schwarzbach -->
+        <div class="contact-card-wrapper">
+          <div class="location-card">
+            <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="contact.location1.title">Standort Schwarzbach</h3>
+            <div class="space-y-4">
+              <div class="flex items-start space-x-3">
+                <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+                <div>
+                  <p class="font-semibold text-gray-800" data-translate="contact.address">Adresse</p>
+                  <p class="text-gray-600">Schwarzbach 2<br>42277 Wuppertal</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-3">
+                <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                </svg>
+                <div>
+                  <p class="font-semibold text-gray-800" data-translate="contact.phone">Telefon</p>
+                  <a href="tel:0202660828" class="text-teal-500 hover:text-teal-600">0202 660828</a>
+                </div>
+              </div>
+              <div class="flex items-start space-x-3">
+                <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                </svg>
+                <div>
+                  <p class="font-semibold text-gray-800" data-translate="contact.email">E-Mail</p>
+                  <a href="mailto:schwarzbach@seitschenko-dinh.de" class="text-teal-500 hover:text-teal-600">schwarzbach@seitschenko-dinh.de</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Location 2: Am Loh -->
+        <div class="contact-card-wrapper">
+          <div class="location-card">
+            <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="contact.location2.title">Standort Am Loh</h3>
+            <div class="space-y-4">
+              <div class="flex items-start space-x-3">
+                <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+                <div>
+                  <p class="font-semibold text-gray-800" data-translate="contact.address">Adresse</p>
+                  <p class="text-gray-600">Loher Str. 40<br>42283 Wuppertal</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-3">
+                <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                </svg>
+                <div>
+                  <p class="font-semibold text-gray-800" data-translate="contact.phone">Telefon</p>
+                  <a href="tel:0202451642" class="text-teal-500 hover:text-teal-600">0202 451642</a>
+                </div>
+              </div>
+              <div class="flex items-start space-x-3">
+                <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                </svg>
+                <div>
+                  <p class="font-semibold text-gray-800" data-translate="contact.email">E-Mail</p>
+                  <a href="mailto:loherstr@seitschenko-dinh.de" class="text-teal-500 hover:text-teal-600">loherstr@seitschenko-dinh.de</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer-brown text-white py-8">
+    <div class="container mx-auto px-4">
+      <div class="grid md:grid-cols-3 gap-6 items-center">
+        <!-- Logo & Practice Name -->
+        <div class="flex items-center space-x-3">
+          <img src="../assets/img/logo.svg" alt="Seitschenko-Dinh Logo" class="w-12 h-12 flex-shrink-0">
+          <div class="flex flex-col">
+            <h3 class="text-base font-bold uppercase tracking-wide leading-tight" data-translate="footer.practice_name1">ZAHNARZTPRAXEN</h3>
+            <h3 class="text-base font-bold uppercase tracking-wide leading-tight" data-translate="footer.practice_name2">SEITSCHENKO-DINH</h3>
+          </div>
+        </div>
+
+        <!-- Location 1: Schwarzbach -->
+        <div class="flex items-center space-x-3">
+          <div class="flex-shrink-0">
+            <div class="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center">
+              <span class="text-lg font-bold">1</span>
+            </div>
+          </div>
+          <div class="flex flex-col leading-tight">
+            <p class="text-sm" data-translate="footer.location1.line1">Schwarzbach 2 | 42277 Wuppertal</p>
+            <p class="text-sm" data-translate="footer.location1.line2">Tel.: 0202 660828</p>
+          </div>
+        </div>
+
+        <!-- Location 2: Wall -->
+        <div class="flex items-center space-x-3">
+          <div class="flex-shrink-0">
+            <div class="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center">
+              <span class="text-lg font-bold">2</span>
+            </div>
+          </div>
+          <div class="flex flex-col leading-tight">
+            <p class="text-sm" data-translate="footer.location2.line1">Loher Str. 40 | 42283 Wuppertal</p>
+            <p class="text-sm" data-translate="footer.location2.line2">Tel.: 0202 451642</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="mt-6 pt-4 text-center border-t border-white border-opacity-20">
+        <p class="text-xs" data-translate="footer.copyright">
+          © 2024 Datenschutzerklärung
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/service-translations.js"></script>
+  <script src="../js/karriere-translations.js"></script>
+  <script>
+    // Karriere page specific initialization
+    // Note: service-translations.js already handles all language switching, UI updates, translations, and menu toggles
+
+    // Scroll reveal animation
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.scroll-reveal').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>

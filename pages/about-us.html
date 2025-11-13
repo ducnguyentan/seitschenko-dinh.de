@@ -32,11 +32,12 @@
         <!-- Navigation and Language Switcher -->
         <div class="hidden md:flex items-center space-x-4">
           <nav class="flex space-x-2">
-            <a href="../index.html#home" class="nav-link" data-translate="nav.home">Start</a>
-            <a href="about-us.html" class="nav-link active" data-translate="nav.about">Über uns</a>
-            <a href="../index.html#services" class="nav-link" data-translate="nav.services">Leistungen</a>
-            <a href="../index.html#labor" class="nav-link" data-translate="nav.labor">Labor</a>
-            <a href="../index.html#contact" class="nav-link" data-translate="nav.contact">Kontakt</a>
+            <a href="../index.html#home" class="nav-link" data-translate="nav.home"></a>
+            <a href="about-us.html" class="nav-link active" data-translate="nav.about"></a>
+            <a href="../index.html#services" class="nav-link" data-translate="nav.services"></a>
+            <a href="labor.html" class="nav-link" data-translate="nav.labor"></a>
+            <a href="karriere.html" class="nav-link" data-translate="nav.karriere"></a>
+            <a href="../index.html#contact" class="nav-link" data-translate="nav.contact"></a>
           </nav>
 
           <!-- Language Switcher -->
@@ -82,21 +83,21 @@
       </div>
 
       <!-- Mobile Menu -->
-      <div id="mobile-menu" class="md:hidden hidden">
-        <div class="py-4">
-          <nav class="flex flex-col space-y-2">
-            <a href="../index.html#home" class="nav-link block" data-translate="nav.home">Start</a>
-            <a href="about-us.html" class="nav-link block active" data-translate="nav.about">Über uns</a>
-            <a href="../index.html#services" class="nav-link block" data-translate="nav.services">Leistungen</a>
-            <a href="../index.html#labor" class="nav-link block" data-translate="nav.labor">Labor</a>
-            <a href="../index.html#contact" class="nav-link block" data-translate="nav.contact">Kontakt</a>
-          </nav>
+      <div id="mobile-menu" class="md:hidden hidden pb-4">
+        <div class="flex flex-col space-y-2">
+          <a href="../index.html#home" class="nav-link" data-translate="nav.home"></a>
+          <a href="about-us.html" class="nav-link active" data-translate="nav.about"></a>
+          <a href="../index.html#services" class="nav-link" data-translate="nav.services"></a>
+          <a href="labor.html" class="nav-link" data-translate="nav.labor"></a>
+          <a href="karriere.html" class="nav-link" data-translate="nav.karriere"></a>
+          <a href="../index.html#contact" class="nav-link" data-translate="nav.contact"></a>
 
           <!-- Mobile Language Switcher -->
-          <div class="mt-4">
+          <div class="pt-2 border-t border-gray-200">
             <div class="language-switcher-mobile">
-              <button id="mobile-language-btn" class="w-full flex items-center justify-between px-3 py-2 bg-gray-100 rounded-lg">
-                <div class="flex items-center space-x-2">
+              <button id="mobile-language-btn" class="flex items-center justify-between w-full px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+                <span data-translate="language.current">Sprache:</span>
+                <div class="flex items-center space-x-1">
                   <img id="mobile-current-flag" src="https://flagcdn.com/24x18/de.png" alt="Deutsch" class="language-flag">
                   <span id="mobile-current-lang">DE</span>
                 </div>
@@ -131,8 +132,9 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="bg-gradient-to-br from-teal-50 to-teal-100 py-20">
-    <div class="container mx-auto px-4 text-center">
+  <section class="hero-bg-aboutus py-20 relative overflow-hidden">
+    <div class="absolute inset-0 bg-white bg-opacity-30"></div>
+    <div class="relative z-10 container mx-auto px-4 text-center">
       <h1 class="text-4xl md:text-5xl font-bold mb-6" style="color: #5eb3b3;" data-translate="aboutus.hero.title">
         Was Sie bei uns erwarten können
       </h1>
@@ -147,7 +149,7 @@
     <div class="container mx-auto px-4">
       <div class="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
         <div class="scroll-reveal img-oval-frame">
-          <img src="../assets/img/implantologie.jpg" alt="Implantologie" class="shadow-2xl">
+          <img src="../assets/img/zahnerhaltung.jpg" alt="Zahnerhaltung" class="shadow-2xl">
         </div>
         <div class="scroll-reveal">
           <h2 class="text-3xl font-bold text-gray-800 mb-6" data-translate="aboutus.intro.title">
@@ -283,15 +285,16 @@
   </section>
 
   <!-- Contact/Locations Section -->
-  <section class="py-16 bg-gray-50">
+  <section id="contact" class="py-16">
     <div class="container mx-auto px-4">
-      <h2 class="text-4xl font-bold text-center mb-16 text-gray-800" data-translate="aboutus.locations.title">
+      <h2 class="text-4xl font-bold text-center mb-16 text-gray-800 scroll-reveal" data-translate="aboutus.locations.title">
         Unsere Standorte
       </h2>
 
       <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
         <!-- Schwarzbach Location -->
-        <div class="bg-white rounded-2xl p-8 shadow-lg scroll-reveal">
+        <div class="contact-card-wrapper">
+        <div class="location-card scroll-reveal">
           <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="aboutus.location1.title">Standort Schwarzbach</h3>
 
           <div class="space-y-4">
@@ -327,10 +330,12 @@
             </div>
           </div>
         </div>
+        </div>
 
-        <!-- Loher Location -->
-        <div class="bg-white rounded-2xl p-8 shadow-lg scroll-reveal">
-          <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="aboutus.location2.title">Standort Loher</h3>
+        <!-- Am Loh Location -->
+        <div class="contact-card-wrapper">
+        <div class="location-card scroll-reveal">
+          <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="aboutus.location2.title">Standort Am Loh</h3>
 
           <div class="space-y-4">
             <div class="flex items-start space-x-4">
@@ -364,6 +369,7 @@
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>
@@ -481,6 +487,7 @@
           about: "Über uns",
           services: "Leistungen",
           labor: "Labor",
+          karriere: "Karriere",
           contact: "Kontakt"
         },
         header: {
@@ -543,7 +550,7 @@
             title: "Standort Schwarzbach"
           },
           location2: {
-            title: "Standort Loher"
+            title: "Standort Am Loh"
           }
         },
         contact: {
@@ -575,6 +582,7 @@
           about: "About Us",
           services: "Services",
           labor: "Laboratory",
+          karriere: "Career",
           contact: "Contact"
         },
         header: {
@@ -637,7 +645,7 @@
             title: "Schwarzbach Location"
           },
           location2: {
-            title: "Loher Location"
+            title: "Am Loh Location"
           }
         },
         contact: {
@@ -669,6 +677,7 @@
           about: "Giới thiệu",
           services: "Dịch vụ",
           labor: "Phòng Lab",
+          karriere: "Nghề nghiệp",
           contact: "Liên hệ"
         },
         header: {
@@ -763,6 +772,7 @@
           about: "О нас",
           services: "Услуги",
           labor: "Лаборатория",
+          karriere: "Карьера",
           contact: "Контакты"
         },
         header: {
@@ -857,6 +867,7 @@
           about: "من نحن",
           services: "الخدمات",
           labor: "المختبر",
+          karriere: "الوظائف",
           contact: "اتصل بنا"
         },
         header: {

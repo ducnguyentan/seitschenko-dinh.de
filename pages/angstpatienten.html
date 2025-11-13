@@ -31,11 +31,12 @@
 
         <div class="hidden md:flex items-center space-x-4">
           <nav class="flex space-x-2">
-            <a href="../index.html#home" class="nav-link" data-translate="nav.home">Start</a>
-            <a href="../index.html#about" class="nav-link" data-translate="nav.about">Über uns</a>
-            <a href="../index.html#services" class="nav-link active" data-translate="nav.services">Leistungen</a>
-            <a href="../index.html#labor" class="nav-link" data-translate="nav.labor">Labor</a>
-            <a href="../index.html#contact" class="nav-link" data-translate="nav.contact">Kontakt</a>
+            <a href="../index.html#home" class="nav-link" data-translate="nav.home"></a>
+            <a href="about-us.html" class="nav-link" data-translate="nav.about"></a>
+            <a href="../index.html#services" class="nav-link active" data-translate="nav.services"></a>
+            <a href="labor.html" class="nav-link" data-translate="nav.labor"></a>
+            <a href="karriere.html" class="nav-link" data-translate="nav.karriere"></a>
+            <a href="../index.html#contact" class="nav-link" data-translate="nav.contact"></a>
           </nav>
 
           <div class="language-switcher">
@@ -80,11 +81,12 @@
 
       <div id="mobile-menu" class="md:hidden hidden pb-4">
         <div class="flex flex-col space-y-2">
-          <a href="../index.html#home" class="nav-link" data-translate="nav.home">Start</a>
-          <a href="../index.html#about" class="nav-link" data-translate="nav.about">Über uns</a>
-          <a href="../index.html#services" class="nav-link active" data-translate="nav.services">Leistungen</a>
-          <a href="../index.html#labor" class="nav-link" data-translate="nav.labor">Labor</a>
-          <a href="../index.html#contact" class="nav-link" data-translate="nav.contact">Kontakt</a>
+          <a href="../index.html#home" class="nav-link" data-translate="nav.home"></a>
+          <a href="about-us.html" class="nav-link" data-translate="nav.about"></a>
+          <a href="../index.html#services" class="nav-link active" data-translate="nav.services"></a>
+          <a href="labor.html" class="nav-link" data-translate="nav.labor"></a>
+          <a href="karriere.html" class="nav-link" data-translate="nav.karriere"></a>
+          <a href="../index.html#contact" class="nav-link" data-translate="nav.contact"></a>
 
           <div class="pt-2 border-t border-gray-200">
             <div class="language-switcher-mobile">
@@ -140,20 +142,46 @@
   <!-- Introduction Section -->
   <section class="py-16 bg-white">
     <div class="container mx-auto px-4">
-      <div class="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-        <div class="scroll-reveal img-oval-frame">
-          <img src="../assets/img/angstpatienten.jpg" alt="Angstpatienten" class="shadow-2xl">
-        </div>
-        <div class="scroll-reveal">
-          <h2 class="text-3xl font-bold text-gray-800 mb-6" data-translate="intro.title">
-            Sie sind nicht allein mit Ihrer Angst
-          </h2>
-          <p class="text-lg text-gray-600 mb-4 leading-relaxed" data-translate="intro.text1">
-            Viele Menschen leiden unter Zahnarztangst - Sie sind damit nicht allein. Wir verstehen, dass ein Zahnarztbesuch für manche Patienten mit großer Angst und Stress verbunden ist. Negative Erfahrungen in der Vergangenheit, Angst vor Schmerzen oder das Gefühl von Kontrollverlust können Ursachen sein.
-          </p>
-          <p class="text-lg text-gray-600 leading-relaxed" data-translate="intro.text2">
-            In unserer Praxis nehmen wir Ihre Ängste ernst und gehen individuell auf Sie ein. Unser Ziel ist es, dass Sie sich bei uns wohl und sicher fühlen. Mit modernster Technik, sanften Behandlungsmethoden und viel Zeit schaffen wir eine entspannte Atmosphäre, in der Ihre Zahnbehandlung stressfrei ablaufen kann.
-          </p>
+      <div class="max-w-7xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center" style="color: #5eb3b3; text-transform: uppercase;" data-translate="intro.title">
+          Sie sind nicht allein mit Ihrer Angst
+        </h2>
+
+        <div class="grid md:grid-cols-12 gap-8 items-start">
+          <!-- Numbered Circles Column -->
+          <div class="md:col-span-2 flex md:flex-col flex-row md:space-y-6 space-x-4 md:space-x-0 justify-center">
+            <a href="kinderzahnheilkunde.html" class="number-circle" title="Behandlungen von Kindern">1</a>
+            <a href="angstpatienten.html" class="number-circle number-circle-active" title="Angstpatienten">2</a>
+            <a href="prophylaxe.html" class="number-circle" title="Vorsorge">3</a>
+            <a href="zahnerhaltung.html" class="number-circle" title="Erhaltende Zahnmedizin">4</a>
+            <a href="aesthetische-zahnheilkunde.html" class="number-circle" title="Ästhetische Zahnmedizin">5</a>
+            <a href="zahnersatz.html" class="number-circle" title="Zahnersatz">6</a>
+            <a href="oralchirurgie.html" class="number-circle" title="Oralchirurgie">7</a>
+            <a href="implantologie.html" class="number-circle" title="Implantologie">8</a>
+          </div>
+
+          <!-- Content Column -->
+          <div class="md:col-span-5">
+            <h3 class="text-2xl font-bold mb-6" style="color: #5eb3b3; text-transform: uppercase;" data-translate="angstpatienten.intro.content.title">
+              Angstpatienten
+            </h3>
+            <div class="space-y-4 text-gray-600 leading-relaxed">
+              <p data-translate="angstpatienten.intro.content.para1">
+                Wir verstehen, dass der Zahnarztbesuch für viele Menschen mit Ängsten verbunden ist, und haben es uns zur Aufgabe gemacht, Ihnen eine stressfreie und angenehme Erfahrung zu bieten.
+              </p>
+              <p data-translate="angstpatienten.intro.content.para2">
+                Unser Team besteht aus erfahrenen Zahnärzten, die speziell im Umgang mit Angstpatienten geschult sind. Wir legen großen Wert auf eine einfühlsame und sanfte Behandlung, um Ihnen die bestmögliche zahnärztliche Versorgung zu gewährleisten.
+              </p>
+              <p data-translate="angstpatienten.intro.content.para3">
+                Unsere Praxis ist darauf ausgelegt, eine beruhigende und entspannende Atmosphäre zu schaffen, die Ängste abbaut und Vertrauen aufbaut.
+              </p>
+            </div>
+          </div>
+
+          <!-- Circle Image Column -->
+          <div class="md:col-span-5 scroll-reveal img-perfect-circle">
+            <img src="../assets/img/zahnersatz.jpg" alt="Angstpatienten" class="shadow-2xl">
+          </div>
         </div>
       </div>
     </div>
@@ -246,10 +274,10 @@
             </div>
             <div>
               <h3 class="text-xl font-semibold text-gray-800 mb-2" data-translate="methods.method1.title">
-                Ausführliches Vorgespräch
+                Angstfreie Zahnbehandlung
               </h3>
               <p class="text-gray-600" data-translate="methods.method1.text">
-                Beim ersten Termin lernen wir uns in Ruhe kennen. Sie erzählen uns von Ihren Ängsten und wir besprechen gemeinsam, wie wir vorgehen können. Es findet keine Behandlung statt - nur ein vertrauensvolles Gespräch.
+                Wir setzen moderne Techniken und Methoden ein, um die Behandlung so angenehm und schmerzfrei wie möglich zu gestalten. Dazu gehören Lokalanästhesie, Sedierung und Hypnose.
               </p>
             </div>
           </div>
@@ -261,10 +289,10 @@
             </div>
             <div>
               <h3 class="text-xl font-semibold text-gray-800 mb-2" data-translate="methods.method2.title">
-                Lokale Betäubung mit sanfter Technik
+                Individuelle Beratung und Aufklärung
               </h3>
               <p class="text-gray-600" data-translate="methods.method2.text">
-                Wir verwenden besonders dünne Nadeln und moderne Anästhesietechniken, die den Einstich nahezu schmerzfrei machen. Vor der Spritze betäuben wir die Stelle mit einem Gel oberflächlich.
+                Vor jeder Behandlung nehmen wir uns ausführlich Zeit, um Ihre Sorgen und Ängste zu besprechen. Eine umfassende Aufklärung über die geplanten Maßnahmen hilft, Unsicherheiten zu reduzieren.
               </p>
             </div>
           </div>
@@ -276,10 +304,10 @@
             </div>
             <div>
               <h3 class="text-xl font-semibold text-gray-800 mb-2" data-translate="methods.method3.title">
-                Sedierung (Dämmerschlaf)
+                Sanfte Zahnreinigung
               </h3>
               <p class="text-gray-600" data-translate="methods.method3.text">
-                Bei größeren Eingriffen oder starker Angst bieten wir Behandlungen unter Sedierung an. Sie sind dabei entspannt und schläfrig, spüren keine Angst und haben hinterher kaum Erinnerung an die Behandlung.
+                Unsere Prophylaxe-Programme sind speziell auf die Bedürfnisse von Angstpatienten abgestimmt. Mit schonenden Methoden sorgen wir für eine gründliche und gleichzeitig angenehme Zahnreinigung.
               </p>
             </div>
           </div>
@@ -291,10 +319,10 @@
             </div>
             <div>
               <h3 class="text-xl font-semibold text-gray-800 mb-2" data-translate="methods.method4.title">
-                Hypnose und Entspannungstechniken
+                Zahnsanierung unter Sedierung
               </h3>
               <p class="text-gray-600" data-translate="methods.method4.text">
-                Auf Wunsch können wir Hypnosetechniken oder geführte Entspannungsübungen einsetzen, um Sie während der Behandlung in einen ruhigen, entspannten Zustand zu versetzen.
+                Für umfangreichere Behandlungen bieten wir die Möglichkeit einer Sedierung an. Diese ermöglicht es Ihnen, sich während der Behandlung zu entspannen und Stress abzubauen.
               </p>
             </div>
           </div>
@@ -306,13 +334,50 @@
             </div>
             <div>
               <h3 class="text-xl font-semibold text-gray-800 mb-2" data-translate="methods.method5.title">
-                Modernste Technik für kurze Behandlungszeiten
+                Behandlung von Zahnarztphobie
               </h3>
               <p class="text-gray-600" data-translate="methods.method5.text">
-                Dank moderner Geräte und Verfahren können wir viele Behandlungen deutlich schneller durchführen. Kürzere Sitzungen bedeuten weniger Stress für Sie.
+                Wir haben spezielle Programme entwickelt, um Ihnen dabei zu helfen, Ihre Zahnarztphobie zu überwinden. Durch gezielte Gespräche und sanfte Annäherungsschritte gewinnen Sie Vertrauen und Sicherheit zurück.
               </p>
             </div>
           </div>
+
+          <!-- Method 6 -->
+          <div class="flex items-start space-x-4 bg-gray-50 rounded-xl p-6">
+            <div class="flex-shrink-0 w-12 h-12 bg-teal-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
+              6
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-2" data-translate="methods.method6.title">
+                Modernste Technik und Ausstattung
+              </h3>
+              <p class="text-gray-600" data-translate="methods.method6.text">
+                Unsere Praxis ist mit modernster Technik ausgestattet, die eine präzise und schonende Behandlung ermöglicht. Dies trägt dazu bei, Behandlungszeiten zu verkürzen und den Komfort zu erhöhen.
+              </p>
+            </div>
+          </div>
+
+          <!-- Method 7 -->
+          <div class="flex items-start space-x-4 bg-gray-50 rounded-xl p-6">
+            <div class="flex-shrink-0 w-12 h-12 bg-teal-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
+              7
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-2" data-translate="methods.method7.title">
+                Nachsorge und Betreuung
+              </h3>
+              <p class="text-gray-600" data-translate="methods.method7.text">
+                Auch nach der Behandlung stehen wir Ihnen mit Rat und Tat zur Seite. Regelmäßige Nachsorgetermine helfen, Ihre Zahngesundheit langfristig zu erhalten und zukünftige Ängste abzubauen.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Closing Statement -->
+        <div class="mt-8 text-center text-gray-600 leading-relaxed max-w-3xl mx-auto">
+          <p data-translate="methods.closing">
+            Wir sind überzeugt, dass jeder Mensch das Recht auf eine angstfreie zahnärztliche Versorgung hat. Besuchen Sie uns und erleben Sie, wie wir Ihre Zahnarztangst ernst nehmen und mit viel Einfühlungsvermögen und Fachkompetenz behandeln. Vereinbaren Sie noch heute einen Termin und lassen Sie uns gemeinsam dafür sorgen, dass Ihr Zahnarztbesuch zu einer positiven Erfahrung wird.
+          </p>
         </div>
       </div>
     </div>
@@ -349,20 +414,10 @@
           <!-- FAQ 3 -->
           <div class="bg-white rounded-xl p-6 shadow-md">
             <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="faq.question3">
-              Kann ich während der Behandlung ein Zeichen geben, wenn ich eine Pause brauche?
+              Wie lange dauert es, bis die Betäubung nachlässt?
             </h3>
             <p class="text-gray-600" data-translate="faq.answer3">
-              Auf jeden Fall! Wir vereinbaren vor der Behandlung ein Handzeichen, mit dem Sie jederzeit signalisieren können, dass Sie eine Pause benötigen. Ihre Kontrolle und Ihr Wohlbefinden stehen an erster Stelle.
-            </p>
-          </div>
-
-          <!-- FAQ 4 -->
-          <div class="bg-white rounded-xl p-6 shadow-md">
-            <h3 class="text-xl font-semibold text-gray-800 mb-3" data-translate="faq.question4">
-              Wie lange dauert es, bis die Angst verschwindet?
-            </h3>
-            <p class="text-gray-600" data-translate="faq.answer4">
-              Das ist sehr individuell. Manche Patienten fühlen sich bereits nach wenigen positiven Erfahrungen deutlich sicherer. Wichtig ist, dass wir in kleinen Schritten vorgehen und Sie jedes Mal eine gute Erfahrung machen. Mit der Zeit wird Vertrauen aufgebaut und die Angst lässt nach.
+              Eine lokale Betäubung lässt nach etwa 2-3 Stunden nach. Bei Sedierung oder Vollnarkose sollten Sie jemanden mitbringen, der Sie nach Hause fährt.
             </p>
           </div>
         </div>
@@ -371,9 +426,9 @@
   </section>
 
   <!-- Contact Section -->
-  <section class="py-20 bg-white">
+  <section id="contact" class="py-20">
     <div class="container mx-auto px-4">
-      <div class="text-center mb-16">
+      <div class="text-center mb-16 scroll-reveal">
         <h2 class="text-4xl font-bold text-gray-800 mb-4" data-translate="contact.title">Lassen Sie uns reden</h2>
         <p class="text-xl text-gray-600 max-w-2xl mx-auto" data-translate="contact.subtitle">
           Vereinbaren Sie ein unverbindliches Gespräch - ohne Behandlung, nur zum Kennenlernen
@@ -382,7 +437,8 @@
 
       <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
         <!-- Location 1 -->
-        <div class="bg-gray-50 rounded-2xl shadow-lg p-8">
+        <div class="contact-card-wrapper">
+        <div class="location-card">
           <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="contact.location1.title">Standort Schwarzbach</h3>
           <div class="space-y-4">
             <div class="flex items-start space-x-3">
@@ -415,10 +471,12 @@
             </div>
           </div>
         </div>
+        </div>
 
         <!-- Location 2 -->
-        <div class="bg-gray-50 rounded-2xl shadow-lg p-8">
-          <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="contact.location2.title">Standort Loher</h3>
+        <div class="contact-card-wrapper">
+        <div class="location-card">
+          <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="contact.location2.title">Standort Am Loh</h3>
           <div class="space-y-4">
             <div class="flex items-start space-x-3">
               <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -450,6 +508,7 @@
             </div>
           </div>
         </div>
+        </div>
       </div>
     </div>
   </section>
@@ -480,7 +539,7 @@
           </div>
         </div>
 
-        <!-- Location 2: Loher Str. -->
+        <!-- Location 2: Am Loh Str. -->
         <div class="flex items-center space-x-3">
           <div class="flex-shrink-0">
             <div class="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center">
