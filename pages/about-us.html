@@ -21,8 +21,8 @@
     <div class="container mx-auto px-4">
       <div class="flex items-center justify-between py-4">
         <!-- Logo -->
-        <div class="flex items-center space-x-3">
-          <img src="../assets/img/logo.svg" alt="Seitschenko-Dinh Logo" class="w-12 h-12">
+        <div class="flex items-center space-x-3 relative z-50">
+          <img src="../assets/img/logo.svg" alt="Seitschenko-Dinh Logo" class="w-12 h-12 flex-shrink-0">
           <a href="../index.html" class="flex flex-col leading-tight">
             <span class="text-sm font-bold text-gray-800 tracking-wide" data-translate="header.practice_name1">ZAHNARZTPRAXEN</span>
             <span class="text-sm font-bold text-gray-800 tracking-wide" data-translate="header.practice_name2">SEITSCHENKO-DINH</span>
@@ -34,10 +34,10 @@
           <nav class="flex space-x-2">
             <a href="../index.html#home" class="nav-link" data-translate="nav.home"></a>
             <a href="about-us.html" class="nav-link active" data-translate="nav.about"></a>
-            <a href="../index.html#services" class="nav-link" data-translate="nav.services"></a>
+            <a href="services.html" class="nav-link" data-translate="nav.services"></a>
             <a href="labor.html" class="nav-link" data-translate="nav.labor"></a>
             <a href="karriere.html" class="nav-link" data-translate="nav.karriere"></a>
-            <a href="../index.html#contact" class="nav-link" data-translate="nav.contact"></a>
+            <a href="contact.html" class="nav-link" data-translate="nav.contact"></a>
           </nav>
 
           <!-- Language Switcher -->
@@ -87,10 +87,10 @@
         <div class="flex flex-col space-y-2">
           <a href="../index.html#home" class="nav-link" data-translate="nav.home"></a>
           <a href="about-us.html" class="nav-link active" data-translate="nav.about"></a>
-          <a href="../index.html#services" class="nav-link" data-translate="nav.services"></a>
+          <a href="services.html" class="nav-link" data-translate="nav.services"></a>
           <a href="labor.html" class="nav-link" data-translate="nav.labor"></a>
           <a href="karriere.html" class="nav-link" data-translate="nav.karriere"></a>
-          <a href="../index.html#contact" class="nav-link" data-translate="nav.contact"></a>
+          <a href="contact.html" class="nav-link" data-translate="nav.contact"></a>
 
           <!-- Mobile Language Switcher -->
           <div class="pt-2 border-t border-gray-200">
@@ -132,10 +132,10 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="hero-bg-aboutus py-20 relative overflow-hidden">
+  <section class="hero-bg-aboutus py-20 mt-20 relative overflow-hidden">
     <div class="absolute inset-0 bg-white bg-opacity-30"></div>
     <div class="relative z-10 container mx-auto px-4 text-center">
-      <h1 class="text-4xl md:text-5xl font-bold mb-6" style="color: #5eb3b3;" data-translate="aboutus.hero.title">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6 uppercase" style="color: #5eb3b3;" data-translate="aboutus.hero.title">
         Was Sie bei uns erwarten können
       </h1>
       <p class="text-xl text-gray-700 max-w-3xl mx-auto" data-translate="aboutus.hero.subtitle">
@@ -144,19 +144,92 @@
     </div>
   </section>
 
+  <!-- What You Can Expect Section -->
+  <section class="py-20 bg-gradient-to-br from-teal-50 to-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto text-center mb-16 scroll-reveal">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6 transition-all duration-500 hover:text-teal-600 hover:scale-105" data-translate="aboutus.expect.title">
+          Was Sie bei uns erwarten können
+        </h2>
+        <p class="text-xl text-gray-600 leading-relaxed" data-translate="aboutus.expect.subtitle">
+          Bei den Zahnarztpraxen Seitschenko-Dinh
+        </p>
+      </div>
+
+      <div class="max-w-5xl mx-auto">
+        <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-12 scroll-reveal transition-all duration-500 hover:shadow-3xl hover:-translate-y-2">
+          <p class="text-lg text-gray-700 leading-relaxed mb-8" data-translate="aboutus.expect.description">
+            Unsere Praxis bietet Ihnen nicht nur professionelle Zahnversorgung, kompetente Beratung und langlebige Ergebnisse. Als Patient dürfen Sie noch mehr erwarten – etwas, das im Dienstleistungsbereich oft fehlt: <span class="font-bold text-teal-600">Zeit</span>.
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-6 mt-8">
+            <div class="flex items-start space-x-4 p-6 rounded-xl bg-gradient-to-br from-white to-gray-50 border-2 border-transparent transition-all duration-500 hover:border-teal-400 hover:shadow-xl hover:scale-105 hover:-translate-y-1 cursor-pointer group">
+              <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-teal-500 to-teal-600 rounded-full flex items-center justify-center transition-all duration-500 group-hover:scale-110 shadow-xl group-hover:shadow-2xl">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <div class="flex-1">
+                <h4 class="font-bold text-gray-800 mb-2 text-lg transition-all duration-300 group-hover:text-teal-600 group-hover:translate-x-1" data-translate="aboutus.expect.feature1.title">Professionelle Zahnversorgung</h4>
+                <p class="text-gray-600 text-sm transition-all duration-300 group-hover:text-gray-800" data-translate="aboutus.expect.feature1.desc">Höchste Qualitätsstandards</p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-4 p-6 rounded-xl bg-gradient-to-br from-white to-gray-50 border-2 border-transparent transition-all duration-500 hover:border-teal-400 hover:shadow-xl hover:scale-105 hover:-translate-y-1 cursor-pointer group">
+              <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-teal-500 to-teal-600 rounded-full flex items-center justify-center transition-all duration-500 group-hover:scale-110 shadow-xl group-hover:shadow-2xl">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"></path>
+                </svg>
+              </div>
+              <div class="flex-1">
+                <h4 class="font-bold text-gray-800 mb-2 text-lg transition-all duration-300 group-hover:text-teal-600 group-hover:translate-x-1" data-translate="aboutus.expect.feature2.title">Kompetente Beratung</h4>
+                <p class="text-gray-600 text-sm transition-all duration-300 group-hover:text-gray-800" data-translate="aboutus.expect.feature2.desc">In sechs Sprachen</p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-4 p-6 rounded-xl bg-gradient-to-br from-white to-gray-50 border-2 border-transparent transition-all duration-500 hover:border-teal-400 hover:shadow-xl hover:scale-105 hover:-translate-y-1 cursor-pointer group">
+              <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-teal-500 to-teal-600 rounded-full flex items-center justify-center transition-all duration-500 group-hover:scale-110 shadow-xl group-hover:shadow-2xl">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                </svg>
+              </div>
+              <div class="flex-1">
+                <h4 class="font-bold text-gray-800 mb-2 text-lg transition-all duration-300 group-hover:text-teal-600 group-hover:translate-x-1" data-translate="aboutus.expect.feature3.title">Langlebige Ergebnisse</h4>
+                <p class="text-gray-600 text-sm transition-all duration-300 group-hover:text-gray-800" data-translate="aboutus.expect.feature3.desc">Nachhaltige Behandlung</p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-4 p-6 rounded-xl bg-gradient-to-br from-white to-gray-50 border-2 border-transparent transition-all duration-500 hover:border-teal-400 hover:shadow-xl hover:scale-105 hover:-translate-y-1 cursor-pointer group">
+              <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-teal-500 to-teal-600 rounded-full flex items-center justify-center transition-all duration-500 group-hover:scale-110 shadow-xl group-hover:shadow-2xl">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <div class="flex-1">
+                <h4 class="font-bold text-gray-800 mb-2 text-lg transition-all duration-300 group-hover:text-teal-600 group-hover:translate-x-1" data-translate="aboutus.expect.feature4.title">Zeit für Sie</h4>
+                <p class="text-gray-600 text-sm transition-all duration-300 group-hover:text-gray-800" data-translate="aboutus.expect.feature4.desc">Das Wichtigste für uns</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Introduction Section with Image -->
   <section class="py-16 bg-white">
     <div class="container mx-auto px-4">
       <div class="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-        <div class="scroll-reveal img-oval-frame">
-          <img src="../assets/img/zahnerhaltung.jpg" alt="Zahnerhaltung" class="shadow-2xl">
+        <div class="scroll-reveal img-oval-frame group cursor-pointer overflow-hidden relative">
+          <div class="absolute inset-0 bg-gradient-to-r from-teal-500/20 to-teal-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 rounded-full"></div>
+          <img src="../assets/img/about.jpg" alt="About Us" class="shadow-2xl transition-all duration-700 ease-out group-hover:scale-115 group-hover:rotate-3 group-hover:shadow-3xl">
         </div>
         <div class="scroll-reveal">
-          <h2 class="text-3xl font-bold text-gray-800 mb-6" data-translate="aboutus.intro.title">
+          <h2 class="text-3xl font-bold text-gray-800 mb-6 transition-all duration-500 hover:text-teal-600 hover:translate-x-2" data-translate="aboutus.intro.title">
             Zeit für Sie
           </h2>
-          <p class="text-gray-600 text-lg mb-6 leading-relaxed" data-translate="aboutus.intro.description">
-            Wir nehmen uns die nötige Zeit für sorgfältige Diagnosen und ausführliche Beratungen in sechs Sprachen: Deutsch, Russisch, Arabisch, Türkisch, Französisch und Englisch.
+          <p class="text-gray-600 text-lg mb-6 leading-relaxed transition-all duration-300 hover:text-gray-800" data-translate="aboutus.intro.description">
+            Wir nehmen uns die nötige Zeit für sorgfältige Diagnosen und ausführliche Beratungen in ruhigen und vertrauensvollen Gesprächen. In Deutsch, Russisch, Arabisch, Türkisch, Französisch und Englisch sorgen wir für Transparenz und planen Ihre optimale, individuelle Therapie.
           </p>
         </div>
       </div>
@@ -164,89 +237,140 @@
   </section>
 
   <!-- Six Key Promises -->
-  <section class="py-16 bg-gray-50">
+  <section class="py-16 bg-gradient-to-br from-gray-50 to-teal-50/30">
     <div class="container mx-auto px-4">
-      <h2 class="text-4xl font-bold text-center mb-16 text-gray-800" data-translate="aboutus.promises.title">
+      <h2 class="text-4xl font-bold text-center mb-16 text-gray-800 transition-all duration-500 hover:text-teal-600 hover:scale-105" data-translate="aboutus.promises.title">
         Unsere Versprechen an Sie
       </h2>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
         <!-- Promise 1 -->
-        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all scroll-reveal">
-          <div class="w-16 h-16 bg-gradient-to-r from-teal-500 to-teal-600 rounded-xl flex items-center justify-center mb-6">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-3xl transition-all duration-700 scroll-reveal hover:-translate-y-4 hover:scale-110 group cursor-pointer border-2 border-transparent hover:border-teal-500 relative overflow-hidden">
+          <!-- Animated background circles -->
+          <div class="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-teal-400/20 to-teal-600/20 rounded-full -mr-20 -mt-20 transition-all duration-700 group-hover:scale-200 group-hover:rotate-180"></div>
+          <div class="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-teal-300/10 to-transparent rounded-full -ml-16 -mb-16 transition-all duration-700 group-hover:scale-150 group-hover:-rotate-90"></div>
+
+          <!-- Icon with enhanced animations -->
+          <div class="w-20 h-20 bg-gradient-to-br from-teal-500 via-teal-600 to-teal-700 rounded-2xl flex items-center justify-center mb-6 transition-all duration-700 group-hover:scale-125 group-hover:rotate-12 shadow-xl group-hover:shadow-3xl relative z-10 group-hover:rounded-full">
+            <svg class="w-10 h-10 text-white transition-all duration-700 group-hover:scale-125 group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
           </div>
-          <h3 class="text-2xl font-bold text-gray-800 mb-4" data-translate="aboutus.promise1.title">Zeit für Sie</h3>
-          <p class="text-gray-600 leading-relaxed" data-translate="aboutus.promise1.text">
+
+          <h3 class="text-2xl font-bold text-gray-800 mb-4 transition-all duration-500 group-hover:text-teal-600 group-hover:translate-x-2 relative z-10" data-translate="aboutus.promise1.title">Zeit für Sie</h3>
+          <p class="text-gray-600 leading-relaxed transition-all duration-500 group-hover:text-gray-800 group-hover:font-medium relative z-10" data-translate="aboutus.promise1.text">
             Sorgfältige Diagnosen und ausführliche Beratungen in sechs Sprachen
           </p>
+
+          <!-- Bottom accent line -->
+          <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-400 to-teal-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
         </div>
 
         <!-- Promise 2 -->
-        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all scroll-reveal">
-          <div class="w-16 h-16 bg-gradient-to-r from-teal-500 to-teal-600 rounded-xl flex items-center justify-center mb-6">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-3xl transition-all duration-700 scroll-reveal hover:-translate-y-4 hover:scale-110 group cursor-pointer border-2 border-transparent hover:border-teal-500 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-teal-400/20 to-teal-600/20 rounded-full -mr-20 -mt-20 transition-all duration-700 group-hover:scale-200 group-hover:rotate-180"></div>
+          <div class="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-teal-300/10 to-transparent rounded-full -ml-16 -mb-16 transition-all duration-700 group-hover:scale-150 group-hover:-rotate-90"></div>
+
+          <div class="w-20 h-20 bg-gradient-to-br from-teal-500 via-teal-600 to-teal-700 rounded-2xl flex items-center justify-center mb-6 transition-all duration-700 group-hover:scale-125 group-hover:rotate-12 shadow-xl group-hover:shadow-3xl relative z-10 group-hover:rounded-full">
+            <svg class="w-10 h-10 text-white transition-all duration-700 group-hover:scale-125 group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
             </svg>
           </div>
-          <h3 class="text-2xl font-bold text-gray-800 mb-4" data-translate="aboutus.promise2.title">Zeit für Ihre Behandlung</h3>
-          <p class="text-gray-600 leading-relaxed" data-translate="aboutus.promise2.text">
-            Professionelle Versorgung auf höchstem Niveau mit modernster Technik und biokompatiblen Materialien
+          <h3 class="text-2xl font-bold text-gray-800 mb-4 transition-all duration-500 group-hover:text-teal-600 group-hover:translate-x-2 relative z-10" data-translate="aboutus.promise2.title">Zeit für Ihre Behandlung</h3>
+          <p class="text-gray-600 leading-relaxed transition-all duration-500 group-hover:text-gray-800 group-hover:font-medium relative z-10" data-translate="aboutus.promise2.text">
+            Auf höchstem fachlichen Niveau, mit modernster Technik und biokompatiblen Materialien, widmen wir uns Ihrer Zahnbehandlung
           </p>
+          <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-400 to-teal-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
         </div>
 
         <!-- Promise 3 -->
-        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all scroll-reveal">
-          <div class="w-16 h-16 bg-gradient-to-r from-teal-500 to-teal-600 rounded-xl flex items-center justify-center mb-6">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-3xl transition-all duration-700 scroll-reveal hover:-translate-y-4 hover:scale-110 group cursor-pointer border-2 border-transparent hover:border-teal-500 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-teal-400/20 to-teal-600/20 rounded-full -mr-20 -mt-20 transition-all duration-700 group-hover:scale-200 group-hover:rotate-180"></div>
+          <div class="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-teal-300/10 to-transparent rounded-full -ml-16 -mb-16 transition-all duration-700 group-hover:scale-150 group-hover:-rotate-90"></div>
+
+          <div class="w-20 h-20 bg-gradient-to-br from-teal-500 via-teal-600 to-teal-700 rounded-2xl flex items-center justify-center mb-6 transition-all duration-700 group-hover:scale-125 group-hover:rotate-12 shadow-xl group-hover:shadow-3xl relative z-10 group-hover:rounded-full">
+            <svg class="w-10 h-10 text-white transition-all duration-700 group-hover:scale-125 group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
           </div>
-          <h3 class="text-2xl font-bold text-gray-800 mb-4" data-translate="aboutus.promise3.title">Zeit für Qualität und Sicherheit</h3>
-          <p class="text-gray-600 leading-relaxed" data-translate="aboutus.promise3.text">
-            Strenge Hygieneprotokolle für eine risikofreie Behandlung
+          <h3 class="text-2xl font-bold text-gray-800 mb-4 transition-all duration-500 group-hover:text-teal-600 group-hover:translate-x-2 relative z-10" data-translate="aboutus.promise3.title">Zeit für Qualität und Sicherheit</h3>
+          <p class="text-gray-600 leading-relaxed transition-all duration-500 group-hover:text-gray-800 group-hover:font-medium relative z-10" data-translate="aboutus.promise3.text">
+            Unser striktes Hygienekonzept gewährleistet eine risikofreie Behandlung mit höchsten Sicherheitsstandards
           </p>
+          <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-400 to-teal-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
         </div>
 
         <!-- Promise 4 -->
-        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all scroll-reveal">
-          <div class="w-16 h-16 bg-gradient-to-r from-teal-500 to-teal-600 rounded-xl flex items-center justify-center mb-6">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-3xl transition-all duration-700 scroll-reveal hover:-translate-y-4 hover:scale-110 group cursor-pointer border-2 border-transparent hover:border-teal-500 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-teal-400/20 to-teal-600/20 rounded-full -mr-20 -mt-20 transition-all duration-700 group-hover:scale-200 group-hover:rotate-180"></div>
+          <div class="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-teal-300/10 to-transparent rounded-full -ml-16 -mb-16 transition-all duration-700 group-hover:scale-150 group-hover:-rotate-90"></div>
+
+          <div class="w-20 h-20 bg-gradient-to-br from-teal-500 via-teal-600 to-teal-700 rounded-2xl flex items-center justify-center mb-6 transition-all duration-700 group-hover:scale-125 group-hover:rotate-12 shadow-xl group-hover:shadow-3xl relative z-10 group-hover:rounded-full">
+            <svg class="w-10 h-10 text-white transition-all duration-700 group-hover:scale-125 group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
             </svg>
           </div>
-          <h3 class="text-2xl font-bold text-gray-800 mb-4" data-translate="aboutus.promise4.title">Zeit für Weiterbildung</h3>
-          <p class="text-gray-600 leading-relaxed" data-translate="aboutus.promise4.text">
-            Regelmäßige Fortbildungen in neuester medizinischer Expertise und progressiven Technologien
+          <h3 class="text-2xl font-bold text-gray-800 mb-4 transition-all duration-500 group-hover:text-teal-600 group-hover:translate-x-2 relative z-10" data-translate="aboutus.promise4.title">Zeit für Weiterbildung</h3>
+          <p class="text-gray-600 leading-relaxed transition-all duration-500 group-hover:text-gray-800 group-hover:font-medium relative z-10" data-translate="aboutus.promise4.text">
+            Unser Team nimmt regelmäßig an Fortbildungen teil, sodass Sie als Patient von neuester medizinischer Fachkompetenz und fortschrittlichen Technologien profitieren
           </p>
+          <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-400 to-teal-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
         </div>
 
         <!-- Promise 5 -->
-        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all scroll-reveal">
-          <div class="w-16 h-16 bg-gradient-to-r from-teal-500 to-teal-600 rounded-xl flex items-center justify-center mb-6">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-3xl transition-all duration-700 scroll-reveal hover:-translate-y-4 hover:scale-110 group cursor-pointer border-2 border-transparent hover:border-teal-500 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-teal-400/20 to-teal-600/20 rounded-full -mr-20 -mt-20 transition-all duration-700 group-hover:scale-200 group-hover:rotate-180"></div>
+          <div class="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-teal-300/10 to-transparent rounded-full -ml-16 -mb-16 transition-all duration-700 group-hover:scale-150 group-hover:-rotate-90"></div>
+
+          <div class="w-20 h-20 bg-gradient-to-br from-teal-500 via-teal-600 to-teal-700 rounded-2xl flex items-center justify-center mb-6 transition-all duration-700 group-hover:scale-125 group-hover:rotate-12 shadow-xl group-hover:shadow-3xl relative z-10 group-hover:rounded-full">
+            <svg class="w-10 h-10 text-white transition-all duration-700 group-hover:scale-125 group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
             </svg>
           </div>
-          <h3 class="text-2xl font-bold text-gray-800 mb-4" data-translate="aboutus.promise5.title">Zeit für Prophylaxe</h3>
-          <p class="text-gray-600 leading-relaxed" data-translate="aboutus.promise5.text">
-            Professionelle Vorsorge ist zentral in unserer Behandlungsphilosophie
+          <h3 class="text-2xl font-bold text-gray-800 mb-4 transition-all duration-500 group-hover:text-teal-600 group-hover:translate-x-2 relative z-10" data-translate="aboutus.promise5.title">Zeit für Prophylaxe</h3>
+          <p class="text-gray-600 leading-relaxed transition-all duration-500 group-hover:text-gray-800 group-hover:font-medium relative z-10" data-translate="aboutus.promise5.text">
+            Die professionelle Vorbeugung von Zahn- und Zahnfleischerkrankungen ist ein zentraler Bestandteil unseres Behandlungskonzepts und die Basis für eine hochwertige, ästhetische Versorgung Ihrer Zähne
           </p>
+          <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-400 to-teal-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
         </div>
 
         <!-- Promise 6 -->
-        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all scroll-reveal">
-          <div class="w-16 h-16 bg-gradient-to-r from-teal-500 to-teal-600 rounded-xl flex items-center justify-center mb-6">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-3xl transition-all duration-700 scroll-reveal hover:-translate-y-4 hover:scale-110 group cursor-pointer border-2 border-transparent hover:border-teal-500 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-teal-400/20 to-teal-600/20 rounded-full -mr-20 -mt-20 transition-all duration-700 group-hover:scale-200 group-hover:rotate-180"></div>
+          <div class="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-teal-300/10 to-transparent rounded-full -ml-16 -mb-16 transition-all duration-700 group-hover:scale-150 group-hover:-rotate-90"></div>
+
+          <div class="w-20 h-20 bg-gradient-to-br from-teal-500 via-teal-600 to-teal-700 rounded-2xl flex items-center justify-center mb-6 transition-all duration-700 group-hover:scale-125 group-hover:rotate-12 shadow-xl group-hover:shadow-3xl relative z-10 group-hover:rounded-full">
+            <svg class="w-10 h-10 text-white transition-all duration-700 group-hover:scale-125 group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
             </svg>
           </div>
-          <h3 class="text-2xl font-bold text-gray-800 mb-4" data-translate="aboutus.promise6.title">Zeit für Service</h3>
-          <p class="text-gray-600 leading-relaxed" data-translate="aboutus.promise6.text">
-            Effiziente Terminvergabe minimiert Ihre Wartezeiten
+          <h3 class="text-2xl font-bold text-gray-800 mb-4 transition-all duration-500 group-hover:text-teal-600 group-hover:translate-x-2 relative z-10" data-translate="aboutus.promise6.title">Zeit für Service</h3>
+          <p class="text-gray-600 leading-relaxed transition-all duration-500 group-hover:text-gray-800 group-hover:font-medium relative z-10" data-translate="aboutus.promise6.text">
+            Ihre Zeit ist kostbar. Wir bemühen uns, Ihren Besuch in unserer Praxis so angenehm und komfortabel wie möglich zu gestalten und durch effizientes Terminmanagement unnötige Wartezeiten zu vermeiden
           </p>
+          <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-400 to-teal-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+        </div>
+      </div>
+
+      <!-- Closing Message -->
+      <div class="max-w-4xl mx-auto mt-16 scroll-reveal">
+        <div class="bg-gradient-to-r from-teal-500 to-teal-600 rounded-3xl p-8 md:p-12 text-center text-white shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 cursor-pointer group relative overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-r from-teal-400/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="absolute top-0 left-0 w-40 h-40 bg-white/10 rounded-full -ml-20 -mt-20 group-hover:scale-150 transition-transform duration-700"></div>
+          <div class="absolute bottom-0 right-0 w-40 h-40 bg-white/10 rounded-full -mr-20 -mb-20 group-hover:scale-150 transition-transform duration-700"></div>
+
+          <h3 class="text-3xl font-bold mb-6 transition-all duration-500 group-hover:scale-110 group-hover:translate-y-1 relative z-10" data-translate="aboutus.closing.title">
+            Ihre Zufriedenheit steht an erster Stelle
+          </h3>
+          <p class="text-xl leading-relaxed mb-6 relative z-10 transition-all duration-300 group-hover:text-white/95" data-translate="aboutus.closing.message">
+            Ihre Zufriedenheit und Ihr Wohlbefinden stehen bei uns an erster Stelle. Vertrauen Sie auf unsere Erfahrung und Fachkompetenz – für ein gesundes und strahlendes Lächeln.
+          </p>
+          <div class="flex justify-center items-center space-x-2 relative z-10">
+            <svg class="w-10 h-10 transition-all duration-500 group-hover:scale-150 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+            </svg>
+            <span class="text-2xl font-semibold transition-all duration-500 group-hover:scale-110 group-hover:tracking-wide" data-translate="aboutus.closing.tagline">Für Ihr strahlendes Lächeln</span>
+          </div>
         </div>
       </div>
     </div>
@@ -255,30 +379,385 @@
   <!-- Team Section -->
   <section class="py-16 bg-white">
     <div class="container mx-auto px-4">
-      <h2 class="text-4xl font-bold text-center mb-4 text-gray-800" data-translate="aboutus.team.title">
+      <h2 class="text-4xl font-bold text-center mb-4 text-gray-800 scroll-reveal" data-translate="aboutus.team.title">
         Unser Team
       </h2>
-      <p class="text-xl text-center text-gray-600 mb-16 max-w-3xl mx-auto" data-translate="aboutus.team.subtitle">
+      <p class="text-xl text-center text-gray-600 mb-16 max-w-3xl mx-auto scroll-reveal" data-translate="aboutus.team.subtitle">
         Erfahrene Zahnärzte und qualifiziertes Personal an beiden Standorten
       </p>
 
-      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-        <div class="bg-gradient-to-br from-teal-50 to-teal-100 rounded-2xl p-8 text-center scroll-reveal">
-          <div class="w-24 h-24 bg-gradient-to-r from-teal-500 to-teal-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-            <span class="text-white font-bold text-3xl">VS</span>
+      <!-- Schwarzbach Location Team -->
+      <div class="mb-20">
+        <h3 class="text-3xl font-bold text-gray-800 mb-8 text-center scroll-reveal" data-translate="aboutus.team.schwarzbach.title">
+          Standort Schwarzbach
+        </h3>
+        <div class="grid md:grid-cols-4 gap-8 team-grid max-w-7xl mx-auto">
+          <!-- Team Member 1 -->
+          <div class="labor-team-card cursor-pointer scroll-reveal">
+            <div class="labor-team-image-wrapper">
+              <img src="../assets/img/Vera Seitschenko-Dinh.jpg" alt="Leitende Zahnärztin Frau Seitschenko-Dinh" class="labor-team-image">
+              <div class="labor-team-overlay">
+                <h3 class="labor-team-name" data-translate="aboutus.team.schwarzbach.member1.name">Leitende Zahnärztin Frau Seitschenko-Dinh</h3>
+              </div>
+            </div>
+            <div class="labor-team-info">
+              <p class="labor-team-position" data-translate="aboutus.team.schwarzbach.member1.role">Leitende Zahnärztin</p>
+            </div>
           </div>
-          <h3 class="text-2xl font-bold text-gray-800 mb-2" data-translate="aboutus.team.member1.name">Vera Seitschenko-Dinh</h3>
-          <p class="text-teal-600 font-semibold mb-4" data-translate="aboutus.team.member1.role">Leitende Zahnärztin</p>
-          <p class="text-gray-600" data-translate="aboutus.team.member1.location">Beide Standorte</p>
-        </div>
 
-        <div class="bg-gradient-to-br from-teal-50 to-teal-100 rounded-2xl p-8 text-center scroll-reveal">
-          <div class="w-24 h-24 bg-gradient-to-r from-teal-500 to-teal-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-            <span class="text-white font-bold text-3xl">BD</span>
+          <!-- Team Member 2 -->
+          <div class="labor-team-card cursor-pointer scroll-reveal">
+            <div class="labor-team-image-wrapper">
+              <img src="../assets/img/khonghinh.jpg" alt="Zahnarzt Herr IKIKARDES" class="labor-team-image">
+              <div class="labor-team-overlay">
+                <h3 class="labor-team-name" data-translate="aboutus.team.schwarzbach.member2.name">Zahnarzt Herr IKIKARDES</h3>
+              </div>
+            </div>
+            <div class="labor-team-info">
+              <p class="labor-team-position" data-translate="aboutus.team.schwarzbach.member2.role">Zahnarzt</p>
+            </div>
           </div>
-          <h3 class="text-2xl font-bold text-gray-800 mb-2" data-translate="aboutus.team.member2.name">Brandon Dinh</h3>
-          <p class="text-teal-600 font-semibold mb-4" data-translate="aboutus.team.member2.role">Praxisleitung</p>
-          <p class="text-gray-600">b.dinh@seitschenko-dinh.de</p>
+
+          <!-- Team Member 3 -->
+          <div class="labor-team-card cursor-pointer scroll-reveal">
+            <div class="labor-team-image-wrapper">
+              <img src="../assets/img/taifour.jpeg" alt="Zahnarzt Herr TAIFOUR" class="labor-team-image">
+              <div class="labor-team-overlay">
+                <h3 class="labor-team-name" data-translate="aboutus.team.schwarzbach.member3.name">Zahnarzt Herr TAIFOUR</h3>
+              </div>
+            </div>
+            <div class="labor-team-info">
+              <p class="labor-team-position" data-translate="aboutus.team.schwarzbach.member3.role">Zahnarzt</p>
+            </div>
+          </div>
+
+          <!-- Team Member 4 -->
+          <div class="labor-team-card cursor-pointer scroll-reveal">
+            <div class="labor-team-image-wrapper">
+              <img src="../assets/img/FRAU-yurchenko.jpeg" alt="FRAU YURCHENKO" class="labor-team-image">
+              <div class="labor-team-overlay">
+                <h3 class="labor-team-name" data-translate="aboutus.team.schwarzbach.member4.name">FRAU YURCHENKO</h3>
+              </div>
+            </div>
+            <div class="labor-team-info">
+              <p class="labor-team-position" data-translate="aboutus.team.schwarzbach.member4.role">Zahnmedizinische Fachangestellte</p>
+            </div>
+          </div>
+
+          <!-- Team Member 5 -->
+          <div class="labor-team-card cursor-pointer scroll-reveal">
+            <div class="labor-team-image-wrapper">
+              <img src="../assets/img/Sirak.jpeg" alt="FRAU SIRAK" class="labor-team-image">
+              <div class="labor-team-overlay">
+                <h3 class="labor-team-name" data-translate="aboutus.team.schwarzbach.member5.name">FRAU SIRAK</h3>
+              </div>
+            </div>
+            <div class="labor-team-info">
+              <p class="labor-team-position" data-translate="aboutus.team.schwarzbach.member5.role">Zahnmedizinische Fachangestellte</p>
+            </div>
+          </div>
+
+          <!-- Team Member 6 -->
+          <div class="labor-team-card cursor-pointer scroll-reveal">
+            <div class="labor-team-image-wrapper">
+              <img src="../assets/img/Herr-yurchenko.jpeg" alt="HERR YURCHENKO" class="labor-team-image">
+              <div class="labor-team-overlay">
+                <h3 class="labor-team-name" data-translate="aboutus.team.schwarzbach.member6.name">HERR YURCHENKO</h3>
+              </div>
+            </div>
+            <div class="labor-team-info">
+              <p class="labor-team-position" data-translate="aboutus.team.schwarzbach.member6.role">Zahnmedizinischer Fachangestellter</p>
+            </div>
+          </div>
+
+          <!-- Team Member 7 -->
+          <div class="labor-team-card cursor-pointer scroll-reveal">
+            <div class="labor-team-image-wrapper">
+              <img src="../assets/img/thiemann.jpeg" alt="FRAU THIEMANN" class="labor-team-image">
+              <div class="labor-team-overlay">
+                <h3 class="labor-team-name" data-translate="aboutus.team.schwarzbach.member7.name">FRAU THIEMANN</h3>
+              </div>
+            </div>
+            <div class="labor-team-info">
+              <p class="labor-team-position" data-translate="aboutus.team.schwarzbach.member7.role">Zahnmedizinische Fachangestellte</p>
+            </div>
+          </div>
+
+          <!-- Team Member 8 -->
+          <div class="labor-team-card cursor-pointer scroll-reveal">
+            <div class="labor-team-image-wrapper">
+              <img src="../assets/img/khonghinh.jpg" alt="FRAU KVAKTUN" class="labor-team-image">
+              <div class="labor-team-overlay">
+                <h3 class="labor-team-name" data-translate="aboutus.team.schwarzbach.member8.name">FRAU KVAKTUN</h3>
+              </div>
+            </div>
+            <div class="labor-team-info">
+              <p class="labor-team-position" data-translate="aboutus.team.schwarzbach.member8.role">Zahnmedizinische Fachangestellte</p>
+            </div>
+          </div>
+
+          <!-- Team Member 9 -->
+          <div class="labor-team-card cursor-pointer scroll-reveal">
+            <div class="labor-team-image-wrapper">
+              <img src="../assets/img/khonghinh.jpg" alt="FRAU PACHMANN" class="labor-team-image">
+              <div class="labor-team-overlay">
+                <h3 class="labor-team-name" data-translate="aboutus.team.schwarzbach.member9.name">FRAU PACHMANN</h3>
+              </div>
+            </div>
+            <div class="labor-team-info">
+              <p class="labor-team-position" data-translate="aboutus.team.schwarzbach.member9.role">Zahnmedizinische Fachangestellte</p>
+            </div>
+          </div>
+
+          <!-- Team Member 10 -->
+          <div class="labor-team-card cursor-pointer scroll-reveal">
+            <div class="labor-team-image-wrapper">
+              <img src="../assets/img/khonghinh.jpg" alt="FRAU EL FADDANI" class="labor-team-image">
+              <div class="labor-team-overlay">
+                <h3 class="labor-team-name" data-translate="aboutus.team.schwarzbach.member10.name">FRAU EL FADDANI</h3>
+              </div>
+            </div>
+            <div class="labor-team-info">
+              <p class="labor-team-position" data-translate="aboutus.team.schwarzbach.member10.role">Zahnmedizinische Fachangestellte</p>
+            </div>
+          </div>
+
+          <!-- Team Member 11 -->
+          <div class="labor-team-card cursor-pointer scroll-reveal">
+            <div class="labor-team-image-wrapper">
+              <img src="../assets/img/khonghinh.jpg" alt="FRAU LEA PACHMANN" class="labor-team-image">
+              <div class="labor-team-overlay">
+                <h3 class="labor-team-name" data-translate="aboutus.team.schwarzbach.member11.name">FRAU LEA PACHMANN</h3>
+              </div>
+            </div>
+            <div class="labor-team-info">
+              <p class="labor-team-position" data-translate="aboutus.team.schwarzbach.member11.role">Zahnmedizinische Fachangestellte</p>
+            </div>
+          </div>
+
+          <!-- Team Member 12 -->
+          <div class="labor-team-card cursor-pointer scroll-reveal">
+            <div class="labor-team-image-wrapper">
+              <img src="../assets/img/khonghinh.jpg" alt="FRAU NGUYEN THI MY HANH" class="labor-team-image">
+              <div class="labor-team-overlay">
+                <h3 class="labor-team-name" data-translate="aboutus.team.schwarzbach.member12.name">FRAU NGUYEN THI MY HANH</h3>
+              </div>
+            </div>
+            <div class="labor-team-info">
+              <p class="labor-team-position" data-translate="aboutus.team.schwarzbach.member12.role">Zahnmedizinische Fachangestellte</p>
+            </div>
+          </div>
+
+          <!-- Team Member 13 -->
+          <div class="labor-team-card cursor-pointer scroll-reveal">
+            <div class="labor-team-image-wrapper">
+              <img src="../assets/img/khonghinh.jpg" alt="FRAU NGUYEN NGOC DIEM QUYEN" class="labor-team-image">
+              <div class="labor-team-overlay">
+                <h3 class="labor-team-name" data-translate="aboutus.team.schwarzbach.member13.name">FRAU NGUYEN NGOC DIEM QUYEN</h3>
+              </div>
+            </div>
+            <div class="labor-team-info">
+              <p class="labor-team-position" data-translate="aboutus.team.schwarzbach.member13.role">Zahnmedizinische Fachangestellte</p>
+            </div>
+          </div>
+
+          <!-- Team Member 14 -->
+          <div class="labor-team-card cursor-pointer scroll-reveal">
+            <div class="labor-team-image-wrapper">
+              <img src="../assets/img/khonghinh.jpg" alt="FRAU PHAM THI VAN" class="labor-team-image">
+              <div class="labor-team-overlay">
+                <h3 class="labor-team-name" data-translate="aboutus.team.schwarzbach.member14.name">FRAU PHAM THI VAN</h3>
+              </div>
+            </div>
+            <div class="labor-team-info">
+              <p class="labor-team-position" data-translate="aboutus.team.schwarzbach.member14.role">Zahnmedizinische Fachangestellte</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Am Loh Location Team -->
+      <div>
+        <h3 class="text-3xl font-bold text-gray-800 mb-8 text-center scroll-reveal" data-translate="aboutus.team.amloh.title">
+          Standort Am Loh
+        </h3>
+        <div class="grid md:grid-cols-4 gap-8 team-grid max-w-7xl mx-auto">
+          <!-- Team Member 1 -->
+          <div class="labor-team-card cursor-pointer scroll-reveal">
+            <div class="labor-team-image-wrapper">
+              <img src="../assets/img/Vera Seitschenko-Dinh.jpg" alt="Leitende Zahnärztin Frau Seitschenko-Dinh" class="labor-team-image">
+              <div class="labor-team-overlay">
+                <h3 class="labor-team-name" data-translate="aboutus.team.amloh.member1.name">Leitende Zahnärztin Frau Seitschenko-Dinh</h3>
+              </div>
+            </div>
+            <div class="labor-team-info">
+              <p class="labor-team-position" data-translate="aboutus.team.amloh.member1.role">Leitende Zahnärztin</p>
+            </div>
+          </div>
+
+          <!-- Team Member 2 -->
+          <div class="labor-team-card cursor-pointer scroll-reveal">
+            <div class="labor-team-image-wrapper">
+              <img src="../assets/img/Kukadiya.jpg" alt="Zahnärztin Dr. Kukadiya" class="labor-team-image">
+              <div class="labor-team-overlay">
+                <h3 class="labor-team-name" data-translate="aboutus.team.amloh.member2.name">Zahnärztin Dr. Kukadiya</h3>
+              </div>
+            </div>
+            <div class="labor-team-info">
+              <p class="labor-team-position" data-translate="aboutus.team.amloh.member2.role">Zahnärztin</p>
+            </div>
+          </div>
+
+          <!-- Team Member 3 -->
+          <div class="labor-team-card cursor-pointer scroll-reveal">
+            <div class="labor-team-image-wrapper">
+              <img src="../assets/img/khonghinh.jpg" alt="ZAHNARZT DIMITRIOS NIKOLAOU" class="labor-team-image">
+              <div class="labor-team-overlay">
+                <h3 class="labor-team-name" data-translate="aboutus.team.amloh.member3.name">ZAHNARZT DIMITRIOS NIKOLAOU</h3>
+              </div>
+            </div>
+            <div class="labor-team-info">
+              <p class="labor-team-position" data-translate="aboutus.team.amloh.member3.role">Zahnarzt</p>
+            </div>
+          </div>
+
+          <!-- Team Member 4 -->
+          <div class="labor-team-card cursor-pointer scroll-reveal">
+            <div class="labor-team-image-wrapper">
+              <img src="../assets/img/MANUELA VAROQUIER-FETT.jpg" alt="MANUELA VAROQUIER-FETT" class="labor-team-image">
+              <div class="labor-team-overlay">
+                <h3 class="labor-team-name" data-translate="aboutus.team.amloh.member4.name">MANUELA VAROQUIER-FETT</h3>
+              </div>
+            </div>
+            <div class="labor-team-info">
+              <p class="labor-team-position" data-translate="aboutus.team.amloh.member4.role">Zahnmedizinische Fachangestellte</p>
+            </div>
+          </div>
+
+          <!-- Team Member 5 -->
+          <div class="labor-team-card cursor-pointer scroll-reveal">
+            <div class="labor-team-image-wrapper">
+              <img src="../assets/img/kamps-scaled (1).jpeg" alt="SYLVIA KAMPS" class="labor-team-image">
+              <div class="labor-team-overlay">
+                <h3 class="labor-team-name" data-translate="aboutus.team.amloh.member5.name">SYLVIA KAMPS</h3>
+              </div>
+            </div>
+            <div class="labor-team-info">
+              <p class="labor-team-position" data-translate="aboutus.team.amloh.member5.role">Zahnmedizinische Fachangestellte</p>
+            </div>
+          </div>
+
+          <!-- Team Member 6 -->
+          <div class="labor-team-card cursor-pointer scroll-reveal">
+            <div class="labor-team-image-wrapper">
+              <img src="../assets/img/lozhnikova.jpg" alt="SVITLANA LOZHNIKOVA" class="labor-team-image">
+              <div class="labor-team-overlay">
+                <h3 class="labor-team-name" data-translate="aboutus.team.amloh.member6.name">SVITLANA LOZHNIKOVA</h3>
+              </div>
+            </div>
+            <div class="labor-team-info">
+              <p class="labor-team-position" data-translate="aboutus.team.amloh.member6.role">Zahnmedizinische Fachangestellte</p>
+            </div>
+          </div>
+
+          <!-- Team Member 7 -->
+          <div class="labor-team-card cursor-pointer scroll-reveal">
+            <div class="labor-team-image-wrapper">
+              <img src="../assets/img/FRAU JOCHIM.jpg" alt="FRAU JOCHIM" class="labor-team-image">
+              <div class="labor-team-overlay">
+                <h3 class="labor-team-name" data-translate="aboutus.team.amloh.member7.name">FRAU JOCHIM</h3>
+              </div>
+            </div>
+            <div class="labor-team-info">
+              <p class="labor-team-position" data-translate="aboutus.team.amloh.member7.role">Zahnmedizinische Fachangestellte</p>
+            </div>
+          </div>
+
+          <!-- Team Member 8 -->
+          <div class="labor-team-card cursor-pointer scroll-reveal">
+            <div class="labor-team-image-wrapper">
+              <img src="../assets/img/khonghinh.jpg" alt="FRAU LEA PACHMANN" class="labor-team-image">
+              <div class="labor-team-overlay">
+                <h3 class="labor-team-name" data-translate="aboutus.team.amloh.member8.name">FRAU LEA PACHMANN</h3>
+              </div>
+            </div>
+            <div class="labor-team-info">
+              <p class="labor-team-position" data-translate="aboutus.team.amloh.member8.role">Zahnmedizinische Fachangestellte</p>
+            </div>
+          </div>
+
+          <!-- Team Member 9 -->
+          <div class="labor-team-card cursor-pointer scroll-reveal">
+            <div class="labor-team-image-wrapper">
+              <img src="../assets/img/khonghinh.jpg" alt="FRAU NGUYEN THI MY HANH" class="labor-team-image">
+              <div class="labor-team-overlay">
+                <h3 class="labor-team-name" data-translate="aboutus.team.amloh.member9.name">FRAU NGUYEN THI MY HANH</h3>
+              </div>
+            </div>
+            <div class="labor-team-info">
+              <p class="labor-team-position" data-translate="aboutus.team.amloh.member9.role">Zahnmedizinische Fachangestellte</p>
+            </div>
+          </div>
+
+          <!-- Team Member 10 -->
+          <div class="labor-team-card cursor-pointer scroll-reveal">
+            <div class="labor-team-image-wrapper">
+              <img src="../assets/img/khonghinh.jpg" alt="FRAU NGUYEN NGOC DIEM QUYEN" class="labor-team-image">
+              <div class="labor-team-overlay">
+                <h3 class="labor-team-name" data-translate="aboutus.team.amloh.member10.name">FRAU NGUYEN NGOC DIEM QUYEN</h3>
+              </div>
+            </div>
+            <div class="labor-team-info">
+              <p class="labor-team-position" data-translate="aboutus.team.amloh.member10.role">Zahnmedizinische Fachangestellte</p>
+            </div>
+          </div>
+
+          <!-- Team Member 11 -->
+          <div class="labor-team-card cursor-pointer scroll-reveal">
+            <div class="labor-team-image-wrapper">
+              <img src="../assets/img/khonghinh.jpg" alt="FRAU PHAM THI VAN" class="labor-team-image">
+              <div class="labor-team-overlay">
+                <h3 class="labor-team-name" data-translate="aboutus.team.amloh.member11.name">FRAU PHAM THI VAN</h3>
+              </div>
+            </div>
+            <div class="labor-team-info">
+              <p class="labor-team-position" data-translate="aboutus.team.amloh.member11.role">Zahnmedizinische Fachangestellte</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Practice Management Team -->
+      <div class="mt-20">
+        <h3 class="text-3xl font-bold text-gray-800 mb-8 text-center scroll-reveal" data-translate="aboutus.team.management.title">
+          Leitung der Praxen
+        </h3>
+        <div class="grid md:grid-cols-4 gap-8 team-grid max-w-7xl mx-auto justify-center">
+          <!-- Team Member 1 -->
+          <div class="labor-team-card cursor-pointer scroll-reveal">
+            <div class="labor-team-image-wrapper">
+              <img src="../assets/img/khonghinh.jpg" alt="Brandon Dinh" class="labor-team-image">
+              <div class="labor-team-overlay">
+                <h3 class="labor-team-name" data-translate="aboutus.team.management.member1.name">Brandon Dinh</h3>
+              </div>
+            </div>
+            <div class="labor-team-info">
+              <p class="labor-team-position" data-translate="aboutus.team.management.member1.role">Praxisleitung</p>
+            </div>
+          </div>
+
+          <!-- Team Member 2 -->
+          <div class="labor-team-card cursor-pointer scroll-reveal">
+            <div class="labor-team-image-wrapper">
+              <img src="../assets/img/khonghinh.jpg" alt="Sofia Dinh" class="labor-team-image">
+              <div class="labor-team-overlay">
+                <h3 class="labor-team-name" data-translate="aboutus.team.management.member2.name">Sofia Dinh</h3>
+              </div>
+            </div>
+            <div class="labor-team-info">
+              <p class="labor-team-position" data-translate="aboutus.team.management.member2.role">Praxisleitung</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -496,51 +975,185 @@
         },
         aboutus: {
           hero: {
-            title: "Was Sie bei uns erwarten können",
+            title: "Über uns",
             subtitle: "Professionelle Zahnversorgung, kompetente Beratung und langlebige Ergebnisse. Was häufig in unserer Dienstleistungsgesellschaft fehlt: Zeit."
+          },
+          expect: {
+            title: "Was Sie bei uns erwarten können",
+            subtitle: "Bei den Zahnarztpraxen Seitschenko-Dinh",
+            description: "Unsere Praxis bietet Ihnen nicht nur professionelle Zahnversorgung, kompetente Beratung und langlebige Ergebnisse. Als Patient dürfen Sie noch mehr erwarten – etwas, das im Dienstleistungsbereich oft fehlt: Zeit.",
+            feature1: {
+              title: "Professionelle Zahnversorgung",
+              desc: "Höchste Qualitätsstandards"
+            },
+            feature2: {
+              title: "Kompetente Beratung",
+              desc: "In sechs Sprachen"
+            },
+            feature3: {
+              title: "Langlebige Ergebnisse",
+              desc: "Nachhaltige Behandlung"
+            },
+            feature4: {
+              title: "Zeit für Sie",
+              desc: "Das Wichtigste für uns"
+            }
           },
           intro: {
             title: "Zeit für Sie",
-            description: "Wir nehmen uns die nötige Zeit für sorgfältige Diagnosen und ausführliche Beratungen in fünf Sprachen: Deutsch, Englisch, Russisch, Vietnamesisch und Arabisch."
+            description: "Wir nehmen uns die nötige Zeit für sorgfältige Diagnosen und ausführliche Beratungen in ruhigen und vertrauensvollen Gesprächen. In Deutsch, Russisch, Arabisch, Türkisch, Französisch und Englisch sorgen wir für Transparenz und planen Ihre optimale, individuelle Therapie."
           },
           promises: {
             title: "Unsere Versprechen an Sie"
           },
           promise1: {
             title: "Zeit für Sie",
-            text: "Sorgfältige Diagnosen und ausführliche Beratungen in fünf Sprachen"
+            text: "Sorgfältige Diagnosen und ausführliche Beratungen in sechs Sprachen"
           },
           promise2: {
             title: "Zeit für Ihre Behandlung",
-            text: "Professionelle Versorgung auf höchstem Niveau mit modernster Technik und biokompatiblen Materialien"
+            text: "Auf höchstem fachlichen Niveau, mit modernster Technik und biokompatiblen Materialien, widmen wir uns Ihrer Zahnbehandlung"
           },
           promise3: {
             title: "Zeit für Qualität und Sicherheit",
-            text: "Strenge Hygieneprotokolle für eine risikofreie Behandlung"
+            text: "Unser striktes Hygienekonzept gewährleistet eine risikofreie Behandlung mit höchsten Sicherheitsstandards"
           },
           promise4: {
             title: "Zeit für Weiterbildung",
-            text: "Regelmäßige Fortbildungen in neuester medizinischer Expertise und progressiven Technologien"
+            text: "Unser Team nimmt regelmäßig an Fortbildungen teil, sodass Sie als Patient von neuester medizinischer Fachkompetenz und fortschrittlichen Technologien profitieren"
           },
           promise5: {
             title: "Zeit für Prophylaxe",
-            text: "Professionelle Vorsorge ist zentral in unserer Behandlungsphilosophie"
+            text: "Die professionelle Vorbeugung von Zahn- und Zahnfleischerkrankungen ist ein zentraler Bestandteil unseres Behandlungskonzepts und die Basis für eine hochwertige, ästhetische Versorgung Ihrer Zähne"
           },
           promise6: {
             title: "Zeit für Service",
-            text: "Effiziente Terminvergabe minimiert Ihre Wartezeiten"
+            text: "Ihre Zeit ist kostbar. Wir bemühen uns, Ihren Besuch in unserer Praxis so angenehm und komfortabel wie möglich zu gestalten und durch effizientes Terminmanagement unnötige Wartezeiten zu vermeiden"
+          },
+          closing: {
+            title: "Ihre Zufriedenheit steht an erster Stelle",
+            message: "Ihre Zufriedenheit und Ihr Wohlbefinden stehen bei uns an erster Stelle. Vertrauen Sie auf unsere Erfahrung und Fachkompetenz – für ein gesundes und strahlendes Lächeln.",
+            tagline: "Für Ihr strahlendes Lächeln"
           },
           team: {
             title: "Unser Team",
             subtitle: "Erfahrene Zahnärzte und qualifiziertes Personal an beiden Standorten",
-            member1: {
-              name: "Vera Seitschenko-Dinh",
-              role: "Leitende Zahnärztin",
-              location: "Beide Standorte"
+            schwarzbach: {
+              title: "Standort Schwarzbach",
+              member1: {
+                name: "Leitende Zahnärztin Frau Seitschenko-Dinh",
+                role: "Leitende Zahnärztin"
+              },
+              member2: {
+                name: "Zahnarzt Herr IKIKARDES",
+                role: "Zahnarzt"
+              },
+              member3: {
+                name: "Zahnarzt Herr TAIFOUR",
+                role: "Zahnarzt"
+              },
+              member4: {
+                name: "FRAU YURCHENKO",
+                role: "Zahnmedizinische Fachangestellte"
+              },
+              member5: {
+                name: "FRAU SIRAK",
+                role: "Zahnmedizinische Fachangestellte"
+              },
+              member6: {
+                name: "HERR YURCHENKO",
+                role: "Zahnmedizinischer Fachangestellter"
+              },
+              member7: {
+                name: "FRAU THIEMANN",
+                role: "Zahnmedizinische Fachangestellte"
+              },
+              member8: {
+                name: "FRAU KVAKTUN",
+                role: "Zahnmedizinische Fachangestellte"
+              },
+              member9: {
+                name: "FRAU PACHMANN",
+                role: "Zahnmedizinische Fachangestellte"
+              },
+              member10: {
+                name: "FRAU EL FADDANI",
+                role: "Zahnmedizinische Fachangestellte"
+              },
+              member11: {
+                name: "FRAU LEA PACHMANN",
+                role: "Zahnmedizinische Fachangestellte"
+              },
+              member12: {
+                name: "FRAU NGUYEN THI MY HANH",
+                role: "Zahnmedizinische Fachangestellte"
+              },
+              member13: {
+                name: "FRAU NGUYEN NGOC DIEM QUYEN",
+                role: "Zahnmedizinische Fachangestellte"
+              },
+              member14: {
+                name: "FRAU PHAM THI VAN",
+                role: "Zahnmedizinische Fachangestellte"
+              }
             },
-            member2: {
-              name: "Brandon Dinh",
-              role: "Praxisleitung"
+            amloh: {
+              title: "Standort Am Loh",
+              member1: {
+                name: "Leitende Zahnärztin Frau Seitschenko-Dinh",
+                role: "Leitende Zahnärztin"
+              },
+              member2: {
+                name: "Zahnärztin Dr. Kukadiya",
+                role: "Zahnärztin"
+              },
+              member3: {
+                name: "ZAHNARZT DIMITRIOS NIKOLAOU",
+                role: "Zahnarzt"
+              },
+              member4: {
+                name: "MANUELA VAROQUIER-FETT",
+                role: "Zahnmedizinische Fachangestellte"
+              },
+              member5: {
+                name: "SYLVIA KAMPS",
+                role: "Zahnmedizinische Fachangestellte"
+              },
+              member6: {
+                name: "SVITLANA LOZHNIKOVA",
+                role: "Zahnmedizinische Fachangestellte"
+              },
+              member7: {
+                name: "FRAU JOCHIM",
+                role: "Zahnmedizinische Fachangestellte"
+              },
+              member8: {
+                name: "FRAU LEA PACHMANN",
+                role: "Zahnmedizinische Fachangestellte"
+              },
+              member9: {
+                name: "FRAU NGUYEN THI MY HANH",
+                role: "Zahnmedizinische Fachangestellte"
+              },
+              member10: {
+                name: "FRAU NGUYEN NGOC DIEM QUYEN",
+                role: "Zahnmedizinische Fachangestellte"
+              },
+              member11: {
+                name: "FRAU PHAM THI VAN",
+                role: "Zahnmedizinische Fachangestellte"
+              }
+            },
+            management: {
+              title: "Leitung der Praxen",
+              member1: {
+                name: "Brandon Dinh",
+                role: "Praxisleitung"
+              },
+              member2: {
+                name: "Sofia Dinh",
+                role: "Praxisleitung"
+              }
             }
           },
           locations: {
@@ -591,51 +1204,185 @@
         },
         aboutus: {
           hero: {
-            title: "What You Can Expect From Us",
+            title: "About Us",
             subtitle: "Professional dental care, competent advice and lasting results. What is often missing in our service society: Time."
+          },
+          expect: {
+            title: "What You Can Expect From Us",
+            subtitle: "At Dental Practices Seitschenko-Dinh",
+            description: "Our practice offers you not only professional dental care, competent advice and lasting results. As a patient, you can expect even more – something that is often missing in the service sector: Time.",
+            feature1: {
+              title: "Professional Dental Care",
+              desc: "Highest Quality Standards"
+            },
+            feature2: {
+              title: "Competent Advice",
+              desc: "In Six Languages"
+            },
+            feature3: {
+              title: "Lasting Results",
+              desc: "Sustainable Treatment"
+            },
+            feature4: {
+              title: "Time for You",
+              desc: "The Most Important to Us"
+            }
           },
           intro: {
             title: "Time for You",
-            description: "We take the necessary time for careful diagnoses and detailed consultations in five languages: German, English, Russian, Vietnamese and Arabic."
+            description: "We take the necessary time for careful diagnoses and detailed consultations in calm and trusting conversations. In German, Russian, Arabic, Turkish, French and English, we ensure transparency and plan your optimal, individual therapy."
           },
           promises: {
             title: "Our Promises to You"
           },
           promise1: {
             title: "Time for You",
-            text: "Careful diagnoses and detailed consultations in five languages"
+            text: "Careful diagnoses and detailed consultations in six languages"
           },
           promise2: {
             title: "Time for Your Treatment",
-            text: "Professional care at the highest level with state-of-the-art technology and biocompatible materials"
+            text: "At the highest professional level, with state-of-the-art technology and biocompatible materials, we dedicate ourselves to your dental treatment"
           },
           promise3: {
             title: "Time for Quality and Safety",
-            text: "Strict hygiene protocols for risk-free treatment"
+            text: "Our strict hygiene concept ensures risk-free treatment with the highest safety standards"
           },
           promise4: {
             title: "Time for Continuing Education",
-            text: "Regular training in the latest medical expertise and progressive technologies"
+            text: "Our team regularly participates in training courses so that you as a patient benefit from the latest medical expertise and advanced technologies"
           },
           promise5: {
             title: "Time for Prevention",
-            text: "Professional preventive care is central to our treatment philosophy"
+            text: "Professional prevention of tooth and gum diseases is a central component of our treatment concept and the basis for high-quality, aesthetic care of your teeth"
           },
           promise6: {
             title: "Time for Service",
-            text: "Efficient appointment scheduling minimizes your waiting times"
+            text: "Your time is precious. We strive to make your visit to our practice as pleasant and comfortable as possible and to avoid unnecessary waiting times through efficient appointment management"
+          },
+          closing: {
+            title: "Your Satisfaction Comes First",
+            message: "Your satisfaction and well-being are our top priority. Trust in our experience and expertise – for a healthy and radiant smile.",
+            tagline: "For Your Radiant Smile"
           },
           team: {
             title: "Our Team",
             subtitle: "Experienced dentists and qualified staff at both locations",
-            member1: {
-              name: "Vera Seitschenko-Dinh",
-              role: "Lead Dentist",
-              location: "Both Locations"
+            schwarzbach: {
+              title: "Schwarzbach Location",
+              member1: {
+                name: "Lead Dentist Ms. Seitschenko-Dinh",
+                role: "Lead Dentist"
+              },
+              member2: {
+                name: "Dentist Mr. IKIKARDES",
+                role: "Dentist"
+              },
+              member3: {
+                name: "Dentist Mr. TAIFOUR",
+                role: "Dentist"
+              },
+              member4: {
+                name: "MS. YURCHENKO",
+                role: "Dental Assistant"
+              },
+              member5: {
+                name: "MS. SIRAK",
+                role: "Dental Assistant"
+              },
+              member6: {
+                name: "MR. YURCHENKO",
+                role: "Dental Assistant"
+              },
+              member7: {
+                name: "MS. THIEMANN",
+                role: "Dental Assistant"
+              },
+              member8: {
+                name: "MS. KVAKTUN",
+                role: "Dental Assistant"
+              },
+              member9: {
+                name: "MS. PACHMANN",
+                role: "Dental Assistant"
+              },
+              member10: {
+                name: "MS. EL FADDANI",
+                role: "Dental Assistant"
+              },
+              member11: {
+                name: "MS. LEA PACHMANN",
+                role: "Dental Assistant"
+              },
+              member12: {
+                name: "MS. NGUYEN THI MY HANH",
+                role: "Dental Assistant"
+              },
+              member13: {
+                name: "MS. NGUYEN NGOC DIEM QUYEN",
+                role: "Dental Assistant"
+              },
+              member14: {
+                name: "MS. PHAM THI VAN",
+                role: "Dental Assistant"
+              }
             },
-            member2: {
-              name: "Brandon Dinh",
-              role: "Practice Manager"
+            amloh: {
+              title: "Am Loh Location",
+              member1: {
+                name: "Lead Dentist Ms. Seitschenko-Dinh",
+                role: "Lead Dentist"
+              },
+              member2: {
+                name: "Dentist Dr. Kukadiya",
+                role: "Dentist"
+              },
+              member3: {
+                name: "DENTIST DIMITRIOS NIKOLAOU",
+                role: "Dentist"
+              },
+              member4: {
+                name: "MANUELA VAROQUIER-FETT",
+                role: "Dental Assistant"
+              },
+              member5: {
+                name: "SYLVIA KAMPS",
+                role: "Dental Assistant"
+              },
+              member6: {
+                name: "SVITLANA LOZHNIKOVA",
+                role: "Dental Assistant"
+              },
+              member7: {
+                name: "MS. JOCHIM",
+                role: "Dental Assistant"
+              },
+              member8: {
+                name: "MS. LEA PACHMANN",
+                role: "Dental Assistant"
+              },
+              member9: {
+                name: "MS. NGUYEN THI MY HANH",
+                role: "Dental Assistant"
+              },
+              member10: {
+                name: "MS. NGUYEN NGOC DIEM QUYEN",
+                role: "Dental Assistant"
+              },
+              member11: {
+                name: "MS. PHAM THI VAN",
+                role: "Dental Assistant"
+              }
+            },
+            management: {
+              title: "Practice Management",
+              member1: {
+                name: "Brandon Dinh",
+                role: "Practice Manager"
+              },
+              member2: {
+                name: "Sofia Dinh",
+                role: "Practice Manager"
+              }
             }
           },
           locations: {
@@ -686,51 +1433,185 @@
         },
         aboutus: {
           hero: {
-            title: "Những gì bạn có thể mong đợi từ chúng tôi",
+            title: "Về chúng tôi",
             subtitle: "Chăm sóc nha khoa chuyên nghiệp, tư vấn có năng lực và kết quả lâu dài. Điều thường thiếu trong xã hội dịch vụ của chúng ta: Thời gian."
+          },
+          expect: {
+            title: "Những gì bạn có thể mong đợi từ chúng tôi",
+            subtitle: "Tại Phòng khám Nha khoa Seitschenko-Dinh",
+            description: "Phòng khám của chúng tôi không chỉ cung cấp chăm sóc nha khoa chuyên nghiệp, tư vấn có năng lực và kết quả lâu dài. Là bệnh nhân, bạn có thể mong đợi nhiều hơn – điều thường thiếu trong lĩnh vực dịch vụ: Thời gian.",
+            feature1: {
+              title: "Chăm sóc Nha khoa Chuyên nghiệp",
+              desc: "Tiêu chuẩn chất lượng cao nhất"
+            },
+            feature2: {
+              title: "Tư vấn Có năng lực",
+              desc: "Bằng sáu ngôn ngữ"
+            },
+            feature3: {
+              title: "Kết quả Lâu dài",
+              desc: "Điều trị bền vững"
+            },
+            feature4: {
+              title: "Thời gian cho Bạn",
+              desc: "Điều quan trọng nhất với chúng tôi"
+            }
           },
           intro: {
             title: "Thời gian cho bạn",
-            description: "Chúng tôi dành đủ thời gian để chẩn đoán cẩn thận và tư vấn chi tiết bằng năm ngôn ngữ: Đức, Anh, Nga, Việt và Ả Rập."
+            description: "Chúng tôi dành đủ thời gian cho chẩn đoán cẩn thận và tư vấn chi tiết trong những cuộc trò chuyện yên tĩnh và đáng tin cậy. Bằng tiếng Đức, Nga, Ả Rập, Thổ Nhĩ Kỳ, Pháp và Anh, chúng tôi đảm bảo tính minh bạch và lập kế hoạch liệu pháp tối ưu, cá nhân hóa cho bạn."
           },
           promises: {
             title: "Cam kết của chúng tôi với bạn"
           },
           promise1: {
             title: "Thời gian cho bạn",
-            text: "Chẩn đoán cẩn thận và tư vấn chi tiết bằng năm ngôn ngữ"
+            text: "Chẩn đoán cẩn thận và tư vấn chi tiết bằng sáu ngôn ngữ"
           },
           promise2: {
             title: "Thời gian cho điều trị của bạn",
-            text: "Chăm sóc chuyên nghiệp ở mức cao nhất với công nghệ hiện đại và vật liệu tương thích sinh học"
+            text: "Ở mức chuyên môn cao nhất, với công nghệ hiện đại và vật liệu tương thích sinh học, chúng tôi tận tâm với điều trị nha khoa của bạn"
           },
           promise3: {
             title: "Thời gian cho chất lượng và an toàn",
-            text: "Quy trình vệ sinh nghiêm ngặt cho điều trị an toàn"
+            text: "Khái niệm vệ sinh nghiêm ngặt của chúng tôi đảm bảo điều trị an toàn với tiêu chuẩn an toàn cao nhất"
           },
           promise4: {
             title: "Thời gian cho đào tạo",
-            text: "Đào tạo thường xuyên về chuyên môn y tế mới nhất và công nghệ tiên tiến"
+            text: "Đội ngũ của chúng tôi thường xuyên tham gia các khóa đào tạo để bạn là bệnh nhân được hưởng lợi từ chuyên môn y tế mới nhất và công nghệ tiên tiến"
           },
           promise5: {
             title: "Thời gian cho phòng ngừa",
-            text: "Chăm sóc phòng ngừa chuyên nghiệp là trung tâm trong triết lý điều trị của chúng tôi"
+            text: "Phòng ngừa chuyên nghiệp các bệnh về răng và nướu là thành phần trung tâm trong khái niệm điều trị của chúng tôi và là nền tảng cho chăm sóc răng chất lượng cao, thẩm mỹ"
           },
           promise6: {
             title: "Thời gian cho dịch vụ",
-            text: "Lên lịch hẹn hiệu quả giảm thiểu thời gian chờ đợi của bạn"
+            text: "Thời gian của bạn rất quý giá. Chúng tôi cố gắng làm cho chuyến thăm của bạn đến phòng khám của chúng tôi thoải mái nhất có thể và tránh thời gian chờ đợi không cần thiết thông qua quản lý lịch hẹn hiệu quả"
+          },
+          closing: {
+            title: "Sự hài lòng của bạn là ưu tiên hàng đầu",
+            message: "Sự hài lòng và hạnh phúc của bạn là ưu tiên hàng đầu của chúng tôi. Hãy tin tưởng vào kinh nghiệm và chuyên môn của chúng tôi – cho một nụ cười khỏe mạnh và rạng rỡ.",
+            tagline: "Cho nụ cười rạng rỡ của bạn"
           },
           team: {
             title: "Đội ngũ của chúng tôi",
             subtitle: "Nha sĩ giàu kinh nghiệm và nhân viên có trình độ tại cả hai địa điểm",
-            member1: {
-              name: "Vera Seitschenko-Dinh",
-              role: "Nha sĩ trưởng",
-              location: "Cả hai địa điểm"
+            schwarzbach: {
+              title: "Địa điểm Schwarzbach",
+              member1: {
+                name: "Nha sĩ trưởng Frau Seitschenko-Dinh",
+                role: "Nha sĩ trưởng"
+              },
+              member2: {
+                name: "Nha sĩ Herr IKIKARDES",
+                role: "Nha sĩ"
+              },
+              member3: {
+                name: "Nha sĩ Herr TAIFOUR",
+                role: "Nha sĩ"
+              },
+              member4: {
+                name: "BÀ YURCHENKO",
+                role: "Trợ lý nha khoa"
+              },
+              member5: {
+                name: "BÀ SIRAK",
+                role: "Trợ lý nha khoa"
+              },
+              member6: {
+                name: "ÔNG YURCHENKO",
+                role: "Trợ lý nha khoa"
+              },
+              member7: {
+                name: "BÀ THIEMANN",
+                role: "Trợ lý nha khoa"
+              },
+              member8: {
+                name: "BÀ KVAKTUN",
+                role: "Trợ lý nha khoa"
+              },
+              member9: {
+                name: "BÀ PACHMANN",
+                role: "Trợ lý nha khoa"
+              },
+              member10: {
+                name: "BÀ EL FADDANI",
+                role: "Trợ lý nha khoa"
+              },
+              member11: {
+                name: "BÀ LEA PACHMANN",
+                role: "Trợ lý nha khoa"
+              },
+              member12: {
+                name: "BÀ NGUYEN THI MY HANH",
+                role: "Trợ lý nha khoa"
+              },
+              member13: {
+                name: "BÀ NGUYEN NGOC DIEM QUYEN",
+                role: "Trợ lý nha khoa"
+              },
+              member14: {
+                name: "BÀ PHAM THI VAN",
+                role: "Trợ lý nha khoa"
+              }
             },
-            member2: {
-              name: "Brandon Dinh",
-              role: "Quản lý phòng khám"
+            amloh: {
+              title: "Địa điểm Am Loh",
+              member1: {
+                name: "Nha sĩ trưởng Frau Seitschenko-Dinh",
+                role: "Nha sĩ trưởng"
+              },
+              member2: {
+                name: "Nha sĩ Dr. Kukadiya",
+                role: "Nha sĩ"
+              },
+              member3: {
+                name: "NHA SĨ DIMITRIOS NIKOLAOU",
+                role: "Nha sĩ"
+              },
+              member4: {
+                name: "MANUELA VAROQUIER-FETT",
+                role: "Trợ lý nha khoa"
+              },
+              member5: {
+                name: "SYLVIA KAMPS",
+                role: "Trợ lý nha khoa"
+              },
+              member6: {
+                name: "SVITLANA LOZHNIKOVA",
+                role: "Trợ lý nha khoa"
+              },
+              member7: {
+                name: "BÀ JOCHIM",
+                role: "Trợ lý nha khoa"
+              },
+              member8: {
+                name: "BÀ LEA PACHMANN",
+                role: "Trợ lý nha khoa"
+              },
+              member9: {
+                name: "BÀ NGUYEN THI MY HANH",
+                role: "Trợ lý nha khoa"
+              },
+              member10: {
+                name: "BÀ NGUYEN NGOC DIEM QUYEN",
+                role: "Trợ lý nha khoa"
+              },
+              member11: {
+                name: "BÀ PHAM THI VAN",
+                role: "Trợ lý nha khoa"
+              }
+            },
+            management: {
+              title: "Ban Quản Lý Phòng Khám",
+              member1: {
+                name: "Brandon Dinh",
+                role: "Quản lý phòng khám"
+              },
+              member2: {
+                name: "Sofia Dinh",
+                role: "Quản lý phòng khám"
+              }
             }
           },
           locations: {
@@ -740,7 +1621,7 @@
             title: "Địa điểm Schwarzbach"
           },
           location2: {
-            title: "Địa điểm Loher"
+            title: "Địa điểm Am Loh"
           }
         },
         contact: {
@@ -781,39 +1662,65 @@
         },
         aboutus: {
           hero: {
-            title: "Что вы можете ожидать от нас",
+            title: "О нас",
             subtitle: "Профессиональная стоматологическая помощь, компетентные консультации и долговечные результаты. Чего часто не хватает в нашем обществе услуг: Времени."
+          },
+          expect: {
+            title: "Что вы можете ожидать от нас",
+            subtitle: "В стоматологических клиниках Зайчшенко-Динь",
+            description: "Наша клиника предлагает вам не только профессиональную стоматологическую помощь, компетентные консультации и долговечные результаты. Как пациент, вы можете ожидать еще больше – того, чего часто не хватает в сфере услуг: Времени.",
+            feature1: {
+              title: "Профессиональная стоматологическая помощь",
+              desc: "Высочайшие стандарты качества"
+            },
+            feature2: {
+              title: "Компетентные консультации",
+              desc: "На шести языках"
+            },
+            feature3: {
+              title: "Долговечные результаты",
+              desc: "Устойчивое лечение"
+            },
+            feature4: {
+              title: "Время для вас",
+              desc: "Самое важное для нас"
+            }
           },
           intro: {
             title: "Время для вас",
-            description: "Мы уделяем необходимое время для тщательной диагностики и подробных консультаций на пяти языках: немецком, английском, русском, вьетнамском и арабском."
+            description: "Мы уделяем необходимое время для тщательной диагностики и подробных консультаций в спокойных и доверительных беседах. На немецком, русском, арабском, турецком, французском и английском языках мы обеспечиваем прозрачность и планируем вашу оптимальную, индивидуальную терапию."
           },
           promises: {
             title: "Наши обещания вам"
           },
           promise1: {
             title: "Время для вас",
-            text: "Тщательная диагностика и подробные консультации на пяти языках"
+            text: "Тщательная диагностика и подробные консультации на шести языках"
           },
           promise2: {
             title: "Время для вашего лечения",
-            text: "Профессиональный уход на высочайшем уровне с современными технологиями и биосовместимыми материалами"
+            text: "На высочайшем профессиональном уровне, с современными технологиями и биосовместимыми материалами, мы посвящаем себя вашему стоматологическому лечению"
           },
           promise3: {
             title: "Время для качества и безопасности",
-            text: "Строгие протоколы гигиены для безопасного лечения"
+            text: "Наша строгая концепция гигиены гарантирует безопасное лечение с высочайшими стандартами безопасности"
           },
           promise4: {
             title: "Время для обучения",
-            text: "Регулярное обучение новейшим медицинским знаниям и прогрессивным технологиям"
+            text: "Наша команда регулярно участвует в учебных курсах, чтобы вы как пациент извлекали пользу из новейших медицинских знаний и передовых технологий"
           },
           promise5: {
             title: "Время для профилактики",
-            text: "Профессиональная профилактическая помощь является центральной в нашей философии лечения"
+            text: "Профессиональная профилактика заболеваний зубов и десен является центральным компонентом нашей концепции лечения и основой для высококачественного, эстетического ухода за вашими зубами"
           },
           promise6: {
             title: "Время для сервиса",
-            text: "Эффективная запись на прием минимизирует время вашего ожидания"
+            text: "Ваше время драгоценно. Мы стремимся сделать ваш визит в нашу клинику максимально приятным и комфортным и избежать ненужного времени ожидания благодаря эффективному управлению записями"
+          },
+          closing: {
+            title: "Ваше удовлетворение на первом месте",
+            message: "Ваше удовлетворение и благополучие являются нашим главным приоритетом. Доверьтесь нашему опыту и профессионализму – для здоровой и сияющей улыбки.",
+            tagline: "Для вашей сияющей улыбки"
           },
           team: {
             title: "Наша команда",
@@ -876,39 +1783,65 @@
         },
         aboutus: {
           hero: {
-            title: "ما يمكنك توقعه منا",
+            title: "من نحن",
             subtitle: "رعاية أسنان احترافية، مشورة مختصة ونتائج دائمة. ما يفتقده مجتمع الخدمات في كثير من الأحيان: الوقت."
+          },
+          expect: {
+            title: "ما يمكنك توقعه منا",
+            subtitle: "في عيادات الأسنان سايتشينكو-دينه",
+            description: "تقدم عيادتنا ليس فقط رعاية أسنان احترافية ومشورة مختصة ونتائج دائمة. كمريض، يمكنك توقع المزيد – شيء غالباً ما يفتقده قطاع الخدمات: الوقت.",
+            feature1: {
+              title: "رعاية أسنان احترافية",
+              desc: "أعلى معايير الجودة"
+            },
+            feature2: {
+              title: "مشورة مختصة",
+              desc: "بست لغات"
+            },
+            feature3: {
+              title: "نتائج دائمة",
+              desc: "علاج مستدام"
+            },
+            feature4: {
+              title: "وقت لك",
+              desc: "الأهم بالنسبة لنا"
+            }
           },
           intro: {
             title: "وقت لك",
-            description: "نأخذ الوقت اللازم للتشخيصات الدقيقة والاستشارات التفصيلية بخمس لغات: الألمانية، الإنجليزية، الروسية، الفيتنامية والعربية."
+            description: "نأخذ الوقت اللازم للتشخيصات الدقيقة والاستشارات التفصيلية في محادثات هادئة وموثوقة. بالألمانية والروسية والعربية والتركية والفرنسية والإنجليزية، نضمن الشفافية ونخطط للعلاج الأمثل والفردي لك."
           },
           promises: {
             title: "وعودنا لك"
           },
           promise1: {
             title: "وقت لك",
-            text: "تشخيصات دقيقة واستشارات تفصيلية بخمس لغات"
+            text: "تشخيصات دقيقة واستشارات تفصيلية بست لغات"
           },
           promise2: {
             title: "وقت لعلاجك",
-            text: "رعاية احترافية على أعلى مستوى بأحدث التقنيات والمواد المتوافقة حيوياً"
+            text: "على أعلى مستوى مهني، بأحدث التقنيات والمواد المتوافقة حيوياً، نكرس أنفسنا لعلاج أسنانك"
           },
           promise3: {
             title: "وقت للجودة والسلامة",
-            text: "بروتوكولات نظافة صارمة لعلاج خالٍ من المخاطر"
+            text: "يضمن مفهوم النظافة الصارم لدينا علاجاً خالياً من المخاطر بأعلى معايير السلامة"
           },
           promise4: {
             title: "وقت للتدريب",
-            text: "تدريب منتظم في أحدث الخبرات الطبية والتقنيات التقدمية"
+            text: "يشارك فريقنا بانتظام في دورات تدريبية حتى تستفيد كمريض من أحدث الخبرات الطبية والتقنيات المتقدمة"
           },
           promise5: {
             title: "وقت للوقاية",
-            text: "الرعاية الوقائية الاحترافية هي محور فلسفتنا العلاجية"
+            text: "الوقاية المهنية من أمراض الأسنان واللثة هي عنصر أساسي في مفهوم العلاج لدينا وأساس للرعاية عالية الجودة والجمالية لأسنانك"
           },
           promise6: {
             title: "وقت للخدمة",
-            text: "جدولة المواعيد الفعالة تقلل من أوقات الانتظار"
+            text: "وقتك ثمين. نسعى لجعل زيارتك لعيادتنا لطيفة ومريحة قدر الإمكان وتجنب أوقات الانتظار غير الضرورية من خلال إدارة المواعيد الفعالة"
+          },
+          closing: {
+            title: "رضاك يأتي أولاً",
+            message: "رضاك ورفاهيتك هما أولويتنا القصوى. ثق في خبرتنا واحترافيتنا – من أجل ابتسامة صحية ومشرقة.",
+            tagline: "لابتسامتك المشرقة"
           },
           team: {
             title: "فريقنا",

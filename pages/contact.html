@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<!--
+  Contact - Kontakt
+  ========================================================
+  Contact page for Zahnarztpraxen Seitschenko-Dinh with location details.
+-->
+<html lang="de" id="html-root">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title id="page-title">Kontakt - Seitschenko-Dinh</title>
+  <meta name="description" content="Kontaktieren Sie uns für einen Termin in unseren Standorten in Wuppertal - Schwarzbach und Am Loh" id="page-description">
+  <link href="../css/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="bg-white text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-white shadow-lg fixed top-0 left-0 right-0 z-50">
+    <div class="container mx-auto px-4">
+      <div class="flex items-center justify-between py-4">
+        <!-- Logo -->
+        <div class="flex items-center space-x-3">
+          <img src="../assets/img/logo.svg" alt="Seitschenko-Dinh Logo" class="w-12 h-12">
+          <a href="../index.html" class="flex flex-col leading-tight">
+            <span class="text-sm font-bold text-gray-800 tracking-wide" data-translate="header.practice_name1">ZAHNARZTPRAXEN</span>
+            <span class="text-sm font-bold text-gray-800 tracking-wide" data-translate="header.practice_name2">SEITSCHENKO-DINH</span>
+          </a>
+        </div>
+
+        <!-- Navigation and Language Switcher -->
+        <div class="hidden md:flex items-center space-x-4">
+          <nav class="flex space-x-2">
+            <a href="../index.html#home" class="nav-link" data-translate="nav.home">Start</a>
+            <a href="about-us.html" class="nav-link" data-translate="nav.about">Über uns</a>
+            <a href="services.html" class="nav-link" data-translate="nav.services">Leistungen</a>
+            <a href="labor.html" class="nav-link" data-translate="nav.labor">Labor</a>
+            <a href="karriere.html" class="nav-link" data-translate="nav.karriere">Karriere</a>
+            <a href="contact.html" class="nav-link active" data-translate="nav.contact">Kontakt</a>
+          </nav>
+
+          <!-- Language Switcher -->
+          <div class="language-switcher">
+            <button id="language-btn" class="flex items-center space-x-1 px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+              <img id="current-flag" src="https://flagcdn.com/24x18/de.png" alt="Deutsch" class="language-flag">
+              <span id="current-lang">DE</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div id="language-menu" class="language-menu">
+              <a href="#" onclick="changeLanguage('de')" class="language-option" data-lang="de">
+                <img src="https://flagcdn.com/24x18/de.png" alt="Deutsch" class="language-flag">
+                Deutsch
+              </a>
+              <a href="#" onclick="changeLanguage('en')" class="language-option" data-lang="en">
+                <img src="https://flagcdn.com/24x18/us.png" alt="English" class="language-flag">
+                English
+              </a>
+              <a href="#" onclick="changeLanguage('vi')" class="language-option" data-lang="vi">
+                <img src="https://flagcdn.com/24x18/vn.png" alt="Tiếng Việt" class="language-flag">
+                Tiếng Việt
+              </a>
+              <a href="#" onclick="changeLanguage('ru')" class="language-option" data-lang="ru">
+                <img src="https://flagcdn.com/24x18/ru.png" alt="Русский" class="language-flag">
+                Русский
+              </a>
+              <a href="#" onclick="changeLanguage('ar')" class="language-option" data-lang="ar">
+                <img src="https://flagcdn.com/24x18/sa.png" alt="العربية" class="language-flag">
+                العربية
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="md:hidden p-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="md:hidden hidden pb-4">
+        <div class="flex flex-col space-y-2">
+          <a href="../index.html#home" class="nav-link" data-translate="nav.home">Start</a>
+          <a href="about-us.html" class="nav-link" data-translate="nav.about">Über uns</a>
+          <a href="services.html" class="nav-link" data-translate="nav.services">Leistungen</a>
+          <a href="labor.html" class="nav-link" data-translate="nav.labor">Labor</a>
+          <a href="karriere.html" class="nav-link" data-translate="nav.karriere">Karriere</a>
+          <a href="contact.html" class="nav-link active" data-translate="nav.contact">Kontakt</a>
+
+          <!-- Mobile Language Switcher -->
+          <div class="pt-2 border-t border-gray-200">
+            <div class="language-switcher-mobile">
+              <button id="mobile-language-btn" class="flex items-center justify-between w-full px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+                <span data-translate="language.current">Sprache:</span>
+                <div class="flex items-center space-x-1">
+                  <img id="mobile-current-flag" src="https://flagcdn.com/24x18/de.png" alt="Deutsch" class="language-flag">
+                  <span id="mobile-current-lang">DE</span>
+                </div>
+              </button>
+              <div id="mobile-language-menu" class="language-menu-mobile">
+                <a href="#" onclick="changeLanguage('de')" class="language-option-mobile" data-lang="de">
+                  <img src="https://flagcdn.com/24x18/de.png" alt="Deutsch" class="language-flag">
+                  Deutsch
+                </a>
+                <a href="#" onclick="changeLanguage('en')" class="language-option-mobile" data-lang="en">
+                  <img src="https://flagcdn.com/24x18/us.png" alt="English" class="language-flag">
+                  English
+                </a>
+                <a href="#" onclick="changeLanguage('vi')" class="language-option-mobile" data-lang="vi">
+                  <img src="https://flagcdn.com/24x18/vn.png" alt="Tiếng Việt" class="language-flag">
+                  Tiếng Việt
+                </a>
+                <a href="#" onclick="changeLanguage('ru')" class="language-option-mobile" data-lang="ru">
+                  <img src="https://flagcdn.com/24x18/ru.png" alt="Русский" class="language-flag">
+                  Русский
+                </a>
+                <a href="#" onclick="changeLanguage('ar')" class="language-option-mobile" data-lang="ar">
+                  <img src="https://flagcdn.com/24x18/sa.png" alt="العربية" class="language-flag">
+                  العربية
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="py-20 relative overflow-hidden" style="background: url('../assets/img/img_0368-scaled.jpeg') center/cover no-repeat;">
+    <div class="absolute inset-0 bg-white bg-opacity-30"></div>
+    <div class="relative z-10 text-center max-w-4xl mx-auto px-4">
+      <h1 class="text-4xl md:text-6xl font-bold mb-6" style="color: #5eb3b3;" data-translate="contact.hero.title">
+        Kontakt
+      </h1>
+      <p class="text-xl text-gray-700 mb-8 font-light max-w-2xl mx-auto" data-translate="contact.hero.subtitle">
+        Vereinbaren Sie einen Termin oder kontaktieren Sie uns für weitere Informationen
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="py-20">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16 scroll-reveal">
+        <p class="text-sm font-bold tracking-widest mb-2" style="color: #5eb3b3;" data-translate="contact.suptitle">
+          LIÊN HỆ VỚI CHÚNG TÔI
+        </p>
+        <h2 class="text-4xl font-bold text-gray-800 mb-4" data-translate="contact.title">Kontaktieren Sie uns</h2>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto" data-translate="contact.subtitle">
+          Wir sind gerne für Sie da und freuen uns auf Ihren Besuch
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <!-- Location 1: Schwarzbach -->
+        <div class="contact-card-wrapper">
+          <div class="location-card">
+            <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="contact.location1.title">Standort Schwarzbach</h3>
+            <div class="space-y-4">
+              <div class="flex items-start space-x-3">
+                <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+                <div>
+                  <p class="font-semibold text-gray-800" data-translate="contact.address">Adresse</p>
+                  <p class="text-gray-600">Schwarzbach 2<br>42277 Wuppertal</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-3">
+                <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                </svg>
+                <div>
+                  <p class="font-semibold text-gray-800" data-translate="contact.phone">Telefon</p>
+                  <a href="tel:0202660828" class="text-teal-500 hover:text-teal-600">0202 660828</a>
+                </div>
+              </div>
+              <div class="flex items-start space-x-3">
+                <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                </svg>
+                <div>
+                  <p class="font-semibold text-gray-800" data-translate="contact.email">E-Mail</p>
+                  <a href="mailto:schwarzbach@seitschenko-dinh.de" class="text-teal-500 hover:text-teal-600">schwarzbach@seitschenko-dinh.de</a>
+                </div>
+              </div>
+              <div class="flex items-start space-x-3">
+                <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <div>
+                  <p class="font-semibold text-gray-800" data-translate="contact.hours">Öffnungszeiten</p>
+                  <p class="text-gray-600" data-translate="contact.location1.hours">
+                    Mo-Do: 8:00-18:00<br>
+                    Fr: 8:00-14:00
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Location 2: Am Loh -->
+        <div class="contact-card-wrapper">
+          <div class="location-card">
+            <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="contact.location2.title">Standort Am Loh</h3>
+            <div class="space-y-4">
+              <div class="flex items-start space-x-3">
+                <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+                <div>
+                  <p class="font-semibold text-gray-800" data-translate="contact.address">Adresse</p>
+                  <p class="text-gray-600">Loher Str. 40<br>42283 Wuppertal</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-3">
+                <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                </svg>
+                <div>
+                  <p class="font-semibold text-gray-800" data-translate="contact.phone">Telefon</p>
+                  <a href="tel:0202451642" class="text-teal-500 hover:text-teal-600">0202 451642</a>
+                </div>
+              </div>
+              <div class="flex items-start space-x-3">
+                <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                </svg>
+                <div>
+                  <p class="font-semibold text-gray-800" data-translate="contact.email">E-Mail</p>
+                  <a href="mailto:loherstr@seitschenko-dinh.de" class="text-teal-500 hover:text-teal-600">loherstr@seitschenko-dinh.de</a>
+                </div>
+              </div>
+              <div class="flex items-start space-x-3">
+                <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <div>
+                  <p class="font-semibold text-gray-800" data-translate="contact.hours">Öffnungszeiten</p>
+                  <p class="text-gray-600" data-translate="contact.location2.hours">
+                    Mo-Do: 8:00-18:00<br>
+                    Fr: 8:00-14:00
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map Section -->
+      <div class="mt-16 max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Map 1: Schwarzbach -->
+          <div class="scroll-reveal">
+            <h4 class="text-xl font-bold text-gray-800 mb-4 text-center" data-translate="contact.location1.map">Standort Schwarzbach</h4>
+            <a href="https://www.google.com/maps?q=Schwarzbach+2,+42277+Wuppertal" target="_blank" rel="noopener noreferrer" class="block rounded-2xl overflow-hidden shadow-lg h-80 relative group">
+              <iframe
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Schwarzbach+2,+42277+Wuppertal&zoom=15"
+                width="100%"
+                height="100%"
+                style="border:0; pointer-events: none;"
+                allowfullscreen=""
+                loading="lazy">
+              </iframe>
+              <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                <div class="bg-teal-600 text-white px-6 py-3 rounded-full font-semibold shadow-lg transform -translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                  <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                  In Google Maps öffnen
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Map 2: Am Loh -->
+          <div class="scroll-reveal">
+            <h4 class="text-xl font-bold text-gray-800 mb-4 text-center" data-translate="contact.location2.map">Standort Am Loh</h4>
+            <a href="https://www.google.com/maps?q=Loher+Straße+40,+42283+Wuppertal" target="_blank" rel="noopener noreferrer" class="block rounded-2xl overflow-hidden shadow-lg h-80 relative group">
+              <iframe
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Loher+Straße+40,+42283+Wuppertal&zoom=15"
+                width="100%"
+                height="100%"
+                style="border:0; pointer-events: none;"
+                allowfullscreen=""
+                loading="lazy">
+              </iframe>
+              <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                <div class="bg-teal-600 text-white px-6 py-3 rounded-full font-semibold shadow-lg transform -translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                  <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                  In Google Maps öffnen
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer-brown text-white py-8">
+    <div class="container mx-auto px-4">
+      <div class="grid md:grid-cols-3 gap-6 items-center">
+        <!-- Logo & Practice Name -->
+        <div class="flex items-center space-x-3">
+          <img src="../assets/img/logo.svg" alt="Seitschenko-Dinh Logo" class="w-12 h-12 flex-shrink-0">
+          <div class="flex flex-col">
+            <h3 class="text-base font-bold uppercase tracking-wide leading-tight" data-translate="footer.practice_name1">ZAHNARZTPRAXEN</h3>
+            <h3 class="text-base font-bold uppercase tracking-wide leading-tight" data-translate="footer.practice_name2">SEITSCHENKO-DINH</h3>
+          </div>
+        </div>
+
+        <!-- Location 1: Schwarzbach -->
+        <div class="flex items-center space-x-3">
+          <div class="flex-shrink-0">
+            <div class="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center">
+              <span class="text-lg font-bold">1</span>
+            </div>
+          </div>
+          <div class="flex flex-col leading-tight">
+            <p class="text-sm" data-translate="footer.location1.line1">Schwarzbach 2 | 42277 Wuppertal</p>
+            <p class="text-sm" data-translate="footer.location1.line2">Tel.: 0202 660828</p>
+          </div>
+        </div>
+
+        <!-- Location 2: Wall -->
+        <div class="flex items-center space-x-3">
+          <div class="flex-shrink-0">
+            <div class="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center">
+              <span class="text-lg font-bold">2</span>
+            </div>
+          </div>
+          <div class="flex flex-col leading-tight">
+            <p class="text-sm" data-translate="footer.location2.line1">Loher Str. 40 | 42283 Wuppertal</p>
+            <p class="text-sm" data-translate="footer.location2.line2">Tel.: 0202 451642</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="mt-6 pt-4 text-center border-t border-white border-opacity-20">
+        <p class="text-xs" data-translate="footer.copyright">
+          © 2024 Datenschutzerklärung
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // Language switcher
+    const languageBtn = document.getElementById('language-btn');
+    const languageMenu = document.getElementById('language-menu');
+    const mobileLanguageBtn = document.getElementById('mobile-language-btn');
+    const mobileLanguageMenu = document.getElementById('mobile-language-menu');
+
+    if (languageBtn && languageMenu) {
+      languageBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        languageMenu.classList.toggle('show');
+      });
+
+      document.addEventListener('click', () => {
+        languageMenu.classList.remove('show');
+      });
+    }
+
+    if (mobileLanguageBtn && mobileLanguageMenu) {
+      mobileLanguageBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        mobileLanguageMenu.classList.toggle('show');
+      });
+    }
+
+    // Scroll reveal
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+
+    // Language data
+    const languages = {
+      de: {
+        meta: {
+          title: "Kontakt - Seitschenko-Dinh",
+          description: "Kontaktieren Sie uns für einen Termin in unseren Standorten in Wuppertal - Schwarzbach und Am Loh"
+        },
+        nav: {
+          home: "Start",
+          about: "Über uns",
+          services: "Leistungen",
+          labor: "Labor",
+          karriere: "Karriere",
+          contact: "Kontakt"
+        },
+        header: {
+          practice_name1: "ZAHNARZTPRAXEN",
+          practice_name2: "SEITSCHENKO-DINH"
+        },
+        language: {
+          current: "Sprache:"
+        },
+        contact: {
+          hero: {
+            title: "Kontakt",
+            subtitle: "Vereinbaren Sie einen Termin oder kontaktieren Sie uns für weitere Informationen"
+          },
+          suptitle: "KONTAKT",
+          title: "Kontaktieren Sie uns",
+          subtitle: "Wir sind gerne für Sie da und freuen uns auf Ihren Besuch",
+          location1: {
+            title: "Standort Schwarzbach",
+            map: "Standort Schwarzbach",
+            hours: "Mo-Do: 8:00-18:00<br>Fr: 8:00-14:00"
+          },
+          location2: {
+            title: "Standort Am Loh",
+            map: "Standort Am Loh",
+            hours: "Mo-Do: 8:00-18:00<br>Fr: 8:00-14:00"
+          },
+          address: "Adresse",
+          phone: "Telefon",
+          email: "E-Mail",
+          hours: "Öffnungszeiten"
+        },
+        footer: {
+          practice_name1: "ZAHNARZTPRAXEN",
+          practice_name2: "SEITSCHENKO-DINH",
+          location1: {
+            line1: "Schwarzbach 2 | 42277 Wuppertal",
+            line2: "Tel.: 0202 660828"
+          },
+          location2: {
+            line1: "Loher Str. 40 | 42283 Wuppertal",
+            line2: "Tel.: 0202 451642"
+          },
+          copyright: "© 2024 Datenschutzerklärung"
+        }
+      },
+      en: {
+        meta: {
+          title: "Contact - Seitschenko-Dinh",
+          description: "Contact us for an appointment at our locations in Wuppertal - Schwarzbach and Am Loh"
+        },
+        nav: {
+          home: "Home",
+          about: "About Us",
+          services: "Services",
+          labor: "Laboratory",
+          karriere: "Career",
+          contact: "Contact"
+        },
+        header: {
+          practice_name1: "DENTAL PRACTICES",
+          practice_name2: "SEITSCHENKO-DINH"
+        },
+        language: {
+          current: "Language:"
+        },
+        contact: {
+          hero: {
+            title: "Contact",
+            subtitle: "Make an appointment or contact us for more information"
+          },
+          suptitle: "CONTACT US",
+          title: "Contact Us",
+          subtitle: "We are happy to help you and look forward to your visit",
+          location1: {
+            title: "Schwarzbach Location",
+            map: "Schwarzbach Location",
+            hours: "Mon-Thu: 8:00 AM-6:00 PM<br>Fri: 8:00 AM-2:00 PM"
+          },
+          location2: {
+            title: "Am Loh Location",
+            map: "Am Loh Location",
+            hours: "Mon-Thu: 8:00 AM-6:00 PM<br>Fri: 8:00 AM-2:00 PM"
+          },
+          address: "Address",
+          phone: "Phone",
+          email: "Email",
+          hours: "Opening Hours"
+        },
+        footer: {
+          practice_name1: "DENTAL PRACTICES",
+          practice_name2: "SEITSCHENKO-DINH",
+          location1: {
+            line1: "Schwarzbach 2 | 42277 Wuppertal",
+            line2: "Tel.: 0202 660828"
+          },
+          location2: {
+            line1: "Loher Str. 40 | 42283 Wuppertal",
+            line2: "Tel.: 0202 451642"
+          },
+          copyright: "© 2024 Privacy Policy"
+        }
+      },
+      vi: {
+        meta: {
+          title: "Liên Hệ - Seitschenko-Dinh",
+          description: "Liên hệ với chúng tôi để đặt lịch hẹn tại các địa điểm của chúng tôi ở Wuppertal - Schwarzbach và Am Loh"
+        },
+        nav: {
+          home: "Trang chủ",
+          about: "Giới thiệu",
+          services: "Dịch vụ",
+          labor: "Phòng Lab",
+          karriere: "Nghề nghiệp",
+          contact: "Liên hệ"
+        },
+        header: {
+          practice_name1: "PHÒNG KHÁM NHA KHOA",
+          practice_name2: "SEITSCHENKO-DINH"
+        },
+        language: {
+          current: "Ngôn ngữ:"
+        },
+        contact: {
+          hero: {
+            title: "Liên Hệ",
+            subtitle: "Đặt lịch hẹn hoặc liên hệ với chúng tôi để biết thêm thông tin"
+          },
+          suptitle: "LIÊN HỆ VỚI CHÚNG TÔI",
+          title: "Liên Hệ Với Chúng Tôi",
+          subtitle: "Chúng tôi sẵn sàng hỗ trợ bạn và mong được đón tiếp bạn",
+          location1: {
+            title: "Địa điểm Schwarzbach",
+            map: "Địa điểm Schwarzbach",
+            hours: "Thứ 2-5: 8:00-18:00<br>Thứ 6: 8:00-14:00"
+          },
+          location2: {
+            title: "Địa điểm Am Loh",
+            map: "Địa điểm Am Loh",
+            hours: "Thứ 2-5: 8:00-18:00<br>Thứ 6: 8:00-14:00"
+          },
+          address: "Địa chỉ",
+          phone: "Điện thoại",
+          email: "Email",
+          hours: "Giờ mở cửa"
+        },
+        footer: {
+          practice_name1: "PHÒNG KHÁM NHA KHOA",
+          practice_name2: "SEITSCHENKO-DINH",
+          location1: {
+            line1: "Schwarzbach 2 | 42277 Wuppertal",
+            line2: "Tel.: 0202 660828"
+          },
+          location2: {
+            line1: "Loher Str. 40 | 42283 Wuppertal",
+            line2: "Tel.: 0202 451642"
+          },
+          copyright: "© 2024 Chính sách bảo mật"
+        }
+      }
+    };
+
+    // Language switching function
+    function changeLanguage(lang) {
+      if (!languages[lang]) return;
+
+      const data = languages[lang];
+
+      // Update meta tags
+      document.getElementById('page-title').textContent = data.meta.title;
+      document.getElementById('page-description').content = data.meta.description;
+
+      // Update all translated elements
+      document.querySelectorAll('[data-translate]').forEach(element => {
+        const keys = element.getAttribute('data-translate').split('.');
+        let value = data;
+
+        for (const key of keys) {
+          value = value[key];
+          if (!value) break;
+        }
+
+        if (value) {
+          if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+            element.placeholder = value;
+          } else {
+            element.innerHTML = value;
+          }
+        }
+      });
+
+      // Update language switcher
+      const flags = {
+        de: 'https://flagcdn.com/24x18/de.png',
+        en: 'https://flagcdn.com/24x18/us.png',
+        vi: 'https://flagcdn.com/24x18/vn.png',
+        ru: 'https://flagcdn.com/24x18/ru.png',
+        ar: 'https://flagcdn.com/24x18/sa.png'
+      };
+
+      const langCodes = {
+        de: 'DE',
+        en: 'EN',
+        vi: 'VI',
+        ru: 'RU',
+        ar: 'AR'
+      };
+
+      document.getElementById('current-flag').src = flags[lang];
+      document.getElementById('current-lang').textContent = langCodes[lang];
+      document.getElementById('mobile-current-flag').src = flags[lang];
+      document.getElementById('mobile-current-lang').textContent = langCodes[lang];
+
+      // Store language preference
+      localStorage.setItem('preferred-language', lang);
+
+      // Close menus
+      languageMenu.classList.remove('show');
+      if (mobileLanguageMenu) {
+        mobileLanguageMenu.classList.remove('show');
+      }
+    }
+
+    // Load saved language preference
+    const savedLang = localStorage.getItem('preferred-language') || 'de';
+    if (savedLang !== 'de') {
+      changeLanguage(savedLang);
+    }
+  </script>
+</body>
+</html>

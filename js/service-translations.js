@@ -40,7 +40,7 @@ const serviceTranslations = {
         title: "Standort Schwarzbach"
       },
       location2: {
-        title: "Standort Wall"
+        title: "Standort Am Loh"
       }
     },
 
@@ -740,7 +740,7 @@ const serviceTranslations = {
         title: "Schwarzbach Location"
       },
       location2: {
-        title: "Wall Location"
+        title: "Am Loh Location"
       }
     },
 
@@ -1437,7 +1437,7 @@ const serviceTranslations = {
         title: "Địa điểm Schwarzbach"
       },
       location2: {
-        title: "Địa điểm Wall"
+        title: "Địa điểm Am Loh"
       }
     },
 
@@ -2139,7 +2139,7 @@ const serviceTranslations = {
         title: "Филиал Шварцбах"
       },
       location2: {
-        title: "Филиал Валль"
+        title: "Филиал Ам Ло"
       }
     },
 
@@ -2818,7 +2818,7 @@ const serviceTranslations = {
         title: "فرع شفارتسباخ"
       },
       location2: {
-        title: "فرع فال"
+        title: "فرع أم لوه"
       }
     },
 
