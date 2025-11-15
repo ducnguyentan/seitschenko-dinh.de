@@ -93,24 +93,28 @@ const serviceTranslations = {
           text: "Vorbeugung ist der beste Schutz. Wir untersuchen die Zähne Ihres Kindes regelmäßig und geben Tipps zur richtigen Zahnpflege von Anfang an."
         },
         service2: {
-          title: "Professionelle Zahnreinigung",
-          text: "Spezielle Zahnreinigung für Kinder, die Beläge entfernt und die Zähne auf sanfte Weise sauber und gesund hält."
+          title: "Zahnreinigung für Kinder",
+          text: "Regelmäßige Zahnreinigungen sind wichtig für die Mundgesundheit. Wir verwenden sanfte und kindgerechte Methoden, um sicherzustellen, dass sich Ihr Kind während der Behandlung wohlfühlt."
         },
         service3: {
-          title: "Fissurenversiegelung",
-          text: "Schützender Überzug auf den Kauflächen der Backenzähne verhindert Karies in den Rillen und Vertiefungen."
+          title: "Versiegelung von Fissuren",
+          text: "Um Karies vorzubeugen, bieten wir die Versiegelung der Fissuren auf den Kauflächen der Backenzähne an. Diese einfache und schmerzfreie Prozedur schützt die Zähne Ihres Kindes vor Bakterien und Plaque."
         },
         service4: {
           title: "Fluoridbehandlungen",
-          text: "Fluorid stärkt den Zahnschmelz und macht die Zähne widerstandsfähiger gegen Karies-Bakterien."
+          text: "Fluorid ist essenziell für starke und widerstandsfähige Zähne. Unsere Fluoridbehandlungen helfen, den Zahnschmelz zu stärken und das Kariesrisiko zu reduzieren."
         },
         service5: {
           title: "Kariesbehandlung",
-          text: "Sanfte Behandlung von Karies mit modernsten Methoden und kindgerechten Materialien."
+          text: "Sollte es trotz aller Vorsichtsmaßnahmen zu Karies kommen, bieten wir schonende und effektive Behandlungsmöglichkeiten an. Dabei legen wir großen Wert auf eine schmerzfreie und stressfreie Erfahrung für Ihr Kind."
         },
         service6: {
           title: "Kieferorthopädische Beratung",
-          text: "Wir erkennen Fehlstellungen frühzeitig und beraten Sie zur optimalen kieferorthopädischen Behandlung."
+          text: "Eine frühzeitige kieferorthopädische Beratung kann späteren Zahnfehlstellungen vorbeugen. Wir arbeiten eng mit Kieferorthopäden zusammen, um die bestmögliche Behandlung für Ihr Kind zu gewährleisten."
+        },
+        service7: {
+          title: "Behandlung von Zahnunfällen",
+          text: "Kinder sind aktiv und Unfälle passieren. Wir sind darauf spezialisiert, Zahnverletzungen schnell und effektiv zu behandeln, um die Zahngesundheit Ihres Kindes zu erhalten."
         }
       },
       process: {
@@ -792,24 +796,28 @@ const serviceTranslations = {
           text: "Prevention is the best protection. We examine your child's teeth regularly and provide tips for proper dental care from the start."
         },
         service2: {
-          title: "Professional Teeth Cleaning",
-          text: "Special teeth cleaning for children that removes plaque and keeps teeth clean and healthy in a gentle way."
+          title: "Teeth Cleaning for Children",
+          text: "Regular dental cleanings are important for oral health. We use gentle and child-friendly methods to ensure your child feels comfortable during treatment."
         },
         service3: {
           title: "Fissure Sealing",
-          text: "Protective coating on the chewing surfaces of molars prevents cavities in the grooves and depressions."
+          text: "To prevent cavities, we offer sealing of fissures on the chewing surfaces of molars. This simple and painless procedure protects your child's teeth from bacteria and plaque."
         },
         service4: {
           title: "Fluoride Treatments",
-          text: "Fluoride strengthens tooth enamel and makes teeth more resistant to cavity-causing bacteria."
+          text: "Fluoride is essential for strong and resistant teeth. Our fluoride treatments help strengthen tooth enamel and reduce the risk of cavities."
         },
         service5: {
           title: "Cavity Treatment",
-          text: "Gentle treatment of cavities with the most modern methods and child-friendly materials."
+          text: "Should cavities occur despite all precautions, we offer gentle and effective treatment options. We place great emphasis on a painless and stress-free experience for your child."
         },
         service6: {
           title: "Orthodontic Consultation",
-          text: "We identify misalignments early and advise you on optimal orthodontic treatment."
+          text: "Early orthodontic consultation can prevent later tooth misalignments. We work closely with orthodontists to ensure the best possible treatment for your child."
+        },
+        service7: {
+          title: "Treatment of Dental Accidents",
+          text: "Children are active and accidents happen. We specialize in treating dental injuries quickly and effectively to maintain your child's dental health."
         }
       },
       process: {
@@ -1489,24 +1497,28 @@ const serviceTranslations = {
           text: "Phòng ngừa là biện pháp bảo vệ tốt nhất. Chúng tôi kiểm tra răng của con bạn thường xuyên và đưa ra lời khuyên về cách chăm sóc răng đúng cách từ khi còn nhỏ."
         },
         service2: {
-          title: "Vệ sinh răng miệng chuyên nghiệp",
-          text: "Vệ sinh răng đặc biệt cho trẻ em giúp loại bỏ mảng bám và giữ răng sạch sẽ, khỏe mạnh một cách nhẹ nhàng."
+          title: "Vệ sinh răng cho trẻ em",
+          text: "Vệ sinh răng định kỳ rất quan trọng cho sức khỏe răng miệng. Chúng tôi sử dụng các phương pháp nhẹ nhàng và phù hợp với trẻ em để đảm bảo con bạn cảm thấy thoải mái trong quá trình điều trị."
         },
         service3: {
           title: "Trám khe răng",
-          text: "Lớp phủ bảo vệ trên bề mặt nhai của răng hàm ngăn sâu răng trong các rãnh và kẽ hở."
+          text: "Để phòng ngừa sâu răng, chúng tôi cung cấp dịch vụ trám khe răng trên bề mặt nhai của răng hàm. Thủ thuật đơn giản và không đau này bảo vệ răng của con bạn khỏi vi khuẩn và mảng bám."
         },
         service4: {
           title: "Điều trị fluor",
-          text: "Fluor giúp tăng cường men răng và làm cho răng kháng lại vi khuẩn gây sâu răng."
+          text: "Fluor rất cần thiết cho răng chắc khỏe và bền vững. Các liệu trình fluor của chúng tôi giúp tăng cường men răng và giảm nguy cơ sâu răng."
         },
         service5: {
           title: "Điều trị sâu răng",
-          text: "Điều trị sâu răng nhẹ nhàng với các phương pháp hiện đại nhất và vật liệu phù hợp với trẻ em."
+          text: "Nếu sâu răng xảy ra bất chấp mọi biện pháp phòng ngừa, chúng tôi cung cấp các phương pháp điều trị nhẹ nhàng và hiệu quả. Chúng tôi đặc biệt chú trọng đến trải nghiệm không đau và không căng thẳng cho con bạn."
         },
         service6: {
           title: "Tư vấn chỉnh nha",
-          text: "Chúng tôi phát hiện sớm các khuyết tật và tư vấn cho bạn về phương pháp điều trị chỉnh nha tối ưu."
+          text: "Tư vấn chỉnh nha sớm có thể ngăn ngừa lệch lạc răng sau này. Chúng tôi hợp tác chặt chẽ với các chuyên gia chỉnh nha để đảm bảo phương pháp điều trị tốt nhất cho con bạn."
+        },
+        service7: {
+          title: "Điều trị chấn thương răng",
+          text: "Trẻ em năng động và tai nạn có thể xảy ra. Chúng tôi chuyên điều trị chấn thương răng nhanh chóng và hiệu quả để duy trì sức khỏe răng miệng của con bạn."
         }
       },
       process: {
@@ -2183,6 +2195,37 @@ const serviceTranslations = {
         benefit4: {
           title: "Щадящие методы лечения",
           text: "Современные бережные процедуры обеспечивают безболезненное лечение и положительные впечатления."
+        }
+      },
+      services: {
+        title: "Наши услуги для детей",
+        service1: {
+          title: "Профилактика зубов в раннем детстве",
+          text: "Профилактика — лучшая защита. Мы регулярно осматриваем зубы вашего ребенка и даем советы по правильному уходу за зубами с самого начала."
+        },
+        service2: {
+          title: "Чистка зубов для детей",
+          text: "Регулярная чистка зубов важна для здоровья полости рта. Мы используем мягкие и дружелюбные к детям методы, чтобы ваш ребенок чувствовал себя комфортно во время лечения."
+        },
+        service3: {
+          title: "Запечатывание фиссур",
+          text: "Для предотвращения кариеса мы предлагаем запечатывание фиссур на жевательных поверхностях моляров. Эта простая и безболезненная процедура защищает зубы вашего ребенка от бактерий и налета."
+        },
+        service4: {
+          title: "Фторирование",
+          text: "Фтор необходим для крепких и устойчивых зубов. Наши фторидные процедуры помогают укрепить зубную эмаль и снизить риск кариеса."
+        },
+        service5: {
+          title: "Лечение кариеса",
+          text: "Если кариес возникает несмотря на все меры предосторожности, мы предлагаем щадящие и эффективные варианты лечения. Мы уделяем большое внимание безболезненному и безстрессовому опыту для вашего ребенка."
+        },
+        service6: {
+          title: "Ортодонтическая консультация",
+          text: "Ранняя ортодонтическая консультация может предотвратить дальнейшие нарушения прикуса. Мы тесно сотрудничаем с ортодонтами, чтобы обеспечить наилучшее лечение для вашего ребенка."
+        },
+        service7: {
+          title: "Лечение травм зубов",
+          text: "Дети активны, и несчастные случаи случаются. Мы специализируемся на быстром и эффективном лечении травм зубов, чтобы сохранить здоровье зубов вашего ребенка."
         }
       },
       process: {
@@ -2862,6 +2905,37 @@ const serviceTranslations = {
         benefit4: {
           title: "أساليب علاج لطيفة",
           text: "الإجراءات الحديثة اللطيفة تضمن علاجًا غير مؤلم وتجارب إيجابية."
+        }
+      },
+      services: {
+        title: "خدماتنا للأطفال",
+        service1: {
+          title: "الوقاية المبكرة للأسنان",
+          text: "الوقاية هي أفضل حماية. نفحص أسنان طفلك بانتظام ونقدم نصائح للعناية الصحيحة بالأسنان منذ البداية."
+        },
+        service2: {
+          title: "تنظيف الأسنان للأطفال",
+          text: "تنظيف الأسنان المنتظم مهم لصحة الفم. نستخدم طرقًا لطيفة ومناسبة للأطفال لضمان شعور طفلك بالراحة أثناء العلاج."
+        },
+        service3: {
+          title: "إغلاق الشقوق",
+          text: "للوقاية من التسوس، نقدم إغلاق الشقوق على أسطح المضغ للأضراس. هذا الإجراء البسيط وغير المؤلم يحمي أسنان طفلك من البكتيريا واللويحات."
+        },
+        service4: {
+          title: "علاجات الفلورايد",
+          text: "الفلورايد ضروري لأسنان قوية ومقاومة. تساعد علاجات الفلورايد لدينا في تقوية مينا الأسنان وتقليل خطر التسوس."
+        },
+        service5: {
+          title: "علاج التسوس",
+          text: "إذا حدث التسوس على الرغم من جميع الاحتياطات، فإننا نقدم خيارات علاج لطيفة وفعالة. نركز بشكل كبير على تجربة خالية من الألم والتوتر لطفلك."
+        },
+        service6: {
+          title: "استشارة تقويم الأسنان",
+          text: "يمكن للاستشارة التقويمية المبكرة منع سوء الإطباق اللاحق. نعمل بشكل وثيق مع أخصائيي تقويم الأسنان لضمان أفضل علاج ممكن لطفلك."
+        },
+        service7: {
+          title: "علاج حوادث الأسنان",
+          text: "الأطفال نشيطون والحوادث تحدث. نحن متخصصون في علاج إصابات الأسنان بسرعة وفعالية للحفاظ على صحة أسنان طفلك."
         }
       },
       process: {

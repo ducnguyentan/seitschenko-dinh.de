@@ -12,11 +12,11 @@ const laborTranslations = {
         description: "Modernes eigenes Labor für individuell angepassten Zahnersatz und Prothesen direkt vor Ort"
       },
       hero: {
-        title: "Unser eigenes Labor",
+        title: "Wir betreiben ein modernes eigenes Labor",
         subtitle: "Modernste Labortechnik für präzisen und individuellen Zahnersatz"
       },
       intro: {
-        title: "Wir betreiben ein modernes eigenes Labor",
+        title: "Eigenes Labor für höchste Qualität und schnelle Ergebnisse",
         description: "In unserer Zahnarztpraxis betreiben wir ein modernes eigenes Labor, das es uns ermöglicht, individuell angepassten Zahnersatz und Prothesen direkt vor Ort herzustellen. Diese Einrichtung gewährleistet nicht nur eine hohe Qualität und Präzision, sondern auch eine schnelle und effiziente Versorgung unserer Patienten.",
         description2: "Mit unserem hauseigenen Labor können wir den gesamten Prozess von der Planung bis zur Fertigstellung Ihres Zahnersatzes optimal steuern und jederzeit individuelle Anpassungen vornehmen."
       },
@@ -44,14 +44,10 @@ const laborTranslations = {
         title: "Unser Labor-Team",
         subtitle: "Erfahrene Zahntechniker für höchste Qualität",
         member1: {
-          name: "Herr Yurchenko",
-          position: "Zahntechnikermeister",
-          description: "Spezialist für hochwertige Prothetik und Implantate mit über 15 Jahren Erfahrung."
+          name: "Herr Yurchenko"
         },
         member2: {
-          name: "Frau Thiemann",
-          position: "Zahntechnikerin",
-          description: "Expertin für ästhetische Zahnheilkunde und individuelle Farbgestaltung."
+          name: "Frau Thiemann"
         }
       },
       services: {
@@ -88,6 +84,9 @@ const laborTranslations = {
         btn1: "Termin vereinbaren",
         btn2: "Jetzt anrufen"
       }
+    },
+    contact: {
+      subtitle: "Profitieren Sie von unserem eigenem Labor für eine schnellere, präzisere und individuelle Versorgung Ihrer Zähne. Vereinbaren Sie noch heute einen Termin für eine persönliche Beratung."
     }
   },
 
@@ -130,14 +129,10 @@ const laborTranslations = {
         title: "Our Laboratory Team",
         subtitle: "Experienced dental technicians for highest quality",
         member1: {
-          name: "Mr. Yurchenko",
-          position: "Master Dental Technician",
-          description: "Specialist in high-quality prosthetics and implants with over 15 years of experience."
+          name: "Mr. Yurchenko"
         },
         member2: {
-          name: "Ms. Thiemann",
-          position: "Dental Technician",
-          description: "Expert in aesthetic dentistry and individual color design."
+          name: "Ms. Thiemann"
         }
       },
       services: {
@@ -174,6 +169,9 @@ const laborTranslations = {
         btn1: "Book Appointment",
         btn2: "Call Now"
       }
+    },
+    contact: {
+      subtitle: "Benefit from our in-house laboratory for faster, more precise and individual care of your teeth. Schedule an appointment for a personal consultation today."
     }
   },
 
@@ -216,14 +214,10 @@ const laborTranslations = {
         title: "Đội ngũ Lab của chúng tôi",
         subtitle: "Kỹ thuật viên nha khoa giàu kinh nghiệm cho chất lượng cao nhất",
         member1: {
-          name: "Ông Yurchenko",
-          position: "Kỹ thuật viên Nha khoa Trưởng",
-          description: "Chuyên gia về protit chất lượng cao và cấy ghép với hơn 15 năm kinh nghiệm."
+          name: "Ông Yurchenko"
         },
         member2: {
-          name: "Bà Thiemann",
-          position: "Kỹ thuật viên Nha khoa",
-          description: "Chuyên gia về nha khoa thẩm mỹ và thiết kế màu sắc cá nhân."
+          name: "Bà Thiemann"
         }
       },
       services: {
@@ -260,6 +254,9 @@ const laborTranslations = {
         btn1: "Đặt lịch hẹn",
         btn2: "Gọi ngay"
       }
+    },
+    contact: {
+      subtitle: "Hưởng lợi từ phòng lab riêng của chúng tôi để chăm sóc răng của bạn nhanh hơn, chính xác hơn và cá nhân hóa hơn. Đặt lịch hẹn ngay hôm nay để được tư vấn cá nhân."
     }
   },
 
@@ -302,14 +299,10 @@ const laborTranslations = {
         title: "Наша лабораторная команда",
         subtitle: "Опытные зубные техники для высочайшего качества",
         member1: {
-          name: "Господин Юрченко",
-          position: "Мастер зубной техник",
-          description: "Специалист по высококачественной протезированию и имплантам с более чем 15-летним опытом."
+          name: "Господин Юрченко"
         },
         member2: {
-          name: "Госпожа Тиманн",
-          position: "Зубной техник",
-          description: "Эксперт по эстетической стоматологии и индивидуальному цветовому дизайну."
+          name: "Госпожа Тиманн"
         }
       },
       services: {
@@ -346,6 +339,9 @@ const laborTranslations = {
         btn1: "Записаться на прием",
         btn2: "Позвонить сейчас"
       }
+    },
+    contact: {
+      subtitle: "Воспользуйтесь преимуществами нашей собственной лаборатории для более быстрого, точного и индивидуального ухода за вашими зубами. Запишитесь на личную консультацию сегодня."
     }
   },
 
@@ -388,14 +384,10 @@ const laborTranslations = {
         title: "فريق المختبر لدينا",
         subtitle: "فنيو أسنان ذوو خبرة لأعلى جودة",
         member1: {
-          name: "السيد يورتشينكو",
-          position: "فني أسنان رئيسي",
-          description: "متخصص في الأطراف الصناعية عالية الجودة والزرعات بخبرة تزيد عن 15 عاماً."
+          name: "السيد يورتشينكو"
         },
         member2: {
-          name: "السيدة تيمان",
-          position: "فنية أسنان",
-          description: "خبيرة في طب الأسنان التجميلي والتصميم اللوني الفردي."
+          name: "السيدة تيمان"
         }
       },
       services: {
@@ -432,6 +424,9 @@ const laborTranslations = {
         btn1: "احجز موعد",
         btn2: "اتصل الآن"
       }
+    },
+    contact: {
+      subtitle: "استفد من مختبرنا الخاص للحصول على رعاية أسرع وأكثر دقة وفردية لأسنانك. احجز موعداً للاستشارة الشخصية اليوم."
     }
   }
 };
