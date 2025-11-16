@@ -807,6 +807,28 @@ html, body {
   .service-card:hover {
     transform: translateY(-4px);
   }
+
+  /* Add padding-bottom to prevent chatbot overlap on mobile */
+  section {
+    padding-bottom: 100px !important;
+  }
+
+  /* Reduce excessive padding for better mobile UX */
+  section:last-of-type {
+    padding-bottom: 80px !important;
+  }
+
+  /* Ensure text doesn't overflow on mobile */
+  h1, h2, h3 {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  /* Make service cards more readable on mobile */
+  .service-card {
+    margin-bottom: 16px;
+  }
 }
 
 /* Touch device improvements */

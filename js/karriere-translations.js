@@ -55,6 +55,16 @@ const karriereTranslations = {
         title: "Initiativbewerbung",
         text: "Sie haben Ihre Traumstelle nicht gefunden? Senden Sie uns gerne eine Initiativbewerbung!",
         button: "Initiativbewerbung senden"
+      },
+      contact: {
+        title: "Bewerben Sie sich jetzt",
+        subtitle: "Senden Sie Ihre Bewerbung per E-Mail",
+        email_title: "Bewerbung per E-Mail",
+        email_text: "Senden Sie Ihre vollständigen Bewerbungsunterlagen an:",
+        documents_title: "Erforderliche Unterlagen:",
+        doc1: "Anschreiben",
+        doc2: "Lebenslauf",
+        doc3: "Zeugnisse und Zertifikate"
       }
     }
   },
@@ -110,9 +120,19 @@ const karriereTranslations = {
         apply: "Apply Now"
       },
       general: {
-        title: "Unsolicited Application",
-        text: "Haven't found your dream job? Feel free to send us an unsolicited application!",
-        button: "Send Unsolicited Application"
+        title: "Spontaneous Application",
+        text: "Haven't found your dream job? Feel free to send us a spontaneous application!",
+        button: "Send Spontaneous Application"
+      },
+      contact: {
+        title: "Apply Now",
+        subtitle: "Send your application via email",
+        email_title: "Application via Email",
+        email_text: "Send your complete application documents to:",
+        documents_title: "Required Documents:",
+        doc1: "Cover Letter",
+        doc2: "Resume/CV",
+        doc3: "Certificates and References"
       }
     }
   },
@@ -171,6 +191,16 @@ const karriereTranslations = {
         title: "Đơn xin việc chủ động",
         text: "Chưa tìm thấy công việc mơ ước của bạn? Hãy gửi cho chúng tôi đơn xin việc chủ động!",
         button: "Gửi đơn xin việc chủ động"
+      },
+      contact: {
+        title: "Ứng tuyển ngay",
+        subtitle: "Gửi hồ sơ của bạn qua email",
+        email_title: "Ứng tuyển qua Email",
+        email_text: "Gửi hồ sơ ứng tuyển đầy đủ của bạn đến:",
+        documents_title: "Hồ sơ cần thiết:",
+        doc1: "Thư xin việc",
+        doc2: "Sơ yếu lý lịch",
+        doc3: "Bằng cấp và chứng chỉ"
       }
     }
   },
@@ -226,9 +256,19 @@ const karriereTranslations = {
         apply: "Подать заявку сейчас"
       },
       general: {
-        title: "Инициативное заявление",
-        text: "Не нашли работу своей мечты? Отправьте нам инициативное заявление!",
-        button: "Отправить инициативное заявление"
+        title: "Инициативная заявка",
+        text: "Не нашли работу своей мечты? Отправьте нам инициативную заявку!",
+        button: "Отправить инициативную заявку"
+      },
+      contact: {
+        title: "Подать заявку сейчас",
+        subtitle: "Отправьте свою заявку по электронной почте",
+        email_title: "Заявка по электронной почте",
+        email_text: "Отправьте полный пакет документов на:",
+        documents_title: "Необходимые документы:",
+        doc1: "Сопроводительное письмо",
+        doc2: "Резюме",
+        doc3: "Дипломы и сертификаты"
       }
     }
   },
@@ -284,9 +324,19 @@ const karriereTranslations = {
         apply: "قدم الآن"
       },
       general: {
-        title: "التقديم التلقائي",
-        text: "لم تجد وظيفة أحلامك؟ لا تتردد في إرسال طلب تلقائي إلينا!",
+        title: "طلب تلقائي",
+        text: "لم تجد وظيفة أحلامك؟ أرسل لنا طلبًا تلقائيًا!",
         button: "إرسال طلب تلقائي"
+      },
+      contact: {
+        title: "تقدم الآن",
+        subtitle: "أرسل طلبك عبر البريد الإلكتروني",
+        email_title: "التقديم عبر البريد الإلكتروني",
+        email_text: "أرسل مستندات طلبك الكاملة إلى:",
+        documents_title: "المستندات المطلوبة:",
+        doc1: "خطاب التقديم",
+        doc2: "السيرة الذاتية",
+        doc3: "الشهادات والمراجع"
       }
     }
   }

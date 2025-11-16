@@ -52,7 +52,7 @@ const serviceTranslations = {
     // Kinderzahnheilkunde (Children's Dentistry)
     kinderzahnheilkunde: {
       hero: {
-        title: "Behandlungen von Kindern",
+        title: "Kinderzahnheilkunde",
         subtitle: "Wir konzentrieren uns auf die speziellen Bedürfnisse von Kindern"
       },
       intro: {
@@ -60,7 +60,7 @@ const serviceTranslations = {
         text1: "Kinder haben spezielle Bedürfnisse, wenn es um zahnärztliche Behandlungen geht. Unser erfahrenes Team von Zahnärzten ist darauf spezialisiert, eine sanfte und stressfreie Atmosphäre zu schaffen, in der sich Ihr Kind wohl und sicher fühlt.",
         text2: "Wir legen großen Wert auf Prävention und Aufklärung, damit Ihr Kind von Anfang an eine positive Beziehung zur Zahngesundheit entwickelt. Mit spielerischen Methoden und viel Geduld begleiten wir Ihre Kinder auf dem Weg zu gesunden Zähnen.",
         content: {
-          title: "Behandlungen von Kindern",
+          title: "Kinderzahnheilkunde",
           para1: "Herzlich willkommen in unserer kinderfreundlichen Zahnarztpraxis! Wir konzentrieren uns auf die speziellen Bedürfnisse von Kindern und bieten ihnen die bestmögliche zahnärztliche Versorgung.",
           para2: "Unser Team aus spezialisierten Kinderzahnärzten verfügt über umfangreiche Erfahrung und Fachwissen. Jede Behandlung verläuft so sanft und stressfrei wie möglich. Mit viel Einfühlungsvermögen nehmen wir Ängste und sorgen für eine entspannte Atmosphäre.",
           para3: "Wir informieren und beraten Eltern ausführlich über die Zahngesundheit ihrer Kinder und geben wertvolle Tipps zur richtigen Mundhygiene. Besuchen Sie uns und erleben Sie, wie wir die Zahngesundheit Ihres Kindes in den Mittelpunkt stellen.",
@@ -146,16 +146,14 @@ const serviceTranslations = {
         question2: "Wie bereite ich mein Kind auf den Zahnarztbesuch vor?",
         answer2: "Sprechen Sie positiv über den Zahnarzt und vermeiden Sie Wörter wie 'Schmerz' oder 'Angst'. Erklären Sie spielerisch, dass der Zahnarzt die Zähne zählt und sauber macht. Lesen Sie Kinderbücher über Zahnarztbesuche oder spielen Sie 'Zahnarzt' zu Hause.",
         question3: "Sind Milchzähne wirklich so wichtig?",
-        answer3: "Ja! Milchzähne sind Platzhalter für die bleibenden Zähne und wichtig für die Sprachentwicklung, das Kauen und das Kieferwachstum. Kranke Milchzähne können die nachfolgenden bleibenden Zähne schädigen.",
-        question4: "Was tue ich, wenn mein Kind Zahnarztangst hat?",
-        answer4: "Wir sind speziell geschult im Umgang mit ängstlichen Kindern. Mit viel Geduld, Einfühlungsvermögen und spielerischen Methoden bauen wir Vertrauen auf. In schweren Fällen können auch Sedierung oder Behandlung in Vollnarkose erwogen werden."
+        answer3: "Ja! Milchzähne sind Platzhalter für die bleibenden Zähne und wichtig für die Sprachentwicklung, das Kauen und das Kieferwachstum. Kranke Milchzähne können die nachfolgenden bleibenden Zähne schädigen."
       }
     },
 
     // Angstpatienten (Anxiety Patients)
     angstpatienten: {
       hero: {
-        title: "Behandlung für Angstpatienten",
+        title: "Angstpatienten",
         subtitle: "Einfühlsame Betreuung für entspannte Zahnarztbesuche"
       },
       intro: {
@@ -401,10 +399,8 @@ const serviceTranslations = {
       faq: {
         question1: "Wie lange hält eine Wurzelkanalbehandlung?",
         answer1: "Bei korrekter Durchführung und guter Mundhygiene kann ein wurzelbehandelter Zahn viele Jahre oder sogar ein Leben lang halten.",
-        question2: "Sind Amalgamfüllungen schädlich?",
-        answer2: "Nach aktuellem wissenschaftlichem Stand sind Amalgamfüllungen unbedenklich. Wir verwenden jedoch moderne Kunststofffüllungen, die ästhetischer sind und keine Metalle enthalten.",
-        question3: "Was ist der Unterschied zwischen Inlay und Füllung?",
-        answer3: "Füllungen werden direkt im Mund geformt, Inlays werden im Labor passgenau angefertigt. Inlays sind stabiler, langlebiger und ästhetischer, aber auch teurer."
+        question2: "Was ist der Unterschied zwischen Inlay und Füllung?",
+        answer2: "Füllungen werden direkt im Mund geformt, Inlays werden im Labor passgenau angefertigt. Inlays sind stabiler, langlebiger und ästhetischer, aber auch teurer."
       }
     },
 
@@ -709,6 +705,94 @@ const serviceTranslations = {
         question4: "Bin ich für Implantate geeignet?",
         answer4: "Die meisten Menschen können Implantate erhalten. Voraussetzungen sind ausreichend Kieferknochen und gute allgemeine Gesundheit. Bei Knochenabbau ist oft ein Knochenaufbau möglich. Wir prüfen Ihre individuelle Situation."
       }
+    },
+
+    // Karriere (Career)
+    karriere: {
+      general: {
+        title: "Initiativbewerbung",
+        text: "Sie haben Ihre Traumstelle nicht gefunden? Senden Sie uns gerne eine Initiativbewerbung!",
+        button: "Initiativbewerbung senden"
+      },
+      contact: {
+        title: "Bewerben Sie sich jetzt",
+        subtitle: "Senden Sie Ihre Bewerbung per E-Mail",
+        email_title: "Bewerbung per E-Mail",
+        email_text: "Senden Sie Ihre vollständigen Bewerbungsunterlagen an:",
+        documents_title: "Erforderliche Unterlagen:",
+        doc1: "Anschreiben",
+        doc2: "Lebenslauf",
+        doc3: "Zeugnisse und Zertifikate"
+      }
+    },
+
+    // Appointment Booking
+    appointment: {
+      hero: {
+        title: "Online-Terminbuchung",
+        subtitle: "Buchen Sie Ihren Termin schnell und einfach online"
+      },
+      notice: {
+        text: "Wichtiger Hinweis: Termine bei Frau Vera Seitschenko-Dinh sind nur telefonisch möglich. Bitte rufen Sie uns unter 0202 660828 an."
+      },
+      symptoms: {
+        title: "Wählen Sie Ihren Grund für den Besuch",
+        pain: {
+          title: "Schmerzen und Beschwerden",
+          description: "Zahnschmerzen, Empfindlichkeit oder akute Probleme"
+        },
+        checkup: {
+          title: "Vorsorgeuntersuchung",
+          description: "Routinekontrolle und Prophylaxe"
+        },
+        consultation: {
+          title: "Allgemeine Beratung",
+          description: "Beratung zu Behandlungsmöglichkeiten"
+        },
+        cleaning: {
+          title: "Professionelle Zahnreinigung",
+          description: "PZR und Prophylaxe-Behandlung"
+        },
+        custom_label: "Oder beschreiben Sie Ihr Anliegen:",
+        custom_placeholder: "Bitte beschreiben Sie kurz, was wir für Sie tun können..."
+      },
+      doctors: {
+        title: "Wählen Sie Ihren Wunsch-Arzt",
+        kukadiya: {
+          name: "Dr. Kukadiya",
+          specialty: "Allgemeine Zahnheilkunde",
+          available: "Verfügbar für Online-Buchung"
+        },
+        seitschenko: {
+          name: "Frau Vera Seitschenko-Dinh",
+          specialty: "Zahnärztin",
+          phone_only: "Nur telefonische Terminvereinbarung",
+          phone: "Tel: 0202 660828"
+        }
+      },
+      calendar: {
+        title: "Wählen Sie Datum und Uhrzeit",
+        today: "Heute",
+        available_slots: "Verfügbare Termine"
+      },
+      time_slots: {
+        morning: "Vormittag",
+        afternoon: "Nachmittag",
+        slots_available: "Termine verfügbar"
+      },
+      summary: {
+        title: "Zusammenfassung Ihrer Buchung",
+        symptom: "Grund:",
+        doctor: "Arzt:",
+        datetime: "Termin:",
+        none_selected: "-",
+        confirm_button: "Termin bestätigen"
+      },
+      alerts: {
+        phone_only: "Für Frau Vera Seitschenko-Dinh sind Termine nur telefonisch möglich!\\n\\nBitte rufen Sie uns an: 0202 660828",
+        success: "Vielen Dank! Ihr Termin wurde erfolgreich gebucht.\\n\\nSie erhalten in Kürze eine Bestätigung per E-Mail.",
+        incomplete: "Bitte füllen Sie alle Felder aus, um fortzufahren."
+      }
     }
   },
 
@@ -755,7 +839,7 @@ const serviceTranslations = {
     // Children's Dentistry
     kinderzahnheilkunde: {
       hero: {
-        title: "Treatment for Children",
+        title: "Pediatric Dentistry",
         subtitle: "We focus on the special needs of children"
       },
       intro: {
@@ -763,7 +847,7 @@ const serviceTranslations = {
         text1: "Children have special needs when it comes to dental treatment. Our experienced team of dentists specializes in creating a gentle and stress-free atmosphere where your child feels comfortable and safe.",
         text2: "We place great emphasis on prevention and education so that your child develops a positive relationship with dental health from the start. With playful methods and lots of patience, we accompany your children on their way to healthy teeth.",
         content: {
-          title: "Treatment for Children",
+          title: "Pediatric Dentistry",
           para1: "Welcome to our child-friendly dental practice! We focus on the special needs of children and offer them the best possible dental care.",
           para2: "Our team of specialized pediatric dentists has extensive experience and expertise. Every treatment is as gentle and stress-free as possible. With great empathy, we alleviate fears and ensure a relaxed atmosphere.",
           para3: "We inform and advise parents in detail about their children's dental health and provide valuable tips for proper oral hygiene. Visit us and experience how we make your child's dental health our priority.",
@@ -849,16 +933,14 @@ const serviceTranslations = {
         question2: "How do I prepare my child for the dental visit?",
         answer2: "Speak positively about the dentist and avoid words like 'pain' or 'fear'. Explain playfully that the dentist counts and cleans teeth. Read children's books about dental visits or play 'dentist' at home.",
         question3: "Are baby teeth really that important?",
-        answer3: "Yes! Baby teeth are placeholders for permanent teeth and important for speech development, chewing, and jaw growth. Diseased baby teeth can damage the subsequent permanent teeth.",
-        question4: "What do I do if my child has dental anxiety?",
-        answer4: "We are specially trained in dealing with anxious children. With much patience, empathy, and playful methods, we build trust. In severe cases, sedation or treatment under general anesthesia can also be considered."
+        answer3: "Yes! Baby teeth are placeholders for permanent teeth and important for speech development, chewing, and jaw growth. Diseased baby teeth can damage the subsequent permanent teeth."
       }
     },
 
     // Anxiety Patients
     angstpatienten: {
       hero: {
-        title: "Treatment for Anxious Patients",
+        title: "Anxious Patients",
         subtitle: "Compassionate care for relaxed dental visits"
       },
       intro: {
@@ -1017,7 +1099,9 @@ const serviceTranslations = {
         question2: "Does professional teeth cleaning hurt?",
         answer2: "PTC is usually painless. With sensitive teeth or inflamed gums, there may be slight discomfort. We can numb affected areas upon request.",
         question3: "Does health insurance cover the costs?",
-        answer3: "Many statutory health insurance companies subsidize PTC as part of bonus programs. Private insurance often covers costs completely. We're happy to advise you."
+        answer3: "Many statutory health insurance companies subsidize PTC as part of bonus programs. Private insurance often covers costs completely. We're happy to advise you.",
+        question4: "How long does a professional teeth cleaning take?",
+        answer4: "A thorough professional teeth cleaning typically takes 45-60 minutes. We deliberately take plenty of time to achieve optimal results for you."
       }
     },
 
@@ -1102,10 +1186,8 @@ const serviceTranslations = {
       faq: {
         question1: "How long does a root canal treatment last?",
         answer1: "With correct execution and good oral hygiene, a root-treated tooth can last many years or even a lifetime.",
-        question2: "Are amalgam fillings harmful?",
-        answer2: "According to current scientific knowledge, amalgam fillings are harmless. However, we use modern composite fillings that are more aesthetic and contain no metals.",
-        question3: "What's the difference between inlay and filling?",
-        answer3: "Fillings are formed directly in the mouth, inlays are precisely made in the laboratory. Inlays are more stable, durable, and aesthetic, but also more expensive."
+        question2: "What's the difference between inlay and filling?",
+        answer2: "Fillings are formed directly in the mouth, inlays are precisely made in the laboratory. Inlays are more stable, durable, and aesthetic, but also more expensive."
       }
     },
 
@@ -1410,6 +1492,94 @@ const serviceTranslations = {
         question4: "Am I suitable for implants?",
         answer4: "Most people can receive implants. Prerequisites are sufficient jawbone and good general health. With bone loss, bone augmentation is often possible. We check your individual situation."
       }
+    },
+
+    // Career
+    karriere: {
+      general: {
+        title: "Spontaneous Application",
+        text: "Haven't found your dream job? Feel free to send us a spontaneous application!",
+        button: "Send Spontaneous Application"
+      },
+      contact: {
+        title: "Apply Now",
+        subtitle: "Send your application via email",
+        email_title: "Application via Email",
+        email_text: "Send your complete application documents to:",
+        documents_title: "Required Documents:",
+        doc1: "Cover Letter",
+        doc2: "Resume/CV",
+        doc3: "Certificates and References"
+      }
+    },
+
+    // Appointment Booking
+    appointment: {
+      hero: {
+        title: "Online Appointment Booking",
+        subtitle: "Book your appointment quickly and easily online"
+      },
+      notice: {
+        text: "Important Notice: Appointments with Mrs. Vera Seitschenko-Dinh are only possible by phone. Please call us at 0202 660828."
+      },
+      symptoms: {
+        title: "Select Your Reason for Visit",
+        pain: {
+          title: "Pain and Discomfort",
+          description: "Toothache, sensitivity, or acute problems"
+        },
+        checkup: {
+          title: "Preventive Checkup",
+          description: "Routine examination and prophylaxis"
+        },
+        consultation: {
+          title: "General Consultation",
+          description: "Consultation on treatment options"
+        },
+        cleaning: {
+          title: "Professional Teeth Cleaning",
+          description: "PTC and prophylaxis treatment"
+        },
+        custom_label: "Or describe your concern:",
+        custom_placeholder: "Please briefly describe what we can do for you..."
+      },
+      doctors: {
+        title: "Select Your Preferred Doctor",
+        kukadiya: {
+          name: "Dr. Kukadiya",
+          specialty: "General Dentistry",
+          available: "Available for online booking"
+        },
+        seitschenko: {
+          name: "Mrs. Vera Seitschenko-Dinh",
+          specialty: "Dentist",
+          phone_only: "Phone appointment only",
+          phone: "Tel: 0202 660828"
+        }
+      },
+      calendar: {
+        title: "Select Date and Time",
+        today: "Today",
+        available_slots: "Available Appointments"
+      },
+      time_slots: {
+        morning: "Morning",
+        afternoon: "Afternoon",
+        slots_available: "Slots available"
+      },
+      summary: {
+        title: "Your Booking Summary",
+        symptom: "Reason:",
+        doctor: "Doctor:",
+        datetime: "Appointment:",
+        none_selected: "-",
+        confirm_button: "Confirm Appointment"
+      },
+      alerts: {
+        phone_only: "Appointments with Mrs. Vera Seitschenko-Dinh are only possible by phone!\\n\\nPlease call us: 0202 660828",
+        success: "Thank you! Your appointment has been successfully booked.\\n\\nYou will receive a confirmation email shortly.",
+        incomplete: "Please fill in all fields to continue."
+      }
     }
   },
 
@@ -1464,7 +1634,7 @@ const serviceTranslations = {
         text1: "Trẻ em không phải là người lớn thu nhỏ - chúng cần chăm sóc nha khoa đặc biệt phù hợp với nhu cầu của mình. Tại phòng khám, chúng tôi tạo không gian thân thiện với trẻ em, nơi con bạn cảm thấy thoải mái và học cách chăm sóc răng miệng một cách vui vẻ.",
         text2: "Mục tiêu của chúng tôi là giúp con bạn có những trải nghiệm tích cực khi đến nha sĩ, từ đó xây dựng mối quan hệ tốt đẹp với sức khỏe răng miệng suốt đời. Chúng tôi dành nhiều thời gian, giải thích mọi thứ phù hợp với lứa tuổi và sử dụng các phương pháp hiện đại, nhẹ nhàng.",
         content: {
-          title: "Điều trị cho trẻ em",
+          title: "Nha khoa trẻ em",
           para1: "Chào mừng bạn đến với phòng khám nha khoa thân thiện với trẻ em! Chúng tôi tập trung vào nhu cầu đặc biệt của trẻ em và cung cấp dịch vụ chăm sóc răng miệng tốt nhất có thể.",
           para2: "Đội ngũ nha sĩ nhi khoa chuyên biệt của chúng tôi có kinh nghiệm và chuyên môn phong phú. Mỗi ca điều trị đều nhẹ nhàng và không gây căng thẳng nhất có thể. Với sự thấu hiểu sâu sắc, chúng tôi xoa dịu nỗi sợ hãi và đảm bảo bầu không khí thoải mái.",
           para3: "Chúng tôi thông tin và tư vấn chi tiết cho phụ huynh về sức khỏe răng miệng của con em họ và cung cấp những lời khuyên quý giá về vệ sinh răng miệng đúng cách. Hãy đến thăm chúng tôi và trải nghiệm cách chúng tôi đặt sức khỏe răng miệng của con bạn lên hàng đầu.",
@@ -1551,16 +1721,14 @@ const serviceTranslations = {
         question2: "Làm thế nào để chuẩn bị cho con đi khám nha sĩ?",
         answer2: "Nói tích cực về nha sĩ và tránh các từ như 'đau' hay 'sợ'. Giải thích vui vẻ rằng nha sĩ sẽ đếm và làm sạch răng. Đọc sách thiếu nhi về đi khám nha sĩ hoặc chơi trò 'nha sĩ' ở nhà.",
         question3: "Răng sữa có thực sự quan trọng không?",
-        answer3: "Có! Răng sữa giữ chỗ cho răng vĩnh viễn và quan trọng cho phát triển lời nói, nhai và phát triển hàm. Răng sữa bệnh có thể làm hỏng răng vĩnh viễn sau này.",
-        question4: "Phải làm gì nếu con tôi sợ nha sĩ?",
-        answer4: "Chúng tôi được đào tạo đặc biệt để xử lý trẻ em lo lắng. Với sự kiên nhẫn, đồng cảm và phương pháp vui nhộn, chúng tôi xây dựng lòng tin. Trong trường hợp nghiêm trọng, có thể cân nhắc gây mê hoặc điều trị dưới gây mê toàn thân."
+        answer3: "Có! Răng sữa giữ chỗ cho răng vĩnh viễn và quan trọng cho phát triển lời nói, nhai và phát triển hàm. Răng sữa bệnh có thể làm hỏng răng vĩnh viễn sau này."
       }
     },
 
     // Bệnh nhân lo lắng
     angstpatienten: {
       hero: {
-        title: "Điều trị cho bệnh nhân lo lắng",
+        title: "Bệnh nhân lo lắng",
         subtitle: "Chăm sóc thấu hiểu cho các lần khám nha khoa thoải mái"
       },
       intro: {
@@ -1719,7 +1887,9 @@ const serviceTranslations = {
         question2: "Vệ sinh răng miệng chuyên nghiệp có đau không?",
         answer2: "PTC thường không đau. Với răng nhạy cảm hoặc nướu viêm, có thể hơi khó chịu. Chúng tôi có thể tê các vùng bị ảnh hưởng theo yêu cầu.",
         question3: "Bảo hiểm y tế có chi trả không?",
-        answer3: "Nhiều công ty bảo hiểm y tế nhà nước trợ cấp PTC trong chương trình thưởng. Bảo hiểm tư nhân thường chi trả toàn bộ. Chúng tôi sẵn lòng tư vấn."
+        answer3: "Nhiều công ty bảo hiểm y tế nhà nước trợ cấp PTC trong chương trình thưởng. Bảo hiểm tư nhân thường chi trả toàn bộ. Chúng tôi sẵn lòng tư vấn.",
+        question4: "Vệ sinh răng miệng chuyên nghiệp mất bao lâu?",
+        answer4: "Vệ sinh răng miệng chuyên nghiệp kỹ lưỡng thường mất 45-60 phút. Chúng tôi cố ý dành nhiều thời gian để đạt được kết quả tối ưu cho bạn."
       }
     },
 
@@ -1804,10 +1974,8 @@ const serviceTranslations = {
       faq: {
         question1: "Điều trị tủy kéo dài bao lâu?",
         answer1: "Với thực hiện đúng và vệ sinh răng miệng tốt, răng điều trị tủy có thể tồn tại nhiều năm hoặc thậm chí cả đời.",
-        question2: "Trám amalgam có hại không?",
-        answer2: "Theo kiến thức khoa học hiện tại, trám amalgam không có hại. Tuy nhiên chúng tôi dùng trám composite hiện đại thẩm mỹ hơn và không chứa kim loại.",
-        question3: "Sự khác biệt giữa inlay và trám là gì?",
-        answer3: "Trám được tạo hình trực tiếp trong miệng, inlay được chế tác vừa khít trong phòng lab. Inlay ổn định, bền và thẩm mỹ hơn nhưng cũng đắt hơn."
+        question2: "Sự khác biệt giữa inlay và trám là gì?",
+        answer2: "Trám được tạo hình trực tiếp trong miệng, inlay được chế tác vừa khít trong phòng lab. Inlay ổn định, bền và thẩm mỹ hơn nhưng cũng đắt hơn."
       }
     },
 
@@ -2112,6 +2280,94 @@ const serviceTranslations = {
         question4: "Tôi có phù hợp cho cấy ghép không?",
         answer4: "Hầu hết mọi người đều có thể nhận cấy ghép. Điều kiện là đủ xương hàm và sức khỏe tổng quát tốt. Với mất xương thường có thể ghép xương. Chúng tôi kiểm tra tình trạng cá nhân của bạn."
       }
+    },
+
+    // Nghề nghiệp
+    karriere: {
+      general: {
+        title: "Đơn xin việc chủ động",
+        text: "Chưa tìm thấy công việc mơ ước của bạn? Hãy gửi cho chúng tôi đơn xin việc chủ động!",
+        button: "Gửi đơn xin việc chủ động"
+      },
+      contact: {
+        title: "Ứng tuyển ngay",
+        subtitle: "Gửi hồ sơ của bạn qua email",
+        email_title: "Ứng tuyển qua Email",
+        email_text: "Gửi hồ sơ ứng tuyển đầy đủ của bạn đến:",
+        documents_title: "Hồ sơ cần thiết:",
+        doc1: "Thư xin việc",
+        doc2: "Sơ yếu lý lịch",
+        doc3: "Bằng cấp và chứng chỉ"
+      }
+    },
+
+    // Đặt lịch hẹn
+    appointment: {
+      hero: {
+        title: "Đặt lịch hẹn trực tuyến",
+        subtitle: "Đặt lịch hẹn nhanh chóng và dễ dàng trực tuyến"
+      },
+      notice: {
+        text: "Thông báo quan trọng: Lịch hẹn với Bà Vera Seitschenko-Dinh chỉ có thể đặt qua điện thoại. Vui lòng gọi cho chúng tôi theo số 0202 660828."
+      },
+      symptoms: {
+        title: "Chọn lý do khám",
+        pain: {
+          title: "Đau và khó chịu",
+          description: "Đau răng, nhạy cảm hoặc vấn đề cấp tính"
+        },
+        checkup: {
+          title: "Khám phòng ngừa",
+          description: "Kiểm tra định kỳ và dự phòng"
+        },
+        consultation: {
+          title: "Tư vấn chung",
+          description: "Tư vấn các phương án điều trị"
+        },
+        cleaning: {
+          title: "Vệ sinh răng chuyên nghiệp",
+          description: "Điều trị vệ sinh và dự phòng"
+        },
+        custom_label: "Hoặc mô tả vấn đề của bạn:",
+        custom_placeholder: "Vui lòng mô tả ngắn gọn những gì chúng tôi có thể làm cho bạn..."
+      },
+      doctors: {
+        title: "Chọn bác sĩ mong muốn",
+        kukadiya: {
+          name: "Bác sĩ Kukadiya",
+          specialty: "Nha khoa tổng quát",
+          available: "Có sẵn để đặt lịch trực tuyến"
+        },
+        seitschenko: {
+          name: "Bà Vera Seitschenko-Dinh",
+          specialty: "Nha sĩ",
+          phone_only: "Chỉ đặt lịch qua điện thoại",
+          phone: "ĐT: 0202 660828"
+        }
+      },
+      calendar: {
+        title: "Chọn ngày và giờ",
+        today: "Hôm nay",
+        available_slots: "Lịch hẹn có sẵn"
+      },
+      time_slots: {
+        morning: "Buổi sáng",
+        afternoon: "Buổi chiều",
+        slots_available: "Có lịch trống"
+      },
+      summary: {
+        title: "Tóm tắt đặt lịch của bạn",
+        symptom: "Lý do:",
+        doctor: "Bác sĩ:",
+        datetime: "Lịch hẹn:",
+        none_selected: "-",
+        confirm_button: "Xác nhận lịch hẹn"
+      },
+      alerts: {
+        phone_only: "Lịch hẹn với Bà Vera Seitschenko-Dinh chỉ có thể đặt qua điện thoại!\\n\\nVui lòng gọi cho chúng tôi: 0202 660828",
+        success: "Cảm ơn bạn! Lịch hẹn của bạn đã được đặt thành công.\\n\\nBạn sẽ nhận được email xác nhận trong thời gian ngắn.",
+        incomplete: "Vui lòng điền tất cả các trường để tiếp tục."
+      }
     }
   },
 
@@ -2171,7 +2427,7 @@ const serviceTranslations = {
         text1: "Дети — это не маленькие взрослые, им требуется специальный стоматологический уход, адаптированный к их потребностям. В нашей клинике мы создали дружелюбную атмосферу для детей, где ваш ребенок чувствует себя комфортно и через игру узнает, насколько важны здоровые зубы.",
         text2: "Наша цель — чтобы ваш ребенок приобрел положительный опыт посещения стоматолога и на всю жизнь сохранил хорошее отношение к здоровью зубов. Мы уделяем много времени, объясняем все в доступной для детей форме и используем щадящие современные методы.",
         content: {
-          title: "Лечение детей",
+          title: "Детская стоматология",
           para1: "Добро пожаловать в нашу детскую стоматологическую клинику! Мы уделяем особое внимание потребностям детей и предлагаем им лучшее стоматологическое обслуживание.",
           para2: "Наша команда специализированных детских стоматологов обладает обширным опытом и знаниями. Каждое лечение проходит максимально бережно и без стресса. С большим пониманием мы снимаем страхи и обеспечиваем спокойную атмосферу.",
           para3: "Мы подробно информируем и консультируем родителей о здоровье зубов их детей и даём ценные советы по правильной гигиене полости рта. Посетите нас и узнайте, как мы делаем здоровье зубов вашего ребёнка нашим приоритетом.",
@@ -2257,9 +2513,7 @@ const serviceTranslations = {
         question2: "Как подготовить ребенка к визиту?",
         answer2: "Говорите позитивно о посещении, избегайте таких слов, как 'боль' или 'укол'. Объясните, что стоматолог считает зубы и проверяет их здоровье. Не передавайте собственные страхи.",
         question3: "Как часто нужны осмотры?",
-        answer3: "Мы рекомендуем осмотр каждые 6 месяцев. Так мы можем обнаружить проблемы рано и привыкание к визитам происходит естественно.",
-        question4: "Что если ребенок боится?",
-        answer4: "Это совершенно нормально. Мы очень терпеливы и адаптируемся к темпу ребенка. Часто помогает, если родитель присутствует. При сильном страхе мы можем работать пошагово."
+        answer3: "Мы рекомендуем осмотр каждые 6 месяцев. Так мы можем обнаружить проблемы рано и привыкание к визитам происходит естественно."
       }
     },
 
@@ -2822,6 +3076,94 @@ const serviceTranslations = {
         question4: "Подхожу ли я для имплантации?",
         answer4: "Большинство людей могут получить импланты. Условие — достаточно челюстной кости и хорошее общее здоровье. При потере кости часто можно нарастить кость. Мы проверим ваше индивидуальное состояние."
       }
+    },
+
+    // Карьера
+    karriere: {
+      general: {
+        title: "Инициативная заявка",
+        text: "Не нашли работу своей мечты? Отправьте нам инициативную заявку!",
+        button: "Отправить инициативную заявку"
+      },
+      contact: {
+        title: "Подать заявку сейчас",
+        subtitle: "Отправьте свою заявку по электронной почте",
+        email_title: "Заявка по электронной почте",
+        email_text: "Отправьте полный пакет документов на:",
+        documents_title: "Необходимые документы:",
+        doc1: "Сопроводительное письмо",
+        doc2: "Резюме",
+        doc3: "Дипломы и сертификаты"
+      }
+    },
+
+    // Запись на прием
+    appointment: {
+      hero: {
+        title: "Онлайн запись на прием",
+        subtitle: "Запишитесь на прием быстро и легко онлайн"
+      },
+      notice: {
+        text: "Важное примечание: Запись на прием к г-же Вере Зайтшенко-Динь возможна только по телефону. Позвоните нам по телефону 0202 660828."
+      },
+      symptoms: {
+        title: "Выберите причину визита",
+        pain: {
+          title: "Боль и дискомфорт",
+          description: "Зубная боль, чувствительность или острые проблемы"
+        },
+        checkup: {
+          title: "Профилактический осмотр",
+          description: "Плановое обследование и профилактика"
+        },
+        consultation: {
+          title: "Общая консультация",
+          description: "Консультация по вариантам лечения"
+        },
+        cleaning: {
+          title: "Профессиональная чистка зубов",
+          description: "Чистка и профилактическое лечение"
+        },
+        custom_label: "Или опишите вашу проблему:",
+        custom_placeholder: "Пожалуйста, кратко опишите, чем мы можем вам помочь..."
+      },
+      doctors: {
+        title: "Выберите желаемого врача",
+        kukadiya: {
+          name: "Доктор Кукадия",
+          specialty: "Общая стоматология",
+          available: "Доступен для онлайн записи"
+        },
+        seitschenko: {
+          name: "Г-жа Вера Зайтшенко-Динь",
+          specialty: "Стоматолог",
+          phone_only: "Только запись по телефону",
+          phone: "Тел: 0202 660828"
+        }
+      },
+      calendar: {
+        title: "Выберите дату и время",
+        today: "Сегодня",
+        available_slots: "Доступное время"
+      },
+      time_slots: {
+        morning: "Утро",
+        afternoon: "После полудня",
+        slots_available: "Есть свободное время"
+      },
+      summary: {
+        title: "Сводка вашей записи",
+        symptom: "Причина:",
+        doctor: "Врач:",
+        datetime: "Прием:",
+        none_selected: "-",
+        confirm_button: "Подтвердить прием"
+      },
+      alerts: {
+        phone_only: "Запись на прием к г-же Вере Зайтшенко-Динь возможна только по телефону!\\n\\nПозвоните нам: 0202 660828",
+        success: "Спасибо! Ваша запись успешно сделана.\\n\\nВы получите электронное письмо с подтверждением в ближайшее время.",
+        incomplete: "Пожалуйста, заполните все поля для продолжения."
+      }
     }
   },
 
@@ -2881,7 +3223,7 @@ const serviceTranslations = {
         text1: "الأطفال ليسوا بالغين صغار - إنهم يحتاجون إلى رعاية أسنان خاصة مصممة خصيصًا لاحتياجاتهم. في عيادتنا، نوفر جوًا مناسبًا للأطفال حيث يشعر طفلك بالراحة ويتعلم بطريقة مرحة مدى أهمية الأسنان الصحية.",
         text2: "هدفنا هو أن يكتسب طفلك تجارب إيجابية عند زيارة طبيب الأسنان وبالتالي يبني علاقة جيدة مدى الحياة مع صحة الأسنان. نخصص الكثير من الوقت، ونشرح كل شيء بطريقة مناسبة للأطفال ونعمل بأساليب لطيفة وحديثة.",
         content: {
-          title: "علاج الأطفال",
+          title: "طب أسنان الأطفال",
           para1: "مرحباً بكم في عيادتنا لطب أسنان الأطفال! نحن نركز على الاحتياجات الخاصة للأطفال ونقدم لهم أفضل رعاية أسنان ممكنة.",
           para2: "فريقنا من أطباء أسنان الأطفال المتخصصين لديه خبرة ومعرفة واسعة. كل علاج يتم بلطف وبدون إجهاد قدر الإمكان. مع تعاطف كبير، نخفف المخاوف ونضمن جواً مريحاً.",
           para3: "نحن نخبر ونستشير الآباء بالتفصيل حول صحة أسنان أطفالهم ونقدم نصائح قيمة حول نظافة الفم الصحيحة. قم بزيارتنا واكتشف كيف نجعل صحة أسنان طفلك أولويتنا.",
@@ -2967,9 +3309,7 @@ const serviceTranslations = {
         question2: "كيف أحضّر طفلي للزيارة؟",
         answer2: "تحدث بإيجابية عن الزيارة، وتجنب كلمات مثل 'ألم' أو 'حقنة'. اشرح أن طبيب الأسنان يعد الأسنان ويفحص صحتها. لا تنقل مخاوفك الخاصة.",
         question3: "كم مرة يجب إجراء الفحوصات؟",
-        answer3: "نوصي بإجراء فحص كل 6 أشهر. بهذه الطريقة يمكننا اكتشاف المشاكل مبكرًا ويحدث التعود على الزيارات بشكل طبيعي.",
-        question4: "ماذا لو كان طفلي خائفًا؟",
-        answer4: "هذا أمر طبيعي تمامًا. نحن صبورون جدًا ونتكيف مع وتيرة الطفل. غالبًا ما يساعد إذا كان أحد الوالدين حاضرًا. في حالة الخوف الشديد، يمكننا العمل خطوة بخطوة."
+        answer3: "نوصي بإجراء فحص كل 6 أشهر. بهذه الطريقة يمكننا اكتشاف المشاكل مبكرًا ويحدث التعود على الزيارات بشكل طبيعي."
       }
     },
 
@@ -3532,6 +3872,94 @@ const serviceTranslations = {
         question4: "هل أنا مناسب للزرع؟",
         answer4: "معظم الناس يمكنهم الحصول على زرعات. الشرط هو عظم فك كافٍ وصحة عامة جيدة. مع فقدان العظام غالبًا ما يمكن بناء العظم. نفحص حالتك الفردية."
       }
+    },
+
+    // الوظائف
+    karriere: {
+      general: {
+        title: "طلب تلقائي",
+        text: "لم تجد وظيفة أحلامك؟ أرسل لنا طلبًا تلقائيًا!",
+        button: "إرسال طلب تلقائي"
+      },
+      contact: {
+        title: "تقدم الآن",
+        subtitle: "أرسل طلبك عبر البريد الإلكتروني",
+        email_title: "التقديم عبر البريد الإلكتروني",
+        email_text: "أرسل مستندات طلبك الكاملة إلى:",
+        documents_title: "المستندات المطلوبة:",
+        doc1: "خطاب التقديم",
+        doc2: "السيرة الذاتية",
+        doc3: "الشهادات والمراجع"
+      }
+    },
+
+    // حجز المواعيد
+    appointment: {
+      hero: {
+        title: "حجز المواعيد عبر الإنترنت",
+        subtitle: "احجز موعدك بسرعة وسهولة عبر الإنترنت"
+      },
+      notice: {
+        text: "ملاحظة مهمة: المواعيد مع السيدة فيرا زايتشنكو-دينه ممكنة فقط عبر الهاتف. يرجى الاتصال بنا على 0202 660828."
+      },
+      symptoms: {
+        title: "اختر سبب الزيارة",
+        pain: {
+          title: "ألم وإزعاج",
+          description: "ألم الأسنان، الحساسية أو المشاكل الحادة"
+        },
+        checkup: {
+          title: "فحص وقائي",
+          description: "فحص روتيني ووقاية"
+        },
+        consultation: {
+          title: "استشارة عامة",
+          description: "استشارة حول خيارات العلاج"
+        },
+        cleaning: {
+          title: "تنظيف الأسنان المهني",
+          description: "تنظيف وعلاج وقائي"
+        },
+        custom_label: "أو صف مشكلتك:",
+        custom_placeholder: "يرجى وصف ما يمكننا فعله لك بإيجاز..."
+      },
+      doctors: {
+        title: "اختر طبيبك المفضل",
+        kukadiya: {
+          name: "د. كوكاديا",
+          specialty: "طب الأسنان العام",
+          available: "متاح للحجز عبر الإنترنت"
+        },
+        seitschenko: {
+          name: "السيدة فيرا زايتشنكو-دينه",
+          specialty: "طبيبة أسنان",
+          phone_only: "حجز عبر الهاتف فقط",
+          phone: "هاتف: 0202 660828"
+        }
+      },
+      calendar: {
+        title: "اختر التاريخ والوقت",
+        today: "اليوم",
+        available_slots: "المواعيد المتاحة"
+      },
+      time_slots: {
+        morning: "صباحًا",
+        afternoon: "بعد الظهر",
+        slots_available: "أوقات متاحة"
+      },
+      summary: {
+        title: "ملخص حجزك",
+        symptom: "السبب:",
+        doctor: "الطبيب:",
+        datetime: "الموعد:",
+        none_selected: "-",
+        confirm_button: "تأكيد الموعد"
+      },
+      alerts: {
+        phone_only: "المواعيد مع السيدة فيرا زايتشنكو-دينه ممكنة فقط عبر الهاتف!\\n\\nيرجى الاتصال بنا: 0202 660828",
+        success: "شكرًا لك! تم حجز موعدك بنجاح.\\n\\nستتلقى بريدًا إلكترونيًا للتأكيد قريبًا.",
+        incomplete: "يرجى ملء جميع الحقول للمتابعة."
+      }
     }
   }
 };
@@ -3566,6 +3994,8 @@ function updatePageContent() {
   else if (path.includes('oralchirurgie')) serviceName = 'oralchirurgie';
   else if (path.includes('implantologie')) serviceName = 'implantologie';
   else if (path.includes('labor')) serviceName = 'labor';
+  else if (path.includes('karriere')) serviceName = 'karriere';
+  else if (path.includes('appointment')) serviceName = 'appointment';
 
   elements.forEach(element => {
     let key = element.getAttribute('data-translate');
@@ -3620,6 +4050,8 @@ function updatePageMeta() {
   if (path.includes('kinderzahnheilkunde')) serviceName = 'kinderzahnheilkunde';
   else if (path.includes('angstpatienten')) serviceName = 'angstpatienten';
   else if (path.includes('labor')) serviceName = 'labor';
+  else if (path.includes('karriere')) serviceName = 'karriere';
+  else if (path.includes('appointment')) serviceName = 'appointment';
   else if (path.includes('prophylaxe')) serviceName = 'prophylaxe';
   else if (path.includes('zahnerhaltung')) serviceName = 'zahnerhaltung';
   else if (path.includes('aesthetische')) serviceName = 'aesthetische';

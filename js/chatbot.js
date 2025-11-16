@@ -950,23 +950,48 @@ class DigitizedBrainsChatbot {
       /* Mobile responsive */
       @media (max-width: 768px) {
         .chatbot-toggle-btn {
-          width: 70px;
-          height: 70px;
+          width: 56px;
+          height: 56px;
+          bottom: 12px;
+          right: 12px;
         }
-        
+
         .brain-icon {
-          font-size: 28px;
+          font-size: 24px;
         }
-        
+
+        .notification-badge {
+          width: 18px;
+          height: 18px;
+          font-size: 9px;
+          top: -4px;
+          right: -4px;
+        }
+
+        .pulse-ring {
+          width: 56px;
+          height: 56px;
+        }
+
         .help-tooltip {
           display: none;
         }
-        
+
+        #chat-widget-toggle {
+          bottom: 12px !important;
+          right: 12px !important;
+        }
+
         #chat-widget {
-          width: 95vw !important;
-          height: 85vh !important;
-          bottom: 10px !important;
-          right: 2.5vw !important;
+          width: 100vw !important;
+          height: 100vh !important;
+          bottom: 0 !important;
+          right: 0 !important;
+          border-radius: 0 !important;
+        }
+
+        .chat-header {
+          border-radius: 0 !important;
         }
       }
       
