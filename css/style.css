@@ -147,6 +147,16 @@ html, body {
   position: relative;
 }
 
+/* Hero section for Appointment page - background image */
+.hero-bg-appointment {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(240, 253, 250, 0.4)), url('../assets/img/praxis-02-scaled.jpeg');
+  background-size: cover;
+  background-position: center 30%;
+  background-attachment: fixed;
+  position: relative;
+  padding-top: 100px;
+}
+
 /* Footer section - background image */
 .footer-bg {
   background-image: linear-gradient(rgba(30, 41, 59, 0.85), rgba(15, 23, 42, 0.90)), url('../assets/img/img_0370-scaled.jpeg');
@@ -796,6 +806,11 @@ html, body {
     background-attachment: scroll;
   }
 
+  .hero-bg-appointment {
+    background-attachment: scroll;
+    padding-top: 80px;
+  }
+
   .footer-bg {
     background-attachment: scroll;
   }
@@ -1077,6 +1092,31 @@ html, body {
   padding: 0 2rem;
   transform: translateY(20px);
   transition: all 0.4s ease;
+}
+
+/* Responsive font sizes for mobile and tablet */
+@media (max-width: 1024px) {
+  .labor-team-name {
+    font-size: 1.5rem;
+    letter-spacing: 1.5px;
+    padding: 0 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .labor-team-name {
+    font-size: 1.25rem;
+    letter-spacing: 1px;
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .labor-team-name {
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    padding: 0 0.75rem;
+  }
 }
 
 .labor-team-card:hover .labor-team-overlay {

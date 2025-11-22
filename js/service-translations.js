@@ -6,6 +6,12 @@
 
 const serviceTranslations = {
   de: {
+    // Header
+    header: {
+      practice_name1: "ZAHNARZTPRAXEN",
+      practice_name2: "SEITSCHENKO-DINH"
+    },
+
     // Navigation
     nav: {
       home: "Start",
@@ -26,7 +32,17 @@ const serviceTranslations = {
       description: "Moderne Zahnmedizin in Wuppertal mit zwei Standorten. Professionelle Behandlung in entspannter Atmosphäre.",
       quickLinks: "Schnellzugriff",
       contact: "Kontakt",
-      copyright: "© 2025 Zahnarztpraxen Seitschenko-Dinh. Alle Rechte vorbehalten."
+      copyright: "© 2024 Datenschutzerklärung",
+      practice_name1: "ZAHNARZTPRAXEN",
+      practice_name2: "SEITSCHENKO-DINH",
+      location1: {
+        line1: "Schwarzbach 2 | 42277 Wuppertal",
+        line2: "Tel.: 0202 660828"
+      },
+      location2: {
+        line1: "Loher Str. 40 | 42283 Wuppertal",
+        line2: "Tel.: 0202 451642"
+      }
     },
 
     // Contact section
@@ -753,50 +769,89 @@ const serviceTranslations = {
           title: "Professionelle Zahnreinigung",
           description: "PZR und Prophylaxe-Behandlung"
         },
-        custom_label: "Oder beschreiben Sie Ihr Anliegen:",
-        custom_placeholder: "Bitte beschreiben Sie kurz, was wir für Sie tun können..."
+        custom_label: "Beschreiben Sie Ihr Anliegen genauer:",
+        custom_placeholder: "z.B. Ich habe seit 3 Tagen starke Zahnschmerzen im rechten Backenzahn...",
+        custom_hint: "💡 Tipp: Je genauer Sie Ihr Problem beschreiben, desto besser können wir Sie beraten."
       },
       doctors: {
         title: "Wählen Sie Ihren Wunsch-Arzt",
+        scroll_hint: "Scrollen Sie für weitere Ärzte",
+        select_placeholder: "Wählen Sie einen Arzt",
         kukadiya: {
-          name: "Dr. Kukadiya",
-          specialty: "Allgemeine Zahnheilkunde",
-          available: "Verfügbar für Online-Buchung"
-        },
-        seitschenko: {
-          name: "Frau Vera Seitschenko-Dinh",
+          name: "Zahnärztin Dr. Kukadiya",
           specialty: "Zahnärztin",
-          phone_only: "Nur telefonische Terminvereinbarung",
-          phone: "Tel: 0202 660828"
+          location: "Loher Str. 40, 42283 Wuppertal"
+        },
+        ikikardes: {
+          name: "Zahnarzt Herr IKIKARDES",
+          specialty: "Zahnarzt",
+          location: "Schwarzbach 2, 42277 Wuppertal"
+        },
+        taifour: {
+          name: "Zahnarzt Herr TAIFOUR",
+          specialty: "Zahnarzt",
+          location: "Schwarzbach 2, 42277 Wuppertal"
+        },
+        nikolaou: {
+          name: "Zahnarzt Herr NIKOLAOU",
+          specialty: "Zahnarzt",
+          location: "Loher Str. 40, 42283 Wuppertal"
         }
       },
       calendar: {
         title: "Wählen Sie Datum und Uhrzeit",
+        week: "Woche vom",
+        loading: "Laden...",
         today: "Heute",
-        available_slots: "Verfügbare Termine"
+        tomorrow: "Morgen",
+        available_slots: "Verfügbare Termine",
+        load_more: "Weitere Termine"
       },
       time_slots: {
         morning: "Vormittag",
         afternoon: "Nachmittag",
-        slots_available: "Termine verfügbar"
+        slots_available: "Termine verfügbar",
+        booked: "Gebucht"
       },
       summary: {
         title: "Zusammenfassung Ihrer Buchung",
         symptom: "Grund:",
         doctor: "Arzt:",
         datetime: "Termin:",
+        description_label: "📝 Ihre Beschreibung:",
         none_selected: "-",
-        confirm_button: "Termin bestätigen"
+        confirm_button: "Absenden",
+        sending: "Wird gesendet...",
+        success_title: "Erfolgreich gesendet!",
+        error_title: "Fehler beim Senden",
+        patient_info_title: "Ihre Kontaktdaten",
+        patient_name: "Vollständiger Name *",
+        patient_name_placeholder: "z.B. Max Mustermann",
+        patient_birth_year: "Geburtsjahr *",
+        patient_birth_year_placeholder: "z.B. 1990",
+        patient_phone: "Telefonnummer *",
+        patient_phone_placeholder: "z.B. 0202 660828",
+        patient_email: "E-Mail-Adresse *",
+        patient_email_placeholder: "z.B. max@beispiel.de",
+        required_fields_note: "* Pflichtfelder - Wir benötigen diese Informationen zur Terminbestätigung"
       },
       alerts: {
-        phone_only: "Für Frau Vera Seitschenko-Dinh sind Termine nur telefonisch möglich!\\n\\nBitte rufen Sie uns an: 0202 660828",
-        success: "Vielen Dank! Ihr Termin wurde erfolgreich gebucht.\\n\\nSie erhalten in Kürze eine Bestätigung per E-Mail.",
-        incomplete: "Bitte füllen Sie alle Felder aus, um fortzufahren."
+        phone_only: "Für Frau Vera Seitschenko-Dinh sind Termine nur telefonisch möglich! Bitte rufen Sie uns an: 0202 660828",
+        success: "Vielen Dank! Ihr Termin wurde erfolgreich an uns gesendet. Wir werden Sie in Kürze kontaktieren.",
+        incomplete: "Bitte füllen Sie alle Felder aus, um fortzufahren.",
+        error: "Es gab einen Fehler beim Senden. Bitte versuchen Sie es erneut oder rufen Sie uns an: 0202 660828",
+        sending_desc: "Ihre Buchungsanfrage wird gerade übermittelt..."
       }
     }
   },
 
   en: {
+    // Header
+    header: {
+      practice_name1: "DENTAL PRACTICES",
+      practice_name2: "SEITSCHENKO-DINH"
+    },
+
     // Navigation
     nav: {
       home: "Home",
@@ -815,7 +870,17 @@ const serviceTranslations = {
       description: "Modern dentistry in Wuppertal with two locations. Professional treatment in a relaxed atmosphere.",
       quickLinks: "Quick Links",
       contact: "Contact",
-      copyright: "© 2025 Zahnarztpraxen Seitschenko-Dinh. All rights reserved."
+      copyright: "© 2024 Privacy Policy",
+      practice_name1: "DENTAL PRACTICES",
+      practice_name2: "SEITSCHENKO-DINH",
+      location1: {
+        line1: "Schwarzbach 2 | 42277 Wuppertal",
+        line2: "Tel.: 0202 660828"
+      },
+      location2: {
+        line1: "Loher Str. 40 | 42283 Wuppertal",
+        line2: "Tel.: 0202 451642"
+      }
     },
 
     contact: {
@@ -1540,50 +1605,89 @@ const serviceTranslations = {
           title: "Professional Teeth Cleaning",
           description: "PTC and prophylaxis treatment"
         },
-        custom_label: "Or describe your concern:",
-        custom_placeholder: "Please briefly describe what we can do for you..."
+        custom_label: "Describe your concern in more detail:",
+        custom_placeholder: "e.g. I have had severe toothache in my right molar for 3 days...",
+        custom_hint: "💡 Tip: The more detailed your description, the better we can advise you."
       },
       doctors: {
         title: "Select Your Preferred Doctor",
+        scroll_hint: "Scroll for more doctors",
+        select_placeholder: "Select a doctor",
         kukadiya: {
-          name: "Dr. Kukadiya",
-          specialty: "General Dentistry",
-          available: "Available for online booking"
-        },
-        seitschenko: {
-          name: "Mrs. Vera Seitschenko-Dinh",
+          name: "Dentist Dr. Kukadiya",
           specialty: "Dentist",
-          phone_only: "Phone appointment only",
-          phone: "Tel: 0202 660828"
+          location: "Loher Str. 40, 42283 Wuppertal"
+        },
+        ikikardes: {
+          name: "Dentist Mr. IKIKARDES",
+          specialty: "Dentist",
+          location: "Schwarzbach 2, 42277 Wuppertal"
+        },
+        taifour: {
+          name: "Dentist Mr. TAIFOUR",
+          specialty: "Dentist",
+          location: "Schwarzbach 2, 42277 Wuppertal"
+        },
+        nikolaou: {
+          name: "Dentist Mr. NIKOLAOU",
+          specialty: "Dentist",
+          location: "Loher Str. 40, 42283 Wuppertal"
         }
       },
       calendar: {
         title: "Select Date and Time",
+        week: "Week from",
+        loading: "Loading...",
         today: "Today",
-        available_slots: "Available Appointments"
+        tomorrow: "Tomorrow",
+        available_slots: "Available Appointments",
+        load_more: "More Appointments"
       },
       time_slots: {
         morning: "Morning",
         afternoon: "Afternoon",
-        slots_available: "Slots available"
+        slots_available: "Slots available",
+        booked: "Booked"
       },
       summary: {
         title: "Your Booking Summary",
         symptom: "Reason:",
         doctor: "Doctor:",
         datetime: "Appointment:",
+        description_label: "📝 Your Description:",
         none_selected: "-",
-        confirm_button: "Confirm Appointment"
+        confirm_button: "Send",
+        sending: "Sending...",
+        success_title: "Successfully Sent!",
+        error_title: "Sending Error",
+        patient_info_title: "Your Contact Information",
+        patient_name: "Full Name *",
+        patient_name_placeholder: "e.g. John Doe",
+        patient_birth_year: "Birth Year *",
+        patient_birth_year_placeholder: "e.g. 1990",
+        patient_phone: "Phone Number *",
+        patient_phone_placeholder: "e.g. 0202 660828",
+        patient_email: "Email Address *",
+        patient_email_placeholder: "e.g. john@example.com",
+        required_fields_note: "* Required fields - We need this information for appointment confirmation"
       },
       alerts: {
-        phone_only: "Appointments with Mrs. Vera Seitschenko-Dinh are only possible by phone!\\n\\nPlease call us: 0202 660828",
-        success: "Thank you! Your appointment has been successfully booked.\\n\\nYou will receive a confirmation email shortly.",
-        incomplete: "Please fill in all fields to continue."
+        phone_only: "Appointments with Mrs. Vera Seitschenko-Dinh are only possible by phone! Please call us: 0202 660828",
+        success: "Thank you! Your appointment has been successfully sent to us. We will contact you shortly.",
+        incomplete: "Please fill in all fields to continue.",
+        error: "There was an error sending your request. Please try again or call us: 0202 660828",
+        sending_desc: "Your booking request is being submitted..."
       }
     }
   },
 
   vi: {
+    // Header
+    header: {
+      practice_name1: "NHA KHOA",
+      practice_name2: "SEITSCHENKO-DINH"
+    },
+
     // Navigation
     nav: {
       home: "Trang chủ",
@@ -1602,7 +1706,17 @@ const serviceTranslations = {
       description: "Nha khoa hiện đại tại Wuppertal với hai địa điểm. Điều trị chuyên nghiệp trong không khí thoải mái.",
       quickLinks: "Truy cập nhanh",
       contact: "Liên hệ",
-      copyright: "© 2025 Zahnarztpraxen Seitschenko-Dinh. Bảo lưu mọi quyền."
+      copyright: "© 2024 Chính sách bảo mật",
+      practice_name1: "NHA KHOA",
+      practice_name2: "SEITSCHENKO-DINH",
+      location1: {
+        line1: "Schwarzbach 2 | 42277 Wuppertal",
+        line2: "ĐT: 0202 660828"
+      },
+      location2: {
+        line1: "Loher Str. 40 | 42283 Wuppertal",
+        line2: "ĐT: 0202 451642"
+      }
     },
 
     contact: {
@@ -2328,51 +2442,90 @@ const serviceTranslations = {
           title: "Vệ sinh răng chuyên nghiệp",
           description: "Điều trị vệ sinh và dự phòng"
         },
-        custom_label: "Hoặc mô tả vấn đề của bạn:",
-        custom_placeholder: "Vui lòng mô tả ngắn gọn những gì chúng tôi có thể làm cho bạn..."
+        custom_label: "Mô tả vấn đề của bạn chi tiết hơn:",
+        custom_placeholder: "Ví dụ: Tôi bị đau răng hàm bên phải từ 3 ngày nay...",
+        custom_hint: "💡 Mẹo: Mô tả càng chi tiết, chúng tôi càng tư vấn tốt hơn."
       },
       doctors: {
         title: "Chọn bác sĩ mong muốn",
+        scroll_hint: "Cuộn để xem thêm bác sĩ",
+        select_placeholder: "Chọn một bác sĩ",
         kukadiya: {
-          name: "Bác sĩ Kukadiya",
-          specialty: "Nha khoa tổng quát",
-          available: "Có sẵn để đặt lịch trực tuyến"
-        },
-        seitschenko: {
-          name: "Bà Vera Seitschenko-Dinh",
+          name: "Nha sĩ Bác sĩ Kukadiya",
           specialty: "Nha sĩ",
-          phone_only: "Chỉ đặt lịch qua điện thoại",
-          phone: "ĐT: 0202 660828"
+          location: "Loher Str. 40, 42283 Wuppertal"
+        },
+        ikikardes: {
+          name: "Nha sĩ Ông IKIKARDES",
+          specialty: "Nha sĩ",
+          location: "Schwarzbach 2, 42277 Wuppertal"
+        },
+        taifour: {
+          name: "Nha sĩ Ông TAIFOUR",
+          specialty: "Nha sĩ",
+          location: "Schwarzbach 2, 42277 Wuppertal"
+        },
+        nikolaou: {
+          name: "Nha sĩ Ông NIKOLAOU",
+          specialty: "Nha sĩ",
+          location: "Loher Str. 40, 42283 Wuppertal"
         }
       },
       calendar: {
         title: "Chọn ngày và giờ",
+        week: "Tuần từ",
+        loading: "Đang tải...",
         today: "Hôm nay",
-        available_slots: "Lịch hẹn có sẵn"
+        tomorrow: "Ngày mai",
+        available_slots: "Lịch hẹn có sẵn",
+        load_more: "Xem thêm lịch"
       },
       time_slots: {
         morning: "Buổi sáng",
         afternoon: "Buổi chiều",
-        slots_available: "Có lịch trống"
+        slots_available: "Có lịch trống",
+        booked: "Đã đặt"
       },
       summary: {
         title: "Tóm tắt đặt lịch của bạn",
         symptom: "Lý do:",
         doctor: "Bác sĩ:",
         datetime: "Lịch hẹn:",
+        description_label: "📝 Mô tả của bạn:",
         none_selected: "-",
-        confirm_button: "Xác nhận lịch hẹn"
+        confirm_button: "Gửi đi",
+        sending: "Đang gửi...",
+        success_title: "Gửi thành công!",
+        error_title: "Lỗi khi gửi",
+        patient_info_title: "Thông tin liên hệ của bạn",
+        patient_name: "Họ và tên *",
+        patient_name_placeholder: "VD: Nguyễn Văn A",
+        patient_birth_year: "Năm sinh *",
+        patient_birth_year_placeholder: "VD: 1990",
+        patient_phone: "Số điện thoại *",
+        patient_phone_placeholder: "VD: 0202 660828",
+        patient_email: "Địa chỉ email *",
+        patient_email_placeholder: "VD: nguyen@example.com",
+        required_fields_note: "* Thông tin bắt buộc - Chúng tôi cần thông tin này để xác nhận lịch hẹn"
       },
       alerts: {
-        phone_only: "Lịch hẹn với Bà Vera Seitschenko-Dinh chỉ có thể đặt qua điện thoại!\\n\\nVui lòng gọi cho chúng tôi: 0202 660828",
-        success: "Cảm ơn bạn! Lịch hẹn của bạn đã được đặt thành công.\\n\\nBạn sẽ nhận được email xác nhận trong thời gian ngắn.",
-        incomplete: "Vui lòng điền tất cả các trường để tiếp tục."
+        phone_only: "Lịch hẹn với Bà Vera Seitschenko-Dinh chỉ có thể đặt qua điện thoại! Vui lòng gọi cho chúng tôi: 0202 660828",
+        success: "Cảm ơn bạn! Yêu cầu đặt lịch của bạn đã được gửi thành công. Chúng tôi sẽ liên hệ với bạn sớm.",
+        incomplete: "Vui lòng điền tất cả các trường để tiếp tục.",
+        error: "Đã xảy ra lỗi khi gửi. Vui lòng thử lại hoặc gọi cho chúng tôi: 0202 660828",
+        sending_desc: "Yêu cầu đặt lịch của bạn đang được gửi đi..."
       }
     }
   },
 
   // Russian translations
   ru: {
+    // Header
+    header: {
+      practice_name1: "СТОМАТОЛОГИЧЕСКИЕ КЛИНИКИ",
+      practice_name2: "ЗАЙТШЕНКО-ДИНЬ"
+    },
+
     // Navigation
     nav: {
       home: "Главная",
@@ -2393,7 +2546,17 @@ const serviceTranslations = {
       description: "Современная стоматология в Вуппертале с двумя филиалами. Профессиональное лечение в комфортной атмосфере.",
       quickLinks: "Быстрый доступ",
       contact: "Контакты",
-      copyright: "© 2025 Стоматологические клиники Зайтшенко-Динь. Все права защищены."
+      copyright: "© 2024 Политика конфиденциальности",
+      practice_name1: "СТОМАТОЛОГИЧЕСКИЕ КЛИНИКИ",
+      practice_name2: "ЗАЙТШЕНКО-ДИНЬ",
+      location1: {
+        line1: "Schwarzbach 2 | 42277 Wuppertal",
+        line2: "Тел.: 0202 660828"
+      },
+      location2: {
+        line1: "Loher Str. 40 | 42283 Wuppertal",
+        line2: "Тел.: 0202 451642"
+      }
     },
 
     // Contact section
@@ -3124,51 +3287,90 @@ const serviceTranslations = {
           title: "Профессиональная чистка зубов",
           description: "Чистка и профилактическое лечение"
         },
-        custom_label: "Или опишите вашу проблему:",
-        custom_placeholder: "Пожалуйста, кратко опишите, чем мы можем вам помочь..."
+        custom_label: "Опишите вашу проблему подробнее:",
+        custom_placeholder: "Например: У меня сильная зубная боль в правом моляре в течение 3 дней...",
+        custom_hint: "💡 Совет: Чем подробнее вы опишете проблему, тем лучше мы сможем вам помочь."
       },
       doctors: {
         title: "Выберите желаемого врача",
+        scroll_hint: "Прокрутите, чтобы увидеть больше врачей",
+        select_placeholder: "Выберите врача",
         kukadiya: {
-          name: "Доктор Кукадия",
-          specialty: "Общая стоматология",
-          available: "Доступен для онлайн записи"
-        },
-        seitschenko: {
-          name: "Г-жа Вера Зайтшенко-Динь",
+          name: "Стоматолог доктор Кукадия",
           specialty: "Стоматолог",
-          phone_only: "Только запись по телефону",
-          phone: "Тел: 0202 660828"
+          location: "Loher Str. 40, 42283 Wuppertal"
+        },
+        ikikardes: {
+          name: "Стоматолог г-н IKIKARDES",
+          specialty: "Стоматолог",
+          location: "Schwarzbach 2, 42277 Wuppertal"
+        },
+        taifour: {
+          name: "Стоматолог г-н TAIFOUR",
+          specialty: "Стоматолог",
+          location: "Schwarzbach 2, 42277 Wuppertal"
+        },
+        nikolaou: {
+          name: "Стоматолог г-н NIKOLAOU",
+          specialty: "Стоматолог",
+          location: "Loher Str. 40, 42283 Wuppertal"
         }
       },
       calendar: {
         title: "Выберите дату и время",
+        week: "Неделя с",
+        loading: "Загрузка...",
         today: "Сегодня",
-        available_slots: "Доступное время"
+        tomorrow: "Завтра",
+        available_slots: "Доступное время",
+        load_more: "Больше времени"
       },
       time_slots: {
         morning: "Утро",
         afternoon: "После полудня",
-        slots_available: "Есть свободное время"
+        slots_available: "Есть свободное время",
+        booked: "Забронировано"
       },
       summary: {
         title: "Сводка вашей записи",
         symptom: "Причина:",
         doctor: "Врач:",
         datetime: "Прием:",
+        description_label: "📝 Ваше описание:",
         none_selected: "-",
-        confirm_button: "Подтвердить прием"
+        confirm_button: "Отправить",
+        sending: "Отправка...",
+        success_title: "Успешно отправлено!",
+        error_title: "Ошибка отправки",
+        patient_info_title: "Ваши контактные данные",
+        patient_name: "Полное имя *",
+        patient_name_placeholder: "напр. Иван Иванов",
+        patient_birth_year: "Год рождения *",
+        patient_birth_year_placeholder: "напр. 1990",
+        patient_phone: "Номер телефона *",
+        patient_phone_placeholder: "напр. 0202 660828",
+        patient_email: "Адрес электронной почты *",
+        patient_email_placeholder: "напр. ivan@example.com",
+        required_fields_note: "* Обязательные поля - Эта информация необходима для подтверждения записи"
       },
       alerts: {
-        phone_only: "Запись на прием к г-же Вере Зайтшенко-Динь возможна только по телефону!\\n\\nПозвоните нам: 0202 660828",
-        success: "Спасибо! Ваша запись успешно сделана.\\n\\nВы получите электронное письмо с подтверждением в ближайшее время.",
-        incomplete: "Пожалуйста, заполните все поля для продолжения."
+        phone_only: "Запись на прием к г-же Вере Зайтшенко-Динь возможна только по телефону! Позвоните нам: 0202 660828",
+        success: "Спасибо! Ваш запрос на запись успешно отправлен. Мы свяжемся с вами в ближайшее время.",
+        incomplete: "Пожалуйста, заполните все поля для продолжения.",
+        error: "Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз или позвоните нам: 0202 660828",
+        sending_desc: "Ваш запрос на запись отправляется..."
       }
     }
   },
 
   // Arabic translations
   ar: {
+    // Header
+    header: {
+      practice_name1: "عيادات الأسنان",
+      practice_name2: "سايتشينكو-دينه"
+    },
+
     // Navigation
     nav: {
       home: "الرئيسية",
@@ -3189,7 +3391,17 @@ const serviceTranslations = {
       description: "طب أسنان حديث في فوبرتال مع فرعين. علاج احترافي في جو مريح.",
       quickLinks: "روابط سريعة",
       contact: "اتصل بنا",
-      copyright: "© 2025 عيادات سايتشينكو-دينه لطب الأسنان. جميع الحقوق محفوظة."
+      copyright: "© 2024 سياسة الخصوصية",
+      practice_name1: "عيادات الأسنان",
+      practice_name2: "سايتشينكو-دينه",
+      location1: {
+        line1: "Schwarzbach 2 | 42277 Wuppertal",
+        line2: "هاتف: 0202 660828"
+      },
+      location2: {
+        line1: "Loher Str. 40 | 42283 Wuppertal",
+        line2: "هاتف: 0202 451642"
+      }
     },
 
     // Contact section
@@ -3920,45 +4132,78 @@ const serviceTranslations = {
           title: "تنظيف الأسنان المهني",
           description: "تنظيف وعلاج وقائي"
         },
-        custom_label: "أو صف مشكلتك:",
-        custom_placeholder: "يرجى وصف ما يمكننا فعله لك بإيجاز..."
+        custom_label: "صف مشكلتك بالتفصيل:",
+        custom_placeholder: "مثال: لدي ألم شديد في ضرس الفك الأيمن منذ 3 أيام...",
+        custom_hint: "💡 نصيحة: كلما كان وصفك أكثر تفصيلاً، كان بإمكاننا تقديم النصيحة بشكل أفضل."
       },
       doctors: {
         title: "اختر طبيبك المفضل",
+        scroll_hint: "قم بالتمرير لمزيد من الأطباء",
+        select_placeholder: "اختر طبيباً",
         kukadiya: {
           name: "د. كوكاديا",
-          specialty: "طب الأسنان العام",
-          available: "متاح للحجز عبر الإنترنت"
+          specialty: "طبيب أسنان",
+          location: "Loher Str. 40, 42283 Wuppertal"
         },
-        seitschenko: {
-          name: "السيدة فيرا زايتشنكو-دينه",
-          specialty: "طبيبة أسنان",
-          phone_only: "حجز عبر الهاتف فقط",
-          phone: "هاتف: 0202 660828"
+        ikikardes: {
+          name: "د. IKIKARDES",
+          specialty: "طبيب أسنان",
+          location: "Schwarzbach 2, 42277 Wuppertal"
+        },
+        taifour: {
+          name: "د. TAIFOUR",
+          specialty: "طبيب أسنان",
+          location: "Schwarzbach 2, 42277 Wuppertal"
+        },
+        nikolaou: {
+          name: "د. NIKOLAOU",
+          specialty: "طبيب أسنان",
+          location: "Loher Str. 40, 42283 Wuppertal"
         }
       },
       calendar: {
         title: "اختر التاريخ والوقت",
+        week: "الأسبوع من",
+        loading: "جار التحميل...",
         today: "اليوم",
-        available_slots: "المواعيد المتاحة"
+        tomorrow: "غداً",
+        available_slots: "المواعيد المتاحة",
+        load_more: "المزيد من المواعيد"
       },
       time_slots: {
         morning: "صباحًا",
         afternoon: "بعد الظهر",
-        slots_available: "أوقات متاحة"
+        slots_available: "أوقات متاحة",
+        booked: "محجوز"
       },
       summary: {
         title: "ملخص حجزك",
         symptom: "السبب:",
         doctor: "الطبيب:",
         datetime: "الموعد:",
+        description_label: "📝 وصفك:",
         none_selected: "-",
-        confirm_button: "تأكيد الموعد"
+        confirm_button: "إرسال",
+        sending: "جار الإرسال...",
+        success_title: "تم الإرسال بنجاح!",
+        error_title: "خطأ في الإرسال",
+        patient_info_title: "معلومات الاتصال الخاصة بك",
+        patient_name: "الاسم الكامل *",
+        patient_name_placeholder: "مثل: أحمد محمد",
+        patient_birth_year: "سنة الميلاد *",
+        patient_birth_year_placeholder: "مثل: 1990",
+        patient_phone: "رقم الهاتف *",
+        patient_phone_placeholder: "مثل: 0202 660828",
+        patient_email: "عنوان البريد الإلكتروني *",
+        patient_email_placeholder: "مثل: ahmed@example.com",
+        required_fields_note: "* حقول إلزامية - نحتاج هذه المعلومات لتأكيد الموعد"
       },
       alerts: {
-        phone_only: "المواعيد مع السيدة فيرا زايتشنكو-دينه ممكنة فقط عبر الهاتف!\\n\\nيرجى الاتصال بنا: 0202 660828",
-        success: "شكرًا لك! تم حجز موعدك بنجاح.\\n\\nستتلقى بريدًا إلكترونيًا للتأكيد قريبًا.",
-        incomplete: "يرجى ملء جميع الحقول للمتابعة."
+        phone_only: "المواعيد مع السيدة فيرا زايتشنكو-دينه ممكنة فقط عبر الهاتف! يرجى الاتصال بنا: 0202 660828",
+        success: "شكرًا لك! تم إرسال طلب موعدك بنجاح. سنتواصل معك قريبًا.",
+        incomplete: "يرجى ملء جميع الحقول للمتابعة.",
+        error: "حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى أو الاتصال بنا: 0202 660828",
+        sending_desc: "جارٍ إرسال طلب الموعد الخاص بك..."
       }
     }
   }
@@ -3970,12 +4215,18 @@ let currentLanguage = 'de';
 function changeLanguage(lang) {
   currentLanguage = lang;
   localStorage.setItem('selectedLanguage', lang);
+  localStorage.setItem('preferredLanguage', lang); // Sync with chatbot
   updatePageContent();
   updateLanguageUI(lang);
 
+  // Dispatch event for dynamic content to update
+  window.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: lang } }));
+
   // Close language menu
-  document.getElementById('language-menu').classList.remove('show');
-  document.getElementById('mobile-language-menu').classList.remove('show');
+  const languageMenu = document.getElementById('language-menu');
+  const mobileLanguageMenu = document.getElementById('mobile-language-menu');
+  if (languageMenu) languageMenu.classList.remove('show');
+  if (mobileLanguageMenu) mobileLanguageMenu.classList.remove('show');
 }
 
 function updatePageContent() {
@@ -4000,9 +4251,9 @@ function updatePageContent() {
   elements.forEach(element => {
     let key = element.getAttribute('data-translate');
 
-    // For service-specific content (not nav, footer, contact, language, faq.title)
+    // For service-specific content (not nav, header, footer, contact, language, faq.title)
     // prepend the service name to the key path
-    const commonPrefixes = ['nav.', 'footer.', 'contact.', 'language.'];
+    const commonPrefixes = ['nav.', 'header.', 'footer.', 'contact.', 'language.'];
     const isCommonKey = commonPrefixes.some(prefix => key.startsWith(prefix)) || key === 'faq.title';
 
     // Check if key already has the service name prefix
@@ -4035,6 +4286,37 @@ function updatePageContent() {
       } else {
         element.textContent = translation;
       }
+    }
+  });
+
+  // Handle data-translate-placeholder attributes separately
+  const placeholderElements = document.querySelectorAll('[data-translate-placeholder]');
+  placeholderElements.forEach(element => {
+    let key = element.getAttribute('data-translate-placeholder');
+
+    // Apply same logic for service-specific prefixes
+    const commonPrefixes = ['nav.', 'footer.', 'contact.', 'language.'];
+    const isCommonKey = commonPrefixes.some(prefix => key.startsWith(prefix));
+    const alreadyHasPrefix = serviceName && key.startsWith(serviceName + '.');
+
+    if (serviceName && !isCommonKey && !alreadyHasPrefix) {
+      key = `${serviceName}.${key}`;
+    }
+
+    const keys = key.split('.');
+    let translation = (window.translations && window.translations[currentLanguage]) || serviceTranslations[currentLanguage];
+
+    for (const k of keys) {
+      if (translation && translation[k]) {
+        translation = translation[k];
+      } else {
+        translation = null;
+        break;
+      }
+    }
+
+    if (translation && (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA')) {
+      element.placeholder = translation;
     }
   });
 
@@ -4138,7 +4420,8 @@ document.addEventListener('DOMContentLoaded', function() {
     languageBtn.addEventListener('click', function(e) {
       e.stopPropagation();
       languageMenu.classList.toggle('show');
-      document.getElementById('mobile-language-menu').classList.remove('show');
+      const mobileMenu = document.getElementById('mobile-language-menu');
+      if (mobileMenu) mobileMenu.classList.remove('show');
     });
   }
 
@@ -4150,7 +4433,7 @@ document.addEventListener('DOMContentLoaded', function() {
     mobileLanguageBtn.addEventListener('click', function(e) {
       e.stopPropagation();
       mobileLanguageMenu.classList.toggle('show');
-      languageMenu.classList.remove('show');
+      if (languageMenu) languageMenu.classList.remove('show');
     });
   }
 

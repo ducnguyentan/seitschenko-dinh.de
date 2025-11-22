@@ -654,5 +654,16 @@
       changeLanguage(savedLang);
     }
   </script>
+
+  <!-- Chatbot Integration -->
+  <script src="../js/chatbot.js"></script>
+  <script>
+    // Initialize chatbot
+    window.digitizedBrainsChatbot = new DigitizedBrainsChatbot({
+      iframeSrc: 'https://ducnguyen1978-digitizedgemini.hf.space',
+      position: { bottom: '30px', right: '30px' },
+      size: { width: '420px', height: '600px' }
+    });
+  </script>
 </body>
 </html>

@@ -75,7 +75,7 @@ class DigitizedBrainsChatbot {
       vi: {
         title: 'Digitized Brains AI Agent',
         minimize: 'Thu gọn',
-        maximize: 'Phóng to', 
+        maximize: 'Phóng to',
         restore: 'Thu nhỏ',
         close: 'Đóng',
         aiAssistant: '🤖 Trợ lý AI',
@@ -85,13 +85,45 @@ class DigitizedBrainsChatbot {
         title: 'Digitized Brains KI-Agent',
         minimize: 'Minimieren',
         maximize: 'Maximieren',
-        restore: 'Wiederherstellen', 
+        restore: 'Wiederherstellen',
         close: 'Schließen',
         aiAssistant: '🤖 KI-Assistent',
         loading: 'KI-Agent wird geladen...'
       }
     };
     return texts[this.currentLanguage] || texts.en;
+  }
+
+  // Language texts for appointment button
+  getAppointmentTexts() {
+    const texts = {
+      en: {
+        appointment: '📅 Book Appointment',
+        tooltip: 'Schedule your visit',
+        subtitle: 'Click to book now!'
+      },
+      vi: {
+        appointment: '📅 Đặt lịch hẹn',
+        tooltip: 'Đặt lịch khám',
+        subtitle: 'Nhấn để đặt lịch!'
+      },
+      de: {
+        appointment: '📅 Termin buchen',
+        tooltip: 'Termin vereinbaren',
+        subtitle: 'Klicken Sie hier!'
+      },
+      ru: {
+        appointment: '📅 Запись на прием',
+        tooltip: 'Записаться на прием',
+        subtitle: 'Нажмите, чтобы записаться!'
+      },
+      ar: {
+        appointment: '📅 حجز موعد',
+        tooltip: 'احجز موعدك',
+        subtitle: 'انقر للحجز!'
+      }
+    };
+    return texts[this.currentLanguage] || texts.de;
   }
 
   updateLanguage() {
@@ -104,28 +136,39 @@ class DigitizedBrainsChatbot {
 
   updateTexts() {
     const texts = this.getTexts();
-    
+    const appointmentTexts = this.getAppointmentTexts();
+
+    // Update appointment button texts
+    const appointmentHelpText = document.querySelector('#appointment-widget-btn .help-text');
+    const appointmentSubtitle = document.querySelector('#appointment-widget-btn .tooltip-subtitle');
+    if (appointmentHelpText) {
+      appointmentHelpText.textContent = appointmentTexts.tooltip;
+    }
+    if (appointmentSubtitle) {
+      appointmentSubtitle.textContent = appointmentTexts.subtitle;
+    }
+
     // Update title
     const titleElement = document.querySelector('#chat-widget .widget-title');
     if (titleElement) {
       titleElement.textContent = texts.title;
     }
-    
+
     // Update help text
     const helpTextElement = document.querySelector('#chat-widget-toggle .help-text');
     if (helpTextElement) {
       helpTextElement.textContent = texts.aiAssistant;
     }
-    
+
     // Update tooltips
     const minimizeBtn = document.querySelector('#minimize-btn');
     const maximizeBtn = document.querySelector('#maximize-btn');
     const closeBtn = document.querySelector('#close-btn');
-    
+
     if (minimizeBtn) minimizeBtn.title = texts.minimize;
     if (maximizeBtn) maximizeBtn.title = this.isMaximized ? texts.restore : texts.maximize;
     if (closeBtn) closeBtn.title = texts.close;
-    
+
     // Update loading text
     const loadingText = document.querySelector('#loading-overlay p');
     if (loadingText) {
@@ -135,14 +178,15 @@ class DigitizedBrainsChatbot {
 
   init() {
     console.log('Initializing DigitizedBrains Chatbot...');
-    
+
     // Create elements
+    this.createAppointmentButton();
     this.createToggleButton();
     this.createChatWidget();
     this.attachEventListeners();
     this.injectStyles();
     this.startLanguageWatcher();
-    
+
     console.log('DigitizedBrains Chatbot initialized successfully!');
   }
 
@@ -153,24 +197,90 @@ class DigitizedBrainsChatbot {
     }, 1000);
   }
 
+  createAppointmentButton() {
+    // Remove existing button if any
+    const existingButton = document.getElementById('appointment-widget-btn');
+    if (existingButton) {
+      existingButton.remove();
+    }
+
+    const texts = this.getAppointmentTexts();
+
+    // Determine correct path to appointment.html based on current location
+    const currentPath = window.location.pathname;
+    const isInPagesFolder = currentPath.includes('/pages/');
+    const appointmentPath = isInPagesFolder ? 'appointment.html' : 'pages/appointment.html';
+
+    // Create orbit container
+    let orbitContainer = document.getElementById('orbit-container');
+    if (!orbitContainer) {
+      orbitContainer = document.createElement('div');
+      orbitContainer.id = 'orbit-container';
+      orbitContainer.style.cssText = `
+        position: fixed;
+        bottom: ${this.options.position.bottom};
+        right: ${this.options.position.right};
+        width: 48px;
+        height: 48px;
+        z-index: 9999;
+      `;
+      document.body.appendChild(orbitContainer);
+    }
+
+    const appointmentButton = document.createElement('div');
+    appointmentButton.id = 'appointment-widget-btn';
+    appointmentButton.className = 'orbit-item orbit-appointment';
+
+    appointmentButton.innerHTML = `
+      <div class="appointment-btn-container">
+        <button class="appointment-btn" onclick="window.location.href='${appointmentPath}'">
+          <div class="btn-content">
+            <div class="calendar-icon">📅</div>
+            <div class="sparkle sparkle-1">✨</div>
+            <div class="sparkle sparkle-2">✨</div>
+            <div class="sparkle sparkle-3">✨</div>
+          </div>
+        </button>
+        <div class="help-tooltip-appointment">
+          <div class="tooltip-arrow-appointment"></div>
+          <span class="help-text">${texts.tooltip}</span>
+          <div class="tooltip-subtitle">${texts.subtitle}</div>
+        </div>
+      </div>
+    `;
+
+    orbitContainer.appendChild(appointmentButton);
+  }
+
   createToggleButton() {
     // Remove existing button if any
     const existingButton = document.getElementById('chat-widget-toggle');
     if (existingButton) {
       existingButton.remove();
     }
-    
+
     const texts = this.getTexts();
+
+    // Get or create orbit container
+    let orbitContainer = document.getElementById('orbit-container');
+    if (!orbitContainer) {
+      orbitContainer = document.createElement('div');
+      orbitContainer.id = 'orbit-container';
+      orbitContainer.style.cssText = `
+        position: fixed;
+        bottom: ${this.options.position.bottom};
+        right: ${this.options.position.right};
+        width: 48px;
+        height: 48px;
+        z-index: 9999;
+      `;
+      document.body.appendChild(orbitContainer);
+    }
+
     const toggleButton = document.createElement('div');
     toggleButton.id = 'chat-widget-toggle';
-    toggleButton.style.cssText = `
-      position: fixed;
-      bottom: ${this.options.position.bottom};
-      right: ${this.options.position.right};
-      z-index: 9999;
-      cursor: pointer;
-    `;
-    
+    toggleButton.className = 'orbit-item orbit-ai';
+
     toggleButton.innerHTML = `
       <div class="chatbot-toggle-container">
         <button class="chatbot-toggle-btn" onclick="window.digitizedBrainsChatbot.toggle()">
@@ -188,8 +298,8 @@ class DigitizedBrainsChatbot {
         </div>
       </div>
     `;
-    
-    document.body.appendChild(toggleButton);
+
+    orbitContainer.appendChild(toggleButton);
   }
 
   createChatWidget() {
@@ -429,32 +539,92 @@ class DigitizedBrainsChatbot {
   injectStyles() {
     const style = document.createElement('style');
     style.textContent = `
+      /* Orbit Container - Central point for rotation */
+      #orbit-container {
+        pointer-events: none;
+        transform-origin: center center;
+        position: relative;
+      }
+
+      /* Orbit trail path - visible circular path */
+      #orbit-container::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 80px;
+        height: 80px;
+        border: 2px dashed rgba(94, 179, 179, 0.15);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        animation: orbitTrailRotate 6s linear infinite;
+      }
+
+      #orbit-container::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle at center,
+          rgba(94, 179, 179, 0.05) 0%,
+          rgba(251, 191, 36, 0.05) 50%,
+          transparent 70%
+        );
+        transform: translate(-50%, -50%);
+        animation: orbitGlow 3s ease-in-out infinite alternate;
+      }
+
+      .orbit-item {
+        position: absolute;
+        pointer-events: auto;
+        top: 0;
+        left: 0;
+      }
+
+      /* Appointment orbits clockwise */
+      .orbit-appointment {
+        animation: orbitClockwise 6s linear infinite;
+      }
+
+      /* AI orbits counter-clockwise */
+      .orbit-ai {
+        animation: orbitCounterClockwise 6s linear infinite;
+      }
+
       /* Enhanced Chatbot Styles */
       .chatbot-toggle-container {
         position: relative;
         z-index: 10000;
       }
+
+      .appointment-btn-container {
+        position: relative;
+        z-index: 10000;
+      }
       
       .chatbot-toggle-btn {
-        background: linear-gradient(135deg, #FF6B35 0%, #FF69B4 50%, #6B73FF 100%);
-        border: 3px solid rgba(255,255,255,0.3);
+        background: linear-gradient(135deg, #5eb3b3 0%, #4a9d9d 50%, #3d8a8a 100%);
+        border: 2px solid rgba(255,255,255,0.4);
         border-radius: 50%;
-        width: 80px;
-        height: 80px;
+        width: 48px;
+        height: 48px;
         color: white;
         cursor: pointer;
-        box-shadow: 
-          0 8px 32px rgba(255, 107, 53, 0.4),
-          0 0 0 0 rgba(255, 107, 53, 0.7);
+        box-shadow:
+          0 4px 16px rgba(94, 179, 179, 0.35),
+          0 0 0 0 rgba(94, 179, 179, 0.7);
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         display: flex;
         align-items: center;
         justify-content: center;
         position: relative;
         overflow: hidden;
-        animation: chatbotPulse 3s ease-in-out infinite;
       }
-      
+
       .chatbot-toggle-btn::before {
         content: '';
         position: absolute;
@@ -466,72 +636,72 @@ class DigitizedBrainsChatbot {
         transform: rotate(45deg);
         animation: shimmerSweep 3s linear infinite;
       }
-      
+
       .btn-content {
         position: relative;
         z-index: 2;
       }
-      
+
       .brain-icon {
-        font-size: 32px;
-        animation: brainThink 2s ease-in-out infinite;
-        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        font-size: 20px;
+        animation: brainCollision 3s ease-in-out infinite;
+        filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));
       }
-      
+
       .pulse-ring {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 80px;
-        height: 80px;
-        border: 3px solid rgba(255,255,255,0.4);
+        width: 48px;
+        height: 48px;
+        border: 2px solid rgba(94, 179, 179, 0.4);
         border-radius: 50%;
         animation: pulseRing 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
       }
-      
+
       .pulse-ring-delay {
         animation-delay: 1s;
       }
-      
+
       .notification-badge {
         position: absolute;
-        top: -8px;
-        right: -8px;
+        top: -6px;
+        right: -6px;
         background: linear-gradient(135deg, #FF6B6B, #FF8E53);
         color: white;
-        font-size: 12px;
+        font-size: 9px;
         font-weight: bold;
-        padding: 4px 8px;
-        border-radius: 12px;
+        padding: 3px 6px;
+        border-radius: 10px;
         border: 2px solid white;
-        box-shadow: 0 2px 8px rgba(255, 107, 107, 0.4);
+        box-shadow: 0 2px 6px rgba(255, 107, 107, 0.4);
         animation: badgeBounce 2s ease-in-out infinite;
       }
       
       .chatbot-toggle-btn:hover {
         transform: scale(1.1) translateY(-2px);
-        box-shadow: 
-          0 12px 40px rgba(102, 126, 234, 0.6),
-          0 0 0 10px rgba(102, 126, 234, 0.1);
+        box-shadow:
+          0 12px 40px rgba(94, 179, 179, 0.6),
+          0 0 0 10px rgba(94, 179, 179, 0.1);
       }
       
       .help-tooltip {
         position: absolute;
-        right: 90px;
+        right: 58px;
         top: 50%;
         transform: translateY(-50%);
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #5eb3b3 0%, #4a9d9d 100%);
         color: white;
-        padding: 12px 16px;
-        border-radius: 16px;
-        font-size: 14px;
+        padding: 8px 12px;
+        border-radius: 12px;
+        font-size: 12px;
         font-weight: 600;
         white-space: nowrap;
         opacity: 0;
         visibility: hidden;
         transition: all 0.3s ease;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+        box-shadow: 0 4px 16px rgba(94, 179, 179, 0.3);
         animation: tooltipFloat 3s ease-in-out infinite;
       }
       
@@ -548,15 +718,15 @@ class DigitizedBrainsChatbot {
         transform: translateY(-50%);
         width: 0;
         height: 0;
-        border-left: 8px solid #667eea;
+        border-left: 8px solid #4a9d9d;
         border-top: 6px solid transparent;
         border-bottom: 6px solid transparent;
       }
       
       .tooltip-subtitle {
-        font-size: 11px;
+        font-size: 10px;
         opacity: 0.8;
-        margin-top: 4px;
+        margin-top: 2px;
         font-style: italic;
       }
       
@@ -571,7 +741,7 @@ class DigitizedBrainsChatbot {
       }
       
       .chat-header {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #6B73FF 100%);
+        background: linear-gradient(135deg, #5eb3b3 0%, #4a9d9d 50%, #3d8a8a 100%);
         color: white;
         padding: 15px;
         display: flex;
@@ -730,7 +900,7 @@ class DigitizedBrainsChatbot {
       .loading-dots span {
         width: 8px;
         height: 8px;
-        background: #667eea;
+        background: #5eb3b3;
         border-radius: 50%;
         animation: dotPulse 1.4s ease-in-out infinite both;
       }
@@ -759,7 +929,7 @@ class DigitizedBrainsChatbot {
         right: 0;
         width: 20px;
         height: 20px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #5eb3b3 0%, #4a9d9d 100%);
         cursor: se-resize;
         opacity: 0.6;
         transition: all 0.2s ease;
@@ -788,7 +958,7 @@ class DigitizedBrainsChatbot {
         left: 0;
         right: 0;
         height: 50px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #6B73FF 100%);
+        background: linear-gradient(135deg, #5eb3b3 0%, #4a9d9d 50%, #3d8a8a 100%);
         border-top: 1px solid rgba(255,255,255,0.2);
         display: flex;
         align-items: center;
@@ -854,18 +1024,6 @@ class DigitizedBrainsChatbot {
       }
       
       /* Enhanced Animations */
-      @keyframes chatbotPulse {
-        0%, 100% { 
-          box-shadow: 
-            0 8px 32px rgba(102, 126, 234, 0.4),
-            0 0 0 0 rgba(102, 126, 234, 0.7);
-        }
-        50% { 
-          box-shadow: 
-            0 12px 40px rgba(102, 126, 234, 0.6),
-            0 0 0 10px rgba(102, 126, 234, 0.1);
-        }
-      }
       
       @keyframes pulseRing {
         0% {
@@ -947,30 +1105,296 @@ class DigitizedBrainsChatbot {
         }
       }
       
+      /* Appointment Button Styles */
+      .appointment-btn-container {
+        position: relative;
+        z-index: 10000;
+      }
+
+      .appointment-btn {
+        background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+        border: 2px solid rgba(255,255,255,0.4);
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        color: white;
+        cursor: pointer;
+        box-shadow:
+          0 4px 16px rgba(251, 191, 36, 0.35),
+          0 0 0 0 rgba(251, 191, 36, 0.5);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: visible;
+      }
+
+      .appointment-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+        animation: rotateGlow 3s linear infinite;
+      }
+
+
+      .calendar-icon {
+        font-size: 20px;
+        animation: calendarBounce 3s ease-in-out infinite;
+        filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));
+        position: relative;
+        z-index: 2;
+      }
+
+      .sparkle {
+        position: absolute;
+        font-size: 10px;
+        animation: sparkleFloat 2s ease-in-out infinite;
+        pointer-events: none;
+        opacity: 0;
+      }
+
+      .sparkle-1 {
+        top: -6px;
+        right: 6px;
+        animation-delay: 0s;
+      }
+
+      .sparkle-2 {
+        bottom: -4px;
+        left: 4px;
+        animation-delay: 0.7s;
+      }
+
+      .sparkle-3 {
+        top: 4px;
+        left: -8px;
+        animation-delay: 1.4s;
+      }
+
+      .appointment-btn:hover {
+        transform: scale(1.15) translateY(-3px) rotate(5deg);
+        box-shadow:
+          0 10px 30px rgba(251, 191, 36, 0.6),
+          0 0 0 12px rgba(251, 191, 36, 0.15);
+      }
+
+      .appointment-btn:hover .sparkle {
+        animation-play-state: paused;
+        opacity: 1 !important;
+      }
+
+      .help-tooltip-appointment {
+        position: absolute;
+        right: 58px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+        color: white;
+        padding: 8px 12px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 600;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 16px rgba(251, 191, 36, 0.3);
+        z-index: 9999;
+      }
+
+      .appointment-btn-container:hover .help-tooltip-appointment {
+        opacity: 1;
+        transform: translateY(-50%) translateX(-8px);
+      }
+
+      .tooltip-arrow-appointment {
+        position: absolute;
+        right: -8px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0;
+        height: 0;
+        border-left: 8px solid #f59e0b;
+        border-top: 6px solid transparent;
+        border-bottom: 6px solid transparent;
+      }
+
+      .help-tooltip-appointment .tooltip-subtitle {
+        display: block;
+        font-size: 10px;
+        opacity: 0.9;
+        margin-top: 2px;
+        font-weight: 400;
+      }
+
+      /* Orbit Clockwise - Appointment circles around center */
+      @keyframes orbitClockwise {
+        0% {
+          transform: translate(0px, -30px) rotate(0deg);
+        }
+        25% {
+          transform: translate(30px, 0px) rotate(90deg);
+        }
+        50% {
+          transform: translate(0px, 30px) rotate(180deg);
+        }
+        75% {
+          transform: translate(-30px, 0px) rotate(270deg);
+        }
+        100% {
+          transform: translate(0px, -30px) rotate(360deg);
+        }
+      }
+
+      /* Orbit Counter-Clockwise - AI circles around center in opposite direction */
+      @keyframes orbitCounterClockwise {
+        0% {
+          transform: translate(0px, 30px) rotate(0deg);
+        }
+        25% {
+          transform: translate(-30px, 0px) rotate(-90deg);
+        }
+        50% {
+          transform: translate(0px, -30px) rotate(-180deg);
+        }
+        75% {
+          transform: translate(30px, 0px) rotate(-270deg);
+        }
+        100% {
+          transform: translate(0px, 30px) rotate(-360deg);
+        }
+      }
+
+      /* Orbit trail rotation */
+      @keyframes orbitTrailRotate {
+        0% {
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+        100% {
+          transform: translate(-50%, -50%) rotate(360deg);
+        }
+      }
+
+      /* Orbit glow pulse */
+      @keyframes orbitGlow {
+        0% {
+          opacity: 0.3;
+          transform: translate(-50%, -50%) scale(0.95);
+        }
+        100% {
+          opacity: 0.6;
+          transform: translate(-50%, -50%) scale(1.05);
+        }
+      }
+
+      @keyframes rotateGlow {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes calendarBounce {
+        0%, 100% {
+          transform: translateY(0) scale(1);
+        }
+        45% {
+          transform: translateY(-2px) scale(1.05);
+        }
+        50% {
+          /* Collision - squash effect */
+          transform: translateY(0) scale(1.15, 0.9);
+        }
+        55% {
+          transform: translateY(-2px) scale(0.95, 1.1);
+        }
+        70% {
+          transform: translateY(0) scale(1.02, 0.98);
+        }
+      }
+
+      @keyframes sparkleFloat {
+        0%, 100% {
+          opacity: 0;
+          transform: translateY(0) scale(0.5);
+        }
+        50% {
+          opacity: 1;
+          transform: translateY(-10px) scale(1);
+        }
+      }
+
+      @keyframes brainCollision {
+        0%, 100% {
+          transform: translateY(0) scale(1);
+        }
+        45% {
+          transform: translateY(-2px) scale(1.05);
+        }
+        50% {
+          /* Collision - squash effect */
+          transform: translateY(0) scale(1.15, 0.9);
+        }
+        55% {
+          transform: translateY(-2px) scale(0.95, 1.1);
+        }
+        70% {
+          transform: translateY(0) scale(1.02, 0.98);
+        }
+      }
+
       /* Mobile responsive */
       @media (max-width: 768px) {
+        .appointment-btn {
+          width: 42px;
+          height: 42px;
+        }
+
+        .calendar-icon {
+          font-size: 18px;
+        }
+
+        .sparkle {
+          font-size: 8px;
+        }
+
+        .help-tooltip-appointment {
+          display: none;
+        }
+
+        #appointment-widget-btn {
+          bottom: 78px !important;
+        }
+
         .chatbot-toggle-btn {
-          width: 56px;
-          height: 56px;
+          width: 42px;
+          height: 42px;
           bottom: 12px;
           right: 12px;
         }
 
         .brain-icon {
-          font-size: 24px;
+          font-size: 18px;
         }
 
         .notification-badge {
-          width: 18px;
-          height: 18px;
-          font-size: 9px;
+          font-size: 8px;
+          padding: 2px 5px;
           top: -4px;
           right: -4px;
         }
 
         .pulse-ring {
-          width: 56px;
-          height: 56px;
+          width: 42px;
+          height: 42px;
         }
 
         .help-tooltip {

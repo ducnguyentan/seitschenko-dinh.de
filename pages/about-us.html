@@ -558,9 +558,9 @@
           <!-- Team Member 3 -->
           <div class="labor-team-card cursor-pointer scroll-reveal">
             <div class="labor-team-image-wrapper">
-              <img src="../assets/img/khonghinh.jpg" alt="ZAHNARZT HERR DIMITRIOS NIKOLAOU" class="labor-team-image">
+              <img src="../assets/img/khonghinh.jpg" alt="ZAHNARZT HERR NIKOLAOU" class="labor-team-image">
               <div class="labor-team-overlay">
-                <h3 class="labor-team-name" data-translate="aboutus.team.amloh.member3.name">ZAHNARZT HERR DIMITRIOS NIKOLAOU</h3>
+                <h3 class="labor-team-name" data-translate="aboutus.team.amloh.member3.name">ZAHNARZT HERR NIKOLAOU</h3>
               </div>
             </div>
             <div class="labor-team-info">
@@ -1045,7 +1045,7 @@
                 role: "Zahnärztin"
               },
               member3: {
-                name: "ZAHNARZT HERR DIMITRIOS NIKOLAOU",
+                name: "ZAHNARZT HERR NIKOLAOU",
                 role: "Zahnarzt"
               },
               member4: {
@@ -1275,7 +1275,7 @@
                 role: "Dentist"
               },
               member3: {
-                name: "DENTIST MR. DIMITRIOS NIKOLAOU",
+                name: "DENTIST MR. NIKOLAOU",
                 role: "Dentist"
               },
               member4: {
@@ -1505,7 +1505,7 @@
                 role: "Nha sĩ"
               },
               member3: {
-                name: "NHA SĨ ÔNG DIMITRIOS NIKOLAOU",
+                name: "NHA SĨ ÔNG NIKOLAOU",
                 role: "Nha sĩ"
               },
               member4: {
@@ -2137,6 +2137,17 @@
     document.addEventListener('DOMContentLoaded', () => {
       updateTranslations();
       updateLanguageDisplay(currentLanguage);
+    });
+  </script>
+
+  <!-- Chatbot Integration -->
+  <script src="../js/chatbot.js"></script>
+  <script>
+    // Initialize chatbot
+    window.digitizedBrainsChatbot = new DigitizedBrainsChatbot({
+      iframeSrc: 'https://ducnguyen1978-digitizedgemini.hf.space',
+      position: { bottom: '30px', right: '30px' },
+      size: { width: '420px', height: '600px' }
     });
   </script>
 </body>
