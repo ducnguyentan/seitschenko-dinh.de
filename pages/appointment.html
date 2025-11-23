@@ -1325,6 +1325,42 @@
       return `${day}.${month}`;
     }
 
+    // Format date as DD.MM.YYYY (for Google Sheets API)
+    function formatDateFull(date) {
+      const day = date.getDate().toString().padStart(2, '0');
+      const month = (date.getMonth() + 1).toString().padStart(2, '0');
+      const year = date.getFullYear();
+      return `${day}.${month}.${year}`;
+    }
+
+    // Fetch available time slots from Google Sheets Calendar
+    async function fetchTimeSlotsFromCalendar(dateStr) {
+      try {
+        const url = `${GOOGLE_SHEET_URL}?action=getTimeSlots&date=${encodeURIComponent(dateStr)}`;
+        const response = await fetch(url);
+
+        if (!response.ok) {
+          console.error('Failed to fetch time slots:', response.statusText);
+          return null;
+        }
+
+        const data = await response.json();
+
+        if (data.status === 'success') {
+          return data.slots; // Returns object like { "08:00": {time: "08:00", status: "available", available: true}, ... }
+        } else if (data.status === 'not_found') {
+          console.warn(`Date ${dateStr} not found in Calendar sheet`);
+          return null;
+        } else {
+          console.error('Error fetching time slots:', data.message);
+          return null;
+        }
+      } catch (error) {
+        console.error('Error fetching time slots from Calendar:', error);
+        return null;
+      }
+    }
+
     // Get day label (Today, Tomorrow, or date)
     function getDayLabel(date) {
       const today = new Date();
@@ -1361,12 +1397,12 @@
       }
     }
 
-    // Generate calendar for the current week
-    function generateCalendar() {
+    // Generate calendar for the current week (NOW ASYNC - fetches from Google Sheets)
+    async function generateCalendar() {
       const container = document.getElementById('time-slots-container');
       if (!container) return;
 
-      container.innerHTML = ''; // Clear existing content
+      container.innerHTML = '<div class="text-center py-8 text-gray-600">Đang tải lịch...</div>'; // Loading state
 
       const today = new Date();
       today.setHours(0, 0, 0, 0);
@@ -1375,9 +1411,14 @@
       const startDate = new Date(today);
       startDate.setDate(startDate.getDate() + (currentWeekOffset * 7));
 
+      // Update week display first
+      updateWeekDisplay(startDate);
+
+      // Clear loading message
+      container.innerHTML = '';
+
       // Generate dates for 7 days
       const daysToShow = 7;
-      const timeSlots = generateTimeSlots();
 
       for (let i = 0; i < daysToShow; i++) {
         const currentDate = new Date(startDate);
@@ -1388,10 +1429,12 @@
 
         const dayName = getDayName(currentDate.getDay());
         const dateStr = formatDate(currentDate);
+        const dateStrFull = formatDateFull(currentDate); // DD.MM.YYYY for API
         const dayLabel = getDayLabel(currentDate);
 
         // Create day section
         const daySection = document.createElement('div');
+        daySection.className = 'mb-6';
 
         // Day header
         const dayHeader = document.createElement('div');
@@ -1408,36 +1451,69 @@
         const slotsGrid = document.createElement('div');
         slotsGrid.className = 'grid grid-cols-3 md:grid-cols-6 gap-3';
 
-        // Generate time slots for this day
-        timeSlots.forEach(time => {
-          const slot = document.createElement('div');
-          const isBooked = isSlotBooked(currentDate, time);
+        // Fetch time slots from Google Sheets Calendar
+        const calendarSlots = await fetchTimeSlotsFromCalendar(dateStrFull);
 
-          if (isBooked) {
-            // Booked slot - show as disabled with different style
-            const bookedLabel = getTranslation('appointment.time_slots.booked') || 'Gebucht';
-            slot.className = 'time-slot booked bg-gray-300 text-gray-700 rounded-lg px-4 py-3 text-center font-medium cursor-not-allowed relative';
-            slot.innerHTML = `
-              <span class="line-through text-lg">${time}</span>
-              <span class="block text-xs mt-1 font-semibold text-gray-800">✓ ${bookedLabel}</span>
-            `;
-            slot.style.pointerEvents = 'none'; // Disable clicking
-          } else {
-            // Available slot - normal style
-            slot.className = 'time-slot bg-teal-600 text-white rounded-lg px-4 py-3 text-center font-medium cursor-pointer hover:bg-teal-700 transition-colors';
-            slot.textContent = time;
-            slot.onclick = function() { selectTimeSlot(this, dateStr, time); };
-          }
+        if (calendarSlots) {
+          // Use Calendar data from Google Sheets
+          Object.values(calendarSlots).forEach(slotData => {
+            const slot = document.createElement('div');
+            const time = slotData.time;
+            const status = slotData.status; // 'available', 'blocked', 'booked'
+            const isAvailable = slotData.available; // boolean
+            const doctorName = slotData.doctor; // null if available, doctor name if booked (e.g., "kukadiya")
 
-          slotsGrid.appendChild(slot);
-        });
+            // 🔍 FILTER LOGIC: Hide booked slots based on doctor selection
+            if (status === 'booked') {
+              // No doctor selected → Hide all booked slots
+              if (!selectedDoctor) {
+                return; // Skip rendering this booked slot
+              }
+
+              // Doctor selected → Show only selected doctor's booked slots
+              if (doctorName !== selectedDoctor) {
+                return; // Skip rendering other doctors' booked slots
+              }
+            }
+
+            if (status === 'booked') {
+              // Booked slot - show as disabled (only if matches selectedDoctor)
+              const bookedLabel = getTranslation('appointment.time_slots.booked') || 'Gebucht';
+              slot.className = 'time-slot booked bg-yellow-100 text-yellow-800 rounded-lg px-4 py-3 text-center font-medium cursor-not-allowed relative border-2 border-yellow-300';
+              slot.innerHTML = `
+                <span class="line-through text-lg">${time}</span>
+                <span class="block text-xs mt-1 font-semibold">✓ ${bookedLabel}</span>
+              `;
+              slot.style.pointerEvents = 'none';
+            } else if (status === 'blocked') {
+              // Blocked slot - show as disabled
+              const blockedLabel = getTranslation('appointment.time_slots.blocked') || 'Gesperrt';
+              slot.className = 'time-slot blocked bg-red-100 text-red-800 rounded-lg px-4 py-3 text-center font-medium cursor-not-allowed relative border-2 border-red-300';
+              slot.innerHTML = `
+                <span class="line-through text-lg">${time}</span>
+                <span class="block text-xs mt-1 font-semibold">✗ ${blockedLabel}</span>
+              `;
+              slot.style.pointerEvents = 'none';
+            } else {
+              // Available slot - clickable
+              slot.className = 'time-slot bg-teal-600 text-white rounded-lg px-4 py-3 text-center font-medium cursor-pointer hover:bg-teal-700 transition-colors';
+              slot.textContent = time;
+              slot.onclick = function() { selectTimeSlot(this, dateStr, time); };
+            }
+
+            slotsGrid.appendChild(slot);
+          });
+        } else {
+          // Fallback: If date not found in Calendar, show message
+          const noSlotsMsg = document.createElement('div');
+          noSlotsMsg.className = 'col-span-6 text-center text-gray-500 py-4';
+          noSlotsMsg.textContent = 'Keine Termine verfügbar / No slots available';
+          slotsGrid.appendChild(noSlotsMsg);
+        }
 
         daySection.appendChild(slotsGrid);
         container.appendChild(daySection);
       }
-
-      // Update week display
-      updateWeekDisplay(startDate);
     }
 
     // Update the week range display

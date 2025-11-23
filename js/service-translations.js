@@ -811,7 +811,9 @@ const serviceTranslations = {
         morning: "Vormittag",
         afternoon: "Nachmittag",
         slots_available: "Termine verfügbar",
-        booked: "Gebucht"
+        booked: "Gebucht",
+        blocked: "Gesperrt",
+        hidden: "Ausgeblendet"
       },
       summary: {
         title: "Zusammenfassung Ihrer Buchung",
@@ -1647,7 +1649,9 @@ const serviceTranslations = {
         morning: "Morning",
         afternoon: "Afternoon",
         slots_available: "Slots available",
-        booked: "Booked"
+        booked: "Booked",
+        blocked: "Blocked",
+        hidden: "Hidden"
       },
       summary: {
         title: "Your Booking Summary",
@@ -2484,7 +2488,9 @@ const serviceTranslations = {
         morning: "Buổi sáng",
         afternoon: "Buổi chiều",
         slots_available: "Có lịch trống",
-        booked: "Đã đặt"
+        booked: "Đã đặt",
+        blocked: "Đã khóa",
+        hidden: "Đã ẩn"
       },
       summary: {
         title: "Tóm tắt đặt lịch của bạn",
@@ -3329,7 +3335,9 @@ const serviceTranslations = {
         morning: "Утро",
         afternoon: "После полудня",
         slots_available: "Есть свободное время",
-        booked: "Забронировано"
+        booked: "Забронировано",
+        blocked: "Заблокировано",
+        hidden: "Скрыто"
       },
       summary: {
         title: "Сводка вашей записи",
@@ -4174,7 +4182,9 @@ const serviceTranslations = {
         morning: "صباحًا",
         afternoon: "بعد الظهر",
         slots_available: "أوقات متاحة",
-        booked: "محجوز"
+        booked: "محجوز",
+        blocked: "محظور",
+        hidden: "مخفي"
       },
       summary: {
         title: "ملخص حجزك",
