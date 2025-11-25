@@ -4,14 +4,14 @@
 // Disable source map warnings and related errors
 if (typeof console !== 'undefined' && console.warn) {
   const originalWarn = console.warn;
-  console.warn = function(...args) {
-    if (args[0] && typeof args[0] === 'string' && 
-        (args[0].includes('source map') || 
-         args[0].includes('sourcemap') ||
-         args[0].includes('Could not read source map') ||
-         args[0].includes('marked') ||
-         args[0].includes('dompurify') ||
-         args[0].includes('ENOENT'))) {
+  console.warn = function (...args) {
+    if (args[0] && typeof args[0] === 'string' &&
+      (args[0].includes('source map') ||
+        args[0].includes('sourcemap') ||
+        args[0].includes('Could not read source map') ||
+        args[0].includes('marked') ||
+        args[0].includes('dompurify') ||
+        args[0].includes('ENOENT'))) {
       return; // Suppress source map warnings
     }
     originalWarn.apply(console, args);
@@ -21,14 +21,14 @@ if (typeof console !== 'undefined' && console.warn) {
 // Also suppress console errors for source maps
 if (typeof console !== 'undefined' && console.error) {
   const originalError = console.error;
-  console.error = function(...args) {
-    if (args[0] && typeof args[0] === 'string' && 
-        (args[0].includes('source map') || 
-         args[0].includes('sourcemap') ||
-         args[0].includes('Could not read source map') ||
-         args[0].includes('marked') ||
-         args[0].includes('dompurify') ||
-         args[0].includes('ENOENT'))) {
+  console.error = function (...args) {
+    if (args[0] && typeof args[0] === 'string' &&
+      (args[0].includes('source map') ||
+        args[0].includes('sourcemap') ||
+        args[0].includes('Could not read source map') ||
+        args[0].includes('marked') ||
+        args[0].includes('dompurify') ||
+        args[0].includes('ENOENT'))) {
       return; // Suppress these errors
     }
     originalError.apply(console, args);
@@ -38,8 +38,8 @@ if (typeof console !== 'undefined' && console.error) {
 class DigitizedBrainsChatbot {
   constructor(options = {}) {
     this.options = {
-      iframeSrc: options.iframeSrc || 'https://ducnguyen1978-digitizedgemini.hf.space',
-      widgetTitle: options.widgetTitle || 'Digitized Brains AI Agent',
+      iframeSrc: options.iframeSrc || 'https://ducnguyen1978-seitschenkodinhchatbot.hf.space',
+      widgetTitle: options.widgetTitle || 'Dental Assistant',
       position: options.position || { bottom: '30px', right: '30px' },
       size: options.size || { width: '420px', height: '600px' },
       minSize: options.minSize || { width: '350px', height: '450px' },
@@ -47,7 +47,7 @@ class DigitizedBrainsChatbot {
       hideBranding: options.hideBranding !== false,
       ...options
     };
-    
+
     this.isVisible = false;
     this.isMinimized = false;
     this.isMaximized = false;
@@ -55,7 +55,7 @@ class DigitizedBrainsChatbot {
     this.normalSize = { ...this.options.size };
     this.normalPosition = { ...this.options.position };
     this.currentLanguage = localStorage.getItem('preferredLanguage') || 'en';
-    
+
     // Initialize immediately
     this.init();
   }
@@ -64,7 +64,7 @@ class DigitizedBrainsChatbot {
   getTexts() {
     const texts = {
       en: {
-        title: 'Digitized Brains AI Agent',
+        title: 'Dental Assistant',
         minimize: 'Minimize',
         maximize: 'Maximize',
         restore: 'Restore',
@@ -73,7 +73,7 @@ class DigitizedBrainsChatbot {
         loading: 'Loading AI Agent...'
       },
       vi: {
-        title: 'Digitized Brains AI Agent',
+        title: 'Trợ lý Nha khoa',
         minimize: 'Thu gọn',
         maximize: 'Phóng to',
         restore: 'Thu nhỏ',
@@ -82,13 +82,31 @@ class DigitizedBrainsChatbot {
         loading: 'Đang khởi tạo AI Agent...'
       },
       de: {
-        title: 'Digitized Brains KI-Agent',
+        title: 'Zahnarzt-Assistent',
         minimize: 'Minimieren',
         maximize: 'Maximieren',
         restore: 'Wiederherstellen',
         close: 'Schließen',
         aiAssistant: '🤖 KI-Assistent',
         loading: 'KI-Agent wird geladen...'
+      },
+      ru: {
+        title: 'Стоматологический ассистент',
+        minimize: 'Свернуть',
+        maximize: 'Развернуть',
+        restore: 'Восстановить',
+        close: 'Закрыть',
+        aiAssistant: '🤖 ИИ-ассистент',
+        loading: 'Загрузка ИИ-агента...'
+      },
+      ar: {
+        title: 'مساعد الأسنان',
+        minimize: 'تصغير',
+        maximize: 'تكبير',
+        restore: 'استعادة',
+        close: 'إغلاق',
+        aiAssistant: '🤖 مساعد الذكاء الاصطناعي',
+        loading: 'جارٍ تحميل وكيل الذكاء الاصطناعي...'
       }
     };
     return texts[this.currentLanguage] || texts.en;
@@ -308,7 +326,7 @@ class DigitizedBrainsChatbot {
     if (existingWidget) {
       existingWidget.remove();
     }
-    
+
     const texts = this.getTexts();
     const chatWidget = document.createElement('div');
     chatWidget.id = 'chat-widget';
@@ -324,7 +342,7 @@ class DigitizedBrainsChatbot {
       overflow: hidden;
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
     `;
-    
+
     chatWidget.innerHTML = `
       <div class="chat-header">
         <div class="header-bg-animation"></div>
@@ -395,7 +413,7 @@ class DigitizedBrainsChatbot {
         </div>
       </div>
     `;
-    
+
     document.body.appendChild(chatWidget);
   }
 
@@ -403,30 +421,30 @@ class DigitizedBrainsChatbot {
     this.isVisible = !this.isVisible;
     const widget = document.getElementById('chat-widget');
     const toggleButton = document.getElementById('chat-widget-toggle');
-    
+
     if (this.isVisible) {
       // Hide toggle button when chat widget is visible
       toggleButton.style.display = 'none';
-      
+
       widget.style.display = 'block';
       widget.style.transform = 'scale(0.8) translateY(20px)';
       widget.style.opacity = '0';
-      
+
       setTimeout(() => {
         widget.style.transform = 'scale(1) translateY(0)';
         widget.style.opacity = '1';
       }, 10);
-      
+
       this.hideLoadingAfterDelay();
     } else {
       widget.style.transform = 'scale(0.8) translateY(20px)';
       widget.style.opacity = '0';
-      
+
       setTimeout(() => {
         widget.style.display = 'none';
         widget.style.transform = '';
         widget.style.opacity = '';
-        
+
         // Show toggle button when chat widget is hidden
         toggleButton.style.display = 'block';
       }, 300);
@@ -437,9 +455,9 @@ class DigitizedBrainsChatbot {
     const widget = document.getElementById('chat-widget');
     const content = document.getElementById('chat-content');
     const footer = document.querySelector('.chatbot-footer');
-    
+
     this.isMinimized = !this.isMinimized;
-    
+
     if (this.isMinimized) {
       content.style.display = 'none';
       if (footer) footer.style.display = 'none';
@@ -454,9 +472,9 @@ class DigitizedBrainsChatbot {
   toggleMaximize() {
     const widget = document.getElementById('chat-widget');
     const texts = this.getTexts();
-    
+
     this.isMaximized = !this.isMaximized;
-    
+
     if (this.isMaximized) {
       widget.style.width = this.options.maxSize.width;
       widget.style.height = this.options.maxSize.height;
@@ -470,7 +488,7 @@ class DigitizedBrainsChatbot {
       widget.style.right = this.normalPosition.right;
       this.currentSize = { ...this.normalSize };
     }
-    
+
     this.updateTexts();
   }
 
@@ -489,9 +507,9 @@ class DigitizedBrainsChatbot {
   attachEventListeners() {
     const widget = document.getElementById('chat-widget');
     const resizeHandle = document.getElementById('resize-handle');
-    
+
     if (!resizeHandle) return;
-    
+
     let isResizing = false;
     let startX, startY, startWidth, startHeight;
 
@@ -501,7 +519,7 @@ class DigitizedBrainsChatbot {
       startY = e.clientY;
       startWidth = parseInt(window.getComputedStyle(widget).width, 10);
       startHeight = parseInt(window.getComputedStyle(widget).height, 10);
-      
+
       document.addEventListener('mousemove', handleResize);
       document.addEventListener('mouseup', stopResize);
       e.preventDefault();
@@ -509,20 +527,20 @@ class DigitizedBrainsChatbot {
 
     const handleResize = (e) => {
       if (!isResizing) return;
-      
+
       const newWidth = startWidth + (e.clientX - startX);
       const newHeight = startHeight + (e.clientY - startY);
-      
+
       const minWidth = parseInt(this.options.minSize.width);
       const minHeight = parseInt(this.options.minSize.height);
       const maxWidth = parseInt(this.options.maxSize.width);
       const maxHeight = parseInt(this.options.maxSize.height);
-      
+
       if (newWidth >= minWidth && newWidth <= maxWidth) {
         widget.style.width = newWidth + 'px';
         this.currentSize.width = newWidth + 'px';
       }
-      
+
       if (newHeight >= minHeight && newHeight <= maxHeight) {
         widget.style.height = newHeight + 'px';
         this.currentSize.height = newHeight + 'px';
@@ -1455,22 +1473,22 @@ class DigitizedBrainsChatbot {
 let digitizedBrainsChatbot;
 
 // Initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   console.log('DOM loaded, initializing chatbot...');
-  
+
   try {
     digitizedBrainsChatbot = new DigitizedBrainsChatbot({
-      iframeSrc: 'https://ducnguyen1978-digitizedgemini.hf.space',
-      widgetTitle: 'Digitized Brains AI Agent',
+      iframeSrc: 'https://ducnguyen1978-seitschenkodinhchatbot.hf.space',
+      widgetTitle: 'Dental Assistant',
       size: { width: '420px', height: '600px' },
       minSize: { width: '370px', height: '450px' },
       maxSize: { width: '95vw', height: '95vh' },
       hideBranding: true
     });
-    
+
     // Make globally available
     window.digitizedBrainsChatbot = digitizedBrainsChatbot;
-    
+
     console.log('Chatbot initialized and available globally');
   } catch (error) {
     console.error('Error initializing chatbot:', error);

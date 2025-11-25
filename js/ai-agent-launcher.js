@@ -3,7 +3,7 @@
 
 class AIAgentLauncher {
   constructor() {
-    this.agentUrl = 'https://ducnguyen1978-digitizedgemini.hf.space';
+    this.agentUrl = 'https://ducnguyen1978-seitschenkodinhchatbot.hf.space';
     this.localPort = '7860';
     this.isLocalAvailable = false;
     this.fallbackMode = false;
