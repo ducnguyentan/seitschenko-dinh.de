@@ -963,8 +963,8 @@
           </style>
         </div>
 
-        <!-- Calendar & Time Slots -->
-        <div id="appointment-calendar">
+        <!-- Calendar & Time Slots (Hidden until doctor is selected) -->
+        <div id="appointment-calendar" class="hidden">
           <h3 class="text-lg font-semibold text-gray-800 mb-4" data-translate="calendar.title">
             Wählen Sie Datum und Uhrzeit
           </h3>
@@ -1347,7 +1347,9 @@
         const data = await response.json();
 
         if (data.status === 'success') {
-          return data.slots; // Returns object like { "08:00": {time: "08:00", status: "available", available: true}, ... }
+          // NEW API FORMAT: Returns object grouped by dentist
+          // { "Seitschenko-Dinh": [{time: "08:00", status, available}, ...], "Kukadiya": [...], ... }
+          return data.slots;
         } else if (data.status === 'not_found') {
           console.warn(`Date ${dateStr} not found in Calendar sheet`);
           return null;
@@ -1408,8 +1410,13 @@
       today.setHours(0, 0, 0, 0);
 
       // Calculate the start date based on week offset
+      // Start from TODAY (not Monday of the week)
       const startDate = new Date(today);
       startDate.setDate(startDate.getDate() + (currentWeekOffset * 7));
+
+      console.log('📅 generateCalendar - Today:', today.toDateString());
+      console.log('📅 generateCalendar - Start Date:', startDate.toDateString());
+      console.log('📅 generateCalendar - Week Offset:', currentWeekOffset);
 
       // Update week display first
       updateWeekDisplay(startDate);
@@ -1417,15 +1424,19 @@
       // Clear loading message
       container.innerHTML = '';
 
-      // Generate dates for 7 days
-      const daysToShow = 7;
+      // Generate dates - show 6 weekdays (skip Sundays)
+      const weekdaysToShow = 6;
+      let weekdaysCount = 0;
+      let dayOffset = 0;
 
-      for (let i = 0; i < daysToShow; i++) {
+      while (weekdaysCount < weekdaysToShow) {
         const currentDate = new Date(startDate);
-        currentDate.setDate(currentDate.getDate() + i);
+        currentDate.setDate(currentDate.getDate() + dayOffset);
+        dayOffset++;
 
         // Skip Sundays
         if (currentDate.getDay() === 0) continue;
+        weekdaysCount++;
 
         const dayName = getDayName(currentDate.getDay());
         const dateStr = formatDate(currentDate);
@@ -1455,29 +1466,70 @@
         const calendarSlots = await fetchTimeSlotsFromCalendar(dateStrFull);
 
         if (calendarSlots) {
-          // Use Calendar data from Google Sheets
-          Object.values(calendarSlots).forEach(slotData => {
+          // NEW API FORMAT: calendarSlots is now grouped by dentist
+          // { "Seitschenko-Dinh": [{time, status, available}, ...], "Kukadiya": [...], ... }
+
+          console.log('📅 Calendar API Response:', calendarSlots);
+          console.log('👨‍⚕️ Selected Doctor:', selectedDoctor);
+
+          // If a doctor is selected, find matching dentist (case-insensitive)
+          let doctorsToShow = Object.keys(calendarSlots);
+
+          if (selectedDoctor) {
+            const selectedLower = selectedDoctor.toLowerCase();
+            doctorsToShow = doctorsToShow.filter(dentist =>
+              dentist.toLowerCase() === selectedLower
+            );
+          }
+
+          console.log('🔍 Doctors to show:', doctorsToShow);
+
+          // Collect all time slots from selected doctors
+          const allSlots = [];
+          const seenTimes = new Set(); // Track unique time slots
+
+          doctorsToShow.forEach(dentistName => {
+            const dentistSlots = calendarSlots[dentistName];
+            if (dentistSlots && Array.isArray(dentistSlots)) {
+              dentistSlots.forEach(slotData => {
+                const timeKey = slotData.time;
+
+                // If no doctor selected, only show each time slot once
+                if (!selectedDoctor && seenTimes.has(timeKey)) {
+                  return; // Skip duplicate time slots
+                }
+
+                seenTimes.add(timeKey);
+                allSlots.push({
+                  ...slotData,
+                  dentist: dentistName
+                });
+              });
+            }
+          });
+
+          // Sort by time
+          allSlots.sort((a, b) => {
+            const timeA = a.time.replace(':', '');
+            const timeB = b.time.replace(':', '');
+            return parseInt(timeA) - parseInt(timeB);
+          });
+
+          // Render slots
+          allSlots.forEach(slotData => {
             const slot = document.createElement('div');
             const time = slotData.time;
-            const status = slotData.status; // 'available', 'blocked', 'booked'
+            const status = slotData.status; // 'available', 'blocked', 'booked', 'hidden'
             const isAvailable = slotData.available; // boolean
-            const doctorName = slotData.doctor; // null if available, doctor name if booked (e.g., "kukadiya")
+            const dentist = slotData.dentist; // dentist name
 
-            // 🔍 FILTER LOGIC: Hide booked slots based on doctor selection
-            if (status === 'booked') {
-              // No doctor selected → Hide all booked slots
-              if (!selectedDoctor) {
-                return; // Skip rendering this booked slot
-              }
-
-              // Doctor selected → Show only selected doctor's booked slots
-              if (doctorName !== selectedDoctor) {
-                return; // Skip rendering other doctors' booked slots
-              }
+            // Skip hidden slots
+            if (status === 'hidden') {
+              return;
             }
 
             if (status === 'booked') {
-              // Booked slot - show as disabled (only if matches selectedDoctor)
+              // Booked slot - show as disabled
               const bookedLabel = getTranslation('appointment.time_slots.booked') || 'Gebucht';
               slot.className = 'time-slot booked bg-yellow-100 text-yellow-800 rounded-lg px-4 py-3 text-center font-medium cursor-not-allowed relative border-2 border-yellow-300';
               slot.innerHTML = `
@@ -1543,7 +1595,8 @@
     // Initialize calendar on page load
     document.addEventListener('DOMContentLoaded', function() {
       initializeWeekDisplay();
-      generateCalendar();
+      // Don't generate calendar until doctor is selected
+      // generateCalendar();
 
       // Update patient form translations on page load
       updatePatientFormTranslations();
@@ -1564,7 +1617,10 @@
     // Listen for language changes to update calendar text
     window.addEventListener('languageChanged', function() {
       initializeWeekDisplay();
-      generateCalendar();
+      // Only regenerate calendar if doctor is already selected
+      if (selectedDoctor) {
+        generateCalendar();
+      }
     });
 
     // Select symptom with 3D dimming effect - with toggle functionality
@@ -1716,6 +1772,9 @@
       // Update selected doctor
       selectedDoctor = doctorId;
 
+      // Reset week offset to show current week when doctor is selected
+      currentWeekOffset = 0;
+
       // Update button display
       const avatarEl = document.getElementById('selected-doctor-avatar');
       const nameEl = document.getElementById('selected-doctor-name');
@@ -1732,11 +1791,24 @@
       // Hide dropdown
       if (menuEl) menuEl.classList.add('hidden');
 
+      // Show calendar section
+      const calendarSection = document.getElementById('appointment-calendar');
+      if (calendarSection) {
+        calendarSection.classList.remove('hidden');
+      }
+
       // Fetch booked appointments for this doctor
       fetchBookedAppointments(doctorId);
 
       // Update summary
       updateSummary();
+
+      // Scroll to calendar
+      setTimeout(() => {
+        if (calendarSection) {
+          calendarSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 300);
     }
 
     // Close dropdown when clicking outside
@@ -2076,10 +2148,12 @@
         // Update patient form translations
         updatePatientFormTranslations();
 
-        // Then regenerate calendar with new language
-        setTimeout(function() {
-          generateCalendar();
-        }, 100);
+        // Only regenerate calendar if doctor is already selected
+        if (selectedDoctor) {
+          setTimeout(function() {
+            generateCalendar();
+          }, 100);
+        }
       };
     });
 

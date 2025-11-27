@@ -436,18 +436,38 @@ if (typeof serviceTranslations !== 'undefined') {
   // Create window.translations by merging serviceTranslations with laborTranslations
   window.translations = {};
   Object.keys(laborTranslations).forEach(lang => {
+    const serviceTrans = serviceTranslations[lang] || {};
+    const laborTrans = laborTranslations[lang];
+
+    // Deep merge for contact object to preserve properties from serviceTranslations
+    const contactMerged = {
+      ...(serviceTrans.contact || {}),
+      ...(laborTrans.contact || {})
+    };
+
     window.translations[lang] = {
-      ...(serviceTranslations[lang] || {}),
-      ...laborTranslations[lang]
+      ...serviceTrans,
+      ...laborTrans,
+      contact: contactMerged
     };
   });
 } else if (typeof window.translations !== 'undefined') {
   // Merge with existing window.translations
   Object.keys(laborTranslations).forEach(lang => {
     if (window.translations[lang]) {
+      const existingTrans = window.translations[lang];
+      const laborTrans = laborTranslations[lang];
+
+      // Deep merge for contact object
+      const contactMerged = {
+        ...(existingTrans.contact || {}),
+        ...(laborTrans.contact || {})
+      };
+
       window.translations[lang] = {
-        ...window.translations[lang],
-        ...laborTranslations[lang]
+        ...existingTrans,
+        ...laborTrans,
+        contact: contactMerged
       };
     }
   });

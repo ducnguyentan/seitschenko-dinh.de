@@ -148,26 +148,30 @@ function doPost(e) {
     }
 
     // 🔄 SYNC: Update Calendar status with doctor name
-    if (date && date !== '-' && time && time !== '-') {
-      // Convert date to full format if needed (DD.MM → DD.MM.YYYY)
-      var fullDate = date;
-      if (date.split('.').length === 2) {
-        // Date is DD.MM, add current year
-        var currentYear = new Date().getFullYear();
-        fullDate = date + '.' + currentYear;
-        Logger.log('📅 Converted date format: ' + date + ' → ' + fullDate);
+    if (date && date !== '-' && time && time !== '-' && doctor && doctor !== '-') {
+      // Normalize date format to DD.MM (remove year if present, remove leading zeros)
+      var normalizedDate = date;
+      var dateParts = date.split('.');
+
+      if (dateParts.length === 3) {
+        // DD.MM.YYYY → DD.MM
+        normalizedDate = dateParts[0] + '.' + dateParts[1];
       }
 
-      // Use doctor name as status (instead of generic "booked")
-      var doctorStatus = doctor || 'booked';
+      // Remove leading zeros to match Calendar format: "05.11" → "5.11"
+      if (dateParts.length >= 2) {
+        var day = parseInt(dateParts[0], 10);
+        var month = parseInt(dateParts[1], 10);
+        normalizedDate = day + '.' + month;
+      }
 
-      Logger.log('🔄 Syncing Calendar: ' + fullDate + ' ' + time + ' → ' + doctorStatus);
-      var syncSuccess = updateCalendarStatus(fullDate, time, doctorStatus);
+      Logger.log('🔄 Auto-sync triggered: ' + normalizedDate + ' ' + time + ' → ' + doctor);
+      var syncSuccess = updateCalendarStatus(normalizedDate, time, doctor);
+
       if (syncSuccess) {
-        Logger.log('✅ Calendar synchronized successfully with doctor: ' + doctorStatus);
+        Logger.log('✅ Calendar auto-synced successfully');
       } else {
-        Logger.log('⚠️ Calendar sync failed (date/time not found in Calendar)');
-        Logger.log('⚠️ Looking for: Date=' + fullDate + ', Time=' + time);
+        Logger.log('⚠️ Calendar auto-sync failed (date/time/doctor not found)');
       }
     }
 
@@ -435,18 +439,17 @@ function formatTimeCell(cell) {
  */
 
 /**
- * Initialize Calendar sheet with flexible time slots
+ * Initialize Calendar sheet with SEPARATE time slots per dentist
  * Run this function once to create the Calendar sheet
  *
- * NEW STRUCTURE: Each day has 3 rows
- * Row 1 (Zeit): User can edit time values (e.g., 08:00, 09:00, ...)
- * Row 2 (Status): Dropdown status (available, blocked, hidden only)
- * Row 3 (Arzt): Doctor names for booked slots (e.g., kukadiya, ikikardes)
+ * NEW STRUCTURE V2: Each dentist has their own 10 time slots
+ * Header Row 1: Dentist names (merged across 10 time slots each)
+ * Header Row 2: Time slots (08:00-17:00, repeated for each dentist)
+ * Data Rows: 1 row per day (52 columns = 2 date + 50 time slots)
  *
- * | Datum | Wochentag | Slot1 | Slot2 | Slot3 | ... | Slot12 |
- * | Date  | Day       | 08:00 | 09:00 | 10:00 | ... | 18:00  | (Zeit)
- * |       |           | avail | block | avail | ... | avail  | (Status)
- * |       |           |       | kukadiya |     | ... |        | (Arzt)
+ * | Datum | Wochentag | Seitschenko-Dinh (10 slots) | Kukadiya (10 slots) | ... (5 dentists)
+ * |       |           | 08:00|09:00|...|17:00       | 08:00|09:00|...|17:00 |
+ * | 29.11 | Montag    | avail|booked|...|blocked   | avail|avail|...|hidden |
  */
 function initializeCalendarSheet() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -460,41 +463,87 @@ function initializeCalendarSheet() {
     calendarSheet.clear();
   }
 
-  // Set up header row (row 1) - 14 columns: Datum, Wochentag, + 12 time slots
-  var headers = ['Datum', 'Wochentag', 'Slot 1', 'Slot 2', 'Slot 3', 'Slot 4', 'Slot 5', 'Slot 6', 'Slot 7', 'Slot 8', 'Slot 9', 'Slot 10', 'Slot 11', 'Slot 12'];
-  calendarSheet.getRange(1, 1, 1, headers.length).setValues([headers]);
+  // Configuration
+  var timeSlots = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'];
+  var dentists = ['Seitschenko-Dinh', 'Kukadiya', 'Ikikardes', 'Taifour', 'Nikolaou'];
+  var dentistColors = ['#FFE5E5', '#FFE9D9', '#FFF4D9', '#E5FFE5', '#D9F4FF']; // One color per dentist
 
-  // Format header row
-  var headerRange = calendarSheet.getRange(1, 1, 1, headers.length);
-  headerRange.setFontWeight('bold');
-  headerRange.setBackground('#14b8a6');
-  headerRange.setFontColor('#ffffff');
-  headerRange.setBorder(true, true, true, true, true, true, '#000000', SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
-  headerRange.setHorizontalAlignment('center');
-  headerRange.setVerticalAlignment('middle');
-  headerRange.setWrapStrategy(SpreadsheetApp.WrapStrategy.WRAP);
+  // Header Row 1: Dentist names (each merged across 10 time slots)
+  var headerRow1 = ['Datum', 'Wochentag'];
+  for (var d = 0; d < dentists.length; d++) {
+    for (var t = 0; t < timeSlots.length; t++) {
+      headerRow1.push(dentists[d]); // Repeat dentist name 10 times (will merge later)
+    }
+  }
+
+  // Header Row 2: Time slots (repeated for each dentist)
+  var headerRow2 = ['', '']; // Empty for Date/Day columns
+  for (var d = 0; d < dentists.length; d++) {
+    for (var t = 0; t < timeSlots.length; t++) {
+      headerRow2.push(timeSlots[t]);
+    }
+  }
+
+  // Write both header rows
+  calendarSheet.getRange(1, 1, 1, 52).setValues([headerRow1]);
+  calendarSheet.getRange(2, 1, 1, 52).setValues([headerRow2]);
+
+  // Format header row 1 (Dentist names)
+  var headerRange1 = calendarSheet.getRange(1, 1, 1, 52);
+  headerRange1.setFontWeight('bold');
+  headerRange1.setBackground('#14b8a6');
+  headerRange1.setFontColor('#ffffff');
+  headerRange1.setBorder(true, true, true, true, true, true, '#000000', SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
+  headerRange1.setHorizontalAlignment('center');
+  headerRange1.setVerticalAlignment('middle');
+  headerRange1.setFontSize(10);
+  calendarSheet.setRowHeight(1, 30);
+
+  // Merge Date and Day cells vertically across both header rows
+  calendarSheet.getRange(1, 1, 2, 1).mergeVertically(); // Datum
+  calendarSheet.getRange(1, 2, 2, 1).mergeVertically(); // Wochentag
+
+  // Merge dentist names horizontally across 10 time slots
+  for (var d = 0; d < dentists.length; d++) {
+    var startCol = 3 + (d * 10); // Each dentist gets 10 columns
+    calendarSheet.getRange(1, startCol, 1, 10).merge();
+
+    // Apply dentist-specific color to their 10 columns (both header rows)
+    calendarSheet.getRange(1, startCol, 2, 10).setBackground(dentistColors[d]);
+  }
+
+  // Format header row 2 (Time slots)
+  var headerRange2 = calendarSheet.getRange(2, 1, 1, 52);
+  headerRange2.setFontWeight('bold');
+  headerRange2.setFontColor('#000000'); // Black text for times
+  headerRange2.setBorder(true, true, true, true, true, true, '#000000', SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
+  headerRange2.setHorizontalAlignment('center');
+  headerRange2.setVerticalAlignment('middle');
+  headerRange2.setFontSize(8);
+  calendarSheet.setRowHeight(2, 20);
 
   // Set column widths
-  calendarSheet.setColumnWidth(1, 120); // Datum
-  calendarSheet.setColumnWidth(2, 120); // Wochentag
-  for (var k = 3; k <= 14; k++) {
-    calendarSheet.setColumnWidth(k, 80); // 12 time slots
+  calendarSheet.setColumnWidth(1, 100); // Datum
+  calendarSheet.setColumnWidth(2, 110); // Wochentag
+  // Set width for all 50 time slot columns
+  for (var k = 3; k <= 52; k++) {
+    calendarSheet.setColumnWidth(k, 80); // Narrower since only status values
   }
 
   // Generate first week (7 days) starting from today
   var today = new Date();
   addWeekToCalendar(calendarSheet, today, 1);
 
-  // Freeze first row AFTER adding data
-  calendarSheet.setFrozenRows(1);
+  // Freeze first 2 header rows
+  calendarSheet.setFrozenRows(2);
 
-  Logger.log('Calendar sheet initialized with first week (3 rows per day structure)');
+  Logger.log('✅ Calendar sheet initialized with separate time slots per dentist (2 header rows, 1 row per day)');
   return 'Calendar sheet created successfully!';
 }
 
 /**
  * Add a week of dates to Calendar sheet
- * NEW: Each day has 3 rows (Zeit row + Status row + Arzt row)
+ * NEW STRUCTURE V2: Each day has 1 row (50 status columns for 5 dentists × 10 slots)
  *
  * @param {Sheet} sheet - The Calendar sheet
  * @param {Date} startDate - Start date of the week
@@ -516,27 +565,32 @@ function addWeekToCalendar(sheet, startDate, weekNumber) {
 
   var dayNames = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
 
+  // Configuration
+  var dentists = ['Seitschenko-Dinh', 'Kukadiya', 'Ikikardes', 'Taifour', 'Nikolaou'];
+  var timeSlots = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'];
+
+  // Colors per dentist (same as header)
+  var dentistColors = ['#FFE5E5', '#FFE9D9', '#FFF4D9', '#E5FFE5', '#D9F4FF'];
+
   // Calculate which week of the month this is
   var firstDayOfMonth = new Date(startDate.getFullYear(), startDate.getMonth(), 1);
   var daysSinceStart = Math.floor((startDate - firstDayOfMonth) / (1000 * 60 * 60 * 24));
   var weekOfMonth = Math.floor(daysSinceStart / 7) + 1;
 
-  // Get month and year for separator (from first day of week)
+  // Get month and year for separator
   var month = startDate.getMonth() + 1;
   var year = startDate.getFullYear();
 
   // Find the last row with data
-  var lastRow = Math.max(1, sheet.getLastRow()); // At least row 1 (header)
+  var lastRow = Math.max(2, sheet.getLastRow()); // At least row 2 (after headers)
 
-  // Add separator row before EVERY week (including first week)
+  // Add separator row before EVERY week
   var separatorRow = lastRow + 1;
   var separatorLabel = '━━━ Woche ' + weekOfMonth + ' - ' + (month < 10 ? '0' : '') + month + '/' + year + ' ━━━';
 
-  // Set separator label in first cell
+  // Set separator label and format
   sheet.getRange(separatorRow, 1).setValue(separatorLabel);
-
-  // NO MERGE for separator - just format the entire row
-  var separatorRange = sheet.getRange(separatorRow, 1, 1, 14);
+  var separatorRange = sheet.getRange(separatorRow, 1, 1, 52);
   separatorRange.setBackground('#14b8a6');
   separatorRange.setFontColor('#ffffff');
   separatorRange.setFontWeight('bold');
@@ -544,101 +598,81 @@ function addWeekToCalendar(sheet, startDate, weekNumber) {
   separatorRange.setVerticalAlignment('middle');
   separatorRange.setFontSize(11);
   sheet.setRowHeight(separatorRow, 30);
+  separatorRange.merge();
 
-  lastRow++; // Increment lastRow to account for separator
+  lastRow++; // Move past separator
 
-  // Generate 7 days, each with 3 rows (Zeit + Status + Arzt)
+  // Generate 7 days, each with 1 row (50 status columns)
   for (var i = 0; i < 7; i++) {
     var date = new Date(startDate);
     date.setDate(startDate.getDate() + i);
 
     var day = date.getDate();
     var currentMonth = date.getMonth() + 1;
-    var currentYear = date.getFullYear();
-    var dateStr = (day < 10 ? '0' : '') + day + '.' + (currentMonth < 10 ? '0' : '') + currentMonth + '.' + currentYear;
+    // Use D.M format (no leading zeros, no year)
+    var dateStr = day + '.' + currentMonth;
     var dayName = dayNames[date.getDay()];
 
-    // Row 1: Zeit row (time values - editable by user)
-    var zeitRow = [dateStr, dayName];
-    // Default times: 08:00, 09:00, 10:00, 11:00, 12:00, 13:00, 14:00, 15:00, 16:00, 17:00, 18:00, 19:00
-    for (var h = 8; h < 20; h++) {
-      var timeStr = (h < 10 ? '0' : '') + h + ':00';
-      zeitRow.push(timeStr);
+    // Build row: Date | Day | 50 status columns (5 dentists × 10 slots)
+    var dataRow = [dateStr, dayName];
+
+    // For each dentist, add 10 'available' statuses (their time slots)
+    for (var d = 0; d < dentists.length; d++) {
+      for (var t = 0; t < timeSlots.length; t++) {
+        dataRow.push('available');
+      }
     }
 
-    // Row 2: Status row (dropdown - available by default)
-    // Empty date and day (will be merged with Zeit row)
-    var statusRow = ['', ''];
-    for (var j = 0; j < 12; j++) {
-      statusRow.push('available');
+    // Write the row
+    var rowIndex = lastRow + 1;
+    sheet.getRange(rowIndex, 1, 1, 52).setValues([dataRow]);
+
+    // Format the row
+    var rowRange = sheet.getRange(rowIndex, 1, 1, 52);
+    rowRange.setBorder(true, true, true, true, true, true, '#000000', SpreadsheetApp.BorderStyle.SOLID);
+    rowRange.setVerticalAlignment('middle');
+    rowRange.setHorizontalAlignment('center');
+    rowRange.setFontSize(9);
+    sheet.setRowHeight(rowIndex, 30);
+
+    // Format Date and Day columns (bold, centered)
+    var dateDayRange = sheet.getRange(rowIndex, 1, 1, 2);
+    dateDayRange.setFontWeight('bold');
+    dateDayRange.setBackground('#f0f0f0'); // Light gray for date/day
+
+    // Apply dentist-specific colors to their 10 columns
+    for (var d = 0; d < dentists.length; d++) {
+      var startCol = 3 + (d * 10); // Each dentist has 10 columns
+      sheet.getRange(rowIndex, startCol, 1, 10).setBackground(dentistColors[d]);
     }
 
-    // Row 3: Arzt row (doctor names - empty by default)
-    // Empty date and day (will be merged with Zeit row)
-    var arztRow = ['', ''];
-    for (var j = 0; j < 12; j++) {
-      arztRow.push(''); // Empty by default
-    }
-
-    // Write all 3 rows FIRST (before merging)
-    sheet.getRange(lastRow + 1, 1, 1, 14).setValues([zeitRow]);
-    sheet.getRange(lastRow + 2, 1, 1, 14).setValues([statusRow]);
-    sheet.getRange(lastRow + 3, 1, 1, 14).setValues([arztRow]);
-
-    // Format Zeit row (editable, light background)
-    var zeitRange = sheet.getRange(lastRow + 1, 1, 1, 14);
-    zeitRange.setBorder(true, true, true, true, true, true, '#000000', SpreadsheetApp.BorderStyle.SOLID);
-    zeitRange.setVerticalAlignment('middle');
-    zeitRange.setHorizontalAlignment('center');
-    zeitRange.setBackground('#f0f9ff'); // Light blue for Zeit row
-    zeitRange.setFontWeight('bold');
-    sheet.setRowHeight(lastRow + 1, 30);
-
-    // NOW merge Date and Day cells AFTER all rows are created
-    sheet.getRange(lastRow + 1, 1, 3, 1).mergeVertically(); // Merge Datum vertically
-    sheet.getRange(lastRow + 1, 2, 3, 1).mergeVertically(); // Merge Wochentag vertically
-
-    // Format Status row (dropdown - NOW WITH VALIDATION)
-    var statusRange = sheet.getRange(lastRow + 2, 1, 1, 14);
-    statusRange.setBorder(true, true, true, true, true, true, '#000000', SpreadsheetApp.BorderStyle.SOLID);
-    statusRange.setVerticalAlignment('middle');
-    statusRange.setHorizontalAlignment('center');
-    sheet.setRowHeight(lastRow + 2, 30);
-
-    // Add dropdown validation for Status row (available, blocked, hidden ONLY)
-    var statusDropdownRange = sheet.getRange(lastRow + 2, 3, 1, 12);
+    // Add dropdown validation for all 50 status columns
+    var statusDropdownRange = sheet.getRange(rowIndex, 3, 1, 50);
     var rule = SpreadsheetApp.newDataValidation()
-      .requireValueInList(['available', 'blocked', 'hidden'], true)
+      .requireValueInList(['available', 'blocked', 'hidden', 'booked'], true)
       .setAllowInvalid(false)
       .build();
     statusDropdownRange.setDataValidation(rule);
 
-    // Format Arzt row (doctor names - no validation needed)
-    var arztRange = sheet.getRange(lastRow + 3, 1, 1, 14);
-    arztRange.setBorder(true, true, true, true, true, true, '#000000', SpreadsheetApp.BorderStyle.SOLID);
-    arztRange.setVerticalAlignment('middle');
-    arztRange.setHorizontalAlignment('center');
-    arztRange.setBackground('#fffbeb'); // Light yellow for Arzt row
-    sheet.setRowHeight(lastRow + 3, 30);
-
-    lastRow += 3; // Move to next day (skip 3 rows)
+    lastRow++; // Move to next day
   }
 
   // Apply conditional formatting
   applyCalendarConditionalFormatting(sheet, lastRow);
 
-  Logger.log('Added 7 days (21 rows) to calendar (week ' + weekOfMonth + ')');
+  Logger.log('✅ Added 7 days (7 rows) to calendar with separate time slots per dentist (week ' + weekOfMonth + ')');
 }
 
 /**
  * Apply conditional formatting to Calendar sheet
- * NEW: Only apply to Status rows (even rows after header)
+ * NEW V2: Apply to all data rows (1 row per day, 50 status columns)
  * Green = available, Red = blocked, Yellow = booked, Gray = hidden
  */
 function applyCalendarConditionalFormatting(sheet, numRows) {
-  // Apply to entire status columns (C to N = columns 3 to 14)
-  // From row 2 to numRows, covering all status rows
-  var timeSlotRange = sheet.getRange(2, 3, numRows - 1, 12);
+  // Apply to all status columns (C to AZ = columns 3 to 52)
+  // 5 dentists * 10 time slots = 50 columns
+  // From row 3 to numRows (skip 2 header rows + separator rows)
+  var timeSlotRange = sheet.getRange(3, 3, numRows, 50);
 
   // Clear existing rules
   var rules = sheet.getConditionalFormatRules();
@@ -698,9 +732,10 @@ function getAvailableTimeSlots(dateStr) {
 
   var data = calendarSheet.getDataRange().getDisplayValues();
 
-  // Find the Zeit row for the requested date
-  // Each day has 3 rows: Zeit row (with date) + Status row (empty date) + Arzt row (empty date)
-  for (var i = 1; i < data.length; i++) {
+  // Find the Time row for the requested date
+  // NEW: Each day has 3 rows: Time row (with date) + Arzt row (dentist names) + Status row (statuses)
+  // Start from row 2 (skip 2 header rows: row 0 = time slots, row 1 = dentist abbreviations)
+  for (var i = 2; i < data.length; i++) {
     var rowDate = data[i][0]; // Column A: Date
 
     // Skip separator rows (merged cells with "━━━")
@@ -708,17 +743,25 @@ function getAvailableTimeSlots(dateStr) {
       continue;
     }
 
-    // Skip empty date cells (Status/Arzt rows)
+    // Skip empty date cells (Arzt/Status rows)
     if (!rowDate || rowDate.trim() === '') {
       continue;
     }
 
-    // Found the Zeit row for this date
-    if (rowDate === dateStr) {
-      var zeitRow = data[i];     // Current row (Zeit values)
-      var statusRow = data[i + 1]; // Next row (Status values)
-      var arztRow = data[i + 2];   // Next row (Arzt names)
-      var dayName = zeitRow[1];    // Column B: Day name
+    // Normalize both dates to DD.MM format for comparison
+    // Calendar stores DD.MM (e.g., "26.11"), but website may call with DD.MM.YYYY (e.g., "26.11.2025")
+    var normalizedSearchDate = dateStr;
+    if (dateStr.split('.').length === 3) {
+      var parts = dateStr.split('.');
+      normalizedSearchDate = parts[0] + '.' + parts[1]; // "26.11.2025" → "26.11"
+    }
+
+    // Found the Time row for this date
+    if (rowDate === normalizedSearchDate) {
+      var timeRow = data[i];      // Current row (Time values)
+      var arztRow = data[i + 1];  // Next row (Dentist names)
+      var statusRow = data[i + 2]; // Next row (Status values)
+      var dayName = timeRow[1];    // Column B: Day name
 
       // 🔍 CROSS-CHECK: Get booked appointments from New_Appointments for accuracy
       var bookedAppointments = getBookedAppointmentsForDate(dateStr);
@@ -726,38 +769,66 @@ function getAvailableTimeSlots(dateStr) {
 
       var slots = {};
 
-      // Loop through 12 time slot columns (columns C to N = index 2 to 13)
-      for (var j = 2; j < 14; j++) {
-        var timeLabel = zeitRow[j];   // Time from Zeit row (e.g., "08:00")
-        var status = statusRow[j];     // Status from Status row (e.g., "available", "blocked", "hidden")
-        var arztName = arztRow[j];     // Doctor name from Arzt row (e.g., "kukadiya")
+      // NEW: Loop through 52 columns (10 time slots * 5 dentists = 50 columns + 2 date columns)
+      // Group by time slots
+      var currentTime = null;
+      var dentistSlots = [];
+
+      for (var j = 2; j < 52; j++) {
+        var timeLabel = timeRow[j];     // Time from Time row (e.g., "08:00")
+        var dentistName = arztRow[j];   // Dentist name from Arzt row
+        var status = statusRow[j];       // Status from Status row (e.g., "available", "blocked", "hidden", "booked")
 
         // Skip empty time slots
-        if (!timeLabel || timeLabel.trim() === '') {
+        if (!timeLabel || timeLabel.trim() === '' || !dentistName || dentistName.trim() === '') {
           continue;
         }
+
+        var cleanTime = timeLabel.trim();
+        var cleanDentist = dentistName.trim();
 
         // Skip "hidden" slots - don't include in response
         if (status === 'hidden') {
           continue;
         }
 
-        // Determine if slot is booked (Arzt row has a name)
-        var isBooked = (arztName && arztName.trim() !== '');
-        var doctorName = isBooked ? arztName : null;
+        // Determine if this dentist is booked at this time
+        var isBooked = (status === 'booked');
 
         // 🔍 CROSS-CHECK: Override with New_Appointments data if available
-        if (bookedAppointments[timeLabel]) {
-          doctorName = bookedAppointments[timeLabel];
+        if (bookedAppointments[cleanTime] === cleanDentist) {
           isBooked = true;
-          Logger.log('✅ Cross-check override: ' + timeLabel + ' → ' + doctorName);
+          Logger.log('✅ Cross-check override: ' + cleanTime + ' → ' + cleanDentist);
         }
 
-        slots[timeLabel] = {
-          time: timeLabel,
+        // Group dentists by time slot
+        if (currentTime !== cleanTime) {
+          // Save previous time slot if exists
+          if (currentTime && dentistSlots.length > 0) {
+            slots[currentTime] = {
+              time: currentTime,
+              dentists: dentistSlots.slice() // Copy array
+            };
+          }
+
+          // Start new time slot
+          currentTime = cleanTime;
+          dentistSlots = [];
+        }
+
+        // Add this dentist to current time slot
+        dentistSlots.push({
+          name: cleanDentist,
           status: isBooked ? 'booked' : status,
-          available: status === 'available' && !isBooked,
-          doctor: doctorName  // null if available, doctor name if booked
+          available: status === 'available' && !isBooked
+        });
+      }
+
+      // Save last time slot
+      if (currentTime && dentistSlots.length > 0) {
+        slots[currentTime] = {
+          time: currentTime,
+          dentists: dentistSlots
         };
       }
 
@@ -983,7 +1054,7 @@ function showCalendarHelp() {
  * @param {string} timeStr - Time in HH:MM format (e.g., "14:00")
  * @param {string} newStatus - New status: "booked", "blocked", "available"
  */
-function updateCalendarStatus(dateStr, timeStr, newStatus) {
+function updateCalendarStatus(dateStr, timeStr, doctorName) {
   try {
     var ss = SpreadsheetApp.getActiveSpreadsheet();
     var calendarSheet = ss.getSheetByName('Calendar');
@@ -995,8 +1066,15 @@ function updateCalendarStatus(dateStr, timeStr, newStatus) {
 
     var data = calendarSheet.getDataRange().getDisplayValues();
 
-    // Find the Zeit row for the date
-    for (var i = 1; i < data.length; i++) {
+    // List of dentists (must match addWeekToCalendar)
+    var dentists = ['Seitschenko-Dinh', 'Kukadiya', 'IKIKARDES', 'TAIFOUR', 'NIKOLAOU'];
+
+    // Clean doctor name for comparison (handle variations)
+    var cleanDoctorName = doctorName.trim();
+
+    // Find the time row for the date
+    // Start from row 2 (skip 2 header rows)
+    for (var i = 2; i < data.length; i++) {
       var rowDate = data[i][0]; // Column A: Date
 
       // Skip separator rows
@@ -1004,42 +1082,83 @@ function updateCalendarStatus(dateStr, timeStr, newStatus) {
         continue;
       }
 
-      // Skip empty date cells (Status rows)
+      // Skip empty date cells (Arzt and Status rows)
       if (!rowDate || rowDate.trim() === '') {
         continue;
       }
 
-      // Found the Zeit row for this date
+      // Found the time row for this date
       if (rowDate === dateStr) {
-        var zeitRow = data[i];     // Zeit values
-        var statusRowIndex = i + 2; // Status row is 2nd row (i+1 in data array, but i+2 in sheet because 1-indexed)
-        var arztRowIndex = i + 3; // Arzt row is 3rd row (i+2 in data array, but i+3 in sheet because 1-indexed)
+        var timeRow = data[i];       // Time slot values (merged across 5 dentists each)
+        var arztRow = data[i + 1];   // Arzt row (dentist names)
+        var statusRowIndex = i + 3;  // Status row is 3rd row (i+2 in data array, but i+3 in sheet - 1-indexed)
 
-        // Find the column with matching time
-        for (var j = 2; j < 14; j++) {
-          var cellTime = zeitRow[j];
+        // Normalize time string (remove seconds, clean special characters)
+        var cleanTimeStr = timeStr.replace(/[^0-9:]/g, ''); // Remove non-numeric, non-colon
+        var timeParts = cleanTimeStr.split(':');
+        if (timeParts.length >= 2) {
+          cleanTimeStr = timeParts[0] + ':' + timeParts[1]; // Keep only HH:MM
+        }
 
-          // Clean both times for comparison (remove " -" suffix if present)
-          var cleanCellTime = cellTime ? cellTime.trim().split(' ')[0] : '';
-          var cleanTimeStr = timeStr ? timeStr.trim().split(' ')[0] : '';
+        Logger.log('🔍 Auto-sync: Looking for date=' + dateStr + ', time=' + cleanTimeStr + ', doctor=' + cleanDoctorName);
 
-          if (cleanCellTime === cleanTimeStr) {
-            // Found the matching time slot!
+        // Scan through columns to find matching time AND dentist
+        // NEW structure: Columns 3-52 (10 time slots * 5 dentists = 50 columns)
+        for (var j = 2; j < 52; j++) {
+          var cellTime = timeRow[j];
+          var cellDentist = arztRow[j] ? arztRow[j].trim() : '';
 
-            // 1. Update Status row to "booked"
+          // IMPORTANT: Time headers are merged across 5 columns
+          // If cellTime is empty, find the previous non-empty time
+          var cleanCellTime = '';
+          if (cellTime && cellTime.trim() !== '') {
+            // First column of merged cell has value
+            cleanCellTime = cellTime.replace(/[^0-9:]/g, '');
+            var cellTimeParts = cleanCellTime.split(':');
+            if (cellTimeParts.length >= 2) {
+              cleanCellTime = cellTimeParts[0] + ':' + cellTimeParts[1];
+            }
+          } else if (j > 2) {
+            // Empty cell (merged continuation) - find previous time
+            for (var k = j - 1; k >= 2; k--) {
+              if (timeRow[k] && timeRow[k].trim() !== '') {
+                var prevTime = timeRow[k].replace(/[^0-9:]/g, '');
+                var prevTimeParts = prevTime.split(':');
+                if (prevTimeParts.length >= 2) {
+                  cleanCellTime = prevTimeParts[0] + ':' + prevTimeParts[1];
+                }
+                break;
+              }
+            }
+          }
+
+          // Skip if no dentist name
+          if (!cellDentist) {
+            continue;
+          }
+
+          // Match both time AND dentist (case-insensitive for dentist name)
+          var timeMatch = (cleanCellTime === cleanTimeStr);
+          var dentistMatch = (cellDentist.toLowerCase() === cleanDoctorName.toLowerCase());
+
+          if (timeMatch && dentistMatch) {
+            // Found the matching time slot for this dentist!
+
+            // Update Status row to "booked"
             var statusCell = calendarSheet.getRange(statusRowIndex, j + 1);
             statusCell.setValue('booked');
 
-            // 2. Update Arzt row with doctor name
-            var arztCell = calendarSheet.getRange(arztRowIndex, j + 1);
-            arztCell.setValue(newStatus);
+            // Color the dentist name in Arzt row (make it bold and change color)
+            var arztCell = calendarSheet.getRange(i + 2, j + 1); // Arzt row (i+1 in data, i+2 in sheet)
+            arztCell.setFontColor('#0369a1'); // Blue color for booked
+            arztCell.setFontWeight('bold');
 
-            Logger.log('✅ Calendar synced: ' + dateStr + ' ' + cleanTimeStr + ' → Status: booked, Arzt: ' + newStatus);
+            Logger.log('✅ Auto-sync SUCCESS: ' + dateStr + ' ' + cleanTimeStr + ' → ' + cleanDoctorName + ' → booked');
             return true;
           }
         }
 
-        Logger.log('⚠️ Time slot not found in Calendar: ' + timeStr);
+        Logger.log('⚠️ Auto-sync FAILED: Time slot or dentist not found in Calendar: ' + timeStr + ' for ' + cleanDoctorName);
         return false;
       }
     }
@@ -1155,19 +1274,37 @@ function syncCalendarWithAppointments() {
       var timeStr = row[COL_TIME] ? row[COL_TIME].trim() : '';
 
       if (dateStr && timeStr) {
-        // Convert DD.MM to DD.MM.YYYY if needed
-        var fullDateStr = dateStr;
-        if (dateStr.split('.').length === 2) {
-          var currentYear = new Date().getFullYear();
-          fullDateStr = dateStr + '.' + currentYear; // 26.11 → 26.11.2025
+        // AGGRESSIVE clean time string - remove ALL non-numeric and non-colon characters
+        var cleanTimeStr = timeStr.replace(/[^0-9:]/g, ''); // Keep only digits and colon
+
+        // Normalize time to HH:MM format (remove seconds if present)
+        // "10:00:00" → "10:00", "10:00" → "10:00"
+        var timeParts = cleanTimeStr.split(':');
+        if (timeParts.length >= 2) {
+          cleanTimeStr = timeParts[0] + ':' + timeParts[1]; // Keep only HH:MM
         }
 
-        if (!bookedMap[fullDateStr]) {
-          bookedMap[fullDateStr] = {};
+        // Normalize date to D.M or DD.MM format (remove leading zeros, handle both DD.MM and DD.MM.YYYY)
+        var normalizedDateStr = dateStr;
+        if (dateStr.split('.').length === 3) {
+          // If DD.MM.YYYY, extract DD.MM
+          var parts = dateStr.split('.');
+          normalizedDateStr = parts[0] + '.' + parts[1]; // "26.11.2025" → "26.11"
         }
-        bookedMap[fullDateStr][timeStr] = doctorStr;
 
-        Logger.log('📌 Added to bookedMap: ' + fullDateStr + ' ' + timeStr + ' → ' + doctorStr);
+        // Remove leading zeros from day and month for consistency
+        // "05.11" → "5.11", "26.11" → "26.11"
+        var dateParts = normalizedDateStr.split('.');
+        if (dateParts.length === 2) {
+          var day = parseInt(dateParts[0], 10); // Remove leading zero
+          var month = parseInt(dateParts[1], 10); // Remove leading zero
+          normalizedDateStr = day + '.' + month; // "5.11" or "26.11"
+        }
+
+        if (!bookedMap[normalizedDateStr]) {
+          bookedMap[normalizedDateStr] = {};
+        }
+        bookedMap[normalizedDateStr][cleanTimeStr] = doctorStr.toLowerCase(); // Lowercase doctor name
       }
     }
 
@@ -1176,7 +1313,8 @@ function syncCalendarWithAppointments() {
     var updatedCount = 0;
 
     // Loop through Calendar and update statuses
-    for (var i = 1; i < calendarData.length; i++) {
+    // Start from row 2 (skip 2 header rows)
+    for (var i = 2; i < calendarData.length; i++) {
       var rowDate = calendarData[i][0];
 
       // Skip separator rows
@@ -1184,66 +1322,115 @@ function syncCalendarWithAppointments() {
         continue;
       }
 
-      // Skip empty date cells (Status rows)
+      // Skip empty date cells (Arzt and Status rows)
       if (!rowDate || rowDate.trim() === '') {
         continue;
       }
 
-      // This is a Zeit row
-      var zeitRow = calendarData[i];
-      var statusRowIndex = i + 2; // Status row index (2nd row, 1-based)
-      var arztRowIndex = i + 3; // Arzt row index (3rd row, 1-based)
+      // This is a Time row
+      var timeRow = calendarData[i];     // Time slot headers (array index i)
+      var arztRow = calendarData[i + 1]; // Arzt row (dentist names) (array index i+1)
+      var statusRow = calendarData[i + 2]; // Status row (array index i+2)
+
+      // Sheet row indices (1-based)
+      var timeRowIndex = i + 1;          // Time row in sheet (convert from 0-based array to 1-based sheet)
+      var arztRowIndex = i + 2;          // Arzt row in sheet
+      var statusRowIndex = i + 3;        // Status row in sheet
+
       var dateStr = rowDate;
 
+      // Normalize Calendar date format (remove leading zeros for consistency)
+      // "05.11" → "5.11", "26.11" → "26.11"
+      var normalizedCalendarDate = dateStr;
+      var calendarDateParts = dateStr.split('.');
+      if (calendarDateParts.length >= 2) {
+        var day = parseInt(calendarDateParts[0], 10); // Remove leading zero
+        var month = parseInt(calendarDateParts[1], 10); // Remove leading zero
+        normalizedCalendarDate = day + '.' + month; // "5.11" or "26.11"
+      }
+
       // Get booked appointments for this date
-      var bookedAppointments = bookedMap[dateStr] || {};
+      var bookedAppointments = bookedMap[normalizedCalendarDate] || {};
 
-      // Update Status row and Arzt row for this date
-      for (var j = 2; j < 14; j++) {
-        var timeLabel = zeitRow[j];
+      // Update Status row for this date
+      // NEW: Loop through 52 columns (10 time slots * 5 dentists = 50 columns + 2 date columns)
+      for (var j = 2; j < 52; j++) {
+        var timeLabel = timeRow[j];
+        var dentistName = arztRow[j];
 
-        if (!timeLabel || timeLabel.trim() === '') {
+        // IMPORTANT: Time headers are merged across 5 columns, so timeLabel might be empty for cols 2-4 of each time slot
+        // If timeLabel is empty, use the previous non-empty time label (from the merged cell)
+        var cleanTimeLabel = '';
+        if (timeLabel && timeLabel.trim() !== '') {
+          // This is the first column of a time slot (merged cell has value here)
+          cleanTimeLabel = timeLabel.replace(/[^0-9:]/g, ''); // Keep only digits and colon
+
+          // Normalize time to HH:MM format (remove seconds if present)
+          var timeParts = cleanTimeLabel.split(':');
+          if (timeParts.length >= 2) {
+            cleanTimeLabel = timeParts[0] + ':' + timeParts[1]; // Keep only HH:MM
+          }
+        } else if (j > 2) {
+          // Empty time label (merged cell continuation) - find the previous non-empty time
+          for (var k = j - 1; k >= 2; k--) {
+            if (timeRow[k] && timeRow[k].trim() !== '') {
+              var prevTime = timeRow[k].replace(/[^0-9:]/g, '');
+              var prevTimeParts = prevTime.split(':');
+              if (prevTimeParts.length >= 2) {
+                cleanTimeLabel = prevTimeParts[0] + ':' + prevTimeParts[1];
+              }
+              break;
+            }
+          }
+        }
+
+        // Skip if no dentist name (merged cells or empty)
+        if (!dentistName || dentistName.trim() === '') {
           continue;
         }
 
-        // Clean time label (remove trailing characters like " -")
-        var cleanTimeLabel = timeLabel.trim().split(' ')[0]; // "10:00 -" → "10:00"
+        var cleanDentistName = dentistName.trim();
 
         var statusCell = calendarSheet.getRange(statusRowIndex, j + 1);
         var arztCell = calendarSheet.getRange(arztRowIndex, j + 1);
         var currentStatus = statusCell.getValue();
-        var currentArzt = arztCell.getValue();
 
-        // Determine correct values
+        // Determine correct status
         var correctStatus;
-        var correctArzt;
-        if (bookedAppointments[cleanTimeLabel]) {
-          // Slot is booked
+        var bookedDentist = bookedAppointments[cleanTimeLabel];
+
+        // Case-insensitive comparison for dentist names
+        var isMatch = false;
+        if (bookedDentist) {
+          var bookedDentistLower = bookedDentist.toLowerCase().trim();
+          var cleanDentistLower = cleanDentistName.toLowerCase().trim();
+          isMatch = (bookedDentistLower === cleanDentistLower);
+
+        }
+
+        if (isMatch) {
+          // This specific dentist is booked at this time
           correctStatus = 'booked';
-          correctArzt = bookedAppointments[cleanTimeLabel];
-          Logger.log('🔍 Match found! ' + dateStr + ' ' + cleanTimeLabel + ' → Status: booked, Arzt: ' + correctArzt);
+
+          // Color the dentist name cell
+          arztCell.setFontColor('#0369a1'); // Blue color for booked
+          arztCell.setFontWeight('bold');
         } else if (currentStatus === 'blocked' || currentStatus === 'hidden') {
           // Keep manually set statuses
           correctStatus = currentStatus;
-          correctArzt = '';
         } else {
           // Not booked, not blocked → available
           correctStatus = 'available';
-          correctArzt = '';
+
+          // Reset dentist name formatting
+          arztCell.setFontColor('#000000'); // Black color for available
+          arztCell.setFontWeight('bold'); // Keep bold
         }
 
         // Update Status if different
         if (currentStatus !== correctStatus) {
           statusCell.setValue(correctStatus);
           updatedCount++;
-          Logger.log('✅ Updated Status: ' + dateStr + ' ' + cleanTimeLabel + ': "' + currentStatus + '" → "' + correctStatus + '"');
-        }
-
-        // Update Arzt if different
-        if (currentArzt !== correctArzt) {
-          arztCell.setValue(correctArzt);
-          updatedCount++;
-          Logger.log('✅ Updated Arzt: ' + dateStr + ' ' + cleanTimeLabel + ': "' + currentArzt + '" → "' + correctArzt + '"');
         }
       }
     }
