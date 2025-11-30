@@ -1,11 +1,15 @@
 /**
  * Google Apps Script - Appointment Data Receiver
- * NEW STRUCTURE V2: Separate time slots per dentist (1 row per day)
+ * NEW STRUCTURE V3: Separate time slots per dentist with contact info (1 row per day)
  *
  * Calendar Structure:
  * - Header Row 1: Dentist names (merged across 10 time slots)
- * - Header Row 2: Time slots (08:00-17:00, repeated for each dentist)
+ * - Header Row 2: Email (merged across 10 time slots, user input) - Email is also used as Calendar ID
+ * - Header Row 3: Telefon (merged across 10 time slots, user input)
+ * - Header Row 4: Time slots (08:00-17:00, repeated for each dentist)
  * - Data Rows: 1 row per day with 50 status columns
+ *
+ * Note: Email address in Row 2 is used as Google Calendar ID for syncing events
  */
 
 // ============================================
@@ -73,10 +77,11 @@ function doPost(e) {
       sheet.appendRow([
         'Zeitstempel', 'Symptom', 'Arzt', 'Arzt E-Mail', 'Arzt Telefon',
         'Datum', 'Zeit', 'Beschreibung', 'Sprache',
-        'Patient Name', 'Patient Geburtsjahr', 'Patient Telefon', 'Patient E-Mail'
+        'Patient Vorname', 'Patient Nachname', 'Patient Geburtsjahr',
+        'Patient Telefon', 'Patient E-Mail', 'Erinnerung (Stunden)'
       ]);
 
-      var headerRange = sheet.getRange(1, 1, 1, 13);
+      var headerRange = sheet.getRange(1, 1, 1, 15);
       headerRange.setFontWeight('bold');
       headerRange.setBackground('#14b8a6');
       headerRange.setFontColor('#ffffff');
@@ -90,6 +95,7 @@ function doPost(e) {
     // Append data
     var timestamp = new Date();
     var newRowNumber = sheet.getLastRow() + 1;
+
     sheet.appendRow([
       timestamp,
       data.symptom || '-',
@@ -100,10 +106,12 @@ function doPost(e) {
       data.time || '-',
       data.description || '-',
       data.language || 'de',
-      data.patientName || '-',
+      data.patientFirstname || '-',
+      data.patientLastname || '-',
       data.patientBirthYear || '-',
       data.patientPhone || '-',
-      data.patientEmail || '-'
+      data.patientEmail || '-',
+      data.reminderTime || '2'
     ]);
 
     // Set column widths (first time only)
@@ -111,16 +119,47 @@ function doPost(e) {
       sheet.setColumnWidth(1, 150); sheet.setColumnWidth(2, 200); sheet.setColumnWidth(3, 150);
       sheet.setColumnWidth(4, 200); sheet.setColumnWidth(5, 120); sheet.setColumnWidth(6, 100);
       sheet.setColumnWidth(7, 80); sheet.setColumnWidth(8, 250); sheet.setColumnWidth(9, 80);
-      sheet.setColumnWidth(10, 180); sheet.setColumnWidth(11, 120); sheet.setColumnWidth(12, 150);
-      sheet.setColumnWidth(13, 200);
+      sheet.setColumnWidth(10, 150); sheet.setColumnWidth(11, 150); sheet.setColumnWidth(12, 120);
+      sheet.setColumnWidth(13, 150); sheet.setColumnWidth(14, 200); sheet.setColumnWidth(15, 120);
     }
 
     // Format new row
-    var newRowRange = sheet.getRange(newRowNumber, 1, 1, 13);
+    var newRowRange = sheet.getRange(newRowNumber, 1, 1, 15);
     newRowRange.setBorder(true, true, true, true, true, true, '#000000', SpreadsheetApp.BorderStyle.SOLID);
     newRowRange.setWrapStrategy(SpreadsheetApp.WrapStrategy.CLIP);
     newRowRange.setVerticalAlignment('middle');
     newRowRange.setBackground(newRowNumber % 2 === 0 ? '#f9fafb' : '#ffffff');
+
+    // 👥 SYNC patient info to Patients sheet
+    syncPatientInfo(data);
+
+    // 📧 SEND IMMEDIATE CONFIRMATION EMAIL TO PATIENT
+    try {
+      var patientEmail = data.patientEmail || '';
+      Logger.log('📧 Attempting to send confirmation email to: ' + patientEmail);
+
+      if (patientEmail && patientEmail !== '-' && patientEmail !== '') {
+        Logger.log('✅ Valid email, sending confirmation...');
+        sendPatientConfirmation(
+          data.patientFirstname || '',
+          data.patientLastname || '',
+          patientEmail,
+          data.patientPhone || '',
+          data.patientBirthYear || '',
+          data.doctor || '',
+          data.date || '',
+          data.time || '',
+          data.symptom || '',
+          data.description || '',
+          data.reminderTime || '2'
+        );
+        Logger.log('✅ Confirmation email sent successfully to: ' + patientEmail);
+      } else {
+        Logger.log('⚠️ No valid patient email, skipping confirmation email');
+      }
+    } catch (confirmError) {
+      Logger.log('❌ Confirmation email error: ' + confirmError.toString());
+    }
 
     // 🔄 AUTO-SYNC with Calendar
     var date = data.date || '-';
@@ -138,9 +177,34 @@ function doPost(e) {
         normalizedDate = day + '.' + month;
       }
 
-      Logger.log('🔄 Auto-sync: ' + normalizedDate + ' ' + time + ' → ' + doctor);
       var syncSuccess = updateCalendarStatus(normalizedDate, time, doctor);
-      Logger.log(syncSuccess ? '✅ Auto-sync SUCCESS' : '⚠️ Auto-sync FAILED');
+
+      // Send email and create calendar event (since onEdit trigger won't fire for script updates)
+      if (syncSuccess) {
+        try {
+          // Get day name from date
+          var appointmentDate = new Date(new Date().getFullYear(), month - 1, day);
+          var dayNames = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
+          var dayName = dayNames[appointmentDate.getDay()];
+
+          // Get dentist email from Calendar sheet (Row 2) - SAME AS onEditTrigger
+          var calendarSheet = ss.getSheetByName('Calendar');
+          var dentistIndex = getDentistIndex(doctor);
+
+          if (dentistIndex !== -1) {
+            var emailColStart = 3 + (dentistIndex * 10);
+            var dentistEmailFromSheet = calendarSheet.getRange(2, emailColStart).getValue();
+
+            // Check if email is valid (not placeholder)
+            if (dentistEmailFromSheet && dentistEmailFromSheet !== 'E-Mail hier eingeben') {
+              sendDentistNotification(doctor, dentistEmailFromSheet, normalizedDate, dayName, time);
+              createGoogleCalendarEvent(dentistEmailFromSheet, doctor, normalizedDate, dayName, time);
+            }
+          }
+        } catch (notifyError) {
+          Logger.log('Notification error: ' + notifyError.toString());
+        }
+      }
     }
 
     return ContentService.createTextOutput(JSON.stringify({
@@ -317,8 +381,8 @@ function getAvailableTimeSlots(dateStr) {
     normalizedSearchDate = day + '.' + month;
   }
 
-  // Find the data row for this date (skip 2 header rows + separator rows)
-  for (var i = 2; i < data.length; i++) {
+  // Find the data row for this date (skip 4 header rows + separator rows)
+  for (var i = 4; i < data.length; i++) {
     var rowDate = data[i][0];
 
     // Skip separators and empty cells
@@ -339,11 +403,32 @@ function getAvailableTimeSlots(dateStr) {
       // Found the row!
       var dayName = data[i][1];
       var slots = {};
+      var dentistContacts = {}; // Store email and phone for each dentist
 
       // Read all 50 status columns (5 dentists × 10 slots)
       for (var d = 0; d < DENTISTS.length; d++) {
         var dentistName = DENTISTS[d];
         var dentistSlots = [];
+
+        // Get email and phone from header rows (row 2 and row 3)
+        // Row index: 1 = row 2 (0-based), 2 = row 3
+        var emailColIndex = getColumnIndex(d, 0); // First column of this dentist
+        var dentistEmail = data[1][emailColIndex - 1]; // Row 2 (0-based index 1)
+        var dentistPhone = data[2][emailColIndex - 1]; // Row 3 (0-based index 2)
+
+        // Clean up placeholder text
+        if (dentistEmail === 'E-Mail hier eingeben' || !dentistEmail) {
+          dentistEmail = '';
+        }
+        if (dentistPhone === 'Telefon hier eingeben' || !dentistPhone) {
+          dentistPhone = '';
+        }
+
+        // Store contact info for this dentist
+        dentistContacts[dentistName] = {
+          email: dentistEmail,
+          phone: dentistPhone
+        };
 
         for (var t = 0; t < TIME_SLOTS.length; t++) {
           var colIndex = getColumnIndex(d, t);
@@ -365,7 +450,8 @@ function getAvailableTimeSlots(dateStr) {
         status: 'success',
         date: dateStr,
         dayName: dayName,
-        slots: slots
+        slots: slots,
+        contacts: dentistContacts  // Add contact information
       };
     }
   }
@@ -408,8 +494,8 @@ function updateCalendarStatus(dateStr, timeStr, doctorName) {
       normalizedSearchDate = day + '.' + month;
     }
 
-    // Find the date row
-    for (var i = 2; i < data.length; i++) {
+    // Find the date row (skip 4 header rows)
+    for (var i = 4; i < data.length; i++) {
       var rowDate = data[i][0];
 
       if (!rowDate || rowDate.trim() === '' || rowDate.indexOf('━━━') !== -1) {
@@ -466,49 +552,92 @@ function initializeCalendarSheet() {
     }
   }
 
-  // Header Row 2: Time slots (repeated for each dentist)
+  // Header Row 2: Email (merged across 10 slots, empty for user input)
   var headerRow2 = ['', ''];
   for (var d = 0; d < DENTISTS.length; d++) {
     for (var t = 0; t < TIME_SLOTS.length; t++) {
-      headerRow2.push(TIME_SLOTS[t]);
+      headerRow2.push(''); // Empty for user to fill in email
+    }
+  }
+
+  // Header Row 3: Telefon (merged across 10 slots, empty for user input)
+  var headerRow3 = ['', ''];
+  for (var d = 0; d < DENTISTS.length; d++) {
+    for (var t = 0; t < TIME_SLOTS.length; t++) {
+      headerRow3.push(''); // Empty for user to fill in phone
+    }
+  }
+
+  // Header Row 4: Time slots (repeated for each dentist)
+  var headerRow4 = ['', ''];
+  for (var d = 0; d < DENTISTS.length; d++) {
+    for (var t = 0; t < TIME_SLOTS.length; t++) {
+      headerRow4.push(TIME_SLOTS[t]);
     }
   }
 
   // Write headers
   calendarSheet.getRange(1, 1, 1, 52).setValues([headerRow1]);
   calendarSheet.getRange(2, 1, 1, 52).setValues([headerRow2]);
+  calendarSheet.getRange(3, 1, 1, 52).setValues([headerRow3]);
+  calendarSheet.getRange(4, 1, 1, 52).setValues([headerRow4]);
 
-  // Format header row 1
-  var headerRange1 = calendarSheet.getRange(1, 1, 1, 52);
-  headerRange1.setFontWeight('bold');
-  headerRange1.setBackground('#14b8a6');
-  headerRange1.setFontColor('#000000'); // Changed from white to black for better visibility
-  headerRange1.setBorder(true, true, true, true, true, true, '#000000', SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
-  headerRange1.setHorizontalAlignment('center');
-  headerRange1.setVerticalAlignment('middle');
-  headerRange1.setFontSize(10);
-  calendarSheet.setRowHeight(1, 30);
+  // Format all 4 header rows
+  var allHeadersRange = calendarSheet.getRange(1, 1, 4, 52);
+  allHeadersRange.setFontWeight('bold');
+  allHeadersRange.setBackground('#14b8a6');
+  allHeadersRange.setFontColor('#000000');
+  allHeadersRange.setBorder(true, true, true, true, true, true, '#000000', SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
+  allHeadersRange.setHorizontalAlignment('center');
+  allHeadersRange.setVerticalAlignment('middle');
 
-  // Merge Date and Day cells vertically
-  calendarSheet.getRange(1, 1, 2, 1).mergeVertically();
-  calendarSheet.getRange(1, 2, 2, 1).mergeVertically();
+  // Set row heights
+  calendarSheet.setRowHeight(1, 30);  // Dentist name
+  calendarSheet.setRowHeight(2, 25);  // Email
+  calendarSheet.setRowHeight(3, 25);  // Telefon
+  calendarSheet.setRowHeight(4, 20);  // Time slots
 
-  // Merge dentist names horizontally (10 slots each)
+  // Merge Date and Day cells vertically across all 4 rows
+  calendarSheet.getRange(1, 1, 4, 1).mergeVertically(); // Datum
+  calendarSheet.getRange(1, 2, 4, 1).mergeVertically(); // Wochentag
+
+  // Merge dentist info (Name, Email, Telefon) and set colors
   for (var d = 0; d < DENTISTS.length; d++) {
     var startCol = 3 + (d * 10);
-    calendarSheet.getRange(1, startCol, 1, 10).merge();
-    calendarSheet.getRange(1, startCol, 2, 10).setBackground(DENTIST_COLORS[d]);
+
+    // Merge dentist name horizontally (row 1)
+    var nameCell = calendarSheet.getRange(1, startCol, 1, 10);
+    nameCell.merge();
+    nameCell.setHorizontalAlignment('center');
+    nameCell.setVerticalAlignment('middle');
+
+    // Merge email horizontally (row 2)
+    var emailCell = calendarSheet.getRange(2, startCol, 1, 10);
+    emailCell.merge();
+    emailCell.setValue('E-Mail hier eingeben'); // Placeholder text
+    emailCell.setHorizontalAlignment('center');
+    emailCell.setVerticalAlignment('middle');
+    emailCell.setFontColor('#9ca3af'); // Gray placeholder color
+    emailCell.setFontStyle('italic'); // Italic style for placeholder
+
+    // Merge telefon horizontally (row 3)
+    var telefonCell = calendarSheet.getRange(3, startCol, 1, 10);
+    telefonCell.merge();
+    telefonCell.setValue('Telefon hier eingeben'); // Placeholder text
+    telefonCell.setHorizontalAlignment('center');
+    telefonCell.setVerticalAlignment('middle');
+    telefonCell.setFontColor('#9ca3af'); // Gray placeholder color
+    telefonCell.setFontStyle('italic'); // Italic style for placeholder
+
+    // Set dentist color for all 4 rows
+    calendarSheet.getRange(1, startCol, 4, 10).setBackground(DENTIST_COLORS[d]);
   }
 
-  // Format header row 2
-  var headerRange2 = calendarSheet.getRange(2, 1, 1, 52);
-  headerRange2.setFontWeight('bold');
-  headerRange2.setFontColor('#000000');
-  headerRange2.setBorder(true, true, true, true, true, true, '#000000', SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
-  headerRange2.setHorizontalAlignment('center');
-  headerRange2.setVerticalAlignment('middle');
-  headerRange2.setFontSize(8);
-  calendarSheet.setRowHeight(2, 20);
+  // Font sizes
+  calendarSheet.getRange(1, 1, 1, 52).setFontSize(10); // Row 1: Dentist names
+  calendarSheet.getRange(2, 1, 1, 52).setFontSize(8);  // Row 2: Email
+  calendarSheet.getRange(3, 1, 1, 52).setFontSize(8);  // Row 3: Telefon
+  calendarSheet.getRange(4, 1, 1, 52).setFontSize(8);  // Row 4: Time slots
 
   // Set column widths
   calendarSheet.setColumnWidth(1, 100);
@@ -547,11 +676,11 @@ function initializeCalendarSheet() {
     }
   }
 
-  // Freeze first 2 rows (headers) and first 2 columns (Datum, Wochentag)
-  calendarSheet.setFrozenRows(2);
+  // Freeze first 4 rows (headers) and first 2 columns (Datum, Wochentag)
+  calendarSheet.setFrozenRows(4);
   calendarSheet.setFrozenColumns(2);
 
-  Logger.log('✅ Calendar initialized (new structure) with 8 weeks');
+  Logger.log('✅ Calendar initialized (new structure V3 with contact info) with 8 weeks');
   return 'Calendar created with 8 weeks!';
 }
 
@@ -571,7 +700,7 @@ function addMultipleWeeks(numWeeks) {
   var data = calendarSheet.getDataRange().getDisplayValues();
   var lastDate = null;
 
-  for (var i = data.length - 1; i >= 2; i--) {
+  for (var i = data.length - 1; i >= 4; i--) {
     var dateStr = data[i][0];
     if (dateStr && dateStr.trim() !== '' && dateStr.indexOf('━━━') === -1) {
       // Parse D.M format
@@ -676,7 +805,7 @@ function addWeekToCalendar(sheet, startDate, weekNumber) {
   separatorRange.setFontSize(11);
   sheet.setRowHeight(separatorRow, 30);
 
-  // Set alignment: left for merged cell (Datum+Wochentag), center for rest
+  // Set alignment: right for merged cell (Datum+Wochentag), center for rest
   sheet.getRange(separatorRow, 1, 1, 2).setHorizontalAlignment('right');
   sheet.getRange(separatorRow, 3, 1, 50).setHorizontalAlignment('center');
 
@@ -698,12 +827,28 @@ function addWeekToCalendar(sheet, startDate, weekNumber) {
     var currentMonth = date.getMonth() + 1;
     var dateStr = day + '.' + currentMonth; // D.M format
     var dayName = dayNames[date.getDay()];
+    var dayOfWeek = date.getDay(); // 0=Sunday, 6=Saturday
 
-    // Build row: [Date, Day, 50x 'available']
+    // Build row: [Date, Day, 50x status]
+    // Weekend (Saturday/Sunday) = 'hidden', Weekdays = 'available'
+    // Seitschenko-Dinh (dentist index 0) = 'hidden' (fully booked)
     var dataRow = [dateStr, dayName];
+    var isWeekend = (dayOfWeek === 0 || dayOfWeek === 6); // Sunday or Saturday
+
     for (var d = 0; d < DENTISTS.length; d++) {
       for (var t = 0; t < TIME_SLOTS.length; t++) {
-        dataRow.push('available');
+        var status;
+        if (isWeekend) {
+          // Weekend: all dentists hidden
+          status = 'hidden';
+        } else if (d === 0) {
+          // Seitschenko-Dinh (index 0): fully booked, all slots hidden
+          status = 'hidden';
+        } else {
+          // Other dentists on weekdays: available
+          status = 'available';
+        }
+        dataRow.push(status);
       }
     }
 
@@ -718,10 +863,17 @@ function addWeekToCalendar(sheet, startDate, weekNumber) {
     rowRange.setFontSize(9);
     sheet.setRowHeight(rowIndex, 30);
 
-    // Format Date/Day columns
+    // Format Date/Day columns - different color for weekends
     var dateDayRange = sheet.getRange(rowIndex, 1, 1, 2);
     dateDayRange.setFontWeight('bold');
-    dateDayRange.setBackground('#f0f0f0');
+    if (isWeekend) {
+      // Weekend: light red/pink background
+      dateDayRange.setBackground('#fecaca'); // light red
+      dateDayRange.setFontColor('#991b1b'); // dark red text
+    } else {
+      // Weekday: normal gray background
+      dateDayRange.setBackground('#f0f0f0');
+    }
 
     // Apply dentist colors
     for (var d = 0; d < DENTISTS.length; d++) {
@@ -751,7 +903,8 @@ function addWeekToCalendar(sheet, startDate, weekNumber) {
 // ============================================
 
 function applyCalendarConditionalFormatting(sheet, numRows) {
-  var timeSlotRange = sheet.getRange(3, 3, numRows, 50);
+  // Apply conditional formatting to all time slot columns (rows start from 5, after 4 header rows)
+  var timeSlotRange = sheet.getRange(5, 3, numRows, 50);
 
   sheet.setConditionalFormatRules([]);
 
@@ -800,13 +953,13 @@ function addNextWeek() {
     }
 
     var lastRow = calendarSheet.getLastRow();
-    if (lastRow < 2) {
+    if (lastRow < 4) {
       throw new Error('No data in calendar');
     }
 
     // Find last date row
     var lastDateStr = null;
-    for (var row = lastRow; row >= 2; row--) {
+    for (var row = lastRow; row >= 4; row--) {
       // Use getDisplayValue() to get formatted string instead of Date object
       var cellValue = calendarSheet.getRange(row, 1).getDisplayValue();
 
@@ -891,6 +1044,7 @@ function onOpen() {
     .addItem('➕ Add Next Week', 'addNextWeek')
     .addSeparator()
     .addItem('📋 Create New_Appointments', 'initializeNewAppointmentsSheet')
+    .addItem('👥 Create Patients Sheet', 'initializePatientsSheet')
     .addSeparator()
     .addItem('🔄 Full Sync', 'syncCalendarWithAppointments')
     .addToUi();
@@ -1004,8 +1158,8 @@ function syncCalendarWithAppointments() {
     var updatedCount = 0;
     var calendarData = calendarSheet.getDataRange().getDisplayValues();
 
-    // Loop through calendar rows
-    for (var i = 2; i < calendarData.length; i++) {
+    // Loop through calendar rows (skip 4 header rows)
+    for (var i = 4; i < calendarData.length; i++) {
       var rowDate = calendarData[i][0];
 
       if (!rowDate || rowDate.trim() === '' || rowDate.indexOf('━━━') !== -1) {
@@ -1073,5 +1227,606 @@ function syncCalendarWithAppointments() {
       SpreadsheetApp.getUi().alert('❌ Error: ' + error.toString());
     } catch (e) {}
     throw error;
+  }
+}
+
+// ============================================
+// onEdit trigger - Auto-format & sync
+// IMPORTANT: This must be installed as an INSTALLABLE TRIGGER, not a simple trigger
+// ============================================
+
+function onEditTrigger(e) {
+  try {
+    var sheet = e.source.getActiveSheet();
+
+    // Only apply to Calendar sheet
+    if (sheet.getName() !== 'Calendar') {
+      return;
+    }
+
+    var range = e.range;
+    var row = range.getRow();
+    var col = range.getColumn();
+
+    // Handle email/phone placeholder formatting (rows 2-3)
+    if (row === 2 || row === 3) {
+      handlePlaceholderFormatting(range, row, col);
+      return;
+    }
+
+    // Handle appointment status changes (data rows, row >= 5)
+    if (row >= 5 && col >= 3) {
+      handleAppointmentStatusChange(sheet, range, row, col);
+    }
+
+  } catch (error) {
+    Logger.log('onEdit error: ' + error.toString());
+  }
+}
+
+// ============================================
+// Handle placeholder formatting for Email/Telefon
+// ============================================
+
+function handlePlaceholderFormatting(range, row, col) {
+  // Check if edit is in dentist columns (col 3 onwards)
+  if (col < 3) {
+    return;
+  }
+
+  var value = range.getValue();
+
+  // If cell is not empty and not placeholder text
+  if (value && value !== 'E-Mail hier eingeben' && value !== 'Telefon hier eingeben') {
+    // Format as normal text (black, not italic)
+    range.setFontColor('#000000');
+    range.setFontStyle('normal');
+    range.setFontWeight('bold');
+  } else if (value === '' || value === 'E-Mail hier eingeben' || value === 'Telefon hier eingeben') {
+    // If empty or placeholder, restore placeholder formatting
+    if (row === 2) {
+      range.setValue('E-Mail hier eingeben');
+    } else if (row === 3) {
+      range.setValue('Telefon hier eingeben');
+    }
+    range.setFontColor('#9ca3af');
+    range.setFontStyle('italic');
+    range.setFontWeight('bold');
+  }
+}
+
+// ============================================
+// Handle appointment status change
+// ============================================
+
+function handleAppointmentStatusChange(sheet, range, row, col) {
+  var newValue = range.getValue();
+
+  // Only trigger on 'booked' status
+  if (newValue !== 'booked') {
+    return;
+  }
+
+  try {
+    // Get date and day from columns A and B
+    var dateValue = sheet.getRange(row, 1).getValue();
+    var dayName = sheet.getRange(row, 2).getValue();
+
+    // Convert date to string format (D.M)
+    var dateStr;
+    if (dateValue instanceof Date) {
+      // If it's a Date object, format it to "D.M"
+      dateStr = dateValue.getDate() + '.' + (dateValue.getMonth() + 1);
+    } else {
+      // If it's already a string, use it directly
+      dateStr = dateValue.toString();
+    }
+
+    // Skip separator rows
+    if (!dateStr || dateStr.indexOf('Woche') !== -1) {
+      return;
+    }
+
+    // Determine which dentist column this is
+    var dentistIndex = Math.floor((col - 3) / 10);
+    var timeSlotIndex = (col - 3) % 10;
+
+    if (dentistIndex < 0 || dentistIndex >= DENTISTS.length) {
+      return;
+    }
+
+    if (timeSlotIndex < 0 || timeSlotIndex >= TIME_SLOTS.length) {
+      return;
+    }
+
+    var dentistName = DENTISTS[dentistIndex];
+    var timeSlot = TIME_SLOTS[timeSlotIndex];
+
+    // Get dentist email from row 2
+    var emailColStart = 3 + (dentistIndex * 10);
+    var dentistEmail = sheet.getRange(2, emailColStart).getValue();
+
+    Logger.log('📋 Booking details: ' + dentistName + ' | ' + dentistEmail + ' | ' + dateStr + ' ' + timeSlot);
+
+    // Check if email is valid (not placeholder)
+    if (!dentistEmail || dentistEmail === 'E-Mail hier eingeben') {
+      Logger.log('⚠️ No valid email for ' + dentistName + ' - Email not configured');
+      return;
+    }
+
+    Logger.log('📧 Sending email to: ' + dentistEmail);
+
+    // Send email notification
+    sendDentistNotification(dentistName, dentistEmail, dateStr, dayName, timeSlot);
+
+    Logger.log('📅 Creating calendar event...');
+
+    // Create Google Calendar event
+    createGoogleCalendarEvent(dentistEmail, dentistName, dateStr, dayName, timeSlot);
+
+    Logger.log('✅ Notification sent and calendar synced for ' + dentistName);
+
+  } catch (error) {
+    Logger.log('❌ Error handling appointment change: ' + error.toString());
+  }
+}
+
+// ============================================
+// Send email notification to dentist
+// ============================================
+
+function sendDentistNotification(dentistName, dentistEmail, dateStr, dayName, timeSlot) {
+  try {
+    var subject = 'Neue Terminbuchung - ' + dateStr + ' um ' + timeSlot;
+
+    var body = 'Guten Tag ' + dentistName + ',\n\n' +
+               'Sie haben einen neuen Termin:\n\n' +
+               'Datum: ' + dayName + ', ' + dateStr + '\n' +
+               'Uhrzeit: ' + timeSlot + '\n\n' +
+               'Dieser Termin wurde automatisch in Ihrem Google Kalender eingetragen.\n\n' +
+               'Mit freundlichen Grüßen,\n' +
+               'Ihr Praxis-Team';
+
+    MailApp.sendEmail({
+      to: dentistEmail,
+      subject: subject,
+      body: body
+    });
+
+    Logger.log('📧 Email sent to: ' + dentistEmail);
+
+  } catch (error) {
+    Logger.log('❌ Email error: ' + error.toString());
+  }
+}
+
+// ============================================
+// Create Google Calendar event
+// ============================================
+
+function createGoogleCalendarEvent(dentistEmail, dentistName, dateStr, dayName, timeSlot) {
+  try {
+    // Parse date (format: "D.M")
+    var parts = dateStr.toString().split('.');
+    if (parts.length < 2) {
+      Logger.log('⚠️ Invalid date format: ' + dateStr);
+      return;
+    }
+
+    var day = parseInt(parts[0], 10);
+    var month = parseInt(parts[1], 10);
+    var year = new Date().getFullYear();
+
+    // Parse time (format: "HH:00")
+    var timeParts = timeSlot.split(':');
+    var hour = parseInt(timeParts[0], 10);
+
+    // Create start and end times (1 hour appointment)
+    var startTime = new Date(year, month - 1, day, hour, 0, 0);
+    var endTime = new Date(year, month - 1, day, hour + 1, 0, 0);
+
+    // Create event title
+    var eventTitle = 'Patient Termin - ' + timeSlot;
+
+    // Get the dentist's calendar using their email as Calendar ID
+    var calendar;
+    try {
+      calendar = CalendarApp.getCalendarById(dentistEmail);
+
+      // If calendar not found or not accessible, fall back to default
+      if (!calendar) {
+        Logger.log('⚠️ Calendar not found for ' + dentistEmail + ', using default calendar');
+        calendar = CalendarApp.getDefaultCalendar();
+      }
+    } catch (calError) {
+      Logger.log('⚠️ Cannot access calendar ' + dentistEmail + ': ' + calError.toString());
+      Logger.log('Using default calendar as fallback');
+      calendar = CalendarApp.getDefaultCalendar();
+    }
+
+    // Create the event
+    var event = calendar.createEvent(eventTitle, startTime, endTime, {
+      description: 'Automatisch erstellt für ' + dentistName + '\nDatum: ' + dayName + ', ' + dateStr,
+      location: 'Zahnarztpraxis'
+    });
+
+    Logger.log('📅 Calendar event created in ' + (calendar.getId() === CalendarApp.getDefaultCalendar().getId() ? 'default calendar' : dentistEmail) + ': ' + event.getId());
+
+  } catch (error) {
+    Logger.log('❌ Calendar error: ' + error.toString());
+  }
+}
+
+// ============================================
+// Initialize Patients sheet
+// ============================================
+
+function initializePatientsSheet() {
+  try {
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var sheet = ss.getSheetByName('Patients');
+
+    if (sheet) {
+      Logger.log('⚠️ Patients sheet already exists');
+      return 'Patients sheet already exists';
+    }
+
+    sheet = ss.insertSheet('Patients');
+    sheet.appendRow([
+      'Patient ID', 'Vorname', 'Nachname', 'Geburtsjahr', 'Email', 'Telefon',
+      'Adresse', 'Versicherung', 'Erinnerung (Stunden)', 'Notizen', 'Erstellt am'
+    ]);
+
+    var headerRange = sheet.getRange(1, 1, 1, 11);
+    headerRange.setFontWeight('bold');
+    headerRange.setBackground('#14b8a6');
+    headerRange.setFontColor('#ffffff');
+    headerRange.setBorder(true, true, true, true, true, true, '#000000', SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
+    headerRange.setHorizontalAlignment('center');
+    headerRange.setVerticalAlignment('middle');
+    sheet.setRowHeight(1, 40);
+
+    // Set column widths
+    sheet.setColumnWidth(1, 120);  // Patient ID
+    sheet.setColumnWidth(2, 150);  // Vorname
+    sheet.setColumnWidth(3, 150);  // Nachname
+    sheet.setColumnWidth(4, 100);  // Geburtsjahr
+    sheet.setColumnWidth(5, 200);  // Email
+    sheet.setColumnWidth(6, 120);  // Telefon
+    sheet.setColumnWidth(7, 250);  // Adresse
+    sheet.setColumnWidth(8, 150);  // Versicherung
+    sheet.setColumnWidth(9, 120);  // Erinnerung (Stunden)
+    sheet.setColumnWidth(10, 130); // Anzahl Erinnerungen
+    sheet.setColumnWidth(11, 300); // Notizen
+    sheet.setColumnWidth(12, 150); // Erstellt am
+
+    sheet.setFrozenRows(1);
+
+    Logger.log('✅ Patients sheet created');
+    return 'SUCCESS: Patients sheet created';
+
+  } catch (error) {
+    Logger.log('❌ Error: ' + error.toString());
+    return 'ERROR: ' + error.toString();
+  }
+}
+
+// ============================================
+// Sync patient info to Patients sheet
+// ============================================
+
+function syncPatientInfo(patientData) {
+  try {
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var patientsSheet = ss.getSheetByName('Patients');
+
+    // Create Patients sheet if it doesn't exist
+    if (!patientsSheet) {
+      Logger.log('📋 Creating Patients sheet...');
+      initializePatientsSheet();
+      patientsSheet = ss.getSheetByName('Patients');
+    }
+
+    var patientFirstname = patientData.patientFirstname || '';
+    var patientLastname = patientData.patientLastname || '';
+    var patientEmail = patientData.patientEmail || '';
+    var patientPhone = patientData.patientPhone || '';
+    var patientBirthYear = patientData.patientBirthYear || '';
+    var reminderTime = patientData.reminderTime || '2';
+
+    // Skip if essential info is missing
+    if (!patientFirstname || patientFirstname === '-' || !patientLastname || patientLastname === '-') {
+      Logger.log('⚠️ No patient name, skipping sync');
+      return;
+    }
+
+    // Generate Patient ID: FirstnameLastname + PhoneDigits (e.g., TIEN5643)
+    // Remove Vietnamese accents and special characters
+    function removeAccents(str) {
+      var accents = 'ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ';
+      var noAccents = 'AAAAEEEIIOOOOUUADIUOaaaaeeeiioooouuadiuoUAAAAAAAAAAAAAAAAAEEEEEuaaaaaaaaaaaaaaaaaaEEIIOOOOOOOOOOOOUUUUeeiioooooooooooouuuuUUUYYYYYuuuyyyy';
+      var newStr = '';
+      for (var i = 0; i < str.length; i++) {
+        var pos = accents.indexOf(str[i]);
+        newStr += (pos !== -1) ? noAccents[pos] : str[i];
+      }
+      return newStr.replace(/[^a-zA-Z0-9]/g, ''); // Remove all non-alphanumeric
+    }
+
+    var phoneDigits = patientPhone.replace(/[^0-9]/g, '');
+    var lastSixDigits = phoneDigits.slice(-6);
+    var cleanFirstname = removeAccents(patientFirstname);
+    // Only use firstname (not lastname) + last 6 digits of phone
+    var patientId = cleanFirstname + lastSixDigits;
+    patientId = patientId.toUpperCase();
+
+    // Check if patient already exists (by email or Patient ID)
+    var data = patientsSheet.getDataRange().getDisplayValues();
+    var existingRow = -1;
+
+    for (var i = 1; i < data.length; i++) {
+      var rowId = data[i][0] ? data[i][0].trim() : '';
+      var rowEmail = data[i][4] ? data[i][4].trim() : '';
+
+      // Match by Patient ID (primary) or email (secondary)
+      if ((rowId === patientId) || (patientEmail && patientEmail !== '-' && rowEmail === patientEmail)) {
+        existingRow = i + 1; // Convert to 1-based row index
+        break;
+      }
+    }
+
+    if (existingRow !== -1) {
+      // Patient exists - update existing record
+      Logger.log('🔄 Updating existing patient: ' + patientFirstname + ' ' + patientLastname + ' (row ' + existingRow + ')');
+
+      // Update fields if new data is available (don't overwrite with '-')
+      if (patientFirstname && patientFirstname !== '-') {
+        patientsSheet.getRange(existingRow, 2).setValue(patientFirstname); // Vorname
+      }
+      if (patientLastname && patientLastname !== '-') {
+        patientsSheet.getRange(existingRow, 3).setValue(patientLastname); // Nachname
+      }
+      if (patientBirthYear && patientBirthYear !== '-') {
+        patientsSheet.getRange(existingRow, 4).setValue(patientBirthYear); // Geburtsjahr
+      }
+      if (patientEmail && patientEmail !== '-') {
+        patientsSheet.getRange(existingRow, 5).setValue(patientEmail); // Email
+      }
+      if (patientPhone && patientPhone !== '-') {
+        patientsSheet.getRange(existingRow, 6).setValue(patientPhone); // Telefon
+      }
+      if (reminderTime && reminderTime !== '-') {
+        patientsSheet.getRange(existingRow, 9).setValue(reminderTime); // Erinnerung (Stunden)
+      }
+
+      // Update timestamp
+      patientsSheet.getRange(existingRow, 11).setValue(new Date()); // Erstellt am (last updated)
+
+    } else {
+      // New patient - add new row
+      Logger.log('➕ Adding new patient: ' + patientFirstname + ' ' + patientLastname);
+
+      var timestamp = new Date();
+
+      var newRow = [
+        patientId,
+        patientFirstname,
+        patientLastname,
+        patientBirthYear === '-' ? '' : patientBirthYear,
+        patientEmail === '-' ? '' : patientEmail,
+        patientPhone === '-' ? '' : patientPhone,
+        '', // Adresse (empty for now)
+        '', // Versicherung (empty for now)
+        reminderTime,
+        '', // Notizen (empty for now)
+        timestamp
+      ];
+
+      var newRowNumber = patientsSheet.getLastRow() + 1;
+      patientsSheet.appendRow(newRow);
+
+      // Format new row
+      var newRowRange = patientsSheet.getRange(newRowNumber, 1, 1, 12);
+      newRowRange.setBorder(true, true, true, true, true, true, '#000000', SpreadsheetApp.BorderStyle.SOLID);
+      newRowRange.setVerticalAlignment('middle');
+      newRowRange.setBackground(newRowNumber % 2 === 0 ? '#f9fafb' : '#ffffff');
+
+      Logger.log('✅ Patient added: ' + patientId + ' - ' + patientFirstname + ' ' + patientLastname);
+    }
+
+  } catch (error) {
+    Logger.log('❌ Error syncing patient: ' + error.toString());
+  }
+}
+
+// ============================================
+// Check and send appointment reminders (run every hour)
+// ============================================
+
+function checkAndSendReminders() {
+  try {
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var appointmentsSheet = ss.getSheetByName('New_Appointments');
+
+    if (!appointmentsSheet) {
+      Logger.log('⚠️ New_Appointments sheet not found');
+      return;
+    }
+
+    var data = appointmentsSheet.getDataRange().getDisplayValues();
+    var now = new Date();
+
+    var remindersSent = 0;
+
+    // Skip header row
+    for (var i = 1; i < data.length; i++) {
+      var row = data[i];
+
+      // Columns: [Zeitstempel, Symptom, Arzt, Arzt E-Mail, Arzt Telefon, Datum, Zeit, Beschreibung, Sprache, Patient Vorname, Patient Nachname, Patient Geburtsjahr, Patient Telefon, Patient E-Mail, Erinnerung (Stunden)]
+      var dateStr = row[5] ? row[5].trim() : '';
+      var timeStr = row[6] ? row[6].trim() : '';
+      var patientFirstname = row[9] ? row[9].trim() : '';
+      var patientLastname = row[10] ? row[10].trim() : '';
+      var patientEmail = row[13] ? row[13].trim() : '';
+      var doctorName = row[2] ? row[2].trim() : '';
+      var reminderTime = row[14] ? parseFloat(row[14]) : 2; // Hours before appointment
+
+      var patientName = patientFirstname + ' ' + patientLastname;
+
+      if (!dateStr || !timeStr || !patientEmail || patientEmail === '-') {
+        continue;
+      }
+
+      // Parse appointment date and time
+      var dateParts = dateStr.split('.');
+      if (dateParts.length < 2) continue;
+
+      var day = parseInt(dateParts[0], 10);
+      var month = parseInt(dateParts[1], 10);
+      var year = dateParts.length >= 3 ? parseInt(dateParts[2], 10) : new Date().getFullYear();
+
+      var timeParts = timeStr.split(':');
+      if (timeParts.length < 2) continue;
+
+      var hour = parseInt(timeParts[0], 10);
+      var minute = parseInt(timeParts[1], 10);
+
+      var appointmentTime = new Date(year, month - 1, day, hour, minute, 0);
+
+      // Calculate time until appointment
+      var timeDiff = appointmentTime.getTime() - now.getTime();
+      var hoursUntil = timeDiff / (1000 * 60 * 60);
+
+      // Send single reminder based on patient's reminder time setting
+      var shouldSendReminder = false;
+      var reminderMessage = '';
+
+      // Send reminder within +/- 0.5 hour window of reminderTime
+      if (hoursUntil >= (reminderTime - 0.5) && hoursUntil <= (reminderTime + 0.5)) {
+        shouldSendReminder = true;
+
+        // Format reminder message based on time
+        if (reminderTime < 1) {
+          reminderMessage = (reminderTime * 60) + ' Minuten';
+        } else if (reminderTime === 1) {
+          reminderMessage = '1 Stunde';
+        } else if (reminderTime === 24) {
+          reminderMessage = '1 Tag';
+        } else {
+          reminderMessage = reminderTime + ' Stunden';
+        }
+      }
+
+      if (shouldSendReminder) {
+        sendPatientReminder(patientName, patientEmail, doctorName, dateStr, timeStr, reminderMessage);
+        remindersSent++;
+        Logger.log('✅ Reminder sent to: ' + patientEmail + ' for appointment at ' + dateStr + ' ' + timeStr + ' (' + reminderMessage + ' before)');
+      }
+    }
+
+    Logger.log('📧 Sent ' + remindersSent + ' appointment reminders');
+    return 'Sent ' + remindersSent + ' reminders';
+
+  } catch (error) {
+    Logger.log('❌ Error checking reminders: ' + error.toString());
+    return 'ERROR: ' + error.toString();
+  }
+}
+
+// ============================================
+// Send immediate confirmation email to patient
+// ============================================
+
+function sendPatientConfirmation(patientFirstname, patientLastname, patientEmail, patientPhone, patientBirthYear, doctorName, dateStr, timeStr, symptom, description, reminderTime) {
+  try {
+    Logger.log('📧 sendPatientConfirmation called for: ' + patientEmail);
+    var patientName = patientFirstname + ' ' + patientLastname;
+    var subject = 'Terminbestätigung - Zahnarztpraxis';
+    Logger.log('📧 Preparing email with subject: ' + subject);
+
+    // Convert reminder time to readable format
+    var reminderText = '';
+    if (reminderTime == '0.5') reminderText = '30 Minuten';
+    else if (reminderTime == '1') reminderText = '1 Stunde';
+    else if (reminderTime == '2') reminderText = '2 Stunden';
+    else if (reminderTime == '3') reminderText = '3 Stunden';
+    else if (reminderTime == '6') reminderText = '6 Stunden';
+    else if (reminderTime == '12') reminderText = '12 Stunden';
+    else if (reminderTime == '24') reminderText = '1 Tag';
+    else reminderText = reminderTime + ' Stunden';
+
+    var body = 'Sehr geehrte/r ' + patientName + ',\n\n' +
+               'vielen Dank für Ihre Terminanfrage. Wir haben folgende Daten erhalten:\n\n' +
+               '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n' +
+               'PATIENTENDATEN:\n' +
+               '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n' +
+               'Name: ' + patientName + '\n' +
+               'Geburtsjahr: ' + patientBirthYear + '\n' +
+               'Telefon: ' + patientPhone + '\n' +
+               'E-Mail: ' + patientEmail + '\n\n' +
+               '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n' +
+               'TERMINDETAILS:\n' +
+               '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n' +
+               'Arzt: ' + doctorName + '\n' +
+               'Datum: ' + dateStr + '\n' +
+               'Uhrzeit: ' + timeStr + '\n' +
+               'Grund: ' + symptom + '\n';
+
+    if (description && description !== '-') {
+      body += 'Beschreibung: ' + description + '\n';
+    }
+
+    body += '\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n' +
+            'ERINNERUNG:\n' +
+            '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n' +
+            'Sie erhalten eine Erinnerung ' + reminderText + ' vor Ihrem Termin per E-Mail.\n\n' +
+            'Falls Sie Fragen haben oder den Termin ändern möchten, kontaktieren Sie uns bitte.\n\n' +
+            'Mit freundlichen Grüßen,\n' +
+            'Ihr Praxis-Team\n\n' +
+            '📞 Telefon: 0202 660828\n' +
+            '📧 E-Mail: info@zahnarztpraxis.de';
+
+    Logger.log('📧 Calling MailApp.sendEmail to: ' + patientEmail);
+    MailApp.sendEmail({
+      to: patientEmail,
+      subject: subject,
+      body: body
+    });
+
+    Logger.log('✅ Confirmation email sent successfully to: ' + patientEmail);
+
+  } catch (error) {
+    Logger.log('❌ Confirmation email error: ' + error.toString());
+  }
+}
+
+// ============================================
+// Send appointment reminder to patient (SHORT VERSION)
+// ============================================
+
+function sendPatientReminder(patientName, patientEmail, doctorName, dateStr, timeStr, reminderMessage) {
+  try {
+    var subject = '⏰ Terminerinnerung - ' + dateStr + ' um ' + timeStr;
+
+    var body = 'Guten Tag ' + patientName + ',\n\n' +
+               '⏰ TERMINERINNERUNG\n\n' +
+               '📅 Datum: ' + dateStr + '\n' +
+               '🕐 Uhrzeit: ' + timeStr + '\n' +
+               '👨‍⚕️ Arzt: ' + doctorName + '\n\n' +
+               'Ihr Termin ist in ca. ' + reminderMessage + '.\n' +
+               'Bitte kommen Sie pünktlich.\n\n' +
+               'Mit freundlichen Grüßen,\n' +
+               'Ihr Praxis-Team';
+
+    MailApp.sendEmail({
+      to: patientEmail,
+      subject: subject,
+      body: body
+    });
+
+    Logger.log('📧 Reminder sent to: ' + patientEmail);
+
+  } catch (error) {
+    Logger.log('❌ Reminder email error: ' + error.toString());
   }
 }

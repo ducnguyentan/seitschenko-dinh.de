@@ -872,7 +872,16 @@
 
             <!-- Dropdown Menu -->
             <div id="doctor-dropdown-menu" class="doctor-dropdown-menu hidden absolute top-full left-0 right-0 md:min-w-96 mt-2 bg-white rounded-lg shadow-xl border-2 border-gray-200 z-50 max-h-80 overflow-y-auto">
-              <!-- Doctor Option 1 -->
+              <!-- Doctor Option 1: Seitschenko-Dinh -->
+              <div class="doctor-option flex items-center space-x-3 px-4 py-3 hover:bg-teal-50 cursor-pointer transition-colors border-b border-gray-100" onclick="selectDoctorFromDropdown('seitschenko-dinh', 'Zahnärztin Frau Seitschenko-Dinh', 'Loher Str. 40, 42283 Wuppertal', '../assets/img/Vera Seitschenko-Dinh.jpg')">
+                <img src="../assets/img/Vera Seitschenko-Dinh.jpg" alt="Frau Seitschenko-Dinh" class="w-16 h-16 rounded-full object-cover flex-shrink-0" style="object-position: center 15%">
+                <div class="flex-1">
+                  <p class="font-semibold text-gray-800" data-translate="doctors.seitschenko.name">Zahnärztin Frau Seitschenko-Dinh</p>
+                  <p class="text-xs text-teal-600" data-translate="doctors.seitschenko.location">Loher Str. 40, 42283 Wuppertal</p>
+                </div>
+              </div>
+
+              <!-- Doctor Option 2: Kukadiya -->
               <div class="doctor-option flex items-center space-x-3 px-4 py-3 hover:bg-teal-50 cursor-pointer transition-colors border-b border-gray-100" onclick="selectDoctorFromDropdown('kukadiya', 'Zahnärztin Dr. Kukadiya', 'Loher Str. 40, 42283 Wuppertal', '../assets/img/Kukadiya.jpg')">
                 <img src="../assets/img/Kukadiya.jpg" alt="Dr. Kukadiya" class="w-16 h-16 rounded-full object-cover flex-shrink-0" style="object-position: center 15%">
                 <div class="flex-1">
@@ -881,7 +890,7 @@
                 </div>
               </div>
 
-              <!-- Doctor Option 2 -->
+              <!-- Doctor Option 3: Ikikardes -->
               <div class="doctor-option flex items-center space-x-3 px-4 py-3 hover:bg-teal-50 cursor-pointer transition-colors border-b border-gray-100" onclick="selectDoctorFromDropdown('ikikardes', 'Zahnarzt Herr IKIKARDES', 'Schwarzbach 2, 42277 Wuppertal', '../assets/img/ikkardes.jpeg')">
                 <img src="../assets/img/ikkardes.jpeg" alt="Herr IKIKARDES" class="w-16 h-16 rounded-full object-cover flex-shrink-0" style="object-position: center 15%">
                 <div class="flex-1">
@@ -890,7 +899,7 @@
                 </div>
               </div>
 
-              <!-- Doctor Option 3 -->
+              <!-- Doctor Option 4: Taifour -->
               <div class="doctor-option flex items-center space-x-3 px-4 py-3 hover:bg-teal-50 cursor-pointer transition-colors border-b border-gray-100" onclick="selectDoctorFromDropdown('taifour', 'Zahnarzt Herr TAIFOUR', 'Schwarzbach 2, 42277 Wuppertal', '../assets/img/taifour.jpeg')">
                 <img src="../assets/img/taifour.jpeg" alt="Herr TAIFOUR" class="w-16 h-16 rounded-full object-cover flex-shrink-0" style="object-position: center 15%">
                 <div class="flex-1">
@@ -899,7 +908,7 @@
                 </div>
               </div>
 
-              <!-- Doctor Option 4 -->
+              <!-- Doctor Option 5: Nikolaou -->
               <div class="doctor-option flex items-center space-x-3 px-4 py-3 hover:bg-teal-50 cursor-pointer transition-colors" onclick="selectDoctorFromDropdown('nikolaou', 'Zahnarzt Herr NIKOLAOU', 'Loher Str. 40, 42283 Wuppertal', '../assets/img/khonghinh.jpg')">
                 <img src="../assets/img/khonghinh.jpg" alt="Herr NIKOLAOU" class="w-16 h-16 rounded-full object-cover flex-shrink-0" style="object-position: center 15%">
                 <div class="flex-1">
@@ -1053,17 +1062,32 @@
           </h4>
 
           <div class="space-y-4">
-            <!-- Full Name -->
+            <!-- First Name -->
             <div>
-              <label for="patient-name" class="block text-sm font-medium text-gray-700 mb-1" data-translate="summary.patient_name">
-                Vollständiger Name *
+              <label for="patient-firstname" class="block text-sm font-medium text-gray-700 mb-1" data-translate="summary.patient_firstname">
+                Vorname *
               </label>
               <input
                 type="text"
-                id="patient-name"
+                id="patient-firstname"
                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-colors"
-                placeholder="z.B. Max Mustermann"
-                data-translate-placeholder="summary.patient_name_placeholder"
+                placeholder="z.B. Max"
+                data-translate-placeholder="summary.patient_firstname_placeholder"
+                required
+              />
+            </div>
+
+            <!-- Last Name -->
+            <div>
+              <label for="patient-lastname" class="block text-sm font-medium text-gray-700 mb-1" data-translate="summary.patient_lastname">
+                Nachname *
+              </label>
+              <input
+                type="text"
+                id="patient-lastname"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-colors"
+                placeholder="z.B. Mustermann"
+                data-translate-placeholder="summary.patient_lastname_placeholder"
                 required
               />
             </div>
@@ -1113,6 +1137,29 @@
                 data-translate-placeholder="summary.patient_email_placeholder"
                 required
               />
+            </div>
+
+            <!-- Reminder Time -->
+            <div>
+              <label for="reminder-time" class="block text-sm font-medium text-gray-700 mb-1" data-translate="summary.reminder_time">
+                Erinnerung vor dem Termin *
+              </label>
+              <select
+                id="reminder-time"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-colors"
+                required
+              >
+                <option value="0.5">30 Minuten</option>
+                <option value="1">1 Stunde</option>
+                <option value="2" selected>2 Stunden</option>
+                <option value="3">3 Stunden</option>
+                <option value="6">6 Stunden</option>
+                <option value="12">12 Stunden</option>
+                <option value="24">1 Tag</option>
+              </select>
+              <p class="text-xs text-teal-600 mt-2 italic" data-translate="summary.reminder_note">
+                📧 Die Terminerinnerung wird Ihnen per E-Mail zugesendet
+              </p>
             </div>
 
             <p class="text-xs text-gray-500 italic" data-translate="summary.required_fields_note">
@@ -1233,6 +1280,8 @@
     }
 
     let selectedDoctor = null;
+    let selectedDoctorEmail = null;  // Store doctor's email from Calendar sheet
+    let selectedDoctorPhone = null;  // Store doctor's phone from Calendar sheet
     let selectedTime = null;
     let selectedDate = null;
     let customDescription = '';
@@ -1279,6 +1328,22 @@
           el.placeholder = translation;
         }
       });
+
+      // Update reminder time dropdown options
+      const reminderTimeSelect = document.getElementById('reminder-time');
+      if (reminderTimeSelect) {
+        const currentValue = reminderTimeSelect.value;
+        reminderTimeSelect.innerHTML = `
+          <option value="0.5">${getTranslation('summary.reminder_time_30min')}</option>
+          <option value="1">${getTranslation('summary.reminder_time_1h')}</option>
+          <option value="2">${getTranslation('summary.reminder_time_2h')}</option>
+          <option value="3">${getTranslation('summary.reminder_time_3h')}</option>
+          <option value="6">${getTranslation('summary.reminder_time_6h')}</option>
+          <option value="12">${getTranslation('summary.reminder_time_12h')}</option>
+          <option value="24">${getTranslation('summary.reminder_time_1d')}</option>
+        `;
+        reminderTimeSelect.value = currentValue || '2';
+      }
     }
 
     // Calendar generation functions
@@ -1349,6 +1414,13 @@
         if (data.status === 'success') {
           // NEW API FORMAT: Returns object grouped by dentist
           // { "Seitschenko-Dinh": [{time: "08:00", status, available}, ...], "Kukadiya": [...], ... }
+          // Also returns contacts: { "Seitschenko-Dinh": {email: "...", phone: "..."}, ... }
+
+          // Store contacts globally for later use when booking
+          if (data.contacts) {
+            window.dentistContacts = data.contacts;
+          }
+
           return data.slots;
         } else if (data.status === 'not_found') {
           console.warn(`Date ${dateStr} not found in Calendar sheet`);
@@ -1424,21 +1496,17 @@
       // Clear loading message
       container.innerHTML = '';
 
-      // Generate dates - show 6 weekdays (skip Sundays)
-      const weekdaysToShow = 6;
-      let weekdaysCount = 0;
-      let dayOffset = 0;
+      // Generate dates - show all 7 days (including weekends)
+      const daysToShow = 7;
 
-      while (weekdaysCount < weekdaysToShow) {
+      for (let i = 0; i < daysToShow; i++) {
         const currentDate = new Date(startDate);
-        currentDate.setDate(currentDate.getDate() + dayOffset);
-        dayOffset++;
+        currentDate.setDate(currentDate.getDate() + i);
 
-        // Skip Sundays
-        if (currentDate.getDay() === 0) continue;
-        weekdaysCount++;
+        const dayOfWeek = currentDate.getDay(); // 0=Sunday, 6=Saturday
+        const isWeekend = (dayOfWeek === 0 || dayOfWeek === 6);
 
-        const dayName = getDayName(currentDate.getDay());
+        const dayName = getDayName(dayOfWeek);
         const dateStr = formatDate(currentDate);
         const dateStrFull = formatDateFull(currentDate); // DD.MM.YYYY for API
         const dayLabel = getDayLabel(currentDate);
@@ -1447,15 +1515,27 @@
         const daySection = document.createElement('div');
         daySection.className = 'mb-6';
 
-        // Day header
+        // Day header - different styling for weekends
         const dayHeader = document.createElement('div');
         dayHeader.className = 'flex items-center justify-between mb-3';
-        dayHeader.innerHTML = `
-          <div>
-            <p class="font-semibold text-gray-800">${dayLabel}</p>
-            <p class="text-sm text-gray-600">${dayName}, ${dateStr}</p>
-          </div>
-        `;
+
+        if (isWeekend) {
+          // Weekend: red/pink styling
+          dayHeader.innerHTML = `
+            <div class="bg-red-50 px-4 py-2 rounded-lg border-2 border-red-200 w-full">
+              <p class="font-semibold text-red-800">${dayLabel}</p>
+              <p class="text-sm text-red-600">${dayName}, ${dateStr} - <span class="font-bold">Geschlossen / Closed</span></p>
+            </div>
+          `;
+        } else {
+          // Weekday: normal styling
+          dayHeader.innerHTML = `
+            <div>
+              <p class="font-semibold text-gray-800">${dayLabel}</p>
+              <p class="text-sm text-gray-600">${dayName}, ${dateStr}</p>
+            </div>
+          `;
+        }
         daySection.appendChild(dayHeader);
 
         // Time slots grid
@@ -1515,6 +1595,9 @@
             return parseInt(timeA) - parseInt(timeB);
           });
 
+          // Count visible slots (non-hidden)
+          let visibleSlotCount = 0;
+
           // Render slots
           allSlots.forEach(slotData => {
             const slot = document.createElement('div');
@@ -1523,10 +1606,12 @@
             const isAvailable = slotData.available; // boolean
             const dentist = slotData.dentist; // dentist name
 
-            // Skip hidden slots
+            // Skip hidden slots (weekends)
             if (status === 'hidden') {
               return;
             }
+
+            visibleSlotCount++;
 
             if (status === 'booked') {
               // Booked slot - show as disabled
@@ -1555,15 +1640,28 @@
 
             slotsGrid.appendChild(slot);
           });
-        } else {
-          // Fallback: If date not found in Calendar, show message
+
+          // If no visible slots and NOT a weekend, show "no slots available" message
+          if (visibleSlotCount === 0 && !isWeekend) {
+            const noSlotsMsg = document.createElement('div');
+            noSlotsMsg.className = 'col-span-6 text-center text-gray-500 py-4';
+            noSlotsMsg.textContent = 'Keine Termine verfügbar / No slots available';
+            slotsGrid.appendChild(noSlotsMsg);
+          }
+        } else if (!isWeekend) {
+          // Fallback: If date not found in Calendar and NOT weekend, show message
           const noSlotsMsg = document.createElement('div');
           noSlotsMsg.className = 'col-span-6 text-center text-gray-500 py-4';
           noSlotsMsg.textContent = 'Keine Termine verfügbar / No slots available';
           slotsGrid.appendChild(noSlotsMsg);
         }
 
-        daySection.appendChild(slotsGrid);
+        // Only append slotsGrid if it has children (weekdays) or if it's not a weekend
+        // For weekends, we don't show the empty grid
+        if (slotsGrid.children.length > 0 || !isWeekend) {
+          daySection.appendChild(slotsGrid);
+        }
+
         container.appendChild(daySection);
       }
     }
@@ -1772,6 +1870,28 @@
       // Update selected doctor
       selectedDoctor = doctorId;
 
+      // Get doctor's contact info from stored contacts (if available)
+      if (window.dentistContacts) {
+        // Find matching dentist in contacts (case-insensitive match)
+        const dentistKey = Object.keys(window.dentistContacts).find(key =>
+          key.toLowerCase() === doctorId.toLowerCase()
+        );
+
+        if (dentistKey && window.dentistContacts[dentistKey]) {
+          selectedDoctorEmail = window.dentistContacts[dentistKey].email || null;
+          selectedDoctorPhone = window.dentistContacts[dentistKey].phone || null;
+          console.log(`✅ Loaded contacts for ${doctorId}: email=${selectedDoctorEmail}, phone=${selectedDoctorPhone}`);
+        } else {
+          console.warn(`⚠️ No contact info found for ${doctorId}`);
+          selectedDoctorEmail = null;
+          selectedDoctorPhone = null;
+        }
+      } else {
+        console.warn('⚠️ Dentist contacts not yet loaded from API');
+        selectedDoctorEmail = null;
+        selectedDoctorPhone = null;
+      }
+
       // Reset week offset to show current week when doctor is selected
       currentWeekOffset = 0;
 
@@ -1796,6 +1916,19 @@
       if (calendarSection) {
         calendarSection.classList.remove('hidden');
       }
+
+      // Load dentist contacts immediately by fetching slots for current week start date
+      // This ensures contacts are available before user books
+      const today = new Date();
+      const weekStart = new Date(today);
+      weekStart.setDate(today.getDate() - today.getDay() + (today.getDay() === 0 ? -6 : 1)); // Monday of current week
+      const dateStr = formatDateFull(weekStart);
+
+      fetchTimeSlotsFromCalendar(dateStr).then(() => {
+        console.log('✅ Dentist contacts loaded for', doctorId);
+      }).catch(err => {
+        console.warn('⚠️ Failed to load dentist contacts:', err);
+      });
 
       // Fetch booked appointments for this doctor
       fetchBookedAppointments(doctorId);
@@ -1961,13 +2094,18 @@
       }
 
       // Get patient information
-      const patientName = document.getElementById('patient-name').value.trim();
+      const patientFirstname = document.getElementById('patient-firstname').value.trim();
+      const patientLastname = document.getElementById('patient-lastname').value.trim();
       const patientBirthYear = document.getElementById('patient-birth-year').value.trim();
       const patientPhone = document.getElementById('patient-phone').value.trim();
       const patientEmail = document.getElementById('patient-email').value.trim();
+      const reminderTime = document.getElementById('reminder-time').value;
+
+      // Combine first and last name
+      const patientName = patientFirstname + ' ' + patientLastname;
 
       // Validate patient information fields
-      if (!patientName || !patientBirthYear || !patientPhone || !patientEmail) {
+      if (!patientFirstname || !patientLastname || !patientBirthYear || !patientPhone || !patientEmail) {
         const incompleteMsg = getTranslation('alerts.incomplete');
         showStatusMessage('error', '⚠️ ' + (getTranslation('summary.error_title') || 'Fehler'), incompleteMsg);
         return;
@@ -2027,14 +2165,19 @@
       const appointmentData = {
         symptom: selectedSymptom,
         doctor: selectedDoctor,
+        doctorEmail: selectedDoctorEmail,     // Add doctor's email
+        doctorPhone: selectedDoctorPhone,     // Add doctor's phone
         date: selectedDate,
         time: selectedTime,
         description: customDescription,
         language: currentLanguage,
         patientName: patientName,
+        patientFirstname: patientFirstname,
+        patientLastname: patientLastname,
         patientBirthYear: patientBirthYear,
         patientPhone: patientPhone,
-        patientEmail: patientEmail
+        patientEmail: patientEmail,
+        reminderTime: reminderTime
       };
 
       try {
