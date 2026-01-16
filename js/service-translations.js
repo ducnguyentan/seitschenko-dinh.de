@@ -860,6 +860,26 @@ const serviceTranslations = {
         incomplete: "Bitte füllen Sie alle Felder aus, um fortzufahren.",
         error: "Es gab einen Fehler beim Senden. Bitte versuchen Sie es erneut oder rufen Sie uns an: 0202 660828",
         sending_desc: "Ihre Buchungsanfrage wird gerade übermittelt..."
+      },
+      review: {
+        title: "Bewerten Sie Ihre Behandlung",
+        subtitle: "Ihr Feedback hilft uns, unseren Service zu verbessern",
+        treatment_info: "Behandlungsinformationen",
+        patient_name: "Patient:",
+        doctor_name: "Arzt:",
+        treatment_date: "Behandlungsdatum:",
+        patient_id: "Patient-ID:",
+        rating_label: "Wie bewerten Sie Ihre Behandlung?",
+        rating_hint: "Klicken Sie auf die Sterne (1 = sehr schlecht, 5 = ausgezeichnet)",
+        comment_label: "Ihre Bewertung (optional)",
+        comment_placeholder: "Teilen Sie Ihre Erfahrungen mit uns...",
+        comment_hint: "Beschreiben Sie Ihre Erfahrung mit dem Arzt und der Behandlung",
+        submit_btn: "Bewertung absenden",
+        submitting: "Wird gesendet...",
+        success_title: "Vielen Dank für Ihre Bewertung!",
+        success_message: "Ihr Feedback wurde erfolgreich übermittelt.",
+        error_title: "Fehler beim Absenden",
+        error_message: "Bitte versuchen Sie es später erneut."
       }
     }
   },
@@ -1715,6 +1735,26 @@ const serviceTranslations = {
         incomplete: "Please fill in all fields to continue.",
         error: "There was an error sending your request. Please try again or call us: 0202 660828",
         sending_desc: "Your booking request is being submitted..."
+      },
+      review: {
+        title: "Rate Your Treatment",
+        subtitle: "Your feedback helps us improve our service",
+        treatment_info: "Treatment Information",
+        patient_name: "Patient:",
+        doctor_name: "Doctor:",
+        treatment_date: "Treatment Date:",
+        patient_id: "Patient ID:",
+        rating_label: "How would you rate your treatment?",
+        rating_hint: "Click on the stars (1 = very poor, 5 = excellent)",
+        comment_label: "Your Review (optional)",
+        comment_placeholder: "Share your experience with us...",
+        comment_hint: "Describe your experience with the doctor and treatment",
+        submit_btn: "Submit Review",
+        submitting: "Submitting...",
+        success_title: "Thank You for Your Review!",
+        success_message: "Your feedback has been successfully submitted.",
+        error_title: "Submission Error",
+        error_message: "Please try again later."
       }
     }
   },
@@ -2571,6 +2611,26 @@ const serviceTranslations = {
         incomplete: "Vui lòng điền tất cả các trường để tiếp tục.",
         error: "Đã xảy ra lỗi khi gửi. Vui lòng thử lại hoặc gọi cho chúng tôi: 0202 660828",
         sending_desc: "Yêu cầu đặt lịch của bạn đang được gửi đi..."
+      },
+      review: {
+        title: "Đánh Giá Điều Trị Của Bạn",
+        subtitle: "Phản hồi của bạn giúp chúng tôi cải thiện dịch vụ",
+        treatment_info: "Thông Tin Điều Trị",
+        patient_name: "Bệnh nhân:",
+        doctor_name: "Nha sĩ:",
+        treatment_date: "Ngày điều trị:",
+        patient_id: "Mã bệnh nhân:",
+        rating_label: "Bạn đánh giá điều trị như thế nào?",
+        rating_hint: "Nhấn vào các ngôi sao (1 = rất kém, 5 = xuất sắc)",
+        comment_label: "Đánh giá của bạn (tùy chọn)",
+        comment_placeholder: "Chia sẻ trải nghiệm của bạn...",
+        comment_hint: "Mô tả trải nghiệm của bạn với nha sĩ và điều trị",
+        submit_btn: "Gửi Đánh Giá",
+        submitting: "Đang gửi...",
+        success_title: "Cảm Ơn Đánh Giá Của Bạn!",
+        success_message: "Phản hồi của bạn đã được gửi thành công.",
+        error_title: "Lỗi Gửi Đánh Giá",
+        error_message: "Vui lòng thử lại sau."
       }
     }
   },

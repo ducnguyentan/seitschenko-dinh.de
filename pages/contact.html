@@ -5,16 +5,160 @@
   Contact page for Zahnarztpraxen Seitschenko-Dinh with location details.
 -->
 <html lang="de" id="html-root">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
   <title id="page-title">Kontakt - Seitschenko-Dinh</title>
-  <meta name="description" content="Kontaktieren Sie uns für einen Termin in unseren Standorten in Wuppertal - Schwarzbach und Am Loh" id="page-description">
+  <meta name="description"
+    content="Kontaktieren Sie uns für einen Termin in unseren Standorten in Wuppertal - Schwarzbach und Am Loh"
+    id="page-description">
   <link href="../css/tailwind.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/cookie-consent.css">
 </head>
+
 <body class="bg-white text-gray-800">
+
+  <!-- Cookie Consent Modal -->
+  <div id="cookie-consent-modal" class="cookie-consent-overlay" style="display: none;">
+    <div class="cookie-consent-modal">
+      <h2 class="cookie-consent-title" data-translate="cookie.title">Datenschutzeinstellungen</h2>
+
+      <div class="cookie-consent-content">
+        <p data-translate="cookie.description1">
+          Wir nutzen Cookies auf unserer Website. Einige von ihnen sind essenziell, während andere uns helfen, diese Website und Ihre Erfahrung zu verbessern.
+        </p>
+
+        <p data-translate="cookie.description2">
+          Wenn Sie unter 16 Jahre alt sind und Ihre Zustimmung zu freiwilligen Diensten geben möchten, müssen Sie Ihre Erziehungsberechtigten um Erlaubnis bitten.
+        </p>
+
+        <p data-translate="cookie.description3">
+          Wir verwenden Cookies und andere Technologien auf unserer Website. Einige von ihnen sind essenziell, während andere uns helfen, diese Website und Ihre Erfahrung zu verbessern. Personenbezogene Daten können verarbeitet werden (z. B. IP-Adressen), z. B. für personalisierte Anzeigen und Inhalte oder Anzeigen- und Inhaltsmessung. Weitere Informationen über die Verwendung Ihrer Daten finden Sie in unserer
+          <a href="datenschutz.html" class="cookie-link" data-translate="cookie.privacy_link">Datenschutzerklärung</a>.
+          Sie können Ihre Auswahl jederzeit unter
+          <a href="#" class="cookie-link" data-translate="cookie.settings_link">Einstellungen</a>
+          widerrufen oder anpassen.
+        </p>
+
+        <!-- Cookie Categories -->
+        <div class="cookie-categories">
+          <div class="cookie-category">
+            <label class="cookie-checkbox-label">
+              <input type="checkbox" id="cookie-essential" checked disabled>
+              <span data-translate="cookie.essential">Essenziell</span>
+            </label>
+          </div>
+
+          <div class="cookie-category">
+            <label class="cookie-checkbox-label">
+              <input type="checkbox" id="cookie-external-media">
+              <span data-translate="cookie.external_media">Externe Medien</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="cookie-consent-actions">
+        <button id="cookie-accept-all" class="cookie-btn cookie-btn-primary" data-translate="cookie.accept_all">
+          Alle akzeptieren
+        </button>
+
+        <button id="cookie-save-preferences" class="cookie-btn cookie-btn-secondary" data-translate="cookie.save">
+          Speichern
+        </button>
+
+        <button id="cookie-individual-settings" class="cookie-btn cookie-btn-tertiary" data-translate="cookie.individual">
+          Individuelle Datenschutzeinstellungen
+        </button>
+      </div>
+
+      <!-- Footer Links -->
+      <div class="cookie-consent-footer">
+        <a href="#" class="cookie-footer-link" data-translate="cookie.cookie_details">Cookie-Details</a>
+        <span class="cookie-separator">|</span>
+        <a href="datenschutz.html" class="cookie-footer-link" data-translate="cookie.privacy_policy">Datenschutzerklärung</a>
+        <span class="cookie-separator">|</span>
+        <a href="impressum.html" class="cookie-footer-link" data-translate="cookie.imprint">Impressum</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cookie Detailed Settings Modal -->
+  <div id="cookie-detailed-modal" class="cookie-consent-overlay" style="display: none;">
+    <div class="cookie-consent-modal detailed">
+      <h2 class="cookie-consent-title">Individuelle Datenschutzeinstellungen</h2>
+
+      <div class="cookie-consent-content">
+        <p style="color: #4a5568; margin-bottom: 1.5rem;">
+          Hier können Sie detaillierte Einstellungen zu den einzelnen Cookie-Kategorien vornehmen.
+        </p>
+
+        <!-- Essential Cookies -->
+        <div class="cookie-detail-section">
+          <div class="cookie-detail-header" onclick="toggleCookieDetail('essential')">
+            <div class="cookie-detail-title">
+              <input type="checkbox" checked disabled style="cursor: not-allowed;">
+              <span>Essenziell (1)</span>
+            </div>
+            <div class="cookie-detail-toggle">
+              <span class="cookie-detail-expand" id="expand-essential">▼</span>
+            </div>
+          </div>
+          <div class="cookie-detail-content" id="content-essential">
+            <div class="cookie-detail-description">
+              Cookie thiết yếu cho phép các chức năng cơ bản và cần thiết cho hoạt động của trang web này. Chúng đảm bảo các chức năng quan trọng như bảo mật, quản lý mạng và khả năng truy cập. Các cookie này không thể bị vô hiệu hóa.
+            </div>
+            <div class="cookie-detail-info">
+              <strong>Cookie-Name:</strong> cookie_consent<br>
+              <strong>Anbieter:</strong> seitschenko-dinh.de<br>
+              <strong>Laufzeit:</strong> 365 Tage<br>
+              <strong>Zweck:</strong> Speichert Ihre Cookie-Einstellungen
+            </div>
+          </div>
+        </div>
+
+        <!-- External Media Cookies -->
+        <div class="cookie-detail-section">
+          <div class="cookie-detail-header" onclick="toggleCookieDetail('external')">
+            <div class="cookie-detail-title">
+              <input type="checkbox" id="detailed-external-media">
+              <span>Phương tiện bên ngoài (6)</span>
+            </div>
+            <div class="cookie-detail-toggle">
+              <span class="cookie-detail-expand" id="expand-external">▼</span>
+            </div>
+          </div>
+          <div class="cookie-detail-content" id="content-external">
+            <div class="cookie-detail-description">
+              Nội dụng từ trên tăng video và nền tảng truyền thông xã hội được chặn theo mặc định. Nếu bạn chấp nhận Cookie từ nguồn bên ngoài, quyền truy cập vào các nội dung đó không còn yêu cầu sự đồng ý thủ công.
+            </div>
+            <div class="cookie-detail-info">
+              <strong>Anbieter:</strong> Google Maps, YouTube, Vimeo, Facebook<br>
+              <strong>Zweck:</strong> Einbettung von externen Medieninhalten<br>
+              <strong>Datenschutzerklärung:</strong>
+              <a href="https://policies.google.com/privacy" target="_blank" style="color: #2d7a3e; text-decoration: underline;">Google</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="cookie-consent-actions">
+        <button onclick="saveDetailedSettings()" class="cookie-btn cookie-btn-primary">
+          Einstellungen speichern
+        </button>
+        <button onclick="closeDetailedModal()" class="cookie-btn cookie-btn-secondary">
+          Zurück
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- Header -->
   <header class="bg-white shadow-lg fixed top-0 left-0 right-0 z-50">
@@ -24,8 +168,10 @@
         <div class="flex items-center space-x-3">
           <img src="../assets/img/logo.svg" alt="Seitschenko-Dinh Logo" class="w-12 h-12">
           <a href="../index.html" class="flex flex-col leading-tight">
-            <span class="text-sm font-bold text-gray-800 tracking-wide" data-translate="header.practice_name1">ZAHNARZTPRAXEN</span>
-            <span class="text-sm font-bold text-gray-800 tracking-wide" data-translate="header.practice_name2">SEITSCHENKO-DINH</span>
+            <span class="text-sm font-bold text-gray-800 tracking-wide"
+              data-translate="header.practice_name1">ZAHNARZTPRAXEN</span>
+            <span class="text-sm font-bold text-gray-800 tracking-wide"
+              data-translate="header.practice_name2">SEITSCHENKO-DINH</span>
           </a>
         </div>
 
@@ -42,7 +188,8 @@
 
           <!-- Language Switcher -->
           <div class="language-switcher">
-            <button id="language-btn" class="flex items-center space-x-1 px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+            <button id="language-btn"
+              class="flex items-center space-x-1 px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
               <img id="current-flag" src="https://flagcdn.com/24x18/de.png" alt="Deutsch" class="language-flag">
               <span id="current-lang">DE</span>
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -95,10 +242,12 @@
           <!-- Mobile Language Switcher -->
           <div class="pt-2 border-t border-gray-200">
             <div class="language-switcher-mobile">
-              <button id="mobile-language-btn" class="flex items-center justify-between w-full px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+              <button id="mobile-language-btn"
+                class="flex items-center justify-between w-full px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
                 <span data-translate="language.current">Sprache:</span>
                 <div class="flex items-center space-x-1">
-                  <img id="mobile-current-flag" src="https://flagcdn.com/24x18/de.png" alt="Deutsch" class="language-flag">
+                  <img id="mobile-current-flag" src="https://flagcdn.com/24x18/de.png" alt="Deutsch"
+                    class="language-flag">
                   <span id="mobile-current-lang">DE</span>
                 </div>
               </button>
@@ -132,7 +281,8 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="py-20 relative overflow-hidden" style="background: url('../assets/img/img_0368-scaled.jpeg') center/cover no-repeat;">
+  <section class="py-20 relative overflow-hidden"
+    style="background: url('../assets/img/img_0368-scaled.jpeg') center/cover no-repeat;">
     <div class="absolute inset-0 bg-white bg-opacity-30"></div>
     <div class="relative z-10 text-center max-w-4xl mx-auto px-4">
       <h1 class="text-4xl md:text-6xl font-bold mb-6" style="color: #5eb3b3;" data-translate="contact.hero.title">
@@ -148,9 +298,6 @@
   <section class="py-20">
     <div class="container mx-auto px-4">
       <div class="text-center mb-16 scroll-reveal">
-        <p class="text-sm font-bold tracking-widest mb-2" style="color: #5eb3b3;" data-translate="contact.suptitle">
-          LIÊN HỆ VỚI CHÚNG TÔI
-        </p>
         <h2 class="text-4xl font-bold text-gray-800 mb-4" data-translate="contact.title">Kontaktieren Sie uns</h2>
         <p class="text-xl text-gray-600 max-w-2xl mx-auto" data-translate="contact.subtitle">
           Wir sind gerne für Sie da und freuen uns auf Ihren Besuch
@@ -161,12 +308,15 @@
         <!-- Location 1: Schwarzbach -->
         <div class="contact-card-wrapper">
           <div class="location-card">
-            <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="contact.location1.title">Standort Schwarzbach</h3>
+            <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="contact.location1.title">Standort
+              Schwarzbach</h3>
             <div class="space-y-4">
               <div class="flex items-start space-x-3">
                 <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                 </svg>
                 <div>
                   <p class="font-semibold text-gray-800" data-translate="contact.address">Adresse</p>
@@ -175,7 +325,9 @@
               </div>
               <div class="flex items-start space-x-3">
                 <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                  </path>
                 </svg>
                 <div>
                   <p class="font-semibold text-gray-800" data-translate="contact.phone">Telefon</p>
@@ -184,16 +336,20 @@
               </div>
               <div class="flex items-start space-x-3">
                 <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                  </path>
                 </svg>
                 <div>
                   <p class="font-semibold text-gray-800" data-translate="contact.email">E-Mail</p>
-                  <a href="mailto:schwarzbach@seitschenko-dinh.de" class="text-teal-500 hover:text-teal-600">schwarzbach@seitschenko-dinh.de</a>
+                  <a href="mailto:schwarzbach@seitschenko-dinh.de"
+                    class="text-teal-500 hover:text-teal-600">schwarzbach@seitschenko-dinh.de</a>
                 </div>
               </div>
               <div class="flex items-start space-x-3">
                 <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
                 <div>
                   <p class="font-semibold text-gray-800" data-translate="contact.hours">Öffnungszeiten</p>
@@ -210,12 +366,15 @@
         <!-- Location 2: Am Loh -->
         <div class="contact-card-wrapper">
           <div class="location-card">
-            <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="contact.location2.title">Standort Am Loh</h3>
+            <h3 class="text-2xl font-bold text-gray-800 mb-6" data-translate="contact.location2.title">Standort Am Loh
+            </h3>
             <div class="space-y-4">
               <div class="flex items-start space-x-3">
                 <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                 </svg>
                 <div>
                   <p class="font-semibold text-gray-800" data-translate="contact.address">Adresse</p>
@@ -224,7 +383,9 @@
               </div>
               <div class="flex items-start space-x-3">
                 <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                  </path>
                 </svg>
                 <div>
                   <p class="font-semibold text-gray-800" data-translate="contact.phone">Telefon</p>
@@ -233,16 +394,20 @@
               </div>
               <div class="flex items-start space-x-3">
                 <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                  </path>
                 </svg>
                 <div>
                   <p class="font-semibold text-gray-800" data-translate="contact.email">E-Mail</p>
-                  <a href="mailto:loherstr@seitschenko-dinh.de" class="text-teal-500 hover:text-teal-600">loherstr@seitschenko-dinh.de</a>
+                  <a href="mailto:loherstr@seitschenko-dinh.de"
+                    class="text-teal-500 hover:text-teal-600">loherstr@seitschenko-dinh.de</a>
                 </div>
               </div>
               <div class="flex items-start space-x-3">
                 <svg class="w-6 h-6 text-teal-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
                 <div>
                   <p class="font-semibold text-gray-800" data-translate="contact.hours">Öffnungszeiten</p>
@@ -262,21 +427,23 @@
         <div class="grid md:grid-cols-2 gap-8">
           <!-- Map 1: Schwarzbach -->
           <div class="scroll-reveal">
-            <h4 class="text-xl font-bold text-gray-800 mb-4 text-center" data-translate="contact.location1.map">Standort Schwarzbach</h4>
-            <a href="https://www.google.com/maps?q=Schwarzbach+2,+42277+Wuppertal" target="_blank" rel="noopener noreferrer" class="block rounded-2xl overflow-hidden shadow-lg h-80 relative group">
-              <iframe
-                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Schwarzbach+2,+42277+Wuppertal&zoom=15"
-                width="100%"
-                height="100%"
-                style="border:0; pointer-events: none;"
-                allowfullscreen=""
-                loading="lazy">
+            <h4 class="text-xl font-bold text-gray-800 mb-4 text-center" data-translate="contact.location1.map">Standort
+              Schwarzbach</h4>
+            <a href="https://www.google.com/maps?q=Schwarzbach+2,+42277+Wuppertal" target="_blank"
+              rel="noopener noreferrer" class="block rounded-2xl overflow-hidden shadow-lg h-80 relative group">
+              <iframe id="map-schwarzbach"
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Schwarzbach+2,+42277+Wuppertal&zoom=15&language=de"
+                width="100%" height="100%" style="border:0; pointer-events: none;" allowfullscreen="" loading="lazy">
               </iframe>
-              <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                <div class="bg-teal-600 text-white px-6 py-3 rounded-full font-semibold shadow-lg transform -translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+              <div
+                class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                <div
+                  class="bg-teal-600 text-white px-6 py-3 rounded-full font-semibold shadow-lg transform -translate-y-2 group-hover:translate-y-0 transition-all duration-300">
                   <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                   </svg>
                   In Google Maps öffnen
                 </div>
@@ -286,21 +453,23 @@
 
           <!-- Map 2: Am Loh -->
           <div class="scroll-reveal">
-            <h4 class="text-xl font-bold text-gray-800 mb-4 text-center" data-translate="contact.location2.map">Standort Am Loh</h4>
-            <a href="https://www.google.com/maps?q=Loher+Straße+40,+42283+Wuppertal" target="_blank" rel="noopener noreferrer" class="block rounded-2xl overflow-hidden shadow-lg h-80 relative group">
-              <iframe
-                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Loher+Straße+40,+42283+Wuppertal&zoom=15"
-                width="100%"
-                height="100%"
-                style="border:0; pointer-events: none;"
-                allowfullscreen=""
-                loading="lazy">
+            <h4 class="text-xl font-bold text-gray-800 mb-4 text-center" data-translate="contact.location2.map">Standort
+              Am Loh</h4>
+            <a href="https://www.google.com/maps?q=Loher+Straße+40,+42283+Wuppertal" target="_blank"
+              rel="noopener noreferrer" class="block rounded-2xl overflow-hidden shadow-lg h-80 relative group">
+              <iframe id="map-am-loh"
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Loher+Straße+40,+42283+Wuppertal&zoom=15&language=de"
+                width="100%" height="100%" style="border:0; pointer-events: none;" allowfullscreen="" loading="lazy">
               </iframe>
-              <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                <div class="bg-teal-600 text-white px-6 py-3 rounded-full font-semibold shadow-lg transform -translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+              <div
+                class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                <div
+                  class="bg-teal-600 text-white px-6 py-3 rounded-full font-semibold shadow-lg transform -translate-y-2 group-hover:translate-y-0 transition-all duration-300">
                   <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                   </svg>
                   In Google Maps öffnen
                 </div>
@@ -320,8 +489,10 @@
         <div class="flex items-center space-x-3">
           <img src="../assets/img/logo.svg" alt="Seitschenko-Dinh Logo" class="w-12 h-12 flex-shrink-0">
           <div class="flex flex-col">
-            <h3 class="text-base font-bold uppercase tracking-wide leading-tight" data-translate="footer.practice_name1">ZAHNARZTPRAXEN</h3>
-            <h3 class="text-base font-bold uppercase tracking-wide leading-tight" data-translate="footer.practice_name2">SEITSCHENKO-DINH</h3>
+            <h3 class="text-base font-bold uppercase tracking-wide leading-tight"
+              data-translate="footer.practice_name1">ZAHNARZTPRAXEN</h3>
+            <h3 class="text-base font-bold uppercase tracking-wide leading-tight"
+              data-translate="footer.practice_name2">SEITSCHENKO-DINH</h3>
           </div>
         </div>
 
@@ -584,6 +755,120 @@
           },
           copyright: "© 2024 Chính sách bảo mật"
         }
+      },
+      ru: {
+        meta: {
+          title: "Контакты - Seitschenko-Dinh",
+          description: "Свяжитесь с нами для записи на прием в наших отделениях в Вуппертале - Шварцбах и Ам Ло"
+        },
+        nav: {
+          home: "Главная",
+          about: "О нас",
+          services: "Услуги",
+          labor: "Лаборатория",
+          karriere: "Карьера",
+          contact: "Контакты"
+        },
+        header: {
+          practice_name1: "СТОМАТОЛОГИЧЕСКИЕ ПРАКТИКИ",
+          practice_name2: "SEITSCHENKO-DINH"
+        },
+        language: {
+          current: "Язык:"
+        },
+        contact: {
+          hero: {
+            title: "Контакты",
+            subtitle: "Запишитесь на прием или свяжитесь с нами для получения дополнительной информации"
+          },
+          suptitle: "СВЯЖИТЕСЬ С НАМИ",
+          title: "Свяжитесь с нами",
+          subtitle: "Мы рады помочь вам и ждем вашего визита",
+          location1: {
+            title: "Отделение Шварцбах",
+            map: "Отделение Шварцбах",
+            hours: "Пн-Чт: 8:00-18:00<br>Пт: 8:00-14:00"
+          },
+          location2: {
+            title: "Отделение Ам Ло",
+            map: "Отделение Ам Ло",
+            hours: "Пн-Чт: 8:00-18:00<br>Пт: 8:00-14:00"
+          },
+          address: "Адрес",
+          phone: "Телефон",
+          email: "Эл. почта",
+          hours: "Часы работы"
+        },
+        footer: {
+          practice_name1: "СТОМАТОЛОГИЧЕСКИЕ ПРАКТИКИ",
+          practice_name2: "SEITSCHENKO-DINH",
+          location1: {
+            line1: "Schwarzbach 2 | 42277 Wuppertal",
+            line2: "Тел.: 0202 660828"
+          },
+          location2: {
+            line1: "Loher Str. 40 | 42283 Wuppertal",
+            line2: "Тел.: 0202 451642"
+          },
+          copyright: "© 2024 Политика конфиденциальности"
+        }
+      },
+      ar: {
+        meta: {
+          title: "اتصل بنا - Seitschenko-Dinh",
+          description: "اتصل بنا لتحديد موعد في مواقعنا في فوبرتال - شفارتسباخ وأم لوه"
+        },
+        nav: {
+          home: "الرئيسية",
+          about: "من نحن",
+          services: "الخدمات",
+          labor: "المختبر",
+          karriere: "الوظائف",
+          contact: "اتصل بنا"
+        },
+        header: {
+          practice_name1: "عيادات الأسنان",
+          practice_name2: "SEITSCHENKO-DINH"
+        },
+        language: {
+          current: "اللغة:"
+        },
+        contact: {
+          hero: {
+            title: "اتصل بنا",
+            subtitle: "حدد موعدًا أو اتصل بنا لمزيد من المعلومات"
+          },
+          suptitle: "تواصل معنا",
+          title: "تواصل معنا",
+          subtitle: "يسعدنا مساعدتك ونتطلع لزيارتك",
+          location1: {
+            title: "موقع شفارتسباخ",
+            map: "موقع شفارتسباخ",
+            hours: "الاثنين-الخميس: 8:00-18:00<br>الجمعة: 8:00-14:00"
+          },
+          location2: {
+            title: "موقع أم لوه",
+            map: "موقع أم لوه",
+            hours: "الاثنين-الخميس: 8:00-18:00<br>الجمعة: 8:00-14:00"
+          },
+          address: "العنوان",
+          phone: "الهاتف",
+          email: "البريد الإلكتروني",
+          hours: "ساعات العمل"
+        },
+        footer: {
+          practice_name1: "عيادات الأسنان",
+          practice_name2: "SEITSCHENKO-DINH",
+          location1: {
+            line1: "Schwarzbach 2 | 42277 Wuppertal",
+            line2: "هاتف: 0202 660828"
+          },
+          location2: {
+            line1: "Loher Str. 40 | 42283 Wuppertal",
+            line2: "هاتف: 0202 451642"
+          },
+          copyright: "© 2024 سياسة الخصوصية"
+        }
       }
     };
 
@@ -613,6 +898,20 @@
           } else {
             element.innerHTML = value;
           }
+        }
+      });
+
+      // Update Google Maps language
+      const mapIds = ['map-schwarzbach', 'map-am-loh'];
+      mapIds.forEach(id => {
+        const iframe = document.getElementById(id);
+        if (iframe) {
+          let src = iframe.src;
+          // Remove existing language parameter if present
+          src = src.replace(/&language=[^&]*/, '');
+          // Append new language parameter
+          src += `&language=${lang}`;
+          iframe.src = src;
         }
       });
 
@@ -655,6 +954,10 @@
     }
   </script>
 
+  <!-- Multilang & Cookie Consent -->
+  <script src="../js/multilang.js"></script>
+  <script src="../js/cookie-consent.js"></script>
+
   <!-- Chatbot Integration -->
   <script src="../js/chatbot.js"></script>
   <script>
@@ -666,4 +969,5 @@
     });
   </script>
 </body>
+
 </html>

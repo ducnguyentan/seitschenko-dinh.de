@@ -21,6 +21,42 @@ var DENTISTS_LOWER = ['seitschenko-dinh', 'kukadiya', 'ikikardes', 'taifour', 'n
 var TIME_SLOTS = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'];
 var DENTIST_COLORS = ['#FFE5E5', '#FFE9D9', '#FFF4D9', '#E5FFE5', '#D9F4FF'];
 
+// Location mapping for dentists
+var LOCATIONS = {
+  'Am Loh': {
+    name: 'Standort Am Loh',
+    address: 'Loher Str. 40',
+    postalCode: '42283',
+    city: 'Wuppertal',
+    phone: '0202 451642',
+    email: 'loherstr@seitschenko-dinh.de',
+    gmapsUrl: 'https://www.google.com/maps/place/Loher+Str.+40,+42283+Wuppertal',
+    dentists: ['seitschenko-dinh', 'kukadiya', 'nikolaou']
+  },
+  'Schwarzbach': {
+    name: 'Standort Schwarzbach',
+    address: 'Schwarzbach 2',
+    postalCode: '42277',
+    city: 'Wuppertal',
+    phone: '0202 660828',
+    email: 'schwarzbach@seitschenko-dinh.de',
+    gmapsUrl: 'https://www.google.com/maps/place/Schwarzbach+2,+42277+Wuppertal',
+    dentists: ['ikikardes', 'taifour']
+  }
+};
+
+// Helper: Get location by dentist name
+function getLocationByDentist(doctorName) {
+  var lower = doctorName.toLowerCase().trim();
+  for (var locationKey in LOCATIONS) {
+    var location = LOCATIONS[locationKey];
+    if (location.dentists.indexOf(lower) !== -1) {
+      return location;
+    }
+  }
+  return null;
+}
+
 // Helper: Get dentist index by name (case-insensitive)
 function getDentistIndex(doctorName) {
   var lower = doctorName.toLowerCase().trim();
@@ -62,6 +98,7 @@ function getColumnIndex(dentistIndex, timeSlotIndex) {
 
 function doPost(e) {
   try {
+    var data = JSON.parse(e.postData.contents);
     var ss = SpreadsheetApp.getActiveSpreadsheet();
     var sheet = ss.getSheetByName('New_Appointments');
 
@@ -70,18 +107,16 @@ function doPost(e) {
       sheet = ss.insertSheet('New_Appointments');
     }
 
-    var data = JSON.parse(e.postData.contents);
-
     // Create header if needed
     if (sheet.getLastRow() === 0) {
       sheet.appendRow([
         'Zeitstempel', 'Symptom', 'Arzt', 'Arzt E-Mail', 'Arzt Telefon',
         'Datum', 'Zeit', 'Beschreibung', 'Sprache',
         'Patient Vorname', 'Patient Nachname', 'Patient Geburtsjahr',
-        'Patient Telefon', 'Patient E-Mail', 'Erinnerung (Stunden)'
+        'Patient Telefon', 'Patient E-Mail', 'Erinnerung (Stunden)', 'Standort'
       ]);
 
-      var headerRange = sheet.getRange(1, 1, 1, 15);
+      var headerRange = sheet.getRange(1, 1, 1, 16);
       headerRange.setFontWeight('bold');
       headerRange.setBackground('#14b8a6');
       headerRange.setFontColor('#ffffff');
@@ -111,7 +146,8 @@ function doPost(e) {
       data.patientBirthYear || '-',
       data.patientPhone || '-',
       data.patientEmail || '-',
-      data.reminderTime || '2'
+      data.reminderTime || '2',
+      data.location || '-'
     ]);
 
     // Set column widths (first time only)
@@ -121,10 +157,11 @@ function doPost(e) {
       sheet.setColumnWidth(7, 80); sheet.setColumnWidth(8, 250); sheet.setColumnWidth(9, 80);
       sheet.setColumnWidth(10, 150); sheet.setColumnWidth(11, 150); sheet.setColumnWidth(12, 120);
       sheet.setColumnWidth(13, 150); sheet.setColumnWidth(14, 200); sheet.setColumnWidth(15, 120);
+      sheet.setColumnWidth(16, 200);
     }
 
     // Format new row
-    var newRowRange = sheet.getRange(newRowNumber, 1, 1, 15);
+    var newRowRange = sheet.getRange(newRowNumber, 1, 1, 16);
     newRowRange.setBorder(true, true, true, true, true, true, '#000000', SpreadsheetApp.BorderStyle.SOLID);
     newRowRange.setWrapStrategy(SpreadsheetApp.WrapStrategy.CLIP);
     newRowRange.setVerticalAlignment('middle');
@@ -1034,6 +1071,188 @@ function addNextWeek() {
 }
 
 // ============================================
+// Show Form URLs (helper function)
+// ============================================
+
+function showFormUrls() {
+  try {
+    var formUrl = PropertiesService.getScriptProperties().getProperty('REVIEW_FORM_URL');
+    var formId = PropertiesService.getScriptProperties().getProperty('REVIEW_FORM_ID');
+    var editUrl = PropertiesService.getScriptProperties().getProperty('REVIEW_FORM_EDIT_URL');
+
+    if (!formUrl) {
+      SpreadsheetApp.getUi().alert(
+        '⚠️ Kein Formular gefunden!\n\n' +
+        'Bitte erstellen Sie zuerst das Review-Formular:\n' +
+        'Kalender → ⭐ Create Dentist Reviews'
+      );
+      return;
+    }
+
+    var message = '📋 REVIEW FORM INFORMATIONEN\n\n' +
+                  '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n' +
+                  '🔗 PUBLIC FORM URL:\n' +
+                  formUrl + '\n\n' +
+                  '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n' +
+                  '📝 EDIT FORM URL:\n' +
+                  editUrl + '\n\n' +
+                  '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n' +
+                  '🆔 FORM ID:\n' +
+                  formId + '\n\n' +
+                  '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n' +
+                  'Diese URLs werden automatisch in E-Mails verwendet.';
+
+    SpreadsheetApp.getUi().alert(message);
+
+  } catch (error) {
+    SpreadsheetApp.getUi().alert('❌ Fehler: ' + error.toString());
+  }
+}
+
+// ============================================
+// Clean and Rebuild Patients Sheet
+// ============================================
+
+function cleanAndRebuildPatientsSheet() {
+  try {
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var patientsSheet = ss.getSheetByName('Patients');
+
+    // COMPLETELY DELETE the old Patients sheet
+    if (patientsSheet) {
+      Logger.log('🗑️ Completely deleting old Patients sheet...');
+      ss.deleteSheet(patientsSheet);
+      Logger.log('✅ Old Patients sheet deleted');
+    }
+
+    // CREATE a fresh new Patients sheet
+    Logger.log('📋 Creating new Patients sheet from scratch...');
+    initializePatientsSheet();
+    Logger.log('✅ New Patients sheet created');
+
+    // Now sync all patients from New_Appointments
+    Logger.log('🔄 Syncing all patients from New_Appointments...');
+    syncAllPatientsFromAppointments();
+
+    // Show success message
+    try {
+      SpreadsheetApp.getUi().alert(
+        '✅ Rebuild erfolgreich!\n\n' +
+        'Patients sheet wurde komplett neu erstellt.\n' +
+        'Alle Patienten wurden synchronisiert.\n\n' +
+        'Bitte überprüfen Sie das Patients-Sheet.'
+      );
+    } catch (uiError) {
+      Logger.log('ℹ️ UI not available (running from trigger/background)');
+    }
+
+  } catch (error) {
+    Logger.log('❌ Error rebuilding patients sheet: ' + error.toString());
+    try {
+      SpreadsheetApp.getUi().alert('❌ Fehler: ' + error.toString());
+    } catch (uiError) {
+      Logger.log('ℹ️ Cannot show error alert (UI not available)');
+    }
+  }
+}
+
+// ============================================
+// Sync All Patients from New_Appointments
+// ============================================
+
+function syncAllPatientsFromAppointments() {
+  try {
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var appointmentsSheet = ss.getSheetByName('New_Appointments');
+    var patientsSheet = ss.getSheetByName('Patients');
+
+    if (!appointmentsSheet) {
+      SpreadsheetApp.getUi().alert('⚠️ New_Appointments sheet not found!');
+      return;
+    }
+
+    // Create Patients sheet if it doesn't exist
+    if (!patientsSheet) {
+      Logger.log('📋 Creating Patients sheet...');
+      initializePatientsSheet();
+      patientsSheet = ss.getSheetByName('Patients');
+    }
+
+    var data = appointmentsSheet.getDataRange().getValues();
+    var syncedCount = 0;
+    var skippedCount = 0;
+
+    Logger.log('📊 Total rows in New_Appointments: ' + data.length);
+    Logger.log('📋 Header row: ' + JSON.stringify(data[0]));
+
+    // Skip header row (row 0)
+    for (var i = 1; i < data.length; i++) {
+      var row = data[i];
+
+      Logger.log('🔍 Processing row ' + (i + 1) + ': ' + JSON.stringify(row));
+
+      // Columns: [Zeitstempel, Symptom, Arzt, Arzt E-Mail, Arzt Telefon, Datum, Zeit, Beschreibung, Sprache,
+      //           Patient Vorname, Patient Nachname, Patient Geburtsjahr, Patient Telefon, Patient E-Mail, Erinnerung (Stunden), Standort]
+      var patientFirstname = row[9] ? row[9].toString().trim() : '';
+      var patientLastname = row[10] ? row[10].toString().trim() : '';
+      var patientBirthYear = row[11] ? row[11].toString().trim() : '';
+      var patientPhone = row[12] ? row[12].toString().trim() : '';
+      var patientEmail = row[13] ? row[13].toString().trim() : '';
+      var reminderTime = row[14] ? row[14].toString().trim() : '2';
+
+      Logger.log('👤 Patient data: ' + patientFirstname + ' ' + patientLastname + ', Phone: ' + patientPhone);
+
+      // Skip if essential info is missing
+      if (!patientFirstname || patientFirstname === '-' ||
+          !patientLastname || patientLastname === '-' ||
+          !patientPhone || patientPhone === '-') {
+        skippedCount++;
+        Logger.log('⏭️ Row ' + (i + 1) + ' skipped: Missing name or phone');
+        continue;
+      }
+
+      // Create patient data object
+      var patientData = {
+        patientFirstname: patientFirstname,
+        patientLastname: patientLastname,
+        patientEmail: patientEmail === '-' ? '' : patientEmail,
+        patientPhone: patientPhone,
+        patientBirthYear: patientBirthYear === '-' ? '' : patientBirthYear,
+        reminderTime: reminderTime
+      };
+
+      // Sync to Patients sheet
+      Logger.log('🔄 Calling syncPatientInfo for: ' + patientFirstname + ' ' + patientLastname);
+      syncPatientInfo(patientData);
+      Logger.log('✅ syncPatientInfo completed for: ' + patientFirstname + ' ' + patientLastname);
+      syncedCount++;
+    }
+
+    Logger.log('✅ Sync completed: ' + syncedCount + ' patients synced, ' + skippedCount + ' skipped');
+
+    // Try to show UI alert, but don't fail if UI is not available
+    try {
+      SpreadsheetApp.getUi().alert(
+        '✅ Sync Abgeschlossen!\n\n' +
+        'Synchronisiert: ' + syncedCount + ' Patienten\n' +
+        'Übersprungen: ' + skippedCount + ' Zeilen (fehlende Daten)\n\n' +
+        'Bitte überprüfen Sie das Patients-Sheet.'
+      );
+    } catch (uiError) {
+      Logger.log('ℹ️ UI not available (running from trigger/background): ' + uiError.toString());
+    }
+
+  } catch (error) {
+    Logger.log('❌ Error syncing patients: ' + error.toString());
+    try {
+      SpreadsheetApp.getUi().alert('❌ Fehler: ' + error.toString());
+    } catch (uiError) {
+      Logger.log('ℹ️ Cannot show error alert (UI not available)');
+    }
+  }
+}
+
+// ============================================
 // Menu
 // ============================================
 
@@ -1045,8 +1264,12 @@ function onOpen() {
     .addSeparator()
     .addItem('📋 Create New_Appointments', 'initializeNewAppointmentsSheet')
     .addItem('👥 Create Patients Sheet', 'initializePatientsSheet')
+    .addItem('⭐ Create Review Form', 'initializeDentistReviewsSheet')
+    .addItem('🗑️ Delete & Recreate Review Form', 'deleteAndRecreateReviewForm')
     .addSeparator()
     .addItem('🔄 Full Sync', 'syncCalendarWithAppointments')
+    .addItem('👤 Sync All Patients', 'syncAllPatientsFromAppointments')
+    .addItem('📊 View Form URLs', 'showFormUrls')
     .addToUi();
 }
 
@@ -1068,10 +1291,11 @@ function initializeNewAppointmentsSheet() {
     sheet.appendRow([
       'Zeitstempel', 'Symptom', 'Arzt', 'Arzt E-Mail', 'Arzt Telefon',
       'Datum', 'Zeit', 'Beschreibung', 'Sprache',
-      'Patient Name', 'Patient Geburtsjahr', 'Patient Telefon', 'Patient E-Mail'
+      'Patient Vorname', 'Patient Nachname', 'Patient Geburtsjahr',
+      'Patient Telefon', 'Patient E-Mail', 'Erinnerung (Stunden)', 'Standort'
     ]);
 
-    var headerRange = sheet.getRange(1, 1, 1, 13);
+    var headerRange = sheet.getRange(1, 1, 1, 16);
     headerRange.setFontWeight('bold');
     headerRange.setBackground('#14b8a6');
     headerRange.setFontColor('#ffffff');
@@ -1081,11 +1305,22 @@ function initializeNewAppointmentsSheet() {
     headerRange.setWrapStrategy(SpreadsheetApp.WrapStrategy.WRAP);
     sheet.setRowHeight(1, 50);
 
-    sheet.setColumnWidth(1, 150); sheet.setColumnWidth(2, 200); sheet.setColumnWidth(3, 150);
-    sheet.setColumnWidth(4, 200); sheet.setColumnWidth(5, 120); sheet.setColumnWidth(6, 100);
-    sheet.setColumnWidth(7, 80); sheet.setColumnWidth(8, 250); sheet.setColumnWidth(9, 80);
-    sheet.setColumnWidth(10, 180); sheet.setColumnWidth(11, 120); sheet.setColumnWidth(12, 150);
-    sheet.setColumnWidth(13, 200);
+    sheet.setColumnWidth(1, 150);  // Zeitstempel
+    sheet.setColumnWidth(2, 200);  // Symptom
+    sheet.setColumnWidth(3, 150);  // Arzt
+    sheet.setColumnWidth(4, 200);  // Arzt E-Mail
+    sheet.setColumnWidth(5, 120);  // Arzt Telefon
+    sheet.setColumnWidth(6, 100);  // Datum
+    sheet.setColumnWidth(7, 80);   // Zeit
+    sheet.setColumnWidth(8, 250);  // Beschreibung
+    sheet.setColumnWidth(9, 80);   // Sprache
+    sheet.setColumnWidth(10, 150); // Patient Vorname
+    sheet.setColumnWidth(11, 150); // Patient Nachname
+    sheet.setColumnWidth(12, 120); // Patient Geburtsjahr
+    sheet.setColumnWidth(13, 150); // Patient Telefon
+    sheet.setColumnWidth(14, 200); // Patient E-Mail
+    sheet.setColumnWidth(15, 120); // Erinnerung (Stunden)
+    sheet.setColumnWidth(16, 150); // Standort
 
     sheet.setFrozenRows(1);
 
@@ -1238,25 +1473,32 @@ function syncCalendarWithAppointments() {
 function onEditTrigger(e) {
   try {
     var sheet = e.source.getActiveSheet();
-
-    // Only apply to Calendar sheet
-    if (sheet.getName() !== 'Calendar') {
-      return;
-    }
-
     var range = e.range;
     var row = range.getRow();
     var col = range.getColumn();
 
-    // Handle email/phone placeholder formatting (rows 2-3)
-    if (row === 2 || row === 3) {
-      handlePlaceholderFormatting(range, row, col);
+    // Handle Calendar sheet
+    if (sheet.getName() === 'Calendar') {
+      // Handle email/phone placeholder formatting (rows 2-3)
+      if (row === 2 || row === 3) {
+        handlePlaceholderFormatting(range, row, col);
+        return;
+      }
+
+      // Handle appointment status changes (data rows, row >= 5)
+      if (row >= 5 && col >= 3) {
+        handleAppointmentStatusChange(sheet, range, row, col);
+      }
       return;
     }
 
-    // Handle appointment status changes (data rows, row >= 5)
-    if (row >= 5 && col >= 3) {
-      handleAppointmentStatusChange(sheet, range, row, col);
+    // Handle Patients sheet - Treatment completion checkbox
+    if (sheet.getName() === 'Patients') {
+      // Column 13 is "Hoàn tất điều trị" (Treatment Completed)
+      if (col === 13 && row >= 2) {
+        handleTreatmentCompletion(sheet, row);
+      }
+      return;
     }
 
   } catch (error) {
@@ -1474,31 +1716,45 @@ function initializePatientsSheet() {
     sheet = ss.insertSheet('Patients');
     sheet.appendRow([
       'Patient ID', 'Vorname', 'Nachname', 'Geburtsjahr', 'Email', 'Telefon',
-      'Adresse', 'Versicherung', 'Erinnerung (Stunden)', 'Notizen', 'Erstellt am'
+      'Adresse', 'Versicherung', 'Erinnerung (Stunden)', 'Notizen', 'Erstellt am',
+      'Behandlungsergebnis', 'Behandlung abgeschlossen'
     ]);
 
-    var headerRange = sheet.getRange(1, 1, 1, 11);
+    var headerRange = sheet.getRange(1, 1, 1, 13);
     headerRange.setFontWeight('bold');
     headerRange.setBackground('#14b8a6');
     headerRange.setFontColor('#ffffff');
     headerRange.setBorder(true, true, true, true, true, true, '#000000', SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
     headerRange.setHorizontalAlignment('center');
     headerRange.setVerticalAlignment('middle');
-    sheet.setRowHeight(1, 40);
+    headerRange.setWrapStrategy(SpreadsheetApp.WrapStrategy.WRAP);
+    sheet.setRowHeight(1, 50);
 
-    // Set column widths
-    sheet.setColumnWidth(1, 120);  // Patient ID
-    sheet.setColumnWidth(2, 150);  // Vorname
-    sheet.setColumnWidth(3, 150);  // Nachname
-    sheet.setColumnWidth(4, 100);  // Geburtsjahr
-    sheet.setColumnWidth(5, 200);  // Email
-    sheet.setColumnWidth(6, 120);  // Telefon
-    sheet.setColumnWidth(7, 250);  // Adresse
-    sheet.setColumnWidth(8, 150);  // Versicherung
-    sheet.setColumnWidth(9, 120);  // Erinnerung (Stunden)
-    sheet.setColumnWidth(10, 130); // Anzahl Erinnerungen
-    sheet.setColumnWidth(11, 300); // Notizen
-    sheet.setColumnWidth(12, 150); // Erstellt am
+    // Auto-resize all columns to fit content
+    sheet.autoResizeColumns(1, 13);
+
+    // Set minimum widths for better readability
+    sheet.setColumnWidth(1, Math.max(120, sheet.getColumnWidth(1)));  // Patient ID
+    sheet.setColumnWidth(2, Math.max(120, sheet.getColumnWidth(2)));  // Vorname
+    sheet.setColumnWidth(3, Math.max(120, sheet.getColumnWidth(3)));  // Nachname
+    sheet.setColumnWidth(4, Math.max(100, sheet.getColumnWidth(4)));  // Geburtsjahr
+    sheet.setColumnWidth(5, Math.max(200, sheet.getColumnWidth(5)));  // Email
+    sheet.setColumnWidth(6, Math.max(120, sheet.getColumnWidth(6)));  // Telefon
+    sheet.setColumnWidth(7, Math.max(200, sheet.getColumnWidth(7)));  // Adresse
+    sheet.setColumnWidth(8, Math.max(150, sheet.getColumnWidth(8)));  // Versicherung
+    sheet.setColumnWidth(9, Math.max(140, sheet.getColumnWidth(9)));  // Erinnerung (Stunden)
+    sheet.setColumnWidth(10, Math.max(250, sheet.getColumnWidth(10))); // Notizen
+    sheet.setColumnWidth(11, Math.max(140, sheet.getColumnWidth(11))); // Erstellt am
+    sheet.setColumnWidth(12, Math.max(180, sheet.getColumnWidth(12))); // Behandlungsergebnis
+    sheet.setColumnWidth(13, Math.max(160, sheet.getColumnWidth(13))); // Behandlung abgeschlossen
+
+    // Add checkbox validation for "Hoàn tất điều trị" column
+    var checkboxRange = sheet.getRange(2, 13, 1000, 1); // Apply to rows 2-1001
+    var checkboxRule = SpreadsheetApp.newDataValidation()
+      .requireCheckbox()
+      .setAllowInvalid(false)
+      .build();
+    checkboxRange.setDataValidation(checkboxRule);
 
     sheet.setFrozenRows(1);
 
@@ -1510,6 +1766,178 @@ function initializePatientsSheet() {
     return 'ERROR: ' + error.toString();
   }
 }
+
+// ============================================
+// Initialize Review Form (NO manual sheet creation)
+// ============================================
+
+function initializeDentistReviewsSheet() {
+  try {
+    // Only create the Google Form - it will auto-create its own response sheet
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    createReviewForm(ss);
+
+    return 'SUCCESS: Review Form created';
+
+  } catch (error) {
+    Logger.log('❌ Error: ' + error.toString());
+    return 'ERROR: ' + error.toString();
+  }
+}
+
+// ============================================
+// Create Google Form for Dentist Reviews (SIMPLE VERSION - NO PRE-FILL)
+// ============================================
+
+function createReviewForm(spreadsheet) {
+  try {
+    // Check if form already exists
+    var formUrl = PropertiesService.getScriptProperties().getProperty('REVIEW_FORM_URL');
+    if (formUrl) {
+      Logger.log('⚠️ Review form already exists: ' + formUrl);
+      return formUrl;
+    }
+
+    // Create new form (German only)
+    var form = FormApp.create('Zahnarzt Bewertung');
+
+    // Set form description (German only)
+    form.setDescription('Bitte bewerten Sie Ihre Behandlung.\n\nVielen Dank für Ihr Feedback!');
+
+    // Set confirmation message (German only)
+    form.setConfirmationMessage('✅ Vielen Dank für Ihre Bewertung!');
+
+    // Allow multiple responses
+    form.setLimitOneResponsePerUser(false);
+    form.setCollectEmail(true); // Collect email for identification
+
+    // Question 1: Doctor Name (dropdown)
+    form.addMultipleChoiceItem()
+      .setTitle('Welcher Arzt hat Sie behandelt?')
+      .setChoiceValues(['Seitschenko-Dinh', 'Kukadiya', 'Ikikardes', 'Taifour', 'Nikolaou'])
+      .setRequired(true);
+
+    // Question 4: Treatment Date
+    form.addDateItem()
+      .setTitle('Behandlungsdatum')
+      .setHelpText('Wann wurden Sie behandelt?')
+      .setRequired(true);
+
+    // Question 5: Rating (1-5 stars)
+    form.addScaleItem()
+      .setTitle('⭐ Bewertung\n\nWie bewerten Sie Ihre Behandlung?')
+      .setBounds(1, 5)
+      .setLabels('⭐ Sehr schlecht', '⭐⭐⭐⭐⭐ Ausgezeichnet')
+      .setRequired(true);
+
+    // Question 6: Review Text (optional)
+    form.addParagraphTextItem()
+      .setTitle('💬 Ihre Bewertung (optional)\n\nBeschreiben Sie Ihre Erfahrung mit dem Arzt und der Behandlung')
+      .setRequired(false);
+
+    // Link form to Dentist_Reviews sheet
+    form.setDestination(FormApp.DestinationType.SPREADSHEET, spreadsheet.getId());
+
+    // Get form URL and Form ID
+    var formUrl = form.getPublishedUrl();
+    var formId = form.getId();
+    var editUrl = form.getEditUrl();
+
+    // Save to Script Properties
+    PropertiesService.getScriptProperties().setProperty('REVIEW_FORM_URL', formUrl);
+    PropertiesService.getScriptProperties().setProperty('REVIEW_FORM_ID', formId);
+    PropertiesService.getScriptProperties().setProperty('REVIEW_FORM_EDIT_URL', editUrl);
+
+    Logger.log('✅ Review form created: ' + formUrl);
+    Logger.log('📝 Form ID: ' + formId);
+    Logger.log('📝 Edit form: ' + editUrl);
+
+    return formUrl;
+
+  } catch (error) {
+    Logger.log('❌ Error creating review form: ' + error.toString());
+    return null;
+  }
+}
+
+// ============================================
+// Delete and recreate review form
+// ============================================
+
+function deleteAndRecreateReviewForm() {
+  try {
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+
+    // Step 1: Delete old form if exists
+    var formId = PropertiesService.getScriptProperties().getProperty('REVIEW_FORM_ID');
+    if (formId) {
+      try {
+        var form = FormApp.openById(formId);
+        var formTitle = form.getTitle();
+
+        // Delete the form
+        DriveApp.getFileById(formId).setTrashed(true);
+        Logger.log('✅ Deleted old form: ' + formTitle);
+      } catch (e) {
+        Logger.log('⚠️ Could not delete old form (may already be deleted): ' + e.toString());
+      }
+    }
+
+    // Step 2: Delete old response sheet if exists
+    var sheets = ss.getSheets();
+    for (var i = 0; i < sheets.length; i++) {
+      var sheetName = sheets[i].getName();
+      // Look for form response sheets (Vietnamese or German)
+      if (sheetName.indexOf('Câu trả lời') !== -1 ||
+          sheetName.indexOf('Form_Responses') !== -1 ||
+          sheetName.indexOf('Formularantworten') !== -1 ||
+          sheetName.indexOf('Form-Antworten') !== -1) {
+        ss.deleteSheet(sheets[i]);
+        Logger.log('✅ Deleted old response sheet: ' + sheetName);
+      }
+    }
+
+    // Step 3: Clear script properties
+    PropertiesService.getScriptProperties().deleteProperty('REVIEW_FORM_URL');
+    PropertiesService.getScriptProperties().deleteProperty('REVIEW_FORM_ID');
+    PropertiesService.getScriptProperties().deleteProperty('REVIEW_FORM_EDIT_URL');
+    Logger.log('✅ Cleared form properties');
+
+    // Step 4: Create new form
+    Logger.log('📝 Creating new review form...');
+    var newFormUrl = createReviewForm(ss);
+
+    if (newFormUrl) {
+      Logger.log('✅ SUCCESS: New review form created');
+      Logger.log('🔗 Form URL: ' + newFormUrl);
+
+      // Show success message
+      SpreadsheetApp.getUi().alert(
+        '✅ Form đã được tạo lại thành công!\n\n' +
+        '🔗 URL: ' + newFormUrl + '\n\n' +
+        '⚠️ LƯU Ý:\n' +
+        '- Nếu headers vẫn hiển thị tiếng Việt, vui lòng:\n' +
+        '  1. Vào https://myaccount.google.com/language\n' +
+        '  2. Chọn "Deutsch" (Tiếng Đức)\n' +
+        '  3. Lưu và chạy lại function này'
+      );
+
+      return 'SUCCESS: Review form recreated';
+    } else {
+      throw new Error('Failed to create new form');
+    }
+
+  } catch (error) {
+    Logger.log('❌ Error: ' + error.toString());
+    SpreadsheetApp.getUi().alert('❌ Lỗi: ' + error.toString());
+    return 'ERROR: ' + error.toString();
+  }
+}
+
+// ============================================
+// Review form submission handling removed
+// Google Forms automatically collects responses
+// ============================================
 
 // ============================================
 // Sync patient info to Patients sheet
@@ -1556,23 +1984,41 @@ function syncPatientInfo(patientData) {
     var phoneDigits = patientPhone.replace(/[^0-9]/g, '');
     var lastSixDigits = phoneDigits.slice(-6);
     var cleanFirstname = removeAccents(patientFirstname);
+
+    // Debug logging to diagnose Patient ID generation
+    Logger.log('🔍 Patient ID Generation:');
+    Logger.log('   - Original firstname: "' + patientFirstname + '"');
+    Logger.log('   - Clean firstname: "' + cleanFirstname + '"');
+    Logger.log('   - Phone: "' + patientPhone + '"');
+    Logger.log('   - Phone digits: "' + phoneDigits + '"');
+    Logger.log('   - Last 6 digits: "' + lastSixDigits + '"');
+
     // Only use firstname (not lastname) + last 6 digits of phone
     var patientId = cleanFirstname + lastSixDigits;
     patientId = patientId.toUpperCase();
 
-    // Check if patient already exists (by email or Patient ID)
+    Logger.log('   - Final Patient ID: "' + patientId + '"');
+
+    // Check if patient already exists (by Patient ID ONLY - not by email to prevent false matches)
     var data = patientsSheet.getDataRange().getDisplayValues();
     var existingRow = -1;
 
+    Logger.log('🔍 Looking for existing patient with ID: ' + patientId);
+
     for (var i = 1; i < data.length; i++) {
       var rowId = data[i][0] ? data[i][0].trim() : '';
-      var rowEmail = data[i][4] ? data[i][4].trim() : '';
 
-      // Match by Patient ID (primary) or email (secondary)
-      if ((rowId === patientId) || (patientEmail && patientEmail !== '-' && rowEmail === patientEmail)) {
+      // Match by Patient ID ONLY (firstname + last 6 digits of phone)
+      // This prevents false matches where different patients have same email
+      if (rowId === patientId) {
         existingRow = i + 1; // Convert to 1-based row index
+        Logger.log('✅ Found existing patient at row ' + existingRow);
         break;
       }
+    }
+
+    if (existingRow === -1) {
+      Logger.log('➕ Patient ID ' + patientId + ' not found - will create new row');
     }
 
     if (existingRow !== -1) {
@@ -1619,19 +2065,40 @@ function syncPatientInfo(patientData) {
         '', // Versicherung (empty for now)
         reminderTime,
         '', // Notizen (empty for now)
-        timestamp
+        timestamp,
+        '', // Kết quả điều trị (empty for now)
+        false // Hoàn tất điều trị (unchecked by default)
       ];
 
-      var newRowNumber = patientsSheet.getLastRow() + 1;
-      patientsSheet.appendRow(newRow);
+      // Count existing patients by checking Patient ID column (column 1)
+      // This is more reliable than searching for empty rows
+      var existingData = patientsSheet.getDataRange().getValues();
+      var patientCount = 0;
+
+      // Count rows with non-empty Patient ID (starting from row 2, index 1)
+      for (var i = 1; i < existingData.length; i++) {
+        var patientIdInRow = existingData[i][0] ? existingData[i][0].toString().trim() : '';
+        if (patientIdInRow !== '') {
+          patientCount++;
+        }
+      }
+
+      // New row number = Row 1 (header) + number of existing patients + 1
+      var newRowNumber = 1 + patientCount + 1;
+
+      Logger.log('📊 Existing patients found: ' + patientCount);
+      Logger.log('📝 Writing new patient to row: ' + newRowNumber);
+
+      // Write data to specific row
+      patientsSheet.getRange(newRowNumber, 1, 1, 13).setValues([newRow]);
 
       // Format new row
-      var newRowRange = patientsSheet.getRange(newRowNumber, 1, 1, 12);
+      var newRowRange = patientsSheet.getRange(newRowNumber, 1, 1, 13);
       newRowRange.setBorder(true, true, true, true, true, true, '#000000', SpreadsheetApp.BorderStyle.SOLID);
       newRowRange.setVerticalAlignment('middle');
       newRowRange.setBackground(newRowNumber % 2 === 0 ? '#f9fafb' : '#ffffff');
 
-      Logger.log('✅ Patient added: ' + patientId + ' - ' + patientFirstname + ' ' + patientLastname);
+      Logger.log('✅ Patient added at row ' + newRowNumber + ': ' + patientId + ' - ' + patientFirstname + ' ' + patientLastname);
     }
 
   } catch (error) {
@@ -1744,6 +2211,24 @@ function sendPatientConfirmation(patientFirstname, patientLastname, patientEmail
     var subject = 'Terminbestätigung - Zahnarztpraxis';
     Logger.log('📧 Preparing email with subject: ' + subject);
 
+    // Get location info based on doctor
+    var location = getLocationByDentist(doctorName);
+    var locationName = 'Zahnarztpraxis';
+    var locationAddress = '';
+    var locationPhone = '0202 660828';
+    var locationEmail = 'info@zahnarztpraxis.de';
+    var locationGmaps = '';
+
+    if (location) {
+      locationName = location.name;
+      locationAddress = location.address + ', ' + location.postalCode + ' ' + location.city;
+      locationPhone = location.phone;
+      locationEmail = location.email;
+      locationGmaps = location.gmapsUrl;
+    }
+
+    Logger.log('📧 Using location: ' + locationName + ' / ' + locationEmail + ' / ' + locationPhone);
+
     // Convert reminder time to readable format
     var reminderText = '';
     if (reminderTime == '0.5') reminderText = '30 Minuten';
@@ -1777,14 +2262,24 @@ function sendPatientConfirmation(patientFirstname, patientLastname, patientEmail
     }
 
     body += '\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n' +
+            'PRAXIS-STANDORT:\n' +
+            '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n' +
+            locationName + '\n' +
+            '📍 Adresse: ' + locationAddress + '\n' +
+            '📞 Telefon: ' + locationPhone + '\n' +
+            '📧 E-Mail: ' + locationEmail + '\n';
+
+    if (locationGmaps) {
+      body += '🗺️ Google Maps: ' + locationGmaps + '\n';
+    }
+
+    body += '\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n' +
             'ERINNERUNG:\n' +
             '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n' +
             'Sie erhalten eine Erinnerung ' + reminderText + ' vor Ihrem Termin per E-Mail.\n\n' +
             'Falls Sie Fragen haben oder den Termin ändern möchten, kontaktieren Sie uns bitte.\n\n' +
             'Mit freundlichen Grüßen,\n' +
-            'Ihr Praxis-Team\n\n' +
-            '📞 Telefon: 0202 660828\n' +
-            '📧 E-Mail: info@zahnarztpraxis.de';
+            'Ihr Praxis-Team';
 
     Logger.log('📧 Calling MailApp.sendEmail to: ' + patientEmail);
     MailApp.sendEmail({
@@ -1797,6 +2292,131 @@ function sendPatientConfirmation(patientFirstname, patientLastname, patientEmail
 
   } catch (error) {
     Logger.log('❌ Confirmation email error: ' + error.toString());
+  }
+}
+
+// ============================================
+// Handle treatment completion checkbox
+// ============================================
+
+function handleTreatmentCompletion(sheet, row) {
+  try {
+    // Get checkbox value (column 13)
+    var isCompleted = sheet.getRange(row, 13).getValue();
+
+    // Only proceed if checkbox is checked (TRUE)
+    if (isCompleted !== true) {
+      Logger.log('⚠️ Treatment not marked as completed, skipping email');
+      return;
+    }
+
+    // Get patient data from the row
+    var patientId = sheet.getRange(row, 1).getValue() || '';
+    var patientFirstname = sheet.getRange(row, 2).getValue() || '';
+    var patientLastname = sheet.getRange(row, 3).getValue() || '';
+    var patientEmail = sheet.getRange(row, 5).getValue() || '';
+
+    // Validate required fields
+    if (!patientEmail || patientEmail === '' || !patientFirstname) {
+      Logger.log('⚠️ Missing patient email or name, cannot send review request');
+      return;
+    }
+
+    var patientName = patientFirstname + ' ' + patientLastname;
+
+    // Get treatment result (column 12)
+    var treatmentResult = sheet.getRange(row, 12).getValue() || 'Behandlung abgeschlossen';
+
+    // Get the last appointment data from New_Appointments sheet for this patient
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var appointmentsSheet = ss.getSheetByName('New_Appointments');
+
+    var doctorName = '';
+    var appointmentDate = '';
+
+    if (appointmentsSheet) {
+      var appointmentsData = appointmentsSheet.getDataRange().getDisplayValues(); // Use getDisplayValues() to get formatted strings
+
+      // Search from bottom to top to get the most recent appointment
+      for (var i = appointmentsData.length - 1; i >= 1; i--) {
+        var rowFirstname = appointmentsData[i][9] || '';
+        var rowLastname = appointmentsData[i][10] || '';
+        var rowEmail = appointmentsData[i][13] || '';
+
+        Logger.log('🔍 Checking appointment row ' + i + ': ' + rowFirstname + ' ' + rowLastname + ' (' + rowEmail + ')');
+
+        // Match by name or email
+        if ((rowFirstname === patientFirstname && rowLastname === patientLastname) ||
+            (rowEmail === patientEmail)) {
+          doctorName = appointmentsData[i][2] || 'Ihr Arzt';
+          appointmentDate = appointmentsData[i][5] || ''; // Now this is a string like "5.12.2025"
+
+          Logger.log('✅ Found matching appointment:');
+          Logger.log('   Doctor: ' + doctorName);
+          Logger.log('   Date (raw): ' + appointmentDate);
+
+          break;
+        }
+      }
+    }
+
+    Logger.log('📝 Generating pre-filled URL with:');
+    Logger.log('   Patient ID: ' + patientId);
+    Logger.log('   Patient Name: ' + patientName);
+    Logger.log('   Doctor Name: ' + doctorName);
+    Logger.log('   Appointment Date: ' + appointmentDate);
+
+    // Generate Google Form URL with pre-filled data
+    var reviewFormUrl = getPrefilledReviewFormUrl(patientId, patientName, doctorName, appointmentDate);
+
+    // Send review request email
+    sendReviewRequestEmail(patientName, patientEmail, doctorName, appointmentDate, treatmentResult, reviewFormUrl);
+
+    Logger.log('✅ Review request email sent to: ' + patientEmail);
+
+  } catch (error) {
+    Logger.log('❌ Treatment completion handling error: ' + error.toString());
+  }
+}
+
+// ============================================
+// Send review request email to patient
+// ============================================
+
+function sendReviewRequestEmail(patientName, patientEmail, doctorName, treatmentDate, treatmentResult, reviewFormUrl) {
+  try {
+    var subject = '⭐ Bitte bewerten Sie Ihre Behandlung - ' + doctorName;
+
+    var body = 'Sehr geehrte/r ' + patientName + ',\n\n' +
+               'vielen Dank, dass Sie unsere Praxis besucht haben!\n\n' +
+               '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n' +
+               'IHRE BEHANDLUNG:\n' +
+               '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n' +
+               '👨‍⚕️ Arzt: ' + doctorName + '\n' +
+               '📅 Datum: ' + treatmentDate + '\n' +
+               '📋 Ergebnis: ' + treatmentResult + '\n\n' +
+               'Ihre Behandlung wurde erfolgreich abgeschlossen.\n\n' +
+               '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n' +
+               'WIR BRAUCHEN IHR FEEDBACK:\n' +
+               '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n' +
+               'Bitte nehmen Sie sich 2 Minuten Zeit, um Ihre Erfahrung zu bewerten.\n' +
+               'Ihr Feedback hilft uns, unseren Service zu verbessern!\n\n' +
+               '⭐ Bewerten Sie hier:\n' +
+               reviewFormUrl + '\n\n' +
+               'Vielen Dank für Ihr Vertrauen!\n\n' +
+               'Mit freundlichen Grüßen,\n' +
+               'Ihr Praxis-Team';
+
+    MailApp.sendEmail({
+      to: patientEmail,
+      subject: subject,
+      body: body
+    });
+
+    Logger.log('✅ Review request email sent to: ' + patientEmail);
+
+  } catch (error) {
+    Logger.log('❌ Review request email error: ' + error.toString());
   }
 }
 
@@ -1830,3 +2450,120 @@ function sendPatientReminder(patientName, patientEmail, doctorName, dateStr, tim
     Logger.log('❌ Reminder email error: ' + error.toString());
   }
 }
+
+// ============================================
+// Generate pre-filled review form URL
+// ============================================
+
+function getPrefilledReviewFormUrl(patientId, patientName, doctorName, appointmentDate) {
+  try {
+    // Get form URL from Script Properties (use URL, not ID for safety)
+    var formUrl = PropertiesService.getScriptProperties().getProperty('REVIEW_FORM_URL');
+    var formId = PropertiesService.getScriptProperties().getProperty('REVIEW_FORM_ID');
+
+    if (!formUrl && !formId) {
+      Logger.log('⚠️ Review form not found in Script Properties');
+      Logger.log('⚠️ Please create form first: Menu → ⭐ Create Review Form');
+      return 'https://forms.google.com';
+    }
+
+    // If we have URL but no ID, extract ID from URL
+    if (formUrl && !formId) {
+      var urlParts = formUrl.match(/\/forms\/d\/([a-zA-Z0-9-_]+)/);
+      if (urlParts && urlParts[1]) {
+        formId = urlParts[1];
+        Logger.log('📝 Extracted Form ID from URL: ' + formId);
+      } else {
+        Logger.log('⚠️ Could not extract form ID from URL, returning plain URL');
+        return formUrl;
+      }
+    }
+
+    Logger.log('📝 Form ID: ' + formId);
+    Logger.log('📝 Form URL: ' + formUrl);
+    Logger.log('📝 Patient data: ' + patientName + ' | ' + doctorName + ' | ' + appointmentDate);
+
+    // Get the form to retrieve Entry IDs
+    var form = FormApp.openById(formId);
+    var items = form.getItems();
+
+    Logger.log('📋 Total questions in form: ' + items.length);
+
+    // Build pre-fill URL
+    var baseUrl = 'https://docs.google.com/forms/d/' + formId + '/viewform?usp=pp_url';
+
+    // Find Entry IDs for doctor and date questions ONLY (no name/email fields in current form)
+    var entryIds = {
+      doctorName: null,
+      treatmentDate: null
+    };
+
+    for (var i = 0; i < items.length; i++) {
+      var item = items[i];
+      var title = item.getTitle();
+      var itemId = item.getId();
+
+      Logger.log('📋 Question ' + i + ': "' + title + '" (ID: ' + itemId + ')');
+
+      // Match questions by title (German)
+      // Question 1: "Welcher Arzt hat Sie behandelt?"
+      if (title.indexOf('Arzt') !== -1 && title.indexOf('behandelt') !== -1) {
+        entryIds.doctorName = 'entry.' + itemId;
+        Logger.log('   ✅ Matched as Doctor Name field');
+      }
+      // Question 2: "Behandlungsdatum"
+      else if (title.indexOf('Behandlungsdatum') !== -1) {
+        entryIds.treatmentDate = 'entry.' + itemId;
+        Logger.log('   ✅ Matched as Treatment Date field');
+      }
+    }
+
+    Logger.log('📝 Entry IDs found: ' + JSON.stringify(entryIds));
+
+    // Build pre-filled URL with URL encoding
+    var prefilledUrl = baseUrl;
+
+    // Pre-fill doctor name (dropdown field)
+    if (entryIds.doctorName && doctorName) {
+      prefilledUrl += '&' + entryIds.doctorName + '=' + encodeURIComponent(doctorName);
+      Logger.log('   ✅ Pre-filled doctor: ' + doctorName);
+    }
+
+    // Pre-fill treatment date (date field - format: YYYY-MM-DD)
+    if (entryIds.treatmentDate && appointmentDate) {
+      // Format date for Google Forms (YYYY-MM-DD)
+      var dateParts = appointmentDate.split('.');
+      if (dateParts.length >= 2) {
+        var day = dateParts[0];
+        var month = dateParts[1];
+        var year = dateParts.length >= 3 ? dateParts[2] : new Date().getFullYear().toString();
+
+        // Pad with zeros
+        if (day.length === 1) day = '0' + day;
+        if (month.length === 1) month = '0' + month;
+
+        var formattedDate = year + '-' + month + '-' + day;
+        prefilledUrl += '&' + entryIds.treatmentDate + '=' + formattedDate;
+        Logger.log('   ✅ Pre-filled date: ' + formattedDate + ' (from ' + appointmentDate + ')');
+      }
+    }
+
+    Logger.log('✅ Final pre-filled URL: ' + prefilledUrl);
+    return prefilledUrl;
+
+  } catch (error) {
+    Logger.log('❌ Error generating pre-filled URL: ' + error.toString());
+    Logger.log('Stack trace: ' + error.stack);
+
+    // Fallback to base form URL (without pre-fill)
+    var fallbackUrl = PropertiesService.getScriptProperties().getProperty('REVIEW_FORM_URL');
+    if (fallbackUrl) {
+      Logger.log('⚠️ Returning fallback URL (no pre-fill): ' + fallbackUrl);
+      return fallbackUrl;
+    } else {
+      Logger.log('⚠️ No fallback URL available');
+      return 'https://forms.google.com';
+    }
+  }
+}
+

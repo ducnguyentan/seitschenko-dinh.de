@@ -1282,6 +1282,7 @@
     let selectedDoctor = null;
     let selectedDoctorEmail = null;  // Store doctor's email from Calendar sheet
     let selectedDoctorPhone = null;  // Store doctor's phone from Calendar sheet
+    let selectedLocation = null;  // Store doctor's location (Schwarzbach or Am Loh)
     let selectedTime = null;
     let selectedDate = null;
     let customDescription = '';
@@ -1871,6 +1872,16 @@
       selectedDoctor = doctorId;
 
       // Get doctor's contact info from stored contacts (if available)
+      // Map doctor to location
+      const doctorLower = doctorId.toLowerCase();
+      if (['seitschenko-dinh', 'kukadiya', 'nikolaou'].includes(doctorLower)) {
+        selectedLocation = 'Am Loh';
+      } else if (['ikikardes', 'taifour'].includes(doctorLower)) {
+        selectedLocation = 'Schwarzbach';
+      } else {
+        selectedLocation = null;
+      }
+
       if (window.dentistContacts) {
         // Find matching dentist in contacts (case-insensitive match)
         const dentistKey = Object.keys(window.dentistContacts).find(key =>
@@ -1880,7 +1891,7 @@
         if (dentistKey && window.dentistContacts[dentistKey]) {
           selectedDoctorEmail = window.dentistContacts[dentistKey].email || null;
           selectedDoctorPhone = window.dentistContacts[dentistKey].phone || null;
-          console.log(`✅ Loaded contacts for ${doctorId}: email=${selectedDoctorEmail}, phone=${selectedDoctorPhone}`);
+          console.log(`✅ Loaded contacts for ${doctorId}: email=${selectedDoctorEmail}, phone=${selectedDoctorPhone}, location=${selectedLocation}`);
         } else {
           console.warn(`⚠️ No contact info found for ${doctorId}`);
           selectedDoctorEmail = null;
@@ -2167,6 +2178,7 @@
         doctor: selectedDoctor,
         doctorEmail: selectedDoctorEmail,     // Add doctor's email
         doctorPhone: selectedDoctorPhone,     // Add doctor's phone
+        location: selectedLocation,           // Add doctor's location
         date: selectedDate,
         time: selectedTime,
         description: customDescription,

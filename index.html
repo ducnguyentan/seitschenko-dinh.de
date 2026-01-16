@@ -19,9 +19,147 @@
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/cookie-consent.css">
 </head>
 
 <body class="bg-white text-gray-800">
+
+  <!-- Cookie Consent Modal -->
+  <div id="cookie-consent-modal" class="cookie-consent-overlay" style="display: none;">
+    <div class="cookie-consent-modal">
+      <h2 class="cookie-consent-title" data-translate="cookie.title">Datenschutzeinstellungen</h2>
+
+      <div class="cookie-consent-content">
+        <p data-translate="cookie.description1">
+          Wir nutzen Cookies auf unserer Website. Einige von ihnen sind essenziell, während andere uns helfen, diese Website und Ihre Erfahrung zu verbessern.
+        </p>
+
+        <p data-translate="cookie.description2">
+          Wenn Sie unter 16 Jahre alt sind und Ihre Zustimmung zu freiwilligen Diensten geben möchten, müssen Sie Ihre Erziehungsberechtigten um Erlaubnis bitten.
+        </p>
+
+        <p data-translate="cookie.description3">
+          Wir verwenden Cookies und andere Technologien auf unserer Website. Einige von ihnen sind essenziell, während andere uns helfen, diese Website und Ihre Erfahrung zu verbessern. Personenbezogene Daten können verarbeitet werden (z. B. IP-Adressen), z. B. für personalisierte Anzeigen und Inhalte oder Anzeigen- und Inhaltsmessung. Weitere Informationen über die Verwendung Ihrer Daten finden Sie in unserer
+          <a href="pages/datenschutz.html" class="cookie-link" data-translate="cookie.privacy_link">Datenschutzerklärung</a>.
+          Sie können Ihre Auswahl jederzeit unter
+          <a href="#" class="cookie-link" data-translate="cookie.settings_link">Einstellungen</a>
+          widerrufen oder anpassen.
+        </p>
+
+        <!-- Cookie Categories -->
+        <div class="cookie-categories">
+          <div class="cookie-category">
+            <label class="cookie-checkbox-label">
+              <input type="checkbox" id="cookie-essential" checked disabled>
+              <span data-translate="cookie.essential">Essenziell</span>
+            </label>
+          </div>
+
+          <div class="cookie-category">
+            <label class="cookie-checkbox-label">
+              <input type="checkbox" id="cookie-external-media">
+              <span data-translate="cookie.external_media">Externe Medien</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="cookie-consent-actions">
+        <button id="cookie-accept-all" class="cookie-btn cookie-btn-primary" data-translate="cookie.accept_all">
+          Alle akzeptieren
+        </button>
+
+        <button id="cookie-save-preferences" class="cookie-btn cookie-btn-secondary" data-translate="cookie.save">
+          Speichern
+        </button>
+
+        <button id="cookie-individual-settings" class="cookie-btn cookie-btn-tertiary" data-translate="cookie.individual">
+          Individuelle Datenschutzeinstellungen
+        </button>
+      </div>
+
+      <!-- Footer Links -->
+      <div class="cookie-consent-footer">
+        <a href="#" class="cookie-footer-link" data-translate="cookie.cookie_details">Cookie-Details</a>
+        <span class="cookie-separator">|</span>
+        <a href="pages/datenschutz.html" class="cookie-footer-link" data-translate="cookie.privacy_policy">Datenschutzerklärung</a>
+        <span class="cookie-separator">|</span>
+        <a href="pages/impressum.html" class="cookie-footer-link" data-translate="cookie.imprint">Impressum</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cookie Detailed Settings Modal -->
+  <div id="cookie-detailed-modal" class="cookie-consent-overlay" style="display: none;">
+    <div class="cookie-consent-modal detailed">
+      <h2 class="cookie-consent-title">Individuelle Datenschutzeinstellungen</h2>
+
+      <div class="cookie-consent-content">
+        <p style="color: #4a5568; margin-bottom: 1.5rem;">
+          Hier können Sie detaillierte Einstellungen zu den einzelnen Cookie-Kategorien vornehmen.
+        </p>
+
+        <!-- Essential Cookies -->
+        <div class="cookie-detail-section">
+          <div class="cookie-detail-header" onclick="toggleCookieDetail('essential')">
+            <div class="cookie-detail-title">
+              <input type="checkbox" checked disabled style="cursor: not-allowed;">
+              <span>Essenziell (1)</span>
+            </div>
+            <div class="cookie-detail-toggle">
+              <span class="cookie-detail-expand" id="expand-essential">▼</span>
+            </div>
+          </div>
+          <div class="cookie-detail-content" id="content-essential">
+            <div class="cookie-detail-description">
+              Cookie thiết yếu cho phép các chức năng cơ bản và cần thiết để trang web hoạt động bình thường. Trang web không thể hoạt động đúng nếu không có những cookie này.
+            </div>
+            <div class="cookie-detail-info">
+              <strong>Cookie-Name:</strong> cookie_consent<br>
+              <strong>Anbieter:</strong> seitschenko-dinh.de<br>
+              <strong>Laufzeit:</strong> 365 Tage<br>
+              <strong>Zweck:</strong> Speichert Ihre Cookie-Einstellungen
+            </div>
+          </div>
+        </div>
+
+        <!-- External Media Cookies -->
+        <div class="cookie-detail-section">
+          <div class="cookie-detail-header" onclick="toggleCookieDetail('external')">
+            <div class="cookie-detail-title">
+              <input type="checkbox" id="detailed-external-media">
+              <span>Phương tiện bên ngoài (6)</span>
+            </div>
+            <div class="cookie-detail-toggle">
+              <span class="cookie-detail-expand" id="expand-external">▼</span>
+            </div>
+          </div>
+          <div class="cookie-detail-content" id="content-external">
+            <div class="cookie-detail-description">
+              Nội dụng từ trên tăng video và nền tảng truyền thông xã hội được chặn mặc định. Nếu cookie từ phương tiện bên ngoài được chấp nhận, việc truy cập vào nội dung đó không còn yêu cầu sự đồng ý thủ công nữa.
+            </div>
+            <div class="cookie-detail-info">
+              <strong>Anbieter:</strong> Google Maps, YouTube, Vimeo, Facebook<br>
+              <strong>Zweck:</strong> Einbettung von externen Medieninhalten<br>
+              <strong>Datenschutzerklärung:</strong>
+              <a href="https://policies.google.com/privacy" target="_blank" style="color: #2d7a3e;">Google</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="cookie-consent-actions">
+        <button onclick="saveDetailedSettings()" class="cookie-btn cookie-btn-primary">
+          Einstellungen speichern
+        </button>
+        <button onclick="closeDetailedModal()" class="cookie-btn cookie-btn-secondary">
+          Zurück
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- Header -->
   <header class="bg-white shadow-lg fixed top-0 left-0 right-0 z-50">
@@ -1693,6 +1831,9 @@
       });
     });
   </script>
+
+  <!-- Cookie Consent Script -->
+  <script src="js/cookie-consent.js"></script>
 </body>
 
 </html>

@@ -28,10 +28,26 @@
         location: "Ho Chi Minh City, Vietnam", 
         copyright: "© 2025 DigitizedBrains. All rights reserved." 
       },
-      chatbot: { 
-        title: "AI Assistant", 
-        placeholder: "Type your message...", 
-        send: "Send" 
+      chatbot: {
+        title: "AI Assistant",
+        placeholder: "Type your message...",
+        send: "Send"
+      },
+      cookie: {
+        title: "Privacy Settings",
+        description1: "We use cookies on our website. Some of them are essential, while others help us improve this website and your experience.",
+        description2: "If you are under 16 years old and want to give your consent to voluntary services, you must ask your parents or guardians for permission.",
+        description3: "We use cookies and other technologies on our website. Some of them are essential, while others help us improve this website and your experience. Personal data may be processed (e.g. IP addresses), e.g. for personalized ads and content or ad and content measurement. For more information about how we use your data, please see our",
+        privacy_link: "Privacy Policy",
+        settings_link: "Settings",
+        essential: "Essential",
+        external_media: "External Media",
+        accept_all: "Accept All",
+        save: "Save",
+        individual: "Individual Privacy Settings",
+        cookie_details: "Cookie Details",
+        privacy_policy: "Privacy Policy",
+        imprint: "Imprint"
       }
     },
     vi: {
@@ -52,10 +68,26 @@
         location: "Thành phố Hồ Chí Minh, Việt Nam", 
         copyright: "© 2025 DigitizedBrains. Tất cả quyền được bảo lưu." 
       },
-      chatbot: { 
-        title: "Trợ lý AI", 
-        placeholder: "Nhập tin nhắn của bạn...", 
-        send: "Gửi" 
+      chatbot: {
+        title: "Trợ lý AI",
+        placeholder: "Nhập tin nhắn của bạn...",
+        send: "Gửi"
+      },
+      cookie: {
+        title: "Cài đặt quyền riêng tư",
+        description1: "Chúng tôi sử dụng cookie trên trang web. Một số là cần thiết, trong khi những cookie khác giúp chúng tôi cải thiện trang web này và trải nghiệm của bạn.",
+        description2: "Nếu bạn dưới 16 tuổi và muốn đồng ý với các dịch vụ tự nguyện, bạn phải xin phép cha mẹ hoặc người giám hộ.",
+        description3: "Chúng tôi sử dụng cookie và các công nghệ khác trên trang web của chúng tôi. Một số là cần thiết, trong khi những cookie khác giúp chúng tôi cải thiện trang web này và trải nghiệm của bạn. Dữ liệu cá nhân có thể được xử lý (ví dụ: địa chỉ IP), ví dụ: để hiển thị quảng cáo và nội dung được cá nhân hóa hoặc đo lường quảng cáo và nội dung. Để biết thêm thông tin về cách chúng tôi sử dụng dữ liệu của bạn, vui lòng xem",
+        privacy_link: "Chính sách bảo mật",
+        settings_link: "Cài đặt",
+        essential: "Cần thiết",
+        external_media: "Phương tiện bên ngoài",
+        accept_all: "Chấp nhận tất cả",
+        save: "Lưu",
+        individual: "Cài đặt quyền riêng tư cá nhân",
+        cookie_details: "Chi tiết Cookie",
+        privacy_policy: "Chính sách bảo mật",
+        imprint: "Thông tin pháp lý"
       }
     },
     de: {
@@ -76,10 +108,26 @@
         location: "Ho-Chi-Minh-Stadt, Vietnam", 
         copyright: "© 2025 DigitizedBrains. Alle Rechte vorbehalten." 
       },
-      chatbot: { 
-        title: "KI-Assistent", 
-        placeholder: "Geben Sie Ihre Nachricht ein...", 
-        send: "Senden" 
+      chatbot: {
+        title: "KI-Assistent",
+        placeholder: "Geben Sie Ihre Nachricht ein...",
+        send: "Senden"
+      },
+      cookie: {
+        title: "Datenschutzeinstellungen",
+        description1: "Wir nutzen Cookies auf unserer Website. Einige von ihnen sind essenziell, während andere uns helfen, diese Website und Ihre Erfahrung zu verbessern.",
+        description2: "Wenn Sie unter 16 Jahre alt sind und Ihre Zustimmung zu freiwilligen Diensten geben möchten, müssen Sie Ihre Erziehungsberechtigten um Erlaubnis bitten.",
+        description3: "Wir verwenden Cookies und andere Technologien auf unserer Website. Einige von ihnen sind essenziell, während andere uns helfen, diese Website und Ihre Erfahrung zu verbessern. Personenbezogene Daten können verarbeitet werden (z. B. IP-Adressen), z. B. für personalisierte Anzeigen und Inhalte oder Anzeigen- und Inhaltsmessung. Weitere Informationen über die Verwendung Ihrer Daten finden Sie in unserer",
+        privacy_link: "Datenschutzerklärung",
+        settings_link: "Einstellungen",
+        essential: "Essenziell",
+        external_media: "Externe Medien",
+        accept_all: "Alle akzeptieren",
+        save: "Speichern",
+        individual: "Individuelle Datenschutzeinstellungen",
+        cookie_details: "Cookie-Details",
+        privacy_policy: "Datenschutzerklärung",
+        imprint: "Impressum"
       }
     }
   };

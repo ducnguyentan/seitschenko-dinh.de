@@ -42,7 +42,7 @@ const laborTranslations = {
       },
       team: {
         title: "Unser Labor-Team",
-        subtitle: "Erfahrene Zahntechniker für höchste Qualität",
+        subtitle: "Erfahrene Spezialisten für höchste Qualität",
         member1: {
           name: "Herr Yurchenko"
         },
@@ -127,7 +127,7 @@ const laborTranslations = {
       },
       team: {
         title: "Our Laboratory Team",
-        subtitle: "Experienced dental technicians for highest quality",
+        subtitle: "Experienced specialists for highest quality",
         member1: {
           name: "Mr. Yurchenko"
         },
@@ -212,7 +212,7 @@ const laborTranslations = {
       },
       team: {
         title: "Đội ngũ Lab của chúng tôi",
-        subtitle: "Kỹ thuật viên nha khoa giàu kinh nghiệm cho chất lượng cao nhất",
+        subtitle: "Chuyên gia giàu kinh nghiệm cho chất lượng cao nhất",
         member1: {
           name: "Ông Yurchenko"
         },
@@ -297,7 +297,7 @@ const laborTranslations = {
       },
       team: {
         title: "Наша лабораторная команда",
-        subtitle: "Опытные зубные техники для высочайшего качества",
+        subtitle: "Опытные специалисты для высочайшего качества",
         member1: {
           name: "Господин Юрченко"
         },
@@ -382,7 +382,7 @@ const laborTranslations = {
       },
       team: {
         title: "فريق المختبر لدينا",
-        subtitle: "فنيو أسنان ذوو خبرة لأعلى جودة",
+        subtitle: "متخصصون ذوو خبرة لأعلى جودة",
         member1: {
           name: "السيد يورتشينكو"
         },

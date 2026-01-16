@@ -5,13 +5,18 @@
   Complete overview of all dental services offered by Zahnarztpraxen Seitschenko-Dinh.
 -->
 <html lang="de" id="html-root">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
   <title id="page-title">Unsere Leistungen - Seitschenko-Dinh</title>
-  <meta name="description" content="Umfassende zahnmedizinische Versorgung für die ganze Familie - von Kinderzahnheilkunde bis Implantologie" id="page-description">
+  <meta name="description"
+    content="Umfassende zahnmedizinische Versorgung für die ganze Familie - von Kinderzahnheilkunde bis Implantologie"
+    id="page-description">
   <link href="../css/tailwind.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
   <style>
     /* CTA Card Animation Effects */
@@ -65,6 +70,7 @@
       0% {
         background-position: -200% center;
       }
+
       100% {
         background-position: 200% center;
       }
@@ -77,12 +83,10 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(94, 179, 179, 0.15),
-        transparent
-      );
+      background: linear-gradient(90deg,
+          transparent,
+          rgba(94, 179, 179, 0.15),
+          transparent);
       background-size: 200% 100%;
       animation: shimmer 2s infinite;
       pointer-events: none;
@@ -94,6 +98,7 @@
         opacity: 0;
         transform: translateY(20px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0);
@@ -102,9 +107,12 @@
 
     /* Floating Animation for Button */
     @keyframes float {
-      0%, 100% {
+
+      0%,
+      100% {
         transform: translateY(0px);
       }
+
       50% {
         transform: translateY(-5px);
       }
@@ -115,6 +123,7 @@
     }
   </style>
 </head>
+
 <body class="bg-white text-gray-800">
 
   <!-- Header -->
@@ -125,8 +134,10 @@
         <div class="flex items-center space-x-3 relative z-50">
           <img src="../assets/img/logo.svg" alt="Seitschenko-Dinh Logo" class="w-12 h-12 flex-shrink-0">
           <a href="../index.html" class="flex flex-col leading-tight">
-            <span class="text-sm font-bold text-gray-800 tracking-wide" data-translate="header.practice_name1">ZAHNARZTPRAXEN</span>
-            <span class="text-sm font-bold text-gray-800 tracking-wide" data-translate="header.practice_name2">SEITSCHENKO-DINH</span>
+            <span class="text-sm font-bold text-gray-800 tracking-wide"
+              data-translate="header.practice_name1">ZAHNARZTPRAXEN</span>
+            <span class="text-sm font-bold text-gray-800 tracking-wide"
+              data-translate="header.practice_name2">SEITSCHENKO-DINH</span>
           </a>
         </div>
 
@@ -143,7 +154,8 @@
 
           <!-- Language Switcher -->
           <div class="language-switcher">
-            <button id="language-btn" class="flex items-center space-x-1 px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+            <button id="language-btn"
+              class="flex items-center space-x-1 px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
               <img id="current-flag" src="https://flagcdn.com/24x18/de.png" alt="Deutsch" class="language-flag">
               <span id="current-lang">DE</span>
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -196,10 +208,12 @@
           <!-- Mobile Language Switcher -->
           <div class="pt-2 border-t border-gray-200">
             <div class="language-switcher-mobile">
-              <button id="mobile-language-btn" class="flex items-center justify-between w-full px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+              <button id="mobile-language-btn"
+                class="flex items-center justify-between w-full px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
                 <span data-translate="language.current">Sprache:</span>
                 <div class="flex items-center space-x-1">
-                  <img id="mobile-current-flag" src="https://flagcdn.com/24x18/de.png" alt="Deutsch" class="language-flag">
+                  <img id="mobile-current-flag" src="https://flagcdn.com/24x18/de.png" alt="Deutsch"
+                    class="language-flag">
                   <span id="mobile-current-lang">DE</span>
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -236,7 +250,8 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="py-20 relative overflow-hidden" style="background: url('../assets/img/img_0368-scaled.jpeg') center/cover no-repeat;">
+  <section class="py-20 relative overflow-hidden"
+    style="background: url('../assets/img/img_0368-scaled.jpeg') center/cover no-repeat;">
     <div class="absolute inset-0 bg-white bg-opacity-30"></div>
     <div class="relative z-10 text-center max-w-4xl mx-auto px-4">
       <h1 class="text-4xl md:text-6xl font-bold mb-6" style="color: #5eb3b3;" data-translate="services.hero.title">
@@ -264,10 +279,13 @@
               Professionelle Zahnmedizin auf höchstem Niveau
             </h2>
             <p class="text-gray-600 text-lg mb-6 leading-relaxed" data-translate="services.intro.description">
-              Unsere Praxis bietet Ihnen ein umfassendes Spektrum moderner zahnmedizinischer Leistungen. Von der Prophylaxe über ästhetische Zahnheilkunde bis hin zu komplexen chirurgischen Eingriffen – wir sind für Sie da.
+              Unsere Praxis bietet Ihnen ein umfassendes Spektrum moderner zahnmedizinischer Leistungen. Von der
+              Prophylaxe über ästhetische Zahnheilkunde bis hin zu komplexen chirurgischen Eingriffen – wir sind für Sie
+              da.
             </p>
             <p class="text-gray-600 text-lg leading-relaxed" data-translate="services.intro.description2">
-              Mit modernster Technologie, biokompatiblen Materialien und einem erfahrenen Team sorgen wir für Ihre Zahngesundheit und Ihr strahlendes Lächeln.
+              Mit modernster Technologie, biokompatiblen Materialien und einem erfahrenen Team sorgen wir für Ihre
+              Zahngesundheit und Ihr strahlendes Lächeln.
             </p>
           </div>
         </div>
@@ -279,10 +297,12 @@
   <section class="py-16 bg-gray-50">
     <div class="container mx-auto px-4">
       <div class="max-w-6xl mx-auto">
-        <p class="text-sm font-bold tracking-widest mb-2 text-center" style="color: #5eb3b3;" data-translate="services.section.suptitle">
-          DỊCH VỤ CỦA CHÚNG TÔI
+        <p class="text-sm font-bold tracking-widest mb-2 text-center" style="color: #5eb3b3;"
+          data-translate="services.section.suptitle">
+          UNSERE LEISTUNGEN
         </p>
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 text-center" data-translate="services.section.title">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 text-center"
+          data-translate="services.section.title">
           Unser Leistungsspektrum
         </h2>
         <p class="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto" data-translate="services.section.subtitle">
@@ -294,100 +314,134 @@
           <!-- Service 1: Kinderzahnheilkunde -->
           <div class="bg-white rounded-2xl p-8 shadow-lg scroll-reveal labor-feature-card cursor-pointer">
             <a href="kinderzahnheilkunde.html" class="block">
-              <div class="w-16 h-16 bg-gradient-to-r from-teal-500 to-teal-600 rounded-2xl flex items-center justify-center mb-6 mx-auto">
+              <div
+        class="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 mx-auto" style="background: linear-gradient(to right, #14b8a6, #0d9488);">
                 <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
               </div>
-              <h3 class="text-xl font-bold text-gray-800 mb-4 text-center" data-translate="services.service1.title">Kinderzahnheilkunde</h3>
-              <p class="text-gray-600 text-center leading-relaxed" data-translate="services.service1.description">Spezialisierte Behandlung für junge Patienten mit sanften, stressfreien Methoden</p>
+              <h3 class="text-xl font-bold text-gray-800 mb-4 text-center" data-translate="services.service1.title">
+                Kinderzahnheilkunde</h3>
+              <p class="text-gray-600 text-center leading-relaxed" data-translate="services.service1.description">
+                Spezialisierte Behandlung für junge Patienten mit sanften, stressfreien Methoden</p>
             </a>
           </div>
 
           <!-- Service 2: Angstpatienten -->
           <div class="bg-white rounded-2xl p-8 shadow-lg scroll-reveal labor-feature-card cursor-pointer">
             <a href="angstpatienten.html" class="block">
-              <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-teal-600 rounded-2xl flex items-center justify-center mb-6 mx-auto">
+              <div
+        class="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 mx-auto" style="background: linear-gradient(to right, #22c55e, #0d9488);">
                 <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                  </path>
                 </svg>
               </div>
-              <h3 class="text-xl font-bold text-gray-800 mb-4 text-center" data-translate="services.service2.title">Angstpatienten</h3>
-              <p class="text-gray-600 text-center leading-relaxed" data-translate="services.service2.description">Einfühlsame Betreuung für Patienten mit Zahnarztangst</p>
+              <h3 class="text-xl font-bold text-gray-800 mb-4 text-center" data-translate="services.service2.title">
+                Angstpatienten</h3>
+              <p class="text-gray-600 text-center leading-relaxed" data-translate="services.service2.description">
+                Einfühlsame Betreuung für Patienten mit Zahnarztangst</p>
             </a>
           </div>
 
           <!-- Service 3: Prophylaxe -->
           <div class="bg-white rounded-2xl p-8 shadow-lg scroll-reveal labor-feature-card cursor-pointer">
             <a href="prophylaxe.html" class="block">
-              <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 mx-auto" style="background: linear-gradient(to right, #06b6d4, #2563eb);">
+              <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 mx-auto"
+                style="background: linear-gradient(to right, #06b6d4, #2563eb);">
                 <span class="text-3xl">🦷</span>
               </div>
-              <h3 class="text-xl font-bold text-gray-800 mb-4 text-center" data-translate="services.service3.title">Prophylaxe</h3>
-              <p class="text-gray-600 text-center leading-relaxed" data-translate="services.service3.description">Früherkennung und Vorsorge für langfristige Zahngesundheit</p>
+              <h3 class="text-xl font-bold text-gray-800 mb-4 text-center" data-translate="services.service3.title">
+                Prophylaxe</h3>
+              <p class="text-gray-600 text-center leading-relaxed" data-translate="services.service3.description">
+                Früherkennung und Vorsorge für langfristige Zahngesundheit</p>
             </a>
           </div>
 
           <!-- Service 4: Zahnerhaltung -->
           <div class="bg-white rounded-2xl p-8 shadow-lg scroll-reveal labor-feature-card cursor-pointer">
             <a href="zahnerhaltung.html" class="block">
-              <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mb-6 mx-auto">
+              <div
+        class="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 mx-auto" style="background: linear-gradient(to right, #a855f7, #db2777);">
                 <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                  </path>
                 </svg>
               </div>
-              <h3 class="text-xl font-bold text-gray-800 mb-4 text-center" data-translate="services.service4.title">Zahnerhaltung</h3>
-              <p class="text-gray-600 text-center leading-relaxed" data-translate="services.service4.description">Erhalt und Schutz natürlicher Zähne durch moderne Verfahren</p>
+              <h3 class="text-xl font-bold text-gray-800 mb-4 text-center" data-translate="services.service4.title">
+                Zahnerhaltung</h3>
+              <p class="text-gray-600 text-center leading-relaxed" data-translate="services.service4.description">Erhalt
+                und Schutz natürlicher Zähne durch moderne Verfahren</p>
             </a>
           </div>
 
           <!-- Service 5: Ästhetische Zahnheilkunde -->
           <div class="bg-white rounded-2xl p-8 shadow-lg scroll-reveal labor-feature-card cursor-pointer">
             <a href="aesthetische-zahnheilkunde.html" class="block">
-              <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 mx-auto" style="background: linear-gradient(to right, #f97316, #dc2626);">
+              <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 mx-auto"
+                style="background: linear-gradient(to right, #f97316, #dc2626);">
                 <span class="text-3xl">✨</span>
               </div>
-              <h3 class="text-xl font-bold text-gray-800 mb-4 text-center" data-translate="services.service5.title">Ästhetische Zahnheilkunde</h3>
-              <p class="text-gray-600 text-center leading-relaxed" data-translate="services.service5.description">Verschönerung Ihres Lächelns mit modernen ästhetischen Lösungen</p>
+              <h3 class="text-xl font-bold text-gray-800 mb-4 text-center" data-translate="services.service5.title">
+                Ästhetische Zahnheilkunde</h3>
+              <p class="text-gray-600 text-center leading-relaxed" data-translate="services.service5.description">
+                Verschönerung Ihres Lächelns mit modernen ästhetischen Lösungen</p>
             </a>
           </div>
 
           <!-- Service 6: Zahnersatz -->
           <div class="bg-white rounded-2xl p-8 shadow-lg scroll-reveal labor-feature-card cursor-pointer">
             <a href="zahnersatz.html" class="block">
-              <div class="w-16 h-16 bg-gradient-to-r from-teal-500 to-teal-600 rounded-2xl flex items-center justify-center mb-6 mx-auto">
+              <div
+        class="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 mx-auto" style="background: linear-gradient(to right, #14b8a6, #0d9488);">
                 <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01">
+                  </path>
                 </svg>
               </div>
-              <h3 class="text-xl font-bold text-gray-800 mb-4 text-center" data-translate="services.service6.title">Zahnersatz</h3>
-              <p class="text-gray-600 text-center leading-relaxed" data-translate="services.service6.description">Hochwertiger Zahnersatz für Ästhetik und Funktion</p>
+              <h3 class="text-xl font-bold text-gray-800 mb-4 text-center" data-translate="services.service6.title">
+                Zahnersatz</h3>
+              <p class="text-gray-600 text-center leading-relaxed" data-translate="services.service6.description">
+                Hochwertiger Zahnersatz für Ästhetik und Funktion</p>
             </a>
           </div>
 
           <!-- Service 7: Oralchirurgie -->
           <div class="bg-white rounded-2xl p-8 shadow-lg scroll-reveal labor-feature-card cursor-pointer">
             <a href="oralchirurgie.html" class="block">
-              <div class="w-16 h-16 bg-gradient-to-r from-red-500 to-pink-600 rounded-2xl flex items-center justify-center mb-6 mx-auto">
+              <div
+        class="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 mx-auto" style="background: linear-gradient(to right, #ef4444, #db2777);">
                 <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z">
+                  </path>
                 </svg>
               </div>
-              <h3 class="text-xl font-bold text-gray-800 mb-4 text-center" data-translate="services.service7.title">Oralchirurgie</h3>
-              <p class="text-gray-600 text-center leading-relaxed" data-translate="services.service7.description">Umfassende chirurgische Behandlung von komplexen Zahnproblemen</p>
+              <h3 class="text-xl font-bold text-gray-800 mb-4 text-center" data-translate="services.service7.title">
+                Oralchirurgie</h3>
+              <p class="text-gray-600 text-center leading-relaxed" data-translate="services.service7.description">
+                Umfassende chirurgische Behandlung von komplexen Zahnproblemen</p>
             </a>
           </div>
 
           <!-- Service 8: Implantologie -->
           <div class="bg-white rounded-2xl p-8 shadow-lg scroll-reveal labor-feature-card cursor-pointer">
             <a href="implantologie.html" class="block">
-              <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 mx-auto" style="background: linear-gradient(to right, #10b981, #0d9488);">
+              <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 mx-auto"
+                style="background: linear-gradient(to right, #10b981, #0d9488);">
                 <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z">
+                  </path>
                 </svg>
               </div>
-              <h3 class="text-xl font-bold text-gray-800 mb-4 text-center" data-translate="services.service8.title">Implantologie</h3>
-              <p class="text-gray-600 text-center leading-relaxed" data-translate="services.service8.description">Hochwertige Implantate für dauerhaften Zahnersatz</p>
+              <h3 class="text-xl font-bold text-gray-800 mb-4 text-center" data-translate="services.service8.title">
+                Implantologie</h3>
+              <p class="text-gray-600 text-center leading-relaxed" data-translate="services.service8.description">
+                Hochwertige Implantate für dauerhaften Zahnersatz</p>
             </a>
           </div>
 
@@ -400,16 +454,22 @@
   <section class="py-16 bg-white">
     <div class="container mx-auto px-4">
       <div class="max-w-5xl mx-auto">
-        <div class="relative rounded-3xl p-8 md:p-12 text-center shadow-2xl scroll-reveal overflow-hidden cta-card" style="background: url('../assets/img/img_0373-scaled.jpeg') center/cover no-repeat;">
+        <div class="relative rounded-3xl p-8 md:p-12 text-center shadow-2xl scroll-reveal overflow-hidden cta-card"
+          style="background: url('../assets/img/img_0373-scaled.jpeg') center/cover no-repeat;">
           <div class="absolute inset-0 bg-white bg-opacity-20"></div>
           <div class="relative z-10">
-            <h3 class="text-3xl md:text-4xl font-bold mb-6 cta-title" style="color: #5eb3b3;" data-translate="services.cta.title">
+            <h3 class="text-3xl md:text-4xl font-bold mb-6 cta-title" style="color: #5eb3b3;"
+              data-translate="services.cta.title">
               Haben Sie Fragen zu unseren Leistungen?
             </h3>
-            <p class="text-xl leading-relaxed mb-8 max-w-2xl mx-auto text-gray-800 font-medium" data-translate="services.cta.message">
-              Unser Team berät Sie gerne persönlich und findet gemeinsam mit Ihnen die optimale Behandlung für Ihre Bedürfnisse.
+            <p class="text-xl leading-relaxed mb-8 max-w-2xl mx-auto text-gray-800 font-medium"
+              data-translate="services.cta.message">
+              Unser Team berät Sie gerne persönlich und findet gemeinsam mit Ihnen die optimale Behandlung für Ihre
+              Bedürfnisse.
             </p>
-            <a href="contact.html" class="inline-block bg-gradient-to-r from-teal-500 to-teal-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl transition-all duration-300 hover:scale-110 hover:from-teal-600 hover:to-teal-700 cta-button" data-translate="services.cta.button">
+            <a href="contact.html"
+              class="inline-block bg-gradient-to-r from-teal-500 to-teal-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl transition-all duration-300 hover:scale-110 hover:from-teal-600 hover:to-teal-700 cta-button"
+              data-translate="services.cta.button">
               Jetzt Termin vereinbaren
             </a>
           </div>
@@ -426,8 +486,10 @@
         <div class="flex items-center space-x-3">
           <img src="../assets/img/logo.svg" alt="Seitschenko-Dinh Logo" class="w-12 h-12 flex-shrink-0">
           <div class="flex flex-col">
-            <h3 class="text-base font-bold uppercase tracking-wide leading-tight" data-translate="footer.practice_name1">ZAHNARZTPRAXEN</h3>
-            <h3 class="text-base font-bold uppercase tracking-wide leading-tight" data-translate="footer.practice_name2">SEITSCHENKO-DINH</h3>
+            <h3 class="text-base font-bold uppercase tracking-wide leading-tight"
+              data-translate="footer.practice_name1">ZAHNARZTPRAXEN</h3>
+            <h3 class="text-base font-bold uppercase tracking-wide leading-tight"
+              data-translate="footer.practice_name2">SEITSCHENKO-DINH</h3>
           </div>
         </div>
 
@@ -780,6 +842,180 @@
           },
           copyright: "© 2024 Chính sách bảo mật dữ liệu"
         }
+      },
+      ru: {
+        meta: {
+          title: "Наши услуги - Seitschenko-Dinh",
+          description: "Комплексная стоматологическая помощь для всей семьи - от детской стоматологии до имплантологии"
+        },
+        nav: {
+          home: "Главная",
+          about: "О нас",
+          services: "Услуги",
+          labor: "Лаборатория",
+          karriere: "Карьера",
+          contact: "Контакты"
+        },
+        header: {
+          practice_name1: "СТОМАТОЛОГИЧЕСКИЕ ПРАКТИКИ",
+          practice_name2: "SEITSCHENKO-DINH"
+        },
+        language: {
+          current: "Язык:"
+        },
+        services: {
+          hero: {
+            title: "Наши услуги",
+            subtitle: "Комплексная стоматологическая помощь для всей семьи"
+          },
+          intro: {
+            title: "Профессиональная стоматология на высшем уровне",
+            description: "Наша практика предлагает вам полный спектр современных стоматологических услуг. От профилактики и эстетической стоматологии до сложных хирургических вмешательств – мы здесь для вас.",
+            description2: "Благодаря новейшим технологиям, биосовместимым материалам и опытной команде мы заботимся о здоровье ваших зубов и вашей сияющей улыбке."
+          },
+          section: {
+            suptitle: "НАШИ УСЛУГИ",
+            title: "Спектр наших услуг",
+            subtitle: "От профилактики до имплантологии – индивидуальные решения для здоровья ваших зубов"
+          },
+          service1: {
+            title: "Детская стоматология",
+            description: "Специализированное лечение маленьких пациентов с использованием мягких, безстрессовых методов"
+          },
+          service2: {
+            title: "Пациенты с фобией",
+            description: "Чуткое обслуживание пациентов, боящихся стоматологов"
+          },
+          service3: {
+            title: "Профилактика",
+            description: "Ранняя диагностика и профилактика для долгосрочного здоровья зубов"
+          },
+          service4: {
+            title: "Сохранение зубов",
+            description: "Сохранение и защита естественных зубов с помощью современных процедур"
+          },
+          service5: {
+            title: "Эстетическая стоматология",
+            description: "Улучшение вашей улыбки с помощью современных эстетических решений"
+          },
+          service6: {
+            title: "Зубные протезы",
+            description: "Высококачественные зубные протезы для эстетики и функциональности"
+          },
+          service7: {
+            title: "Челюстно-лицевая хирургия",
+            description: "Комплексное хирургическое лечение сложных проблем с зубами"
+          },
+          service8: {
+            title: "Имплантология",
+            description: "Высококачественные имплантаты для постоянных зубных протезов"
+          },
+          cta: {
+            title: "У вас есть вопросы о наших услугах?",
+            message: "Наша команда с радостью проконсультирует вас лично и вместе с вами подберет оптимальное лечение для ваших нужд.",
+            button: "Записаться на прием сейчас"
+          }
+        },
+        footer: {
+          practice_name1: "СТОМАТОЛОГИЧЕСКИЕ ПРАКТИКИ",
+          practice_name2: "SEITSCHENKO-DINH",
+          location1: {
+            line1: "Schwarzbach 2 | 42277 Wuppertal",
+            line2: "Тел.: 0202 660828"
+          },
+          location2: {
+            line1: "Loher Str. 40 | 42283 Wuppertal",
+            line2: "Тел.: 0202 451642"
+          },
+          copyright: "© 2024 Политика конфиденциальности"
+        }
+      },
+      ar: {
+        meta: {
+          title: "خدماتنا - Seitschenko-Dinh",
+          description: "رعاية أسنان شاملة لجميع أفراد الأسرة - من طب أسنان الأطفال إلى زراعة الأسنان"
+        },
+        nav: {
+          home: "الرئيسية",
+          about: "من نحن",
+          services: "الخدمات",
+          labor: "المختبر",
+          karriere: "الوظائف",
+          contact: "اتصل بنا"
+        },
+        header: {
+          practice_name1: "عيادات الأسنان",
+          practice_name2: "SEITSCHENKO-DINH"
+        },
+        language: {
+          current: "اللغة:"
+        },
+        services: {
+          hero: {
+            title: "خدماتنا",
+            subtitle: "رعاية أسنان شاملة لجميع أفراد الأسرة"
+          },
+          intro: {
+            title: "طب أسنان احترافي على أعلى مستوى",
+            description: "تقدم عيادتنا مجموعة شاملة من خدمات طب الأسنان الحديثة. من الوقاية وطب الأسنان التجميلي إلى العمليات الجراحية المعقدة - نحن هنا من أجلك.",
+            description2: "بفضل أحدث التقنيات والمواد المتوافقة حيويًا وفريق من ذوي الخبرة، نضمن صحة أسنانك وابتسامتك المشرقة."
+          },
+          section: {
+            suptitle: "خدماتنا",
+            title: "نطاق خدماتنا",
+            subtitle: "من الوقاية إلى زراعة الأسنان – حلول فردية لصحة أسنانك"
+          },
+          service1: {
+            title: "طب أسنان الأطفال",
+            description: "علاج متخصص للمرضى الصغار بأساليب لطيفة وخالية من التوتر"
+          },
+          service2: {
+            title: "مرضى القلق",
+            description: "رعاية رحيمة للمرضى الذين يعانون من الخوف من طبيب الأسنان"
+          },
+          service3: {
+            title: "الوقاية",
+            description: "الكشف المبكر والوقاية لصحة أسنان طويلة الأمد"
+          },
+          service4: {
+            title: "الحفاظ على الأسنان",
+            description: "الحفاظ على الأسنان الطبيعية وحمايتها من خلال الإجراءات الحديثة"
+          },
+          service5: {
+            title: "طب الأسنان التجميلي",
+            description: "تجميل ابتسامتك بحلول جمالية حديثة"
+          },
+          service6: {
+            title: "التركيبات السنية",
+            description: "تركيبات سنية عالية الجودة للجمال والوظيفة"
+          },
+          service7: {
+            title: "جراحة الفم",
+            description: "علاج جراحي شامل لمشاكل الأسنان المعقدة"
+          },
+          service8: {
+            title: "زراعة الأسنان",
+            description: "زراعة عالية الجودة لتركيبات الأسنان الدائمة"
+          },
+          cta: {
+            title: "هل لديك أسئلة حول خدماتنا؟",
+            message: "يسعد فريقنا بتقديم المشورة لك شخصيًا وإيجاد العلاج الأمثل لاحتياجاتك معك.",
+            button: "حدد موعدًا الآن"
+          }
+        },
+        footer: {
+          practice_name1: "عيادات الأسنان",
+          practice_name2: "SEITSCHENKO-DINH",
+          location1: {
+            line1: "Schwarzbach 2 | 42277 Wuppertal",
+            line2: "هاتف: 0202 660828"
+          },
+          location2: {
+            line1: "Loher Str. 40 | 42283 Wuppertal",
+            line2: "هاتف: 0202 451642"
+          },
+          copyright: "© 2024 سياسة الخصوصية"
+        }
       }
     };
 
@@ -848,4 +1084,5 @@
     });
   </script>
 </body>
+
 </html>
