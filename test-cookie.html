@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cookie Consent Test</title>
+  <link href="css/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/cookie-consent.css">
+  <style>
+    body {
+      padding: 2rem;
+      font-family: 'Poppins', sans-serif;
+    }
+    .test-controls {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: #f7fafc;
+      border-radius: 8px;
+    }
+    .test-btn {
+      padding: 0.75rem 1.5rem;
+      margin: 0.5rem;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+    .test-btn-primary {
+      background: #2d7a3e;
+      color: white;
+    }
+    .test-btn-primary:hover {
+      background: #1f5a2b;
+    }
+    .test-btn-secondary {
+      background: #e2e8f0;
+      color: #2d3748;
+    }
+    .test-btn-secondary:hover {
+      background: #cbd5e0;
+    }
+    .status {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: white;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="test-controls">
+    <h1 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: #1a202c;">
+      Cookie Consent Test Page
+    </h1>
+
+    <p style="margin-bottom: 1.5rem; color: #4a5568;">
+      Use the buttons below to test the cookie consent functionality.
+    </p>
+
+    <div style="display: flex; flex-wrap: wrap;">
+      <button class="test-btn test-btn-primary" onclick="showPopup()">
+        Show Cookie Popup
+      </button>
+
+      <button class="test-btn test-btn-secondary" onclick="clearCookie()">
+        Clear Cookie & Reload
+      </button>
+
+      <button class="test-btn test-btn-secondary" onclick="checkStatus()">
+        Check Status
+      </button>
+    </div>
+
+    <div id="status" class="status">
+      <strong>Status:</strong> Click "Check Status" to see current state
+    </div>
+  </div>
+
+  <!-- Cookie Consent Container -->
+  <div id="cookie-consent-container"></div>
+
+  <!-- Load multilang for translations -->
+  <script src="js/multilang.js"></script>
+
+  <!-- Cookie Consent Loader -->
+  <script>
+    // Load cookie consent HTML component
+    fetch('components/cookie-consent.html')
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById('cookie-consent-container').innerHTML = html;
+        // Load and execute cookie consent script after HTML is loaded
+        const script = document.createElement('script');
+        script.src = 'js/cookie-consent.js';
+        document.body.appendChild(script);
+        console.log('Cookie consent component loaded');
+      })
+      .catch(error => {
+        console.error('Error loading cookie consent:', error);
+        document.getElementById('status').innerHTML =
+          '<strong style="color: red;">Error:</strong> ' + error.message;
+      });
+
+    // Test functions
+    function showPopup() {
+      if (window.CookieConsent) {
+        window.CookieConsent.show();
+        updateStatus('Popup shown manually');
+      } else {
+        updateStatus('CookieConsent not loaded yet. Wait a moment and try again.');
+      }
+    }
+
+    function clearCookie() {
+      document.cookie = 'cookie_consent=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      updateStatus('Cookie cleared. Reloading page...');
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
+    }
+
+    function checkStatus() {
+      if (window.CookieConsent) {
+        const state = window.CookieConsent.getState();
+        updateStatus(`
+          <strong>Consent State:</strong><br>
+          Essential: ${state.essential}<br>
+          External Media: ${state.externalMedia}<br>
+          Timestamp: ${state.timestamp || 'Not set'}<br>
+          <br>
+          <strong>Cookie Value:</strong><br>
+          ${getCookie('cookie_consent') || 'Not set'}
+        `);
+      } else {
+        updateStatus('CookieConsent not loaded yet');
+      }
+    }
+
+    function updateStatus(message) {
+      document.getElementById('status').innerHTML = message;
+    }
+
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) {
+        return parts.pop().split(';').shift();
+      }
+      return null;
+    }
+
+    // Auto-check status after 2 seconds
+    setTimeout(() => {
+      checkStatus();
+    }, 2000);
+  </script>
+</body>
+</html>
