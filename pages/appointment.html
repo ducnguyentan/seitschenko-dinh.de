@@ -736,7 +736,7 @@
         </svg>
         <div>
           <p class="text-sm opacity-90" data-translate="notice.text">
-            Wichtiger Hinweis: Termine bei Frau Vera Seitschenko-Dinh sind nur telefonisch möglich. Bitte rufen Sie uns unter 0202 660828 an.
+            Wichtiger Hinweis: Termine bei Frau Vera Seitschenko-Dinh sind nur telefonisch möglich. Bitte rufen Sie uns unter +49 202 451642 an.
           </p>
         </div>
         <button class="ml-auto text-white hover:text-gray-200" onclick="this.parentElement.style.display='none'">
@@ -905,15 +905,6 @@
                 <div class="flex-1">
                   <p class="font-semibold text-gray-800" data-translate="doctors.taifour.name">Zahnarzt Herr TAIFOUR</p>
                   <p class="text-xs text-teal-600" data-translate="doctors.taifour.location">Schwarzbach 2, 42277 Wuppertal</p>
-                </div>
-              </div>
-
-              <!-- Doctor Option 5: Nikolaou -->
-              <div class="doctor-option flex items-center space-x-3 px-4 py-3 hover:bg-teal-50 cursor-pointer transition-colors" onclick="selectDoctorFromDropdown('nikolaou', 'Zahnarzt Herr NIKOLAOU', 'Loher Str. 40, 42283 Wuppertal', '../assets/img/khonghinh.jpg')">
-                <img src="../assets/img/khonghinh.jpg" alt="Herr NIKOLAOU" class="w-16 h-16 rounded-full object-cover flex-shrink-0" style="object-position: center 15%">
-                <div class="flex-1">
-                  <p class="font-semibold text-gray-800" data-translate="doctors.nikolaou.name">Zahnarzt Herr NIKOLAOU</p>
-                  <p class="text-xs text-teal-600" data-translate="doctors.nikolaou.location">Loher Str. 40, 42283 Wuppertal</p>
                 </div>
               </div>
             </div>
@@ -1874,7 +1865,7 @@
       // Get doctor's contact info from stored contacts (if available)
       // Map doctor to location
       const doctorLower = doctorId.toLowerCase();
-      if (['seitschenko-dinh', 'kukadiya', 'nikolaou'].includes(doctorLower)) {
+      if (['seitschenko-dinh', 'kukadiya'].includes(doctorLower)) {
         selectedLocation = 'Am Loh';
       } else if (['ikikardes', 'taifour'].includes(doctorLower)) {
         selectedLocation = 'Schwarzbach';
@@ -2013,8 +2004,7 @@
       const doctorText = {
         'kukadiya': getTranslation('doctors.kukadiya.name'),
         'ikikardes': getTranslation('doctors.ikikardes.name'),
-        'taifour': getTranslation('doctors.taifour.name'),
-        'nikolaou': getTranslation('doctors.nikolaou.name')
+        'taifour': getTranslation('doctors.taifour.name')
       };
 
       const noneSelected = getTranslation('summary.none_selected') || '-';

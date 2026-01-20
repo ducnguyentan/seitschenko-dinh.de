@@ -470,8 +470,8 @@ const serviceTranslations = {
           text: "Korrektur kleiner Zahndefekte mit zahnfarbenem Kunststoff in nur einer Sitzung."
         },
         service4: {
-          title: "Smile Design",
-          text: "Ganzheitliche Planung Ihres neuen Lächelns mit digitaler Vorschau des Ergebnisses."
+          title: "Smile Design (ästhetischen Leistungen)",
+          text: "Digital geplante kieferorthopädische Behandlung für Erwachsene mit Invisalign Schienen"
         }
       },
       faq: {
@@ -749,7 +749,7 @@ const serviceTranslations = {
         subtitle: "Buchen Sie Ihren Termin schnell und einfach online"
       },
       notice: {
-        text: "Wichtiger Hinweis: Termine bei Frau Vera Seitschenko-Dinh sind nur telefonisch möglich. Bitte rufen Sie uns unter 0202 660828 an."
+        text: "Wichtiger Hinweis: Termine bei Frau Vera Seitschenko-Dinh sind nur telefonisch möglich. Bitte rufen Sie uns unter +49 202 451642 an."
       },
       symptoms: {
         title: "Wählen Sie Ihren Grund für den Besuch",
@@ -791,11 +791,6 @@ const serviceTranslations = {
           name: "Zahnarzt Herr TAIFOUR",
           specialty: "Zahnarzt",
           location: "Schwarzbach 2, 42277 Wuppertal"
-        },
-        nikolaou: {
-          name: "Zahnarzt Herr NIKOLAOU",
-          specialty: "Zahnarzt",
-          location: "Loher Str. 40, 42283 Wuppertal"
         }
       },
       calendar: {
@@ -855,7 +850,7 @@ const serviceTranslations = {
         required_fields_note: "* Pflichtfelder - Wir benötigen diese Informationen zur Terminbestätigung"
       },
       alerts: {
-        phone_only: "Für Frau Vera Seitschenko-Dinh sind Termine nur telefonisch möglich! Bitte rufen Sie uns an: 0202 660828",
+        phone_only: "Für Frau Vera Seitschenko-Dinh sind Termine nur telefonisch möglich! Bitte rufen Sie uns an: +49 202 451642",
         success: "Vielen Dank! Ihr Termin wurde erfolgreich an uns gesendet. Wir werden Sie in Kürze kontaktieren.",
         incomplete: "Bitte füllen Sie alle Felder aus, um fortzufahren.",
         error: "Es gab einen Fehler beim Senden. Bitte versuchen Sie es erneut oder rufen Sie uns an: 0202 660828",
@@ -1345,8 +1340,8 @@ const serviceTranslations = {
           text: "Correction of small tooth defects with tooth-colored composite in just one session."
         },
         service4: {
-          title: "Smile Design",
-          text: "Holistic planning of your new smile with digital preview of the result."
+          title: "Smile Design (Aesthetic Services)",
+          text: "Digitally planned orthodontic treatment for adults with Invisalign aligners"
         }
       },
       faq: {
@@ -1624,7 +1619,7 @@ const serviceTranslations = {
         subtitle: "Book your appointment quickly and easily online"
       },
       notice: {
-        text: "Important Notice: Appointments with Mrs. Vera Seitschenko-Dinh are only possible by phone. Please call us at 0202 660828."
+        text: "Important Notice: Appointments with Mrs. Vera Seitschenko-Dinh are only possible by phone. Please call us at +49 202 451642."
       },
       symptoms: {
         title: "Select Your Reason for Visit",
@@ -1666,11 +1661,6 @@ const serviceTranslations = {
           name: "Dentist Mr. TAIFOUR",
           specialty: "Dentist",
           location: "Schwarzbach 2, 42277 Wuppertal"
-        },
-        nikolaou: {
-          name: "Dentist Mr. NIKOLAOU",
-          specialty: "Dentist",
-          location: "Loher Str. 40, 42283 Wuppertal"
         }
       },
       calendar: {
@@ -1730,7 +1720,7 @@ const serviceTranslations = {
         required_fields_note: "* Required fields - We need this information for appointment confirmation"
       },
       alerts: {
-        phone_only: "Appointments with Mrs. Vera Seitschenko-Dinh are only possible by phone! Please call us: 0202 660828",
+        phone_only: "Appointments with Mrs. Vera Seitschenko-Dinh are only possible by phone! Please call us: +49 202 451642",
         success: "Thank you! Your appointment has been successfully sent to us. We will contact you shortly.",
         incomplete: "Please fill in all fields to continue.",
         error: "There was an error sending your request. Please try again or call us: 0202 660828",
@@ -2221,8 +2211,8 @@ const serviceTranslations = {
           text: "Sửa các khuyết tật răng nhỏ bằng composite màu răng chỉ trong một buổi."
         },
         service4: {
-          title: "Smile Design",
-          text: "Lập kế hoạch toàn diện nụ cười mới với xem trước kết quả kỹ thuật số."
+          title: "Smile Design (Dịch vụ Thẩm mỹ)",
+          text: "Điều trị chỉnh nha được lên kế hoạch kỹ thuật số cho người lớn với khay niềng Invisalign"
         }
       },
       faq: {
@@ -2500,7 +2490,7 @@ const serviceTranslations = {
         subtitle: "Đặt lịch hẹn nhanh chóng và dễ dàng trực tuyến"
       },
       notice: {
-        text: "Thông báo quan trọng: Lịch hẹn với Bà Vera Seitschenko-Dinh chỉ có thể đặt qua điện thoại. Vui lòng gọi cho chúng tôi theo số 0202 660828."
+        text: "Thông báo quan trọng: Lịch hẹn với Bà Vera Seitschenko-Dinh chỉ có thể đặt qua điện thoại. Vui lòng gọi cho chúng tôi theo số +49 202 451642."
       },
       symptoms: {
         title: "Chọn lý do khám",
@@ -2542,11 +2532,6 @@ const serviceTranslations = {
           name: "Nha sĩ Ông TAIFOUR",
           specialty: "Nha sĩ",
           location: "Schwarzbach 2, 42277 Wuppertal"
-        },
-        nikolaou: {
-          name: "Nha sĩ Ông NIKOLAOU",
-          specialty: "Nha sĩ",
-          location: "Loher Str. 40, 42283 Wuppertal"
         }
       },
       calendar: {
@@ -2606,7 +2591,7 @@ const serviceTranslations = {
         required_fields_note: "* Thông tin bắt buộc - Chúng tôi cần thông tin này để xác nhận lịch hẹn"
       },
       alerts: {
-        phone_only: "Lịch hẹn với Bà Vera Seitschenko-Dinh chỉ có thể đặt qua điện thoại! Vui lòng gọi cho chúng tôi: 0202 660828",
+        phone_only: "Lịch hẹn với Bà Vera Seitschenko-Dinh chỉ có thể đặt qua điện thoại! Vui lòng gọi cho chúng tôi: +49 202 451642",
         success: "Cảm ơn bạn! Yêu cầu đặt lịch của bạn đã được gửi thành công. Chúng tôi sẽ liên hệ với bạn sớm.",
         incomplete: "Vui lòng điền tất cả các trường để tiếp tục.",
         error: "Đã xảy ra lỗi khi gửi. Vui lòng thử lại hoặc gọi cho chúng tôi: 0202 660828",
@@ -2640,7 +2625,7 @@ const serviceTranslations = {
     // Header
     header: {
       practice_name1: "СТОМАТОЛОГИЧЕСКИЕ КЛИНИКИ",
-      practice_name2: "ЗАЙТШЕНКО-ДИНЬ"
+      practice_name2: "ЗАЙЧЕНКО-ДИН"
     },
 
     // Navigation
@@ -2665,7 +2650,7 @@ const serviceTranslations = {
       contact: "Контакты",
       copyright: "© 2024 Политика конфиденциальности",
       practice_name1: "СТОМАТОЛОГИЧЕСКИЕ КЛИНИКИ",
-      practice_name2: "ЗАЙТШЕНКО-ДИНЬ",
+      practice_name2: "ЗАЙЧЕНКО-ДИН",
       location1: {
         line1: "Schwarzbach 2 | 42277 Wuppertal",
         line2: "Тел.: 0202 660828"
@@ -3105,8 +3090,8 @@ const serviceTranslations = {
           text: "Коррекция небольших дефектов зубов композитом цвета зуба всего за один сеанс."
         },
         service4: {
-          title: "Дизайн улыбки",
-          text: "Комплексное планирование вашей новой улыбки с цифровым предпросмотром результата."
+          title: "Дизайн улыбки (Эстетические услуги)",
+          text: "Цифровое планирование ортодонтического лечения для взрослых с элайнерами Invisalign"
         }
       },
       faq: {
@@ -3384,7 +3369,7 @@ const serviceTranslations = {
         subtitle: "Запишитесь на прием быстро и легко онлайн"
       },
       notice: {
-        text: "Важное примечание: Запись на прием к г-же Вере Зайтшенко-Динь возможна только по телефону. Позвоните нам по телефону 0202 660828."
+        text: "Важное примечание: Запись на прием к г-же Вере Зайченко-Дин возможна только по телефону. Позвоните нам по телефону +49 202 451642."
       },
       symptoms: {
         title: "Выберите причину визита",
@@ -3426,11 +3411,6 @@ const serviceTranslations = {
           name: "Стоматолог г-н TAIFOUR",
           specialty: "Стоматолог",
           location: "Schwarzbach 2, 42277 Wuppertal"
-        },
-        nikolaou: {
-          name: "Стоматолог г-н NIKOLAOU",
-          specialty: "Стоматолог",
-          location: "Loher Str. 40, 42283 Wuppertal"
         }
       },
       calendar: {
@@ -3473,7 +3453,7 @@ const serviceTranslations = {
         required_fields_note: "* Обязательные поля - Эта информация необходима для подтверждения записи"
       },
       alerts: {
-        phone_only: "Запись на прием к г-же Вере Зайтшенко-Динь возможна только по телефону! Позвоните нам: 0202 660828",
+        phone_only: "Запись на прием к г-же Вере Зайченко-Дин возможна только по телефону! Позвоните нам: +49 202 451642",
         success: "Спасибо! Ваш запрос на запись успешно отправлен. Мы свяжемся с вами в ближайшее время.",
         incomplete: "Пожалуйста, заполните все поля для продолжения.",
         error: "Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз или позвоните нам: 0202 660828",
@@ -3952,8 +3932,8 @@ const serviceTranslations = {
           text: "تصحيح عيوب الأسنان الصغيرة بمركب بلون الأسنان في جلسة واحدة فقط."
         },
         service4: {
-          title: "تصميم الابتسامة",
-          text: "تخطيط شامل لابتسامتك الجديدة مع معاينة رقمية للنتيجة."
+          title: "تصميم الابتسامة (الخدمات التجميلية)",
+          text: "علاج تقويم أسنان مخطط رقميًا للبالغين باستخدام قوالب إنفزلاين"
         }
       },
       faq: {
@@ -4231,7 +4211,7 @@ const serviceTranslations = {
         subtitle: "احجز موعدك بسرعة وسهولة عبر الإنترنت"
       },
       notice: {
-        text: "ملاحظة مهمة: المواعيد مع السيدة فيرا زايتشنكو-دينه ممكنة فقط عبر الهاتف. يرجى الاتصال بنا على 0202 660828."
+        text: "ملاحظة مهمة: المواعيد مع السيدة فيرا زايتشنكو-دينه ممكنة فقط عبر الهاتف. يرجى الاتصال بنا على +49 202 451642."
       },
       symptoms: {
         title: "اختر سبب الزيارة",
@@ -4273,11 +4253,6 @@ const serviceTranslations = {
           name: "د. TAIFOUR",
           specialty: "طبيب أسنان",
           location: "Schwarzbach 2, 42277 Wuppertal"
-        },
-        nikolaou: {
-          name: "د. NIKOLAOU",
-          specialty: "طبيب أسنان",
-          location: "Loher Str. 40, 42283 Wuppertal"
         }
       },
       calendar: {
@@ -4320,7 +4295,7 @@ const serviceTranslations = {
         required_fields_note: "* حقول إلزامية - نحتاج هذه المعلومات لتأكيد الموعد"
       },
       alerts: {
-        phone_only: "المواعيد مع السيدة فيرا زايتشنكو-دينه ممكنة فقط عبر الهاتف! يرجى الاتصال بنا: 0202 660828",
+        phone_only: "المواعيد مع السيدة فيرا زايتشنكو-دينه ممكنة فقط عبر الهاتف! يرجى الاتصال بنا: +49 202 451642",
         success: "شكرًا لك! تم إرسال طلب موعدك بنجاح. سنتواصل معك قريبًا.",
         incomplete: "يرجى ملء جميع الحقول للمتابعة.",
         error: "حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى أو الاتصال بنا: 0202 660828",
