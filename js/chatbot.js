@@ -70,7 +70,8 @@ class DigitizedBrainsChatbot {
         restore: 'Restore',
         close: 'Close',
         aiAssistant: '🤖 AI Assistant',
-        loading: 'Loading AI Agent...'
+        loading: 'Loading AI Agent...',
+        updating: 'Website is currently being updated'
       },
       vi: {
         title: 'Trợ lý Nha khoa',
@@ -79,7 +80,8 @@ class DigitizedBrainsChatbot {
         restore: 'Thu nhỏ',
         close: 'Đóng',
         aiAssistant: '🤖 Trợ lý AI',
-        loading: 'Đang khởi tạo AI Agent...'
+        loading: 'Đang khởi tạo AI Agent...',
+        updating: 'Trang web đang cập nhật'
       },
       de: {
         title: 'Zahnarzt-Assistent',
@@ -88,7 +90,8 @@ class DigitizedBrainsChatbot {
         restore: 'Wiederherstellen',
         close: 'Schließen',
         aiAssistant: '🤖 KI-Assistent',
-        loading: 'KI-Agent wird geladen...'
+        loading: 'KI-Agent wird geladen...',
+        updating: 'Webseite wird aktualisiert'
       },
       ru: {
         title: 'Стоматологический ассистент',
@@ -97,7 +100,8 @@ class DigitizedBrainsChatbot {
         restore: 'Восстановить',
         close: 'Закрыть',
         aiAssistant: '🤖 ИИ-ассистент',
-        loading: 'Загрузка ИИ-агента...'
+        loading: 'Загрузка ИИ-агента...',
+        updating: 'Веб-сайт обновляется'
       },
       ar: {
         title: 'مساعد الأسنان',
@@ -106,7 +110,8 @@ class DigitizedBrainsChatbot {
         restore: 'استعادة',
         close: 'إغلاق',
         aiAssistant: '🤖 مساعد الذكاء الاصطناعي',
-        loading: 'جارٍ تحميل وكيل الذكاء الاصطناعي...'
+        loading: 'جارٍ تحميل وكيل الذكاء الاصطناعي...',
+        updating: 'يتم تحديث الموقع حاليا'
       }
     };
     return texts[this.currentLanguage] || texts.en;
@@ -192,12 +197,19 @@ class DigitizedBrainsChatbot {
     if (loadingText) {
       loadingText.textContent = texts.loading;
     }
+
+    // Update updating notice
+    const updatingNotice = document.querySelector('#website-updating-notice');
+    if (updatingNotice) {
+      updatingNotice.textContent = texts.updating;
+    }
   }
 
   init() {
     console.log('Initializing DigitizedBrains Chatbot...');
 
     // Create elements
+    this.createUpdatingNotice();
     this.createAppointmentButton();
     this.createToggleButton();
     this.createChatWidget();
@@ -213,6 +225,23 @@ class DigitizedBrainsChatbot {
     setInterval(() => {
       this.updateLanguage();
     }, 1000);
+  }
+
+  createUpdatingNotice() {
+    // Remove existing notice if any
+    const existingNotice = document.getElementById('website-updating-notice');
+    if (existingNotice) {
+      existingNotice.remove();
+    }
+
+    const texts = this.getTexts();
+
+    const notice = document.createElement('div');
+    notice.id = 'website-updating-notice';
+    notice.className = 'updating-notice';
+    notice.textContent = texts.updating;
+
+    document.body.appendChild(notice);
   }
 
   createAppointmentButton() {
@@ -1463,6 +1492,41 @@ class DigitizedBrainsChatbot {
         right: 0;
         height: 10px;
         background: linear-gradient(to bottom, transparent, rgba(102, 126, 234, 0.1));
+      }
+
+      /* Website Updating Notice - Next to Chatbot */
+      .updating-notice {
+        position: fixed;
+        bottom: 38px;
+        right: 120px;
+        color: #ff0000;
+        font-size: 14px;
+        font-weight: 700;
+        z-index: 9997;
+        animation: blinkNotice 1s ease-in-out infinite;
+        text-align: right;
+        white-space: nowrap;
+        text-shadow: 0 0 3px rgba(255, 0, 0, 0.3);
+      }
+
+      @keyframes blinkNotice {
+        0%, 100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.3;
+        }
+      }
+
+      /* Mobile responsive for updating notice */
+      @media (max-width: 768px) {
+        .updating-notice {
+          bottom: auto;
+          top: 10px;
+          right: 10px;
+          font-size: 12px;
+          text-align: center;
+        }
       }
     `;
     document.head.appendChild(style);
