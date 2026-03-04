@@ -276,11 +276,11 @@ class DigitizedBrainsChatbot {
 
     const appointmentButton = document.createElement('div');
     appointmentButton.id = 'appointment-widget-btn';
-    appointmentButton.className = 'orbit-item orbit-appointment';
+    appointmentButton.className = 'orbit-item orbit-appointment appointment-disabled';
 
     appointmentButton.innerHTML = `
       <div class="appointment-btn-container">
-        <button class="appointment-btn" onclick="window.location.href='${appointmentPath}'">
+        <button class="appointment-btn" disabled>
           <div class="btn-content">
             <div class="calendar-icon">📅</div>
             <div class="sparkle sparkle-1">✨</div>
@@ -290,13 +290,23 @@ class DigitizedBrainsChatbot {
         </button>
         <div class="help-tooltip-appointment">
           <div class="tooltip-arrow-appointment"></div>
-          <span class="help-text">${texts.tooltip}</span>
-          <div class="tooltip-subtitle">${texts.subtitle}</div>
+          <span class="help-text">⚠️ Vorübergehend nicht verfügbar</span>
+          <div class="tooltip-subtitle">Bitte rufen Sie uns an</div>
         </div>
       </div>
     `;
 
     orbitContainer.appendChild(appointmentButton);
+
+    // Disable click events
+    const btn = appointmentButton.querySelector('.appointment-btn');
+    if (btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }, true);
+    }
   }
 
   createToggleButton() {
@@ -1396,6 +1406,37 @@ class DigitizedBrainsChatbot {
         70% {
           transform: translateY(0) scale(1.02, 0.98);
         }
+      }
+
+      /* Disabled Appointment Button Styles */
+      .appointment-disabled .appointment-btn {
+        opacity: 0.5 !important;
+        filter: grayscale(50%) !important;
+        cursor: not-allowed !important;
+        pointer-events: none !important;
+      }
+
+      .appointment-disabled .appointment-btn:hover {
+        transform: none !important;
+        box-shadow: 0 4px 12px rgba(251, 191, 36, 0.2) !important;
+      }
+
+      .appointment-disabled .sparkle {
+        animation: none !important;
+        opacity: 0.3 !important;
+      }
+
+      .appointment-disabled .help-tooltip-appointment {
+        background: rgba(255, 0, 0, 0.95) !important;
+        border-color: rgba(255, 0, 0, 0.3) !important;
+      }
+
+      .appointment-disabled .help-tooltip-appointment .help-text {
+        color: white !important;
+      }
+
+      .appointment-disabled .help-tooltip-appointment .tooltip-subtitle {
+        color: rgba(255, 255, 255, 0.9) !important;
       }
 
       /* Mobile responsive */
