@@ -926,6 +926,10 @@
       style="color:#e8fffe; text-shadow:0 2px 24px rgba(0,0,0,0.55), 0 0 50px rgba(94,179,179,0.30);">
       Anamnesebogen
     </h1>
+    <p id="hero-subtitle" class="text-lg md:text-xl max-w-2xl mx-auto mb-8 font-light"
+      style="color:rgba(196,238,235,0.92); text-shadow:0 1px 12px rgba(0,0,0,0.4);">
+      Gerne können Sie den Anamnesebogen bereits online ausfüllen. Alternativ können Sie diesen selbstverständlich auch bei uns in der Praxis ausfüllen.
+    </p>
     <button id="hero-print-btn" class="hero-print-btn" onclick="window.print()">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
       Drucken
@@ -1721,11 +1725,11 @@ const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzLGFiPYNcaQorPiZ9dpf
    LANGUAGE SYSTEM
 ══════════════════════════════════════════ */
 const uiStrings = {
-  de: { hero_title:'Anamnesebogen', hero_subtitle:'Bitte füllen Sie diesen Fragebogen vollständig aus, bevor Sie zu uns kommen.', print_btn:'Drucken', print_hint:'Formular ausdrucken und ausgefüllt mitbringen', home:'Start', about:'Über uns', services:'Leistungen', labor:'Labor', karriere:'Karriere', contact:'Kontakt', name1:'ZAHNARZTPRAXEN', name2:'SEITSCHENKO-DINH' },
-  en: { hero_title:'Medical History Form', hero_subtitle:'Please complete this form before your visit.', print_btn:'Print', print_hint:'Print the form and bring it to your appointment', home:'Home', about:'About Us', services:'Services', labor:'Laboratory', karriere:'Careers', contact:'Contact', name1:'DENTAL PRACTICES', name2:'SEITSCHENKO-DINH' },
-  vi: { hero_title:'Phiếu Tiền Sử Bệnh', hero_subtitle:'Vui lòng điền đầy đủ phiếu này trước khi đến khám.', print_btn:'In ra', print_hint:'In phiếu và mang theo khi đến khám', home:'Trang chủ', about:'Về chúng tôi', services:'Dịch vụ', labor:'Phòng lab', karriere:'Tuyển dụng', contact:'Liên hệ', name1:'PHÒNG KHÁM NHA KHOA', name2:'SEITSCHENKO-DINH' },
-  ru: { hero_title:'Анамнестическая карта', hero_subtitle:'Пожалуйста, заполните эту карту перед визитом.', print_btn:'Распечатать', print_hint:'Распечатайте и принесите с собой', home:'Главная', about:'О нас', services:'Услуги', labor:'Лаборатория', karriere:'Карьера', contact:'Контакты', name1:'СТОМАТОЛОГИЧЕСКИЕ', name2:'КЛИНИКИ SEITSCHENKO-DINH' },
-  ar: { hero_title:'استمارة التاريخ الطبي', hero_subtitle:'يُرجى تعبئة هذه الاستمارة قبل زيارتك.', print_btn:'طباعة', print_hint:'اطبع الاستمارة وأحضرها معك', home:'الرئيسية', about:'عنا', services:'الخدمات', labor:'المختبر', karriere:'وظائف', contact:'اتصل بنا', name1:'عيادات طب الأسنان', name2:'SEITSCHENKO-DINH' }
+  de: { hero_title:'Anamnesebogen', hero_subtitle:'Gerne können Sie den Anamnesebogen bereits online ausfüllen. Alternativ können Sie diesen selbstverständlich auch bei uns in der Praxis ausfüllen.', print_btn:'Drucken', print_hint:'Formular ausdrucken und ausgefüllt mitbringen', home:'Start', about:'Über uns', services:'Leistungen', labor:'Labor', karriere:'Karriere', contact:'Kontakt', name1:'ZAHNARZTPRAXEN', name2:'SEITSCHENKO-DINH' },
+  en: { hero_title:'Medical History Form', hero_subtitle:'You are welcome to fill out the medical history form online in advance. Alternatively, you can of course also fill it out at our practice.', print_btn:'Print', print_hint:'Print the form and bring it to your appointment', home:'Home', about:'About Us', services:'Services', labor:'Laboratory', karriere:'Careers', contact:'Contact', name1:'DENTAL PRACTICES', name2:'SEITSCHENKO-DINH' },
+  vi: { hero_title:'Phiếu Tiền Sử Bệnh', hero_subtitle:'Bạn có thể điền phiếu tiền sử bệnh trực tuyến trước khi đến. Ngoài ra, bạn cũng có thể điền tại phòng khám của chúng tôi.', print_btn:'In ra', print_hint:'In phiếu và mang theo khi đến khám', home:'Trang chủ', about:'Về chúng tôi', services:'Dịch vụ', labor:'Phòng lab', karriere:'Tuyển dụng', contact:'Liên hệ', name1:'PHÒNG KHÁM NHA KHOA', name2:'SEITSCHENKO-DINH' },
+  ru: { hero_title:'Анамнестическая карта', hero_subtitle:'Вы можете заполнить анамнестическую карту онлайн заранее. В качестве альтернативы вы также можете заполнить её у нас в клинике.', print_btn:'Распечатать', print_hint:'Распечатайте и принесите с собой', home:'Главная', about:'О нас', services:'Услуги', labor:'Лаборатория', karriere:'Карьера', contact:'Контакты', name1:'СТОМАТОЛОГИЧЕСКИЕ', name2:'КЛИНИКИ SEITSCHENKO-DINH' },
+  ar: { hero_title:'استمارة التاريخ الطبي', hero_subtitle:'يمكنك ملء استمارة التاريخ الطبي عبر الإنترنت مسبقاً. بدلاً من ذلك، يمكنك بالطبع ملؤها لدينا في العيادة.', print_btn:'طباعة', print_hint:'اطبع الاستمارة وأحضرها معك', home:'الرئيسية', about:'عنا', services:'الخدمات', labor:'المختبر', karriere:'وظائف', contact:'اتصل بنا', name1:'عيادات طب الأسنان', name2:'SEITSCHENKO-DINH' }
 };
 
 const flagMap = {
