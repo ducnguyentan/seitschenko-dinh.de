@@ -778,7 +778,7 @@ const serviceTranslations = {
         scroll_hint: "Scrollen Sie für weitere Ärzte",
         select_placeholder: "Wählen Sie einen Arzt",
         kukadiya: {
-          name: "Zahnärztin Dr. Kukadiya",
+          name: "Zahnärztin Dr. Vatiya",
           specialty: "Zahnärztin",
           location: "Loher Str. 40, 42283 Wuppertal"
         },
@@ -1648,7 +1648,7 @@ const serviceTranslations = {
         scroll_hint: "Scroll for more doctors",
         select_placeholder: "Select a doctor",
         kukadiya: {
-          name: "Dentist Dr. Kukadiya",
+          name: "Dentist Dr. Vatiya",
           specialty: "Dentist",
           location: "Loher Str. 40, 42283 Wuppertal"
         },
@@ -2519,7 +2519,7 @@ const serviceTranslations = {
         scroll_hint: "Cuộn để xem thêm bác sĩ",
         select_placeholder: "Chọn một bác sĩ",
         kukadiya: {
-          name: "Nha sĩ Bác sĩ Kukadiya",
+          name: "Nha sĩ Bác sĩ Vatiya",
           specialty: "Nha sĩ",
           location: "Loher Str. 40, 42283 Wuppertal"
         },

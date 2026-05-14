@@ -65,7 +65,9 @@ const karriereTranslations = {
         doc1: "Anschreiben",
         doc2: "Lebenslauf",
         doc3: "Zeugnisse und Zertifikate"
-      }
+      },
+      coming_soon: "Demnächst verfügbar",
+      coming_soon_sub: "Diese Seite wird derzeit aktualisiert."
     }
   },
   en: {
@@ -133,7 +135,9 @@ const karriereTranslations = {
         doc1: "Cover Letter",
         doc2: "Resume/CV",
         doc3: "Certificates and References"
-      }
+      },
+      coming_soon: "Coming Soon",
+      coming_soon_sub: "This page is currently being updated."
     }
   },
   vi: {
@@ -201,7 +205,9 @@ const karriereTranslations = {
         doc1: "Thư xin việc",
         doc2: "Sơ yếu lý lịch",
         doc3: "Bằng cấp và chứng chỉ"
-      }
+      },
+      coming_soon: "Sắp ra mắt",
+      coming_soon_sub: "Trang này hiện đang được cập nhật."
     }
   },
   ru: {
@@ -269,7 +275,9 @@ const karriereTranslations = {
         doc1: "Сопроводительное письмо",
         doc2: "Резюме",
         doc3: "Дипломы и сертификаты"
-      }
+      },
+      coming_soon: "Скоро будет доступно",
+      coming_soon_sub: "Эта страница в настоящее время обновляется."
     }
   },
   ar: {
@@ -337,7 +345,9 @@ const karriereTranslations = {
         doc1: "خطاب التقديم",
         doc2: "السيرة الذاتية",
         doc3: "الشهادات والمراجع"
-      }
+      },
+      coming_soon: "قريباً",
+      coming_soon_sub: "هذه الصفحة قيد التحديث حالياً."
     }
   }
 };

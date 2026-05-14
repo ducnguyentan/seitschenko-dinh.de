@@ -149,6 +149,17 @@ class DigitizedBrainsChatbot {
     return texts[this.currentLanguage] || texts.de;
   }
 
+  getAnamneseTexts() {
+    const texts = {
+      de: { btnText: 'Anamnesebogen', tooltip: 'Anamnesebogen öffnen', subtitle: 'Klicken zum Öffnen', badge: 'Neu' },
+      en: { btnText: 'Medical History', tooltip: 'Open medical history form', subtitle: 'Click to open', badge: 'New' },
+      vi: { btnText: 'Phiếu tiền sử bệnh', tooltip: 'Mở phiếu tiền sử bệnh', subtitle: 'Nhấn để mở', badge: 'Mới' },
+      ru: { btnText: 'Анкета пациента', tooltip: 'Открыть анкету пациента', subtitle: 'Нажмите для открытия', badge: 'Нов' },
+      ar: { btnText: 'استمارة طبية', tooltip: 'فتح الاستمارة الطبية', subtitle: 'انقر للفتح', badge: 'جديد' }
+    };
+    return texts[this.currentLanguage] || texts.de;
+  }
+
   updateLanguage() {
     const newLanguage = localStorage.getItem('preferredLanguage') || 'en';
     if (newLanguage !== this.currentLanguage) {
@@ -160,6 +171,7 @@ class DigitizedBrainsChatbot {
   updateTexts() {
     const texts = this.getTexts();
     const appointmentTexts = this.getAppointmentTexts();
+    const anamneseTexts = this.getAnamneseTexts();
 
     // Update appointment button texts
     const appointmentHelpText = document.querySelector('#appointment-widget-btn .help-text');
@@ -170,6 +182,14 @@ class DigitizedBrainsChatbot {
     if (appointmentSubtitle) {
       appointmentSubtitle.textContent = appointmentTexts.subtitle;
     }
+
+    // Update anamnese button texts
+    const anamneseHelpText = document.querySelector('#anamnese-widget-btn .help-text-anamnese');
+    const anamneseSubtitle = document.querySelector('#anamnese-widget-btn .tooltip-subtitle-anamnese');
+    const anamneseBadge = document.querySelector('#anamnese-widget-btn .anamnese-badge');
+    if (anamneseHelpText) anamneseHelpText.textContent = anamneseTexts.btnText;
+    if (anamneseSubtitle) anamneseSubtitle.textContent = anamneseTexts.subtitle;
+    if (anamneseBadge) anamneseBadge.textContent = anamneseTexts.badge;
 
     // Update title
     const titleElement = document.querySelector('#chat-widget .widget-title');
@@ -210,6 +230,7 @@ class DigitizedBrainsChatbot {
 
     // Create elements
     this.createUpdatingNotice();
+    this.createAnamneseButton();
     this.createAppointmentButton();
     this.createToggleButton();
     this.createChatWidget();
@@ -242,6 +263,63 @@ class DigitizedBrainsChatbot {
     notice.textContent = texts.updating;
 
     document.body.appendChild(notice);
+  }
+
+  createAnamneseButton() {
+    const existing = document.getElementById('anamnese-widget-btn');
+    if (existing) existing.remove();
+
+    const texts = this.getAnamneseTexts();
+    const currentPath = window.location.pathname;
+    const isInPagesFolder = currentPath.includes('/pages/');
+    const anamnesePath = isInPagesFolder ? 'Anamnesebogen.html' : 'pages/Anamnesebogen.html';
+
+    // Get or create orbit container
+    let orbitContainer = document.getElementById('orbit-container');
+    if (!orbitContainer) {
+      orbitContainer = document.createElement('div');
+      orbitContainer.id = 'orbit-container';
+      orbitContainer.style.cssText = `
+        position: fixed;
+        bottom: ${this.options.position.bottom};
+        right: ${this.options.position.right};
+        width: 48px;
+        height: 48px;
+        z-index: 9999;
+      `;
+      document.body.appendChild(orbitContainer);
+    }
+
+    const btn = document.createElement('div');
+    btn.id = 'anamnese-widget-btn';
+    btn.className = 'orbit-item orbit-anamnese';
+    btn.innerHTML = `
+      <div class="anamnese-btn-container">
+        <a href="${anamnesePath}" target="_blank" class="anamnese-btn" title="${texts.tooltip}">
+          <div class="btn-content">
+            <div class="anamnese-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="5" y="3" width="14" height="18" rx="2" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="1.5"/>
+                <rect x="9" y="1" width="6" height="4" rx="1.5" fill="white" stroke="white" stroke-width="1"/>
+                <line x1="8.5" y1="9" x2="15.5" y2="9" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="8.5" y1="12" x2="15.5" y2="12" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="8.5" y1="15" x2="12.5" y2="15" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                <circle cx="17" cy="16" r="3.5" fill="white"/>
+                <line x1="17" y1="14.5" x2="17" y2="17.5" stroke="#5eb3b3" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="15.5" y1="16" x2="18.5" y2="16" stroke="#5eb3b3" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+          <span class="anamnese-badge">${texts.badge}</span>
+        </a>
+        <div class="help-tooltip-anamnese">
+          <div class="tooltip-arrow-anamnese"></div>
+          <span class="help-text-anamnese">${texts.btnText}</span>
+          <div class="tooltip-subtitle-anamnese">${texts.subtitle}</div>
+        </div>
+      </div>
+    `;
+    orbitContainer.appendChild(btn);
   }
 
   createAppointmentButton() {
@@ -609,12 +687,12 @@ class DigitizedBrainsChatbot {
         position: absolute;
         top: 50%;
         left: 50%;
-        width: 80px;
-        height: 80px;
-        border: 2px dashed rgba(94, 179, 179, 0.15);
+        width: 90px;
+        height: 90px;
+        border: 1.5px dashed rgba(94, 179, 179, 0.25);
         border-radius: 50%;
         transform: translate(-50%, -50%);
-        animation: orbitTrailRotate 6s linear infinite;
+        animation: orbitTrailRotate 8s linear infinite;
       }
 
       #orbit-container::after {
@@ -622,13 +700,13 @@ class DigitizedBrainsChatbot {
         position: absolute;
         top: 50%;
         left: 50%;
-        width: 80px;
-        height: 80px;
+        width: 90px;
+        height: 90px;
         border-radius: 50%;
         background: radial-gradient(
           circle at center,
-          rgba(94, 179, 179, 0.05) 0%,
-          rgba(251, 191, 36, 0.05) 50%,
+          rgba(94, 179, 179, 0.06) 0%,
+          rgba(94, 179, 179, 0.03) 50%,
           transparent 70%
         );
         transform: translate(-50%, -50%);
@@ -642,14 +720,19 @@ class DigitizedBrainsChatbot {
         left: 0;
       }
 
-      /* Appointment orbits clockwise */
+      /* Appointment orbits clockwise — starts at top (0°) */
       .orbit-appointment {
         animation: orbitClockwise 6s linear infinite;
       }
 
-      /* AI orbits counter-clockwise */
+      /* Anamnese orbits clockwise — starts at bottom-right (120°) */
+      .orbit-anamnese {
+        animation: orbitAnamnese 6s linear infinite;
+      }
+
+      /* AI orbits clockwise — starts at bottom-left (240°) */
       .orbit-ai {
-        animation: orbitCounterClockwise 6s linear infinite;
+        animation: orbitAiCW 6s linear infinite;
       }
 
       /* Enhanced Chatbot Styles */
@@ -1162,6 +1245,100 @@ class DigitizedBrainsChatbot {
         }
       }
       
+      /* Anamnesebogen Orbit Button */
+      .anamnese-btn-container {
+        position: relative;
+        z-index: 10000;
+      }
+
+      .anamnese-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #5eb3b3 0%, #4a9d9d 50%, #3d8a8a 100%);
+        border: 2px solid rgba(255,255,255,0.4);
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        color: white;
+        text-decoration: none;
+        box-shadow: 0 4px 16px rgba(94, 179, 179, 0.35);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: visible;
+      }
+
+      .anamnese-btn:hover {
+        transform: scale(1.12) translateY(-2px);
+        box-shadow: 0 10px 30px rgba(94, 179, 179, 0.6);
+      }
+
+      .anamnese-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));
+        position: relative;
+        z-index: 2;
+      }
+
+      .anamnese-badge {
+        position: absolute;
+        top: -6px;
+        right: -6px;
+        background: linear-gradient(135deg, #e74c3c, #c0392b);
+        color: white;
+        font-size: 8px;
+        font-weight: bold;
+        padding: 2px 5px;
+        border-radius: 8px;
+        border: 2px solid white;
+        box-shadow: 0 2px 6px rgba(231, 76, 60, 0.4);
+      }
+
+      .help-tooltip-anamnese {
+        position: absolute;
+        right: 58px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: linear-gradient(135deg, #5eb3b3 0%, #4a9d9d 100%);
+        color: white;
+        padding: 8px 12px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 600;
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 16px rgba(94, 179, 179, 0.3);
+      }
+
+      .anamnese-btn-container:hover .help-tooltip-anamnese {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(-50%) translateX(-10px);
+      }
+
+      .tooltip-arrow-anamnese {
+        position: absolute;
+        right: -8px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0;
+        height: 0;
+        border-left: 8px solid #4a9d9d;
+        border-top: 6px solid transparent;
+        border-bottom: 6px solid transparent;
+      }
+
+      .tooltip-subtitle-anamnese {
+        font-size: 10px;
+        opacity: 0.8;
+        margin-top: 2px;
+        font-style: italic;
+      }
+
       /* Appointment Button Styles */
       .appointment-btn-container {
         position: relative;
@@ -1290,42 +1467,31 @@ class DigitizedBrainsChatbot {
         font-weight: 400;
       }
 
-      /* Orbit Clockwise - Appointment circles around center */
+      /* Orbit Clockwise — Appointment starts at top (0°), radius 38px */
       @keyframes orbitClockwise {
-        0% {
-          transform: translate(0px, -30px) rotate(0deg);
-        }
-        25% {
-          transform: translate(30px, 0px) rotate(90deg);
-        }
-        50% {
-          transform: translate(0px, 30px) rotate(180deg);
-        }
-        75% {
-          transform: translate(-30px, 0px) rotate(270deg);
-        }
-        100% {
-          transform: translate(0px, -30px) rotate(360deg);
-        }
+        0%   { transform: translate(0px, -38px); }
+        25%  { transform: translate(38px, 0px); }
+        50%  { transform: translate(0px, 38px); }
+        75%  { transform: translate(-38px, 0px); }
+        100% { transform: translate(0px, -38px); }
       }
 
-      /* Orbit Counter-Clockwise - AI circles around center in opposite direction */
-      @keyframes orbitCounterClockwise {
-        0% {
-          transform: translate(0px, 30px) rotate(0deg);
-        }
-        25% {
-          transform: translate(-30px, 0px) rotate(-90deg);
-        }
-        50% {
-          transform: translate(0px, -30px) rotate(-180deg);
-        }
-        75% {
-          transform: translate(30px, 0px) rotate(-270deg);
-        }
-        100% {
-          transform: translate(0px, 30px) rotate(-360deg);
-        }
+      /* Anamnese Orbit — starts at bottom-right (120°), CW, radius 38px */
+      @keyframes orbitAnamnese {
+        0%   { transform: translate(33px, 19px); }
+        25%  { transform: translate(-19px, 33px); }
+        50%  { transform: translate(-33px, -19px); }
+        75%  { transform: translate(19px, -33px); }
+        100% { transform: translate(33px, 19px); }
+      }
+
+      /* AI Orbit CW — starts at bottom-left (240°), radius 38px */
+      @keyframes orbitAiCW {
+        0%   { transform: translate(-33px, 19px); }
+        25%  { transform: translate(-19px, -33px); }
+        50%  { transform: translate(33px, -19px); }
+        75%  { transform: translate(19px, 33px); }
+        100% { transform: translate(-33px, 19px); }
       }
 
       /* Orbit trail rotation */
@@ -1458,8 +1624,8 @@ class DigitizedBrainsChatbot {
           display: none;
         }
 
-        #appointment-widget-btn {
-          bottom: 78px !important;
+        .help-tooltip-anamnese {
+          display: none;
         }
 
         .chatbot-toggle-btn {

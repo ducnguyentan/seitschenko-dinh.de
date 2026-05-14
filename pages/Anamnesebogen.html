@@ -1,0 +1,2768 @@
+<!DOCTYPE html>
+<html lang="de" id="html-root">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<title id="page-title">Anamnesebogen – Zahnarztpraxen Seitschenko-Dinh</title>
+<meta name="description" content="Anamnesebogen – Medizinischer Fragebogen für Ihre Zahnarztpraxis" id="page-description">
+<link href="../css/tailwind.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+/* ── HERO SECTION ANIMATIONS ── */
+.anamnese-hero-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── HERO VISUAL LAYERS ── */
+/* Override the light gradient baked into hero-bg-aboutus */
+.anamnese-hero-wrapper.hero-bg-aboutus {
+  background-image: url('../assets/img/img_0368-scaled.jpeg');
+}
+/* Layer 1: frosted blur + rich teal-dark gradient */
+.anamnese-hero-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  backdrop-filter: blur(4px) saturate(1.15);
+  -webkit-backdrop-filter: blur(4px) saturate(1.15);
+  background: linear-gradient(
+    155deg,
+    rgba(2, 52, 63, 0.84) 0%,
+    rgba(5, 75, 88, 0.74) 38%,
+    rgba(0, 38, 50, 0.90) 100%
+  );
+}
+/* Layer 2: radial vignette – darkens edges, keeps center bright */
+.anamnese-hero-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: radial-gradient(
+    ellipse 80% 70% at 50% 55%,
+    transparent 15%,
+    rgba(0, 18, 28, 0.50) 100%
+  );
+}
+/* Layer 3: thin teal shimmer line at the top */
+.anamnese-hero-topline {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(94,179,179,0.7) 50%, transparent 100%);
+  z-index: 5;
+}
+/* Layer 4: thin bottom line */
+.anamnese-hero-botline {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(94,179,179,0.35) 50%, transparent 100%);
+  z-index: 5;
+}
+/* ── HERO ICON – ORBIT SYSTEM ── */
+.anamnese-floating-icon {
+  animation: anamnesIconFloat 4s ease-in-out infinite;
+  display: inline-block;
+}
+@keyframes anamnesIconFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Outer container – reduced size */
+.anamnese-hero-icon-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 110px;
+  height: 110px;
+}
+
+/* Dashed orbital track ring (shows the orbit path) */
+.af-orbit-track {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: 30px;
+  left: 30px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(255,255,255,0.22);
+  pointer-events: none;
+}
+
+/* Center hub circle */
+.af-orbit-center {
+  position: relative;
+  z-index: 5;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.16);
+  border: 2px solid rgba(255,255,255,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 0 0 6px rgba(255,255,255,0.06),
+    0 8px 24px rgba(0,0,0,0.25),
+    inset 0 1px 2px rgba(255,255,255,0.3);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* Arm: full-size div that spins; ball rides the top edge */
+.af-orbit-arm {
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  top: 0; left: 0;
+  transform-origin: 55px 55px;
+  animation: af-cw 9s linear infinite;
+  z-index: 4;
+}
+.af-orbit-arm.arm-2 { animation-delay: -3s; }
+.af-orbit-arm.arm-3 { animation-delay: -6s; }
+
+@keyframes af-cw {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Ball: sits at top of orbit path, counter-rotates to stay upright */
+.af-orbit-ball {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  top: 16px;     /* 55 - 25(orbit-r) - 13(ball-r) = 17 → 16px */
+  left: 42px;    /* 55 - 13(ball-r) = 42 */
+  border-radius: 50%;
+  background: linear-gradient(135deg, #5eb3b3 0%, #3d9090 100%);
+  border: 2px solid rgba(255,255,255,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(94,179,179,0.7), 0 0 0 3px rgba(94,179,179,0.2);
+  /* Counter-rotate origin = center of arm (55,55) relative to ball position */
+  transform-origin: 13px 39px;
+  animation: af-ccw 9s linear infinite;
+}
+.af-orbit-arm.arm-2 .af-orbit-ball { animation-delay: -3s; background: linear-gradient(135deg, #4aa8a8 0%, #2d7d7d 100%); }
+.af-orbit-arm.arm-3 .af-orbit-ball { animation-delay: -6s; background: linear-gradient(135deg, #6cc5c5 0%, #48a0a0 100%); }
+
+@keyframes af-ccw {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+.hero-print-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  color: #2d7d7d;
+  border: none;
+  border-radius: 50px;
+  padding: 14px 32px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  position: relative;
+  overflow: hidden;
+}
+.hero-print-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent 30%, rgba(94,179,179,0.2) 50%, transparent 70%);
+  animation: btnShimmer 2.5s ease-in-out infinite;
+}
+@keyframes btnShimmer {
+  0% { left: -100%; }
+  100% { left: 150%; }
+}
+.hero-print-btn:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+  background: #f0fafa;
+}
+.hero-deco {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  animation: heroDecoFloat 6s ease-in-out infinite;
+}
+.hero-deco-1 { width:200px; height:200px; top:-60px; right:10%; animation-delay:0s; }
+.hero-deco-2 { width:120px; height:120px; bottom:20px; left:8%; animation-delay:2s; }
+.hero-deco-3 { width:80px; height:80px; top:30%; left:20%; animation-delay:4s; }
+@keyframes heroDecoFloat {
+  0%,100% { transform: translateY(0) scale(1); opacity: 0.5; }
+  50% { transform: translateY(-20px) scale(1.05); opacity: 0.8; }
+}
+
+/* ══════════════════════════════════════════
+   INTERACTIVE FORM STYLES
+══════════════════════════════════════════ */
+.anamnese-wrapper {
+  background: #f0f4f8;
+  padding: 48px 20px 64px;
+}
+
+/* ── Form container ── */
+.af-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ── Section cards ── */
+.af-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04);
+  padding: 32px 36px;
+  margin-bottom: 24px;
+  transition: box-shadow 0.2s;
+}
+.af-card:focus-within {
+  box-shadow: 0 4px 28px rgba(94,179,179,0.14), 0 1px 4px rgba(0,0,0,0.04);
+}
+@media (max-width: 600px) {
+  .af-card { padding: 24px 18px; }
+}
+
+/* ── Section heading ── */
+.af-section-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #5eb3b3;
+  border-bottom: 2px solid #e8f6f6;
+  padding-bottom: 10px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.af-section-title svg {
+  flex-shrink: 0;
+  opacity: 0.8;
+}
+.af-section-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: #5eb3b3;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* ── Form grid ── */
+.af-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 24px;
+}
+.af-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+.af-grid.cols-1 { grid-template-columns: 1fr; }
+.af-col-full { grid-column: 1 / -1; }
+.af-col-2-3 { grid-column: span 2; }
+@media (max-width: 640px) {
+  .af-grid, .af-grid.cols-3 { grid-template-columns: 1fr; }
+  .af-col-2-3 { grid-column: span 1; }
+}
+
+/* ── Field group ── */
+.af-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.af-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #5eb3b3;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.af-label .af-optional {
+  font-weight: 400;
+  color: #aaa;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 10px;
+  margin-left: 4px;
+}
+.af-input {
+  width: 100%;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 11px 14px;
+  font-size: 14px;
+  color: #1a202c;
+  background: #f8fafc;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  outline: none;
+  font-family: inherit;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.af-input:focus {
+  border-color: #5eb3b3;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(94,179,179,0.15);
+}
+.af-input.af-error {
+  border-color: #fc8181;
+  background: #fff5f5;
+}
+.af-input.af-error:focus {
+  box-shadow: 0 0 0 3px rgba(252,129,129,0.2);
+}
+.af-error-msg {
+  font-size: 11px;
+  color: #e53e3e;
+  display: none;
+}
+.af-field.has-error .af-error-msg { display: block; }
+.af-field.has-error .af-input { border-color: #fc8181; background: #fff5f5; }
+
+/* ── Anrede radio pills ── */
+.af-radio-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.af-radio-pill {
+  position: relative;
+}
+.af-radio-pill input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.af-radio-pill label {
+  display: inline-block;
+  padding: 9px 20px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #4a5568;
+  cursor: pointer;
+  background: #f8fafc;
+  transition: all 0.18s;
+  user-select: none;
+}
+.af-radio-pill input[type="radio"]:checked + label {
+  background: #5eb3b3;
+  border-color: #5eb3b3;
+  color: #fff;
+  box-shadow: 0 2px 10px rgba(94,179,179,0.35);
+}
+.af-radio-pill label:hover {
+  border-color: #5eb3b3;
+  color: #5eb3b3;
+}
+.af-radio-pill input[type="radio"]:checked + label:hover {
+  color: #fff;
+}
+
+/* ── YES / NO toggle buttons ── */
+.af-yn-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f4f8;
+  gap: 12px;
+}
+.af-yn-row:last-child { border-bottom: none; }
+.af-yn-label {
+  font-size: 13px;
+  color: #2d3748;
+  flex: 1;
+  line-height: 1.45;
+}
+.af-yn-label.sub {
+  font-size: 12px;
+  color: #718096;
+  padding-left: 14px;
+}
+.af-yn-label.sub-note {
+  font-size: 11px;
+  color: #a0aec0;
+  font-style: italic;
+  padding-left: 14px;
+}
+.af-yn-btns {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.af-yn-btn {
+  padding: 5px 14px;
+  border-radius: 50px;
+  border: 1.5px solid #e2e8f0;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  background: #f8fafc;
+  color: #718096;
+  transition: all 0.18s;
+  letter-spacing: 0.5px;
+}
+.af-yn-btn:hover { border-color: #5eb3b3; color: #5eb3b3; }
+.af-yn-btn.active-yes {
+  background: #5eb3b3;
+  border-color: #5eb3b3;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(94,179,179,0.35);
+}
+.af-yn-btn.active-no {
+  background: #f56565;
+  border-color: #f56565;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(245,101,101,0.25);
+}
+.af-yn-spacer { width: 82px; flex-shrink: 0; }
+.af-yn-text-input {
+  width: 100%;
+  border: none;
+  border-bottom: 1.5px solid #cbd5e0;
+  padding: 4px 2px;
+  font-size: 13px;
+  color: #2d3748;
+  background: transparent;
+  outline: none;
+  transition: border-color 0.18s;
+  font-family: inherit;
+}
+.af-yn-text-input:focus { border-color: #5eb3b3; }
+
+/* ── Health category title ── */
+.af-health-cat {
+  font-size: 12px;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 20px 0 4px;
+  padding: 6px 10px;
+  background: #f7fafc;
+  border-left: 3px solid #5eb3b3;
+  border-radius: 0 6px 6px 0;
+}
+.af-health-cat:first-child { margin-top: 0; }
+
+/* ── Two-column health layout ── */
+.af-health-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 32px;
+}
+@media (max-width: 700px) {
+  .af-health-cols { grid-template-columns: 1fr; }
+}
+
+/* ── Checkboxes ── */
+.af-check-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.af-check-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #2d3748;
+}
+.af-check-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #5eb3b3;
+  cursor: pointer;
+  flex-shrink: 0;
+  border-radius: 4px;
+}
+.af-check-subgroup {
+  display: none;
+  margin-left: 28px;
+  margin-top: 4px;
+  padding: 10px 14px;
+  background: #f0fafa;
+  border-radius: 8px;
+  border: 1px solid #bee3e3;
+}
+.af-check-subgroup.visible { display: flex; flex-direction: column; gap: 8px; }
+.af-check-subgroup .af-check-item { font-size: 12px; color: #4a5568; }
+
+/* ── Notice boxes ── */
+.af-notice-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+@media (max-width: 600px) {
+  .af-notice-grid { grid-template-columns: 1fr; }
+}
+.af-notice-box {
+  background: #f0fafa;
+  border: 1px solid #bee3e3;
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+.af-notice-box strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #2d7d7d;
+  margin-bottom: 4px;
+}
+.af-notice-box p {
+  font-size: 12px;
+  color: #4a5568;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* ── Confirm checkboxes ── */
+.af-confirm-block {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.af-confirm-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1.5px solid #e2e8f0;
+  background: #f8fafc;
+  cursor: pointer;
+  transition: border-color 0.18s, background 0.18s;
+}
+.af-confirm-item:has(input:checked) {
+  border-color: #5eb3b3;
+  background: #f0fafa;
+}
+.af-confirm-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #5eb3b3;
+  flex-shrink: 0;
+  margin-top: 2px;
+  cursor: pointer;
+}
+.af-confirm-text {
+  font-size: 13px;
+  color: #2d3748;
+  line-height: 1.55;
+}
+
+/* ── Sig row ── */
+.af-sig-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 24px;
+  margin-top: 4px;
+}
+@media (max-width: 540px) {
+  .af-sig-row { grid-template-columns: 1fr; }
+}
+
+/* ── Submit button ── */
+.af-submit-btn {
+  display: block;
+  width: 100%;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #5eb3b3 0%, #3d9898 100%);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+  box-shadow: 0 4px 20px rgba(94,179,179,0.4);
+  position: relative;
+  overflow: hidden;
+}
+.af-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(94,179,179,0.5);
+}
+.af-submit-btn:active { transform: translateY(0); }
+.af-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ── Print bar ── */
+.af-print-bar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+.af-print-btn-small {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 20px;
+  background: #fff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #4a5568;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.af-print-btn-small:hover {
+  border-color: #5eb3b3;
+  color: #5eb3b3;
+}
+
+/* ── Success modal ── */
+.af-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 9000;
+  align-items: center;
+  justify-content: center;
+}
+.af-modal-overlay.visible { display: flex; }
+.af-modal {
+  background: #fff;
+  border-radius: 20px;
+  padding: 48px 40px 40px;
+  max-width: 440px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.2);
+  animation: modalPop 0.35s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes modalPop {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.af-modal-check {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #5eb3b3, #3d9898);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  box-shadow: 0 8px 24px rgba(94,179,179,0.4);
+  animation: checkBounce 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.15s both;
+}
+@keyframes checkBounce {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.af-modal-check svg { stroke: white; }
+.af-modal h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 10px;
+}
+.af-modal p {
+  font-size: 14px;
+  color: #718096;
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+.af-modal-close {
+  display: inline-block;
+  padding: 12px 32px;
+  background: linear-gradient(135deg, #5eb3b3, #3d9898);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(94,179,179,0.4);
+  transition: all 0.2s;
+}
+.af-modal-close:hover { transform: translateY(-2px); }
+
+/* ── Error toast ── */
+.af-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #e53e3e;
+  color: #fff;
+  padding: 14px 22px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(229,62,62,0.35);
+  z-index: 9100;
+  display: none;
+  animation: toastSlide 0.3s ease both;
+}
+.af-toast.visible { display: block; }
+@keyframes toastSlide {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* ── Loading spinner inside submit btn ── */
+.af-spinner {
+  display: none;
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid rgba(255,255,255,0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spinnerRot 0.7s linear infinite;
+  margin: 0 auto;
+}
+@keyframes spinnerRot { to { transform: rotate(360deg); } }
+
+/* ── PRINT ── */
+@media print {
+  .no-print { display:none !important; }
+  header, footer, .anamnese-hero-wrapper, .page-chrome { display:none !important; }
+  .anamnese-wrapper { background:#fff !important; padding:0 !important; }
+  .af-container { max-width: 100% !important; }
+  .af-card {
+    box-shadow: none !important;
+    border: 1px solid #ddd !important;
+    border-radius: 4px !important;
+    break-inside: avoid;
+    margin-bottom: 12px !important;
+    padding: 16px !important;
+  }
+  .af-submit-btn, .af-print-bar, .af-modal-overlay, .af-toast { display:none !important; }
+  body { background:#fff !important; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+}
+</style>
+</head>
+<body class="bg-white text-gray-800">
+
+<!-- ══ HEADER ══ -->
+<header class="bg-white shadow-lg fixed top-0 left-0 right-0 z-50 no-print page-chrome">
+  <div class="container mx-auto px-4">
+    <div class="flex items-center justify-between py-4">
+      <div class="flex items-center space-x-3 relative z-50">
+        <img src="../assets/img/logo.svg" alt="Seitschenko-Dinh Logo" class="w-12 h-12 flex-shrink-0">
+        <a href="../index.html" class="flex flex-col leading-tight">
+          <span class="text-sm font-bold text-gray-800 tracking-wide" data-nav="name1">ZAHNARZTPRAXEN</span>
+          <span class="text-sm font-bold text-gray-800 tracking-wide" data-nav="name2">SEITSCHENKO-DINH</span>
+        </a>
+      </div>
+      <div class="hidden md:flex items-center space-x-4">
+        <nav class="flex space-x-2">
+          <a href="../index.html#home" class="nav-link" data-nav="home">Start</a>
+          <a href="about-us.html" class="nav-link" data-nav="about">Über uns</a>
+          <a href="services.html" class="nav-link" data-nav="services">Leistungen</a>
+          <a href="labor.html" class="nav-link" data-nav="labor">Labor</a>
+          <a href="karriere.html" class="nav-link" data-nav="karriere">Karriere</a>
+          <a href="contact.html" class="nav-link" data-nav="contact">Kontakt</a>
+        </nav>
+        <div class="language-switcher">
+          <button id="language-btn" class="flex items-center space-x-1 px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+            <img id="current-flag" src="https://flagcdn.com/24x18/de.png" alt="Deutsch" class="language-flag">
+            <span id="current-lang">DE</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div id="language-menu" class="language-menu">
+            <a href="#" onclick="changeLanguage('de')" class="language-option" data-lang="de">
+              <img src="https://flagcdn.com/24x18/de.png" alt="Deutsch" class="language-flag"> Deutsch
+            </a>
+            <a href="#" onclick="changeLanguage('en')" class="language-option" data-lang="en">
+              <img src="https://flagcdn.com/24x18/us.png" alt="English" class="language-flag"> English
+            </a>
+            <a href="#" onclick="changeLanguage('vi')" class="language-option" data-lang="vi">
+              <img src="https://flagcdn.com/24x18/vn.png" alt="Tiếng Việt" class="language-flag"> Tiếng Việt
+            </a>
+            <a href="#" onclick="changeLanguage('ru')" class="language-option" data-lang="ru">
+              <img src="https://flagcdn.com/24x18/ru.png" alt="Русский" class="language-flag"> Русский
+            </a>
+            <a href="#" onclick="changeLanguage('ar')" class="language-option" data-lang="ar">
+              <img src="https://flagcdn.com/24x18/sa.png" alt="العربية" class="language-flag"> العربية
+            </a>
+          </div>
+        </div>
+      </div>
+      <button id="mobile-menu-btn" class="md:hidden p-2">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="md:hidden hidden pb-4">
+      <div class="flex flex-col space-y-2">
+        <a href="../index.html#home" class="nav-link" data-nav="home">Start</a>
+        <a href="about-us.html" class="nav-link" data-nav="about">Über uns</a>
+        <a href="services.html" class="nav-link" data-nav="services">Leistungen</a>
+        <a href="labor.html" class="nav-link" data-nav="labor">Labor</a>
+        <a href="karriere.html" class="nav-link" data-nav="karriere">Karriere</a>
+        <a href="contact.html" class="nav-link" data-nav="contact">Kontakt</a>
+        <div class="pt-2 border-t border-gray-200">
+          <div class="language-switcher-mobile">
+            <button id="mobile-language-btn" class="flex items-center justify-between w-full px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+              <span>Sprache:</span>
+              <div class="flex items-center space-x-1">
+                <img id="mobile-current-flag" src="https://flagcdn.com/24x18/de.png" alt="Deutsch" class="language-flag">
+                <span id="mobile-current-lang">DE</span>
+              </div>
+            </button>
+            <div id="mobile-language-menu" class="language-menu-mobile">
+              <a href="#" onclick="changeLanguage('de')" class="language-option-mobile" data-lang="de">
+                <img src="https://flagcdn.com/24x18/de.png" alt="Deutsch" class="language-flag"> Deutsch
+              </a>
+              <a href="#" onclick="changeLanguage('en')" class="language-option-mobile" data-lang="en">
+                <img src="https://flagcdn.com/24x18/us.png" alt="English" class="language-flag"> English
+              </a>
+              <a href="#" onclick="changeLanguage('vi')" class="language-option-mobile" data-lang="vi">
+                <img src="https://flagcdn.com/24x18/vn.png" alt="Tiếng Việt" class="language-flag"> Tiếng Việt
+              </a>
+              <a href="#" onclick="changeLanguage('ru')" class="language-option-mobile" data-lang="ru">
+                <img src="https://flagcdn.com/24x18/ru.png" alt="Русский" class="language-flag"> Русский
+              </a>
+              <a href="#" onclick="changeLanguage('ar')" class="language-option-mobile" data-lang="ar">
+                <img src="https://flagcdn.com/24x18/sa.png" alt="العربية" class="language-flag"> العربية
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ══ HERO ══ -->
+<section class="anamnese-hero-wrapper hero-bg-aboutus py-20 mt-20 relative overflow-hidden no-print page-chrome">
+  <!-- Visual layers -->
+  <div class="anamnese-hero-backdrop"></div>
+  <div class="anamnese-hero-vignette"></div>
+  <div class="anamnese-hero-topline"></div>
+  <div class="anamnese-hero-botline"></div>
+  <!-- Floating deco orbs -->
+  <div class="hero-deco hero-deco-1"></div>
+  <div class="hero-deco hero-deco-2"></div>
+  <div class="hero-deco hero-deco-3"></div>
+  <!-- Content -->
+  <div class="relative container mx-auto px-4 text-center" style="z-index:10;">
+    <div class="anamnese-floating-icon mb-6">
+      <div class="anamnese-hero-icon-wrapper">
+
+        <!-- Orbital track (dashed ring) -->
+        <div class="af-orbit-track"></div>
+
+        <!-- Center hub: medical form icon -->
+        <div class="af-orbit-center">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="2" width="14" height="20" rx="2"/>
+            <path d="M9 2v2h6V2"/>
+            <line x1="9" y1="10" x2="15" y2="10"/>
+            <line x1="9" y1="14" x2="15" y2="14"/>
+            <line x1="9" y1="18" x2="12" y2="18"/>
+          </svg>
+        </div>
+
+        <!-- Orbit arm 1: Tooth (dental) -->
+        <div class="af-orbit-arm">
+          <div class="af-orbit-ball">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2C7 2 4 6 4 9c0 4 2 9 3 12 .5 2 1.5 3 3 3 .8 0 1.5-.5 2-2 .5 1.5 1.2 2 2 2 1.5 0 2.5-1 3-3 1-3 3-8 3-12 0-3-3-7-8-7z"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Orbit arm 2: Medical cross (health) -->
+        <div class="af-orbit-arm arm-2">
+          <div class="af-orbit-ball">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round">
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Orbit arm 3: Calendar (appointment) -->
+        <div class="af-orbit-arm arm-3">
+          <div class="af-orbit-ball">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <h1 id="hero-title" class="text-4xl md:text-5xl font-bold mb-4 uppercase tracking-wider"
+      style="color:#e8fffe; text-shadow:0 2px 24px rgba(0,0,0,0.55), 0 0 50px rgba(94,179,179,0.30);">
+      Anamnesebogen
+    </h1>
+    <p id="hero-subtitle" class="text-lg md:text-xl max-w-2xl mx-auto mb-8 font-light"
+      style="color:rgba(196,238,235,0.92); text-shadow:0 1px 12px rgba(0,0,0,0.4);">
+      Bitte füllen Sie diesen Fragebogen vollständig aus, bevor Sie zu uns kommen.
+    </p>
+    <button id="hero-print-btn" class="hero-print-btn" onclick="window.print()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      Drucken
+    </button>
+    <p id="hero-print-hint" class="mt-4 text-sm" style="color:rgba(150,210,208,0.75);">Formular ausdrucken und ausgefüllt mitbringen</p>
+  </div>
+</section>
+
+<!-- ══ FORM SECTION ══ -->
+<div class="anamnese-wrapper">
+<div class="af-container">
+
+  <!-- Print button bar -->
+  <div class="af-print-bar no-print">
+    <button class="af-print-btn-small" onclick="window.print()">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      <span id="print-bar-text">Formular drucken</span>
+    </button>
+  </div>
+
+  <form id="anamneseForm" novalidate>
+
+  <!-- ══ SECTION 1 – PATIENT ══ -->
+  <div class="af-card">
+    <div class="af-section-title">
+      <span class="af-section-number">1</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <span class="af-sec-text">Fragen zum Patienten</span>
+    </div>
+
+    <!-- Anrede -->
+    <div class="af-field" style="margin-bottom:20px;">
+      <span class="af-label" id="lbl-anrede">Anrede</span>
+      <div class="af-radio-group">
+        <div class="af-radio-pill">
+          <input type="radio" name="Anrede" id="anrede-frau" value="Frau">
+          <label for="anrede-frau">Frau</label>
+        </div>
+        <div class="af-radio-pill">
+          <input type="radio" name="Anrede" id="anrede-herr" value="Herr">
+          <label for="anrede-herr">Herr</label>
+        </div>
+        <div class="af-radio-pill">
+          <input type="radio" name="Anrede" id="anrede-divers" value="Divers">
+          <label for="anrede-divers">Divers</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="af-grid">
+      <div class="af-field">
+        <label class="af-label" for="f-nachname">Nachname <span style="color:#e53e3e;">*</span></label>
+        <input class="af-input" type="text" id="f-nachname" name="Nachname" autocomplete="family-name" required>
+        <span class="af-error-msg">Bitte Nachname eingeben.</span>
+      </div>
+      <div class="af-field">
+        <label class="af-label" for="f-vorname">Vorname <span style="color:#e53e3e;">*</span></label>
+        <input class="af-input" type="text" id="f-vorname" name="Vorname" autocomplete="given-name" required>
+        <span class="af-error-msg">Bitte Vorname eingeben.</span>
+      </div>
+      <div class="af-field">
+        <label class="af-label" for="f-dob">Geburtsdatum <span style="color:#e53e3e;">*</span></label>
+        <input class="af-input" type="date" id="f-dob" name="Geburtsdatum" required>
+        <span class="af-error-msg">Bitte Geburtsdatum eingeben.</span>
+      </div>
+      <div class="af-field">
+        <label class="af-label" for="f-pob">Geburtsort</label>
+        <input class="af-input" type="text" id="f-pob" name="Geburtsort" autocomplete="off">
+      </div>
+      <div class="af-field af-col-full">
+        <label class="af-label" for="f-street">Straße und Hausnummer <span style="color:#e53e3e;">*</span></label>
+        <input class="af-input" type="text" id="f-street" name="Straße" autocomplete="street-address" required>
+        <span class="af-error-msg">Bitte Adresse eingeben.</span>
+      </div>
+      <div class="af-field">
+        <label class="af-label" for="f-plz">PLZ <span style="color:#e53e3e;">*</span></label>
+        <input class="af-input" type="text" id="f-plz" name="PLZ" maxlength="5" autocomplete="postal-code" required pattern="\d{4,5}">
+        <span class="af-error-msg">Bitte gültige PLZ eingeben.</span>
+      </div>
+      <div class="af-field">
+        <label class="af-label" for="f-ort">Ort <span style="color:#e53e3e;">*</span></label>
+        <input class="af-input" type="text" id="f-ort" name="Ort" autocomplete="address-level2" required>
+        <span class="af-error-msg">Bitte Ort eingeben.</span>
+      </div>
+      <div class="af-field">
+        <label class="af-label" for="f-mobil">Mobiltelefonnummer <span style="color:#e53e3e;">*</span></label>
+        <input class="af-input" type="tel" id="f-mobil" name="Mobil" autocomplete="tel" required>
+        <span class="af-error-msg">Bitte Mobilnummer eingeben.</span>
+      </div>
+      <div class="af-field">
+        <label class="af-label" for="f-festnetz">Festnetznummer <span class="af-optional">(optional)</span></label>
+        <input class="af-input" type="tel" id="f-festnetz" name="Festnetz" autocomplete="tel">
+      </div>
+      <div class="af-field af-col-full">
+        <label class="af-label" for="f-email">E-Mail-Adresse <span style="color:#e53e3e;">*</span></label>
+        <input class="af-input" type="email" id="f-email" name="E-Mail" autocomplete="email" required>
+        <span class="af-error-msg">Bitte gültige E-Mail-Adresse eingeben.</span>
+      </div>
+    </div>
+
+    <!-- Arbeitgeber -->
+    <div style="margin-top:22px; padding-top:18px; border-top:1px solid #f0f4f8;">
+      <div class="af-label" id="lbl-arbeitgeber" style="margin-bottom:14px;">Arbeitgeber <span class="af-optional" id="lbl-ag-optional">(freiwillige Angabe)</span></div>
+      <div class="af-grid">
+        <div class="af-field">
+          <label class="af-label" for="f-ag-name">Name</label>
+          <input class="af-input" type="text" id="f-ag-name" name="Arbeitgeber_Name">
+        </div>
+        <div class="af-field">
+          <label class="af-label" for="f-ag-tel">Telefon dienstlich</label>
+          <input class="af-input" type="tel" id="f-ag-tel" name="Arbeitgeber_Tel">
+        </div>
+        <div class="af-field af-col-full">
+          <label class="af-label" for="f-beruf">Beruf</label>
+          <input class="af-input" type="text" id="f-beruf" name="Beruf">
+        </div>
+      </div>
+    </div>
+
+    <!-- Hausarzt -->
+    <div style="margin-top:22px; padding-top:18px; border-top:1px solid #f0f4f8;">
+      <div class="af-label" id="lbl-hausarzt" style="margin-bottom:14px;">Hausarzt <span class="af-optional" id="lbl-ha-optional">(falls vorhanden)</span></div>
+      <div class="af-grid">
+        <div class="af-field">
+          <label class="af-label" for="f-ha-name">Nachname</label>
+          <input class="af-input" type="text" id="f-ha-name" name="Hausarzt_Name">
+        </div>
+        <div class="af-field">
+          <label class="af-label" for="f-ha-street">Straße und Hausnummer</label>
+          <input class="af-input" type="text" id="f-ha-street" name="Hausarzt_Straße">
+        </div>
+        <div class="af-field">
+          <label class="af-label" for="f-ha-plz">PLZ</label>
+          <input class="af-input" type="text" id="f-ha-plz" name="Hausarzt_PLZ" maxlength="5">
+        </div>
+        <div class="af-field">
+          <label class="af-label" for="f-ha-ort">Ort</label>
+          <input class="af-input" type="text" id="f-ha-ort" name="Hausarzt_Ort">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 2 – VERSICHERUNG ══ -->
+  <div class="af-card">
+    <div class="af-section-title">
+      <span class="af-section-number">2</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <span class="af-sec-text">Fragen zur Versicherung</span>
+    </div>
+
+    <div class="af-grid">
+      <div class="af-field af-col-full">
+        <label class="af-label" for="f-vers-name">Name der Versicherung / Krankenkasse <span style="color:#e53e3e;">*</span></label>
+        <input class="af-input" type="text" id="f-vers-name" name="Versicherung_Name" required>
+        <span class="af-error-msg">Bitte Versicherungsname eingeben.</span>
+      </div>
+    </div>
+
+    <div style="margin-top:20px;">
+      <div class="af-label" id="lbl-verstyp" style="margin-bottom:12px;">Versicherungstyp</div>
+      <div class="af-check-group" style="display:grid;grid-template-columns:1fr 1fr;gap:8px 24px;">
+        <label class="af-check-item"><input type="checkbox" name="Versicherungstyp" value="gesetzlich versichert"> gesetzlich versichert</label>
+        <label class="af-check-item"><input type="checkbox" name="Versicherungstyp" value="privat versichert"> privat versichert</label>
+        <label class="af-check-item" id="zusatz-parent">
+          <input type="checkbox" name="Versicherungstyp" value="zahnzusatzversichert" id="chk-zusatz"> zahnzusatzversichert
+        </label>
+        <label class="af-check-item"><input type="checkbox" name="Versicherungstyp" value="Beihilfe"> Beihilfe</label>
+        <label class="af-check-item"><input type="checkbox" name="Versicherungstyp" value="Basistarif"> Basistarif</label>
+        <label class="af-check-item"><input type="checkbox" name="Versicherungstyp" value="KVB"> KVB (Bundesbahn)</label>
+        <label class="af-check-item"><input type="checkbox" name="Versicherungstyp" value="Postbeamtenkrankenkasse"> Postbeamtenkrankenkasse</label>
+        <label class="af-check-item"><input type="checkbox" name="Versicherungstyp" value="Polizei"> Polizei</label>
+        <label class="af-check-item"><input type="checkbox" name="Versicherungstyp" value="Knappschaft"> Knappschaft</label>
+      </div>
+
+      <!-- Zusatzversicherung sub-group -->
+      <div class="af-check-subgroup" id="zusatz-subgroup">
+        <div style="font-size:11px;font-weight:700;color:#2d7d7d;margin-bottom:6px;letter-spacing:0.5px;">IN DEN BEREICHEN:</div>
+        <label class="af-check-item"><input type="checkbox" name="Versicherungstyp_Zusatz" value="Füllungen"> Füllungen</label>
+        <label class="af-check-item"><input type="checkbox" name="Versicherungstyp_Zusatz" value="Prophylaxe"> Prophylaxe</label>
+        <label class="af-check-item"><input type="checkbox" name="Versicherungstyp_Zusatz" value="Zahnersatz"> Zahnersatz</label>
+        <label class="af-check-item"><input type="checkbox" name="Versicherungstyp_Zusatz" value="Kieferorthopädie"> Kieferorthopädie</label>
+      </div>
+    </div>
+
+    <!-- Familienversichert -->
+    <div style="margin-top:22px; padding-top:18px; border-top:1px solid #f0f4f8;">
+      <div class="af-label" id="lbl-fv" style="margin-bottom:12px;">Falls der Patient familienversichert ist – wer ist der Hauptversicherte?</div>
+      <div class="af-radio-group" style="margin-bottom:16px;">
+        <div class="af-radio-pill">
+          <input type="radio" name="Familienversichert" id="fv-nein" value="Nein" checked>
+          <label for="fv-nein">Nicht familienversichert</label>
+        </div>
+        <div class="af-radio-pill">
+          <input type="radio" name="Familienversichert" id="fv-ja" value="Ja">
+          <label for="fv-ja">Ja, familienversichert</label>
+        </div>
+      </div>
+
+      <div id="hv-fields" style="display:none;">
+        <div class="af-grid">
+          <div class="af-field">
+            <label class="af-label" for="f-hv-name">Nachname</label>
+            <input class="af-input" type="text" id="f-hv-name" name="HV_Name">
+          </div>
+          <div class="af-field">
+            <label class="af-label" for="f-hv-vorname">Vorname</label>
+            <input class="af-input" type="text" id="f-hv-vorname" name="HV_Vorname">
+          </div>
+          <div class="af-field">
+            <label class="af-label" for="f-hv-dob">Geburtsdatum</label>
+            <input class="af-input" type="date" id="f-hv-dob" name="HV_Geburtsdatum">
+          </div>
+          <div class="af-field">
+            <label class="af-label" for="f-hv-pob">Geburtsort</label>
+            <input class="af-input" type="text" id="f-hv-pob" name="HV_Geburtsort">
+          </div>
+          <div class="af-field af-col-full">
+            <label class="af-label" for="f-hv-street">Straße und Hausnummer</label>
+            <input class="af-input" type="text" id="f-hv-street" name="HV_Straße">
+          </div>
+          <div class="af-field">
+            <label class="af-label" for="f-hv-plz">PLZ</label>
+            <input class="af-input" type="text" id="f-hv-plz" name="HV_PLZ" maxlength="5">
+          </div>
+          <div class="af-field">
+            <label class="af-label" for="f-hv-ort">Ort</label>
+            <input class="af-input" type="text" id="f-hv-ort" name="HV_Ort">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 3 – ALLGEMEINE GESUNDHEIT ══ -->
+  <div class="af-card">
+    <div class="af-section-title">
+      <span class="af-section-number">3</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      <span class="af-sec-text">Fragen zur allgemeinen Gesundheit</span>
+    </div>
+    <p id="health-instruction" style="font-size:12px;color:#718096;margin-bottom:20px;line-height:1.55;">
+      Bitte beantworten Sie jede Frage mit <strong>JA</strong> oder <strong>NEIN</strong>. Klicken Sie auf die Schaltfläche, um Ihre Antwort auszuwählen.
+    </p>
+
+    <div class="af-health-cols">
+      <!-- LEFT COLUMN -->
+      <div>
+        <!-- Herzerkrankungen -->
+        <div class="af-health-cat">Herzerkrankungen</div>
+        <div class="af-yn-row">
+          <span class="af-yn-label">Herzschwäche (Insuffizienz)</span>
+          <div class="af-yn-btns">
+            <button type="button" class="af-yn-btn" data-field="Herzschwäche" data-val="Ja">JA</button>
+            <button type="button" class="af-yn-btn" data-field="Herzschwäche" data-val="Nein">NEIN</button>
+          </div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label">Unregelmäßiger Herzschlag (Arrhythmien)</span>
+          <div class="af-yn-btns">
+            <button type="button" class="af-yn-btn" data-field="Arrhythmien" data-val="Ja">JA</button>
+            <button type="button" class="af-yn-btn" data-field="Arrhythmien" data-val="Nein">NEIN</button>
+          </div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label">Herzasthma, Angina pectoris</span>
+          <div class="af-yn-btns">
+            <button type="button" class="af-yn-btn" data-field="Herzasthma" data-val="Ja">JA</button>
+            <button type="button" class="af-yn-btn" data-field="Herzasthma" data-val="Nein">NEIN</button>
+          </div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label">Herzinnenhautentzündung (Endokarditis)</span>
+          <div class="af-yn-btns">
+            <button type="button" class="af-yn-btn" data-field="Endokarditis" data-val="Ja">JA</button>
+            <button type="button" class="af-yn-btn" data-field="Endokarditis" data-val="Nein">NEIN</button>
+          </div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label">Herzschrittmacher</span>
+          <div class="af-yn-btns">
+            <button type="button" class="af-yn-btn" data-field="Herzschrittmacher" data-val="Ja">JA</button>
+            <button type="button" class="af-yn-btn" data-field="Herzschrittmacher" data-val="Nein">NEIN</button>
+          </div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label">Herzklappenfehler, künstliche Herzklappe</span>
+          <div class="af-yn-btns">
+            <button type="button" class="af-yn-btn" data-field="Herzklappenfehler" data-val="Ja">JA</button>
+            <button type="button" class="af-yn-btn" data-field="Herzklappenfehler" data-val="Nein">NEIN</button>
+          </div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label">Zustand nach Herzinfarkt, Herz-OP, Bypass</span>
+          <div class="af-yn-btns">
+            <button type="button" class="af-yn-btn" data-field="Herzinfarkt" data-val="Ja">JA</button>
+            <button type="button" class="af-yn-btn" data-field="Herzinfarkt" data-val="Nein">NEIN</button>
+          </div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label sub">Wenn ja, wann?</span>
+          <div style="flex:0 0 120px;"><input type="text" class="af-yn-text-input" name="Herzinfarkt_Wann" placeholder="z.B. 2020"></div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label sub">Sonstige:</span>
+          <div style="flex:0 0 180px;"><input type="text" class="af-yn-text-input" name="Herz_Sonstige"></div>
+        </div>
+
+        <!-- Kreislauf -->
+        <div class="af-health-cat">Erkrankungen Kreislauf und Gefäßsystem</div>
+        <div class="af-yn-row">
+          <span class="af-yn-label">Zu hoher Blutdruck</span>
+          <div class="af-yn-btns">
+            <button type="button" class="af-yn-btn" data-field="Blutdruck_Hoch" data-val="Ja">JA</button>
+            <button type="button" class="af-yn-btn" data-field="Blutdruck_Hoch" data-val="Nein">NEIN</button>
+          </div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label">Zu niedriger Blutdruck</span>
+          <div class="af-yn-btns">
+            <button type="button" class="af-yn-btn" data-field="Blutdruck_Niedrig" data-val="Ja">JA</button>
+            <button type="button" class="af-yn-btn" data-field="Blutdruck_Niedrig" data-val="Nein">NEIN</button>
+          </div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label">Ohnmachtsanfälle / Ohnmachtsneigung</span>
+          <div class="af-yn-btns">
+            <button type="button" class="af-yn-btn" data-field="Ohnmacht" data-val="Ja">JA</button>
+            <button type="button" class="af-yn-btn" data-field="Ohnmacht" data-val="Nein">NEIN</button>
+          </div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label">Schlaganfall</span>
+          <div class="af-yn-btns">
+            <button type="button" class="af-yn-btn" data-field="Schlaganfall" data-val="Ja">JA</button>
+            <button type="button" class="af-yn-btn" data-field="Schlaganfall" data-val="Nein">NEIN</button>
+          </div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label sub">Wenn ja, wann?</span>
+          <div style="flex:0 0 120px;"><input type="text" class="af-yn-text-input" name="Schlaganfall_Wann" placeholder="z.B. 2020"></div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label sub">Sonstige:</span>
+          <div style="flex:0 0 180px;"><input type="text" class="af-yn-text-input" name="Kreislauf_Sonstige"></div>
+        </div>
+
+        <!-- Stoffwechsel -->
+        <div class="af-health-cat">Stoffwechselerkrankungen</div>
+        <div class="af-yn-row">
+          <span class="af-yn-label">Zuckerkrankheit (Diabetes)</span>
+          <div class="af-yn-btns">
+            <button type="button" class="af-yn-btn" data-field="Diabetes" data-val="Ja">JA</button>
+            <button type="button" class="af-yn-btn" data-field="Diabetes" data-val="Nein">NEIN</button>
+          </div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label">Magen-Darm-Erkrankungen</span>
+          <div class="af-yn-btns">
+            <button type="button" class="af-yn-btn" data-field="Magen_Darm" data-val="Ja">JA</button>
+            <button type="button" class="af-yn-btn" data-field="Magen_Darm" data-val="Nein">NEIN</button>
+          </div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label">Schilddrüsenerkrankungen</span>
+          <div class="af-yn-btns">
+            <button type="button" class="af-yn-btn" data-field="Schilddrüse" data-val="Ja">JA</button>
+            <button type="button" class="af-yn-btn" data-field="Schilddrüse" data-val="Nein">NEIN</button>
+          </div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label sub">Sonstige:</span>
+          <div style="flex:0 0 180px;"><input type="text" class="af-yn-text-input" name="Stoffwechsel_Sonstige"></div>
+        </div>
+
+        <!-- Nervensystem -->
+        <div class="af-health-cat">Erkrankungen des Nervensystems</div>
+        <div class="af-yn-row">
+          <span class="af-yn-label">Epilepsie</span>
+          <div class="af-yn-btns">
+            <button type="button" class="af-yn-btn" data-field="Epilepsie" data-val="Ja">JA</button>
+            <button type="button" class="af-yn-btn" data-field="Epilepsie" data-val="Nein">NEIN</button>
+          </div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label">Krämpfe</span>
+          <div class="af-yn-btns">
+            <button type="button" class="af-yn-btn" data-field="Krämpfe" data-val="Ja">JA</button>
+            <button type="button" class="af-yn-btn" data-field="Krämpfe" data-val="Nein">NEIN</button>
+          </div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label sub">Sonstige:</span>
+          <div style="flex:0 0 180px;"><input type="text" class="af-yn-text-input" name="Nerven_Sonstige"></div>
+        </div>
+
+        <!-- Bluterkrankungen -->
+        <div class="af-health-cat">Bluterkrankungen</div>
+        <div class="af-yn-row">
+          <span class="af-yn-label">Blutungsneigung (Hämophilie)</span>
+          <div class="af-yn-btns">
+            <button type="button" class="af-yn-btn" data-field="Hämophilie" data-val="Ja">JA</button>
+            <button type="button" class="af-yn-btn" data-field="Hämophilie" data-val="Nein">NEIN</button>
+          </div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label">Blutarmut (Anämie)</span>
+          <div class="af-yn-btns">
+            <button type="button" class="af-yn-btn" data-field="Anämie" data-val="Ja">JA</button>
+            <button type="button" class="af-yn-btn" data-field="Anämie" data-val="Nein">NEIN</button>
+          </div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label sub">Sonstige:</span>
+          <div style="flex:0 0 180px;"><input type="text" class="af-yn-text-input" name="Blut_Sonstige"></div>
+        </div>
+
+        <!-- Tumorerkrankungen -->
+        <div class="af-health-cat">Tumorerkrankungen</div>
+        <div class="af-yn-row">
+          <span class="af-yn-label">Tumorerkrankung vorhanden?</span>
+          <div class="af-yn-btns">
+            <button type="button" class="af-yn-btn" data-field="Tumorerkrankungen" data-val="Ja">JA</button>
+            <button type="button" class="af-yn-btn" data-field="Tumorerkrankungen" data-val="Nein">NEIN</button>
+          </div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label sub">Wenn ja, welche?</span>
+          <div style="flex:0 0 180px;"><input type="text" class="af-yn-text-input" name="Tumor_Welche"></div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div>
+        <!-- Infektionskrankheiten -->
+        <div class="af-health-cat">Infektionskrankheiten</div>
+        <div class="af-yn-row">
+          <span class="af-yn-label">Leberentzündung (Hepatitis)</span>
+          <div class="af-yn-btns">
+            <button type="button" class="af-yn-btn" data-field="Hepatitis" data-val="Ja">JA</button>
+            <button type="button" class="af-yn-btn" data-field="Hepatitis" data-val="Nein">NEIN</button>
+          </div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label sub">Wenn ja, welcher Typ?</span>
+          <div style="flex:0 0 120px;"><input type="text" class="af-yn-text-input" name="Hepatitis_Typ" placeholder="A / B / C …"></div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label">Tuberkulose</span>
+          <div class="af-yn-btns">
+            <button type="button" class="af-yn-btn" data-field="TBC" data-val="Ja">JA</button>
+            <button type="button" class="af-yn-btn" data-field="TBC" data-val="Nein">NEIN</button>
+          </div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label">HIV</span>
+          <div class="af-yn-btns">
+            <button type="button" class="af-yn-btn" data-field="HIV" data-val="Ja">JA</button>
+            <button type="button" class="af-yn-btn" data-field="HIV" data-val="Nein">NEIN</button>
+          </div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label">MRSA</span>
+          <div class="af-yn-btns">
+            <button type="button" class="af-yn-btn" data-field="MRSA" data-val="Ja">JA</button>
+            <button type="button" class="af-yn-btn" data-field="MRSA" data-val="Nein">NEIN</button>
+          </div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label">Chronische Atemwegserkrankung</span>
+          <div class="af-yn-btns">
+            <button type="button" class="af-yn-btn" data-field="Atemwege" data-val="Ja">JA</button>
+            <button type="button" class="af-yn-btn" data-field="Atemwege" data-val="Nein">NEIN</button>
+          </div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label sub">Wenn ja, welche?</span>
+          <div style="flex:0 0 180px;"><input type="text" class="af-yn-text-input" name="Atemwege_Welche"></div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label sub">Sonstige:</span>
+          <div style="flex:0 0 180px;"><input type="text" class="af-yn-text-input" name="Infektion_Sonstige"></div>
+        </div>
+
+        <!-- Sonstige Erkrankungen -->
+        <div class="af-health-cat">Sonstige Erkrankungen oder Infektionen?</div>
+        <div class="af-yn-row">
+          <span class="af-yn-label">Sonstige Erkrankung vorhanden?</span>
+          <div class="af-yn-btns">
+            <button type="button" class="af-yn-btn" data-field="Sonstige_Erkrankung" data-val="Ja">JA</button>
+            <button type="button" class="af-yn-btn" data-field="Sonstige_Erkrankung" data-val="Nein">NEIN</button>
+          </div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label sub">Wenn ja, welche?</span>
+          <div style="flex:0 0 180px;"><input type="text" class="af-yn-text-input" name="Sonstige_Erkrankung_Welche"></div>
+        </div>
+
+        <!-- Allergien -->
+        <div class="af-health-cat">Allergien (Unverträglichkeit, Überempfindlichkeit)</div>
+        <div class="af-yn-row">
+          <span class="af-yn-label">Allergie gegen Antibiotika / Penicillin</span>
+          <div class="af-yn-btns">
+            <button type="button" class="af-yn-btn" data-field="Allergie_Antibiotika" data-val="Ja">JA</button>
+            <button type="button" class="af-yn-btn" data-field="Allergie_Antibiotika" data-val="Nein">NEIN</button>
+          </div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label">Allergie gegen andere Medikamente oder Stoffe<br><span style="font-size:11px;color:#a0aec0;">(z. B. Latex, Metalle etc.)</span></span>
+          <div class="af-yn-btns">
+            <button type="button" class="af-yn-btn" data-field="Allergie_Andere" data-val="Ja">JA</button>
+            <button type="button" class="af-yn-btn" data-field="Allergie_Andere" data-val="Nein">NEIN</button>
+          </div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label sub">Wenn ja, gegen welche?</span>
+          <div style="flex:0 0 180px;"><input type="text" class="af-yn-text-input" name="Allergie_Welche"></div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label sub-note">(Bitte legen Sie Ihren Allergiepass vor!)</span>
+          <span class="af-yn-spacer"></span>
+        </div>
+
+        <!-- Medikamente -->
+        <div class="af-health-cat">Einnahme von Medikamenten</div>
+        <div class="af-yn-row">
+          <span class="af-yn-label">Nehmen Sie zurzeit Medikamente ein?</span>
+          <div class="af-yn-btns">
+            <button type="button" class="af-yn-btn" data-field="Medikamente_Einnahme" data-val="Ja">JA</button>
+            <button type="button" class="af-yn-btn" data-field="Medikamente_Einnahme" data-val="Nein">NEIN</button>
+          </div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label sub">Blutverdünnende Medikamente (ASS, Marcumar, Heparin)</span>
+          <div style="flex:0 0 120px;"><input type="text" class="af-yn-text-input" name="Blutverdünner" placeholder="Ja / Nein / Name"></div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label sub">Bisphosphonate</span>
+          <div style="flex:0 0 120px;"><input type="text" class="af-yn-text-input" name="Bisphosphonate" placeholder="Ja / Nein"></div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label sub">Antidepressiva</span>
+          <div style="flex:0 0 120px;"><input type="text" class="af-yn-text-input" name="Antidepressiva" placeholder="Ja / Nein"></div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label sub">Herzmedikamente</span>
+          <div style="flex:0 0 120px;"><input type="text" class="af-yn-text-input" name="Herzmedikamente" placeholder="Ja / Nein"></div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label sub">Sonstige Medikamente</span>
+          <div style="flex:0 0 180px;"><input type="text" class="af-yn-text-input" name="Sonstige_Medikamente"></div>
+        </div>
+
+        <!-- Drogenkonsum -->
+        <div class="af-health-cat">Drogenkonsum</div>
+        <div class="af-yn-row">
+          <span class="af-yn-label">Rauchen Sie?</span>
+          <div class="af-yn-btns">
+            <button type="button" class="af-yn-btn" data-field="Rauchen" data-val="Ja">JA</button>
+            <button type="button" class="af-yn-btn" data-field="Rauchen" data-val="Nein">NEIN</button>
+          </div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label">Besteht eine Alkoholabhängigkeit?</span>
+          <div class="af-yn-btns">
+            <button type="button" class="af-yn-btn" data-field="Alkohol" data-val="Ja">JA</button>
+            <button type="button" class="af-yn-btn" data-field="Alkohol" data-val="Nein">NEIN</button>
+          </div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label">Besteht eine andere Drogenabhängigkeit?<br><span style="font-size:11px;color:#a0aec0;">(auch Aufputschmittel, Schlafmittel)</span></span>
+          <div class="af-yn-btns">
+            <button type="button" class="af-yn-btn" data-field="Drogen" data-val="Ja">JA</button>
+            <button type="button" class="af-yn-btn" data-field="Drogen" data-val="Nein">NEIN</button>
+          </div>
+        </div>
+
+        <!-- Schwanger -->
+        <div class="af-health-cat">Patientinnen: Sind Sie schwanger?</div>
+        <div class="af-yn-row">
+          <span class="af-yn-label">Schwangerschaft</span>
+          <div class="af-yn-btns">
+            <button type="button" class="af-yn-btn" data-field="Schwanger" data-val="Ja">JA</button>
+            <button type="button" class="af-yn-btn" data-field="Schwanger" data-val="Nein">NEIN</button>
+          </div>
+        </div>
+        <div class="af-yn-row">
+          <span class="af-yn-label sub">Wenn ja, welche Woche?</span>
+          <div style="flex:0 0 100px;"><input type="text" class="af-yn-text-input" name="Schwanger_Woche" placeholder="z.B. 12"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 4 – MUNDGESUNDHEIT ══ -->
+  <div class="af-card">
+    <div class="af-section-title">
+      <span class="af-section-number">4</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+      <span class="af-sec-text">Fragen zur Mundgesundheit</span>
+    </div>
+
+    <div class="af-grid" style="margin-bottom:20px;">
+      <div class="af-field af-col-full">
+        <label class="af-label" for="f-xray">Wann wurden Sie zuletzt im Kopf-Kiefer-Zahnbereich geröntgt?</label>
+        <input class="af-input" type="text" id="f-xray" name="Letztes_Rontgen" placeholder="z.B. vor 6 Monaten bei Dr. Müller, Wuppertal">
+      </div>
+    </div>
+
+    <div class="af-yn-row">
+      <span class="af-yn-label">Knirschen oder pressen Sie mit den Zähnen?</span>
+      <div class="af-yn-btns">
+        <button type="button" class="af-yn-btn" data-field="Knirschen" data-val="Ja">JA</button>
+        <button type="button" class="af-yn-btn" data-field="Knirschen" data-val="Nein">NEIN</button>
+      </div>
+    </div>
+    <div class="af-yn-row">
+      <span class="af-yn-label">Haben Sie Zahnfleischprobleme? Zahnfleischbluten?</span>
+      <div class="af-yn-btns">
+        <button type="button" class="af-yn-btn" data-field="Zahnfleisch" data-val="Ja">JA</button>
+        <button type="button" class="af-yn-btn" data-field="Zahnfleisch" data-val="Nein">NEIN</button>
+      </div>
+    </div>
+    <div class="af-yn-row">
+      <span class="af-yn-label">Leiden Sie unter Mundgeruch?</span>
+      <div class="af-yn-btns">
+        <button type="button" class="af-yn-btn" data-field="Mundgeruch" data-val="Ja">JA</button>
+        <button type="button" class="af-yn-btn" data-field="Mundgeruch" data-val="Nein">NEIN</button>
+      </div>
+    </div>
+
+    <div style="margin-top:20px; padding-top:16px; border-top:1px solid #f0f4f8;">
+      <div class="af-label" id="lbl-reminder" style="margin-bottom:12px;">Wie möchten Sie an Ihre nächste Kontrolluntersuchung erinnert werden?</div>
+      <div class="af-radio-group">
+        <div class="af-radio-pill">
+          <input type="radio" name="Erinnerung" id="er-post" value="Postkarte">
+          <label for="er-post">Per Postkarte</label>
+        </div>
+        <div class="af-radio-pill">
+          <input type="radio" name="Erinnerung" id="er-email" value="E-Mail">
+          <label for="er-email">Per E-Mail</label>
+        </div>
+        <div class="af-radio-pill">
+          <input type="radio" name="Erinnerung" id="er-sms" value="SMS">
+          <label for="er-sms">Per SMS</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 5 – BESTÄTIGUNG & UNTERSCHRIFT ══ -->
+  <div class="af-card">
+    <div class="af-section-title">
+      <span class="af-section-number">5</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      <span class="af-sec-text">Bestätigung &amp; Unterschrift</span>
+    </div>
+
+    <!-- Wichtige Hinweise -->
+    <div class="af-notice-grid">
+      <div class="af-notice-box">
+        <strong id="notice1-title">Behandlungstermine</strong>
+        <p id="notice1-text">Wenn Sie einen Termin nicht wahrnehmen können, bitten wir Sie, diesen mindestens 24 Stunden vorher abzusagen.</p>
+      </div>
+      <div class="af-notice-box">
+        <strong id="notice2-title">Gesundheitskarte</strong>
+        <p id="notice2-text">Die Vorlage Ihrer Gesundheitskarte ist bei jedem Besuch zwingend erforderlich.</p>
+      </div>
+      <div class="af-notice-box">
+        <strong id="notice3-title">Fahrtauglichkeit</strong>
+        <p id="notice3-text">Ihre Fahrtauglichkeit kann nach lokaler Betäubung eingeschränkt sein.</p>
+      </div>
+      <div class="af-notice-box">
+        <strong id="notice4-title">Mitteilung von Änderungen</strong>
+        <p id="notice4-text">Bitte teilen Sie uns Änderungen Ihrer persönlichen Daten oder Ihres Gesundheitszustandes unverzüglich mit.</p>
+      </div>
+    </div>
+
+    <!-- Confirm checkboxes -->
+    <div class="af-confirm-block">
+      <label class="af-confirm-item">
+        <input type="checkbox" id="chk-confirm" required>
+        <span class="af-confirm-text" id="confirm1-text">
+          Ich bestätige, dass ich den Anamnesebogen gelesen und alle Fragen verstanden habe. Ich versichere, die Angaben vollständig und inhaltlich richtig gemacht zu haben. Die wichtigen Hinweise habe ich zur Kenntnis genommen.
+        </span>
+      </label>
+      <label class="af-confirm-item">
+        <input type="checkbox" id="chk-dsgvo" required>
+        <span class="af-confirm-text" id="confirm2-text">
+          Ich willige ein, dass meine personenbezogenen Daten ausschließlich zum Zweck meiner zahnärztlichen Behandlung gespeichert und verarbeitet werden dürfen. Weitere Informationen finden Sie in unserer <a href="datenschutz.html" style="color:#5eb3b3;text-decoration:underline;">Datenschutzerklärung</a>.
+        </span>
+      </label>
+    </div>
+
+    <!-- Datum & Unterschrift -->
+    <div class="af-sig-row">
+      <div class="af-field">
+        <label class="af-label" for="f-datum">Datum</label>
+        <input class="af-input" type="date" id="f-datum" name="Datum" required>
+      </div>
+      <div class="af-field">
+        <label class="af-label" for="f-unterschrift">Unterschrift <span style="font-size:10px;color:#a0aec0;font-weight:400;">(Name eintippen)</span></label>
+        <input class="af-input" type="text" id="f-unterschrift" name="Unterschrift" placeholder="Vor- und Nachname" style="font-family: 'Brush Script MT', cursive; font-size:18px; letter-spacing:1px;" required>
+        <span class="af-error-msg">Bitte Unterschrift eingeben.</span>
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <div style="margin-top:28px;">
+      <button type="submit" class="af-submit-btn" id="submitBtn">
+        <span id="submitBtnText">Anamnesebogen absenden</span>
+        <div class="af-spinner" id="submitSpinner"></div>
+      </button>
+      <p id="data-note" style="text-align:center;font-size:12px;color:#a0aec0;margin-top:10px;">
+        Ihre Daten werden verschlüsselt übertragen und nur zur zahnärztlichen Behandlung verwendet.
+      </p>
+    </div>
+  </div>
+
+  </form>
+</div><!-- end af-container -->
+</div><!-- end anamnese-wrapper -->
+
+<!-- ══ SUCCESS MODAL ══ -->
+<div class="af-modal-overlay" id="successModal">
+  <div class="af-modal">
+    <div class="af-modal-check">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+    </div>
+    <h3>Vielen Dank!</h3>
+    <p>Ihr Anamnesebogen wurde erfolgreich übermittelt. Wir freuen uns auf Ihren Besuch!</p>
+    <button class="af-modal-close" onclick="document.getElementById('successModal').classList.remove('visible')">Schließen</button>
+  </div>
+</div>
+
+<!-- ══ ERROR TOAST ══ -->
+<div class="af-toast" id="errorToast">
+  Übertragung fehlgeschlagen. Bitte versuchen Sie es erneut.
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer-brown text-white py-8 no-print page-chrome">
+  <div class="container mx-auto px-4">
+    <div class="grid md:grid-cols-3 gap-6 items-center">
+      <div class="flex items-center space-x-3">
+        <img src="../assets/img/logo.svg" alt="Seitschenko-Dinh Logo" class="w-12 h-12 flex-shrink-0">
+        <div class="flex flex-col">
+          <h3 class="text-base font-bold uppercase tracking-wide leading-tight">ZAHNARZTPRAXEN</h3>
+          <h3 class="text-base font-bold uppercase tracking-wide leading-tight">SEITSCHENKO-DINH</h3>
+        </div>
+      </div>
+      <div class="flex items-center space-x-3">
+        <div class="flex-shrink-0">
+          <div class="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center">
+            <span class="text-lg font-bold">1</span>
+          </div>
+        </div>
+        <div class="flex flex-col leading-tight">
+          <p class="text-sm">Schwarzbach 2 | 42277 Wuppertal</p>
+          <p class="text-sm">Tel.: 0202 660828</p>
+        </div>
+      </div>
+      <div class="flex items-center space-x-3">
+        <div class="flex-shrink-0">
+          <div class="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center">
+            <span class="text-lg font-bold">2</span>
+          </div>
+        </div>
+        <div class="flex flex-col leading-tight">
+          <p class="text-sm">Loher Str. 40 | 42283 Wuppertal</p>
+          <p class="text-sm">Tel.: 0202 451642</p>
+        </div>
+      </div>
+    </div>
+    <div class="mt-6 pt-4 text-center border-t border-white border-opacity-20">
+      <p class="text-xs">© 2024 Zahnarztpraxen Seitschenko-Dinh · <a href="datenschutz.html" class="underline opacity-70 hover:opacity-100">Datenschutzerklärung</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/chatbot.js"></script>
+<script>
+'use strict';
+
+/* ══════════════════════════════════════════
+   GOOGLE SHEETS INTEGRATION
+══════════════════════════════════════════ */
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzLGFiPYNcaQorPiZ9dpfCGnv_sxj5gb1a0aTsU6c2zrfaUQxUv6fXXa-v-92hsEb4DcQ/exec';
+
+/* ══════════════════════════════════════════
+   LANGUAGE SYSTEM
+══════════════════════════════════════════ */
+const uiStrings = {
+  de: { hero_title:'Anamnesebogen', hero_subtitle:'Bitte füllen Sie diesen Fragebogen vollständig aus, bevor Sie zu uns kommen.', print_btn:'Drucken', print_hint:'Formular ausdrucken und ausgefüllt mitbringen', home:'Start', about:'Über uns', services:'Leistungen', labor:'Labor', karriere:'Karriere', contact:'Kontakt', name1:'ZAHNARZTPRAXEN', name2:'SEITSCHENKO-DINH' },
+  en: { hero_title:'Medical History Form', hero_subtitle:'Please complete this form before your visit.', print_btn:'Print', print_hint:'Print the form and bring it to your appointment', home:'Home', about:'About Us', services:'Services', labor:'Laboratory', karriere:'Careers', contact:'Contact', name1:'DENTAL PRACTICES', name2:'SEITSCHENKO-DINH' },
+  vi: { hero_title:'Phiếu Tiền Sử Bệnh', hero_subtitle:'Vui lòng điền đầy đủ phiếu này trước khi đến khám.', print_btn:'In ra', print_hint:'In phiếu và mang theo khi đến khám', home:'Trang chủ', about:'Về chúng tôi', services:'Dịch vụ', labor:'Phòng lab', karriere:'Tuyển dụng', contact:'Liên hệ', name1:'PHÒNG KHÁM NHA KHOA', name2:'SEITSCHENKO-DINH' },
+  ru: { hero_title:'Анамнестическая карта', hero_subtitle:'Пожалуйста, заполните эту карту перед визитом.', print_btn:'Распечатать', print_hint:'Распечатайте и принесите с собой', home:'Главная', about:'О нас', services:'Услуги', labor:'Лаборатория', karriere:'Карьера', contact:'Контакты', name1:'СТОМАТОЛОГИЧЕСКИЕ', name2:'КЛИНИКИ SEITSCHENKO-DINH' },
+  ar: { hero_title:'استمارة التاريخ الطبي', hero_subtitle:'يُرجى تعبئة هذه الاستمارة قبل زيارتك.', print_btn:'طباعة', print_hint:'اطبع الاستمارة وأحضرها معك', home:'الرئيسية', about:'عنا', services:'الخدمات', labor:'المختبر', karriere:'وظائف', contact:'اتصل بنا', name1:'عيادات طب الأسنان', name2:'SEITSCHENKO-DINH' }
+};
+
+const flagMap = {
+  de:{ src:'https://flagcdn.com/24x18/de.png', code:'DE' },
+  en:{ src:'https://flagcdn.com/24x18/us.png', code:'EN' },
+  vi:{ src:'https://flagcdn.com/24x18/vn.png', code:'VI' },
+  ru:{ src:'https://flagcdn.com/24x18/ru.png', code:'RU' },
+  ar:{ src:'https://flagcdn.com/24x18/sa.png', code:'AR' }
+};
+
+/* ══════════════════════════════════════════
+   FORM STRINGS – all 5 languages
+══════════════════════════════════════════ */
+const formStrings = {
+  de: {
+    sec1:'Fragen zum Patienten', sec2:'Fragen zur Versicherung',
+    sec3:'Fragen zur allgemeinen Gesundheit', sec4:'Fragen zur Mundgesundheit',
+    sec5:'Bestätigung & Unterschrift',
+    anrede:'Anrede', frau:'Frau', herr:'Herr', divers:'Divers',
+    nachname:'Nachname', vorname:'Vorname', geburtsdatum:'Geburtsdatum',
+    geburtsort:'Geburtsort', strasse:'Straße und Hausnummer',
+    plz:'PLZ', ort:'Ort', mobil:'Mobiltelefonnummer',
+    festnetz:'Festnetznummer', email:'E-Mail-Adresse',
+    ag_header:'Arbeitgeber', ag_opt:'(freiwillige Angabe)',
+    ag_name:'Name', ag_tel:'Telefon dienstlich', beruf:'Beruf',
+    ha_header:'Hausarzt', ha_opt:'(falls vorhanden)',
+    ha_name:'Nachname', ha_street:'Straße und Hausnummer', ha_plz:'PLZ', ha_ort:'Ort',
+    vers_name:'Name der Versicherung / Krankenkasse', vers_type:'Versicherungstyp',
+    v_gesetz:'gesetzlich versichert', v_privat:'privat versichert',
+    v_zusatz:'zahnzusatzversichert', v_beihilfe:'Beihilfe', v_basis:'Basistarif',
+    v_kvb:'KVB (Bundesbahn)', v_post:'Postbeamtenkrankenkasse',
+    v_polizei:'Polizei', v_knapp:'Knappschaft',
+    zusatz_areas:'IN DEN BEREICHEN:', z_full:'Füllungen', z_proph:'Prophylaxe',
+    z_zahnersatz:'Zahnersatz', z_kfo:'Kieferorthopädie',
+    fv_label:'Falls der Patient familienversichert ist – wer ist der Hauptversicherte?',
+    fv_nein:'Nicht familienversichert', fv_ja:'Ja, familienversichert',
+    hv_name:'Nachname', hv_vorname:'Vorname', hv_dob:'Geburtsdatum',
+    hv_pob:'Geburtsort', hv_street:'Straße und Hausnummer', hv_plz:'PLZ', hv_ort:'Ort',
+    health_instr:'Bitte beantworten Sie jede Frage mit <strong>JA</strong> oder <strong>NEIN</strong>. Klicken Sie auf die Schaltfläche, um Ihre Antwort auszuwählen.',
+    cat_herz:'Herzerkrankungen', cat_kreislauf:'Erkrankungen Kreislauf und Gefäßsystem',
+    cat_stoff:'Stoffwechselerkrankungen', cat_nerven:'Erkrankungen des Nervensystems',
+    cat_blut:'Bluterkrankungen', cat_tumor:'Tumorerkrankungen',
+    cat_infekt:'Infektionskrankheiten', cat_sonst:'Sonstige Erkrankungen oder Infektionen?',
+    cat_allergie:'Allergien (Unverträglichkeit, Überempfindlichkeit)',
+    cat_medi:'Einnahme von Medikamenten', cat_drogen:'Drogenkonsum',
+    cat_schwanger:'Patientinnen: Sind Sie schwanger?',
+    hl_Herzschwäche:'Herzschwäche (Insuffizienz)',
+    hl_Arrhythmien:'Unregelmäßiger Herzschlag (Arrhythmien)',
+    hl_Herzasthma:'Herzasthma, Angina pectoris',
+    hl_Endokarditis:'Herzinnenhautentzündung (Endokarditis)',
+    hl_Herzschrittmacher:'Herzschrittmacher',
+    hl_Herzklappenfehler:'Herzklappenfehler, künstliche Herzklappe',
+    hl_Herzinfarkt:'Zustand nach Herzinfarkt, Herz-OP, Bypass',
+    hl_Blutdruck_Hoch:'Zu hoher Blutdruck', hl_Blutdruck_Niedrig:'Zu niedriger Blutdruck',
+    hl_Ohnmacht:'Ohnmachtsanfälle / Ohnmachtsneigung', hl_Schlaganfall:'Schlaganfall',
+    hl_Diabetes:'Zuckerkrankheit (Diabetes)', hl_Magen_Darm:'Magen-Darm-Erkrankungen',
+    hl_Schilddrüse:'Schilddrüsenerkrankungen', hl_Epilepsie:'Epilepsie', hl_Krämpfe:'Krämpfe',
+    hl_Hämophilie:'Blutungsneigung (Hämophilie)', hl_Anämie:'Blutarmut (Anämie)',
+    hl_Tumorerkrankungen:'Tumorerkrankung vorhanden?',
+    hl_Hepatitis:'Leberentzündung (Hepatitis)', hl_TBC:'Tuberkulose',
+    hl_HIV:'HIV', hl_MRSA:'MRSA',
+    hl_Atemwege:'Chronische Atemwegserkrankung',
+    hl_Sonstige_Erkrankung:'Sonstige Erkrankung vorhanden?',
+    hl_Allergie_Antibiotika:'Allergie gegen Antibiotika / Penicillin',
+    hl_Allergie_Andere:'Allergie gegen andere Medikamente oder Stoffe<br><span style="font-size:11px;color:#a0aec0;">(z. B. Latex, Metalle etc.)</span>',
+    hl_Medikamente_Einnahme:'Nehmen Sie zurzeit Medikamente ein?',
+    hl_Rauchen:'Rauchen Sie?', hl_Alkohol:'Besteht eine Alkoholabhängigkeit?',
+    hl_Drogen:'Besteht eine andere Drogenabhängigkeit?<br><span style="font-size:11px;color:#a0aec0;">(auch Aufputschmittel, Schlafmittel)</span>',
+    hl_Schwanger:'Schwangerschaft',
+    hl_Knirschen:'Knirschen oder pressen Sie mit den Zähnen?',
+    hl_Zahnfleisch:'Haben Sie Zahnfleischprobleme? Zahnfleischbluten?',
+    hl_Mundgeruch:'Leiden Sie unter Mundgeruch?',
+    yes:'JA', no:'NEIN',
+    sub_Herzinfarkt_Wann:'Wenn ja, wann?', sub_Herz_Sonstige:'Sonstige:',
+    sub_Schlaganfall_Wann:'Wenn ja, wann?', sub_Kreislauf_Sonstige:'Sonstige:',
+    sub_Stoffwechsel_Sonstige:'Sonstige:', sub_Nerven_Sonstige:'Sonstige:',
+    sub_Blut_Sonstige:'Sonstige:', sub_Tumor_Welche:'Wenn ja, welche?',
+    sub_Hepatitis_Typ:'Wenn ja, welcher Typ?', sub_Atemwege_Welche:'Wenn ja, welche?',
+    sub_Infektion_Sonstige:'Sonstige:', sub_Sonstige_Erkrankung_Welche:'Wenn ja, welche?',
+    sub_Allergie_Welche:'Wenn ja, gegen welche?',
+    allergy_note:'(Bitte legen Sie Ihren Allergiepass vor!)',
+    sub_Blutverdünner:'Blutverdünnende Medikamente (ASS, Marcumar, Heparin)',
+    sub_Bisphosphonate:'Bisphosphonate', sub_Antidepressiva:'Antidepressiva',
+    sub_Herzmedikamente:'Herzmedikamente', sub_Sonstige_Medikamente:'Sonstige Medikamente',
+    sub_Schwanger_Woche:'Wenn ja, welche Woche?',
+    xray_label:'Wann wurden Sie zuletzt im Kopf-Kiefer-Zahnbereich geröntgt?',
+    xray_ph:'z.B. vor 6 Monaten bei Dr. Müller, Wuppertal',
+    reminder:'Wie möchten Sie an Ihre nächste Kontrolluntersuchung erinnert werden?',
+    er_post:'Per Postkarte', er_email:'Per E-Mail', er_sms:'Per SMS',
+    notice1_t:'Behandlungstermine',
+    notice1_p:'Wenn Sie einen Termin nicht wahrnehmen können, bitten wir Sie, diesen mindestens 24 Stunden vorher abzusagen.',
+    notice2_t:'Gesundheitskarte',
+    notice2_p:'Die Vorlage Ihrer Gesundheitskarte ist bei jedem Besuch zwingend erforderlich.',
+    notice3_t:'Fahrtauglichkeit',
+    notice3_p:'Ihre Fahrtauglichkeit kann nach lokaler Betäubung eingeschränkt sein.',
+    notice4_t:'Mitteilung von Änderungen',
+    notice4_p:'Bitte teilen Sie uns Änderungen Ihrer persönlichen Daten oder Ihres Gesundheitszustandes unverzüglich mit.',
+    confirm1:'Ich bestätige, dass ich den Anamnesebogen gelesen und alle Fragen verstanden habe. Ich versichere, die Angaben vollständig und inhaltlich richtig gemacht zu haben. Die wichtigen Hinweise habe ich zur Kenntnis genommen.',
+    confirm2:'Ich willige ein, dass meine personenbezogenen Daten ausschließlich zum Zweck meiner zahnärztlichen Behandlung gespeichert und verarbeitet werden dürfen. Weitere Informationen finden Sie in unserer <a href="datenschutz.html" style="color:#5eb3b3;text-decoration:underline;">Datenschutzerklärung</a>.',
+    datum:'Datum', unterschrift:'Unterschrift', unterschrift_hint:'(Name eintippen)',
+    unterschrift_ph:'Vor- und Nachname',
+    submit:'Anamnesebogen absenden',
+    data_note:'Ihre Daten werden verschlüsselt übertragen und nur zur zahnärztlichen Behandlung verwendet.',
+    modal_title:'Vielen Dank!',
+    modal_text:'Ihr Anamnesebogen wurde erfolgreich übermittelt. Wir freuen uns auf Ihren Besuch!',
+    modal_close:'Schließen',
+    toast_err:'Übertragung fehlgeschlagen. Bitte versuchen Sie es erneut.',
+    err_nachname:'Bitte Nachname eingeben.', err_vorname:'Bitte Vorname eingeben.',
+    err_dob:'Bitte Geburtsdatum eingeben.', err_street:'Bitte Adresse eingeben.',
+    err_plz:'Bitte gültige PLZ eingeben.', err_ort:'Bitte Ort eingeben.',
+    err_mobil:'Bitte Mobilnummer eingeben.',
+    err_email:'Bitte gültige E-Mail-Adresse eingeben.',
+    err_vers:'Bitte Versicherungsname eingeben.',
+    err_unterschrift:'Bitte Unterschrift eingeben.',
+    print_bar:'Formular drucken', optional:'(optional)',
+    ph_wann:'z.B. 2020', ph_hepatitis:'A / B / C …', ph_schwanger:'z.B. 12',
+    ph_blutverd:'Ja / Nein / Name', ph_yn:'Ja / Nein',
+  },
+  en: {
+    sec1:'Patient Information', sec2:'Insurance Information',
+    sec3:'General Health Questions', sec4:'Oral Health Questions',
+    sec5:'Confirmation & Signature',
+    anrede:'Salutation', frau:'Ms.', herr:'Mr.', divers:'Other',
+    nachname:'Last Name', vorname:'First Name', geburtsdatum:'Date of Birth',
+    geburtsort:'Place of Birth', strasse:'Street and House Number',
+    plz:'Postal Code', ort:'City', mobil:'Mobile Phone',
+    festnetz:'Landline', email:'E-Mail Address',
+    ag_header:'Employer', ag_opt:'(voluntary)',
+    ag_name:'Name', ag_tel:'Business Phone', beruf:'Occupation',
+    ha_header:'General Practitioner', ha_opt:'(if applicable)',
+    ha_name:'Last Name', ha_street:'Street and House Number', ha_plz:'Postal Code', ha_ort:'City',
+    vers_name:'Name of Insurance / Health Fund', vers_type:'Insurance Type',
+    v_gesetz:'statutory insurance', v_privat:'private insurance',
+    v_zusatz:'dental supplemental insurance', v_beihilfe:'Civil Service Aid',
+    v_basis:'Basic Tariff', v_kvb:'KVB (Federal Railway)',
+    v_post:'Postal Civil Servants Fund', v_polizei:'Police', v_knapp:'Mining Insurance',
+    zusatz_areas:'IN THE AREAS:', z_full:'Fillings', z_proph:'Prophylaxis',
+    z_zahnersatz:'Dentures', z_kfo:'Orthodontics',
+    fv_label:'If the patient is covered under a family plan – who is the primary insured?',
+    fv_nein:'Not covered under family plan', fv_ja:'Yes, family coverage',
+    hv_name:'Last Name', hv_vorname:'First Name', hv_dob:'Date of Birth',
+    hv_pob:'Place of Birth', hv_street:'Street and House Number', hv_plz:'Postal Code', hv_ort:'City',
+    health_instr:'Please answer each question with <strong>YES</strong> or <strong>NO</strong>. Click the button to select your answer.',
+    cat_herz:'Heart Conditions', cat_kreislauf:'Circulatory and Vascular Diseases',
+    cat_stoff:'Metabolic Diseases', cat_nerven:'Nervous System Disorders',
+    cat_blut:'Blood Disorders', cat_tumor:'Cancer / Tumor',
+    cat_infekt:'Infectious Diseases', cat_sonst:'Other Illnesses or Infections?',
+    cat_allergie:'Allergies (Intolerance, Hypersensitivity)',
+    cat_medi:'Current Medications', cat_drogen:'Substance Use',
+    cat_schwanger:'Female Patients: Are You Pregnant?',
+    hl_Herzschwäche:'Heart Failure (Insufficiency)',
+    hl_Arrhythmien:'Irregular Heartbeat (Arrhythmia)',
+    hl_Herzasthma:'Cardiac Asthma, Angina Pectoris',
+    hl_Endokarditis:'Inflammation of Heart Lining (Endocarditis)',
+    hl_Herzschrittmacher:'Pacemaker',
+    hl_Herzklappenfehler:'Heart Valve Defect, Artificial Heart Valve',
+    hl_Herzinfarkt:'History of Heart Attack, Heart Surgery, Bypass',
+    hl_Blutdruck_Hoch:'High Blood Pressure', hl_Blutdruck_Niedrig:'Low Blood Pressure',
+    hl_Ohnmacht:'Fainting / Tendency to Faint', hl_Schlaganfall:'Stroke',
+    hl_Diabetes:'Diabetes', hl_Magen_Darm:'Gastrointestinal Diseases',
+    hl_Schilddrüse:'Thyroid Disorders', hl_Epilepsie:'Epilepsy', hl_Krämpfe:'Seizures',
+    hl_Hämophilie:'Bleeding Disorder (Haemophilia)', hl_Anämie:'Anaemia',
+    hl_Tumorerkrankungen:'Cancer / Tumor present?',
+    hl_Hepatitis:'Liver Inflammation (Hepatitis)', hl_TBC:'Tuberculosis',
+    hl_HIV:'HIV', hl_MRSA:'MRSA',
+    hl_Atemwege:'Chronic Respiratory Disease',
+    hl_Sonstige_Erkrankung:'Other illness present?',
+    hl_Allergie_Antibiotika:'Allergy to Antibiotics / Penicillin',
+    hl_Allergie_Andere:'Allergy to other medications or substances<br><span style="font-size:11px;color:#a0aec0;">(e.g. Latex, metals etc.)</span>',
+    hl_Medikamente_Einnahme:'Are you currently taking any medications?',
+    hl_Rauchen:'Do you smoke?', hl_Alkohol:'Do you have an alcohol dependency?',
+    hl_Drogen:'Do you have any other substance dependency?<br><span style="font-size:11px;color:#a0aec0;">(incl. stimulants, sleeping pills)</span>',
+    hl_Schwanger:'Pregnancy',
+    hl_Knirschen:'Do you grind or clench your teeth?',
+    hl_Zahnfleisch:'Do you have gum problems? Bleeding gums?',
+    hl_Mundgeruch:'Do you suffer from bad breath?',
+    yes:'YES', no:'NO',
+    sub_Herzinfarkt_Wann:'If yes, when?', sub_Herz_Sonstige:'Other:',
+    sub_Schlaganfall_Wann:'If yes, when?', sub_Kreislauf_Sonstige:'Other:',
+    sub_Stoffwechsel_Sonstige:'Other:', sub_Nerven_Sonstige:'Other:',
+    sub_Blut_Sonstige:'Other:', sub_Tumor_Welche:'If yes, which?',
+    sub_Hepatitis_Typ:'If yes, which type?', sub_Atemwege_Welche:'If yes, which?',
+    sub_Infektion_Sonstige:'Other:', sub_Sonstige_Erkrankung_Welche:'If yes, which?',
+    sub_Allergie_Welche:'If yes, against which?',
+    allergy_note:'(Please show your allergy passport!)',
+    sub_Blutverdünner:'Blood thinners (ASA, Warfarin, Heparin)',
+    sub_Bisphosphonate:'Bisphosphonates', sub_Antidepressiva:'Antidepressants',
+    sub_Herzmedikamente:'Heart medications', sub_Sonstige_Medikamente:'Other medications',
+    sub_Schwanger_Woche:'If yes, which week?',
+    xray_label:'When was your last head/jaw/dental X-ray?',
+    xray_ph:'e.g. 6 months ago at Dr. Smith',
+    reminder:'How would you like to be reminded of your next check-up?',
+    er_post:'By Postcard', er_email:'By E-Mail', er_sms:'By SMS',
+    notice1_t:'Appointments',
+    notice1_p:'If you are unable to attend an appointment, please cancel at least 24 hours in advance.',
+    notice2_t:'Health Insurance Card',
+    notice2_p:'Your health insurance card must be presented at every visit.',
+    notice3_t:'Driving Ability',
+    notice3_p:'Your ability to drive may be impaired after local anaesthesia.',
+    notice4_t:'Notify Us of Changes',
+    notice4_p:'Please inform us immediately of any changes to your personal details or health condition.',
+    confirm1:'I confirm that I have read the medical history form and understood all questions. I confirm that the information provided is complete and accurate. I have taken note of the important notices.',
+    confirm2:'I consent to my personal data being stored and processed exclusively for the purpose of my dental treatment. For more information, see our <a href="datenschutz.html" style="color:#5eb3b3;text-decoration:underline;">Privacy Policy</a>.',
+    datum:'Date', unterschrift:'Signature', unterschrift_hint:'(type your name)',
+    unterschrift_ph:'First and Last Name',
+    submit:'Submit Medical History Form',
+    data_note:'Your data is transmitted securely and used only for dental treatment purposes.',
+    modal_title:'Thank You!',
+    modal_text:'Your medical history form has been submitted successfully. We look forward to your visit!',
+    modal_close:'Close',
+    toast_err:'Submission failed. Please try again.',
+    err_nachname:'Please enter last name.', err_vorname:'Please enter first name.',
+    err_dob:'Please enter date of birth.', err_street:'Please enter address.',
+    err_plz:'Please enter a valid postal code.', err_ort:'Please enter city.',
+    err_mobil:'Please enter mobile number.',
+    err_email:'Please enter a valid email address.',
+    err_vers:'Please enter insurance name.',
+    err_unterschrift:'Please enter your signature.',
+    print_bar:'Print Form', optional:'(optional)',
+    ph_wann:'e.g. 2020', ph_hepatitis:'A / B / C …', ph_schwanger:'e.g. week 12',
+    ph_blutverd:'Yes / No / Name', ph_yn:'Yes / No',
+  },
+  vi: {
+    sec1:'Thông Tin Bệnh Nhân', sec2:'Thông Tin Bảo Hiểm',
+    sec3:'Câu Hỏi Sức Khỏe Chung', sec4:'Câu Hỏi Sức Khỏe Răng Miệng',
+    sec5:'Xác Nhận & Chữ Ký',
+    anrede:'Danh xưng', frau:'Cô/Bà', herr:'Ông', divers:'Khác',
+    nachname:'Họ', vorname:'Tên', geburtsdatum:'Ngày sinh',
+    geburtsort:'Nơi sinh', strasse:'Địa chỉ (đường và số nhà)',
+    plz:'Mã bưu điện', ort:'Thành phố', mobil:'Số điện thoại di động',
+    festnetz:'Điện thoại bàn', email:'Địa chỉ E-Mail',
+    ag_header:'Nơi làm việc', ag_opt:'(tự nguyện)',
+    ag_name:'Tên cơ quan', ag_tel:'Điện thoại công ty', beruf:'Nghề nghiệp',
+    ha_header:'Bác sĩ gia đình', ha_opt:'(nếu có)',
+    ha_name:'Họ bác sĩ', ha_street:'Địa chỉ', ha_plz:'Mã bưu điện', ha_ort:'Thành phố',
+    vers_name:'Tên bảo hiểm / quỹ y tế', vers_type:'Loại bảo hiểm',
+    v_gesetz:'Bảo hiểm y tế bắt buộc', v_privat:'Bảo hiểm tư nhân',
+    v_zusatz:'Bảo hiểm bổ sung nha khoa', v_beihilfe:'Trợ cấp công chức',
+    v_basis:'Mức cơ bản', v_kvb:'KVB (Đường sắt liên bang)',
+    v_post:'Quỹ công chức bưu chính', v_polizei:'Cảnh sát', v_knapp:'Bảo hiểm mỏ than',
+    zusatz_areas:'TRONG CÁC LĨNH VỰC:', z_full:'Hàn răng', z_proph:'Phòng ngừa',
+    z_zahnersatz:'Răng giả', z_kfo:'Chỉnh nha',
+    fv_label:'Nếu bệnh nhân được bảo hiểm theo gia đình – ai là người được bảo hiểm chính?',
+    fv_nein:'Không có bảo hiểm gia đình', fv_ja:'Có, bảo hiểm gia đình',
+    hv_name:'Họ', hv_vorname:'Tên', hv_dob:'Ngày sinh',
+    hv_pob:'Nơi sinh', hv_street:'Địa chỉ', hv_plz:'Mã bưu điện', hv_ort:'Thành phố',
+    health_instr:'Vui lòng trả lời mỗi câu hỏi bằng <strong>CÓ</strong> hoặc <strong>KHÔNG</strong>. Nhấn vào nút để chọn câu trả lời.',
+    cat_herz:'Bệnh tim', cat_kreislauf:'Bệnh tuần hoàn và mạch máu',
+    cat_stoff:'Bệnh chuyển hóa', cat_nerven:'Bệnh hệ thần kinh',
+    cat_blut:'Bệnh về máu', cat_tumor:'Khối u / Ung thư',
+    cat_infekt:'Bệnh truyền nhiễm', cat_sonst:'Bệnh hoặc nhiễm trùng khác?',
+    cat_allergie:'Dị ứng (Không dung nạp, quá mẫn)',
+    cat_medi:'Đang dùng thuốc', cat_drogen:'Sử dụng chất kích thích',
+    cat_schwanger:'Bệnh nhân nữ: Bạn có đang mang thai không?',
+    hl_Herzschwäche:'Suy tim', hl_Arrhythmien:'Loạn nhịp tim',
+    hl_Herzasthma:'Hen tim, Đau thắt ngực',
+    hl_Endokarditis:'Viêm nội tâm mạc', hl_Herzschrittmacher:'Máy tạo nhịp tim',
+    hl_Herzklappenfehler:'Bệnh van tim, van tim nhân tạo',
+    hl_Herzinfarkt:'Tiền sử nhồi máu cơ tim, phẫu thuật tim, bắc cầu',
+    hl_Blutdruck_Hoch:'Huyết áp cao', hl_Blutdruck_Niedrig:'Huyết áp thấp',
+    hl_Ohnmacht:'Ngất xỉu / Dễ ngất', hl_Schlaganfall:'Đột quỵ',
+    hl_Diabetes:'Tiểu đường', hl_Magen_Darm:'Bệnh dạ dày ruột',
+    hl_Schilddrüse:'Bệnh tuyến giáp', hl_Epilepsie:'Động kinh', hl_Krämpfe:'Co giật',
+    hl_Hämophilie:'Rối loạn đông máu (Hemophilia)', hl_Anämie:'Thiếu máu',
+    hl_Tumorerkrankungen:'Có khối u / ung thư không?',
+    hl_Hepatitis:'Viêm gan', hl_TBC:'Lao phổi', hl_HIV:'HIV', hl_MRSA:'MRSA',
+    hl_Atemwege:'Bệnh đường hô hấp mãn tính',
+    hl_Sonstige_Erkrankung:'Có bệnh khác không?',
+    hl_Allergie_Antibiotika:'Dị ứng kháng sinh / Penicillin',
+    hl_Allergie_Andere:'Dị ứng thuốc hoặc chất khác<br><span style="font-size:11px;color:#a0aec0;">(ví dụ: Latex, kim loại v.v.)</span>',
+    hl_Medikamente_Einnahme:'Bạn có đang dùng thuốc nào không?',
+    hl_Rauchen:'Bạn có hút thuốc không?', hl_Alkohol:'Bạn có nghiện rượu không?',
+    hl_Drogen:'Bạn có phụ thuộc vào chất kích thích khác không?<br><span style="font-size:11px;color:#a0aec0;">(kể cả thuốc kích thích, thuốc ngủ)</span>',
+    hl_Schwanger:'Mang thai',
+    hl_Knirschen:'Bạn có nghiến răng không?',
+    hl_Zahnfleisch:'Bạn có vấn đề về nướu? Chảy máu nướu?',
+    hl_Mundgeruch:'Bạn có bị hôi miệng không?',
+    yes:'CÓ', no:'KHÔNG',
+    sub_Herzinfarkt_Wann:'Nếu có, khi nào?', sub_Herz_Sonstige:'Khác:',
+    sub_Schlaganfall_Wann:'Nếu có, khi nào?', sub_Kreislauf_Sonstige:'Khác:',
+    sub_Stoffwechsel_Sonstige:'Khác:', sub_Nerven_Sonstige:'Khác:',
+    sub_Blut_Sonstige:'Khác:', sub_Tumor_Welche:'Nếu có, loại nào?',
+    sub_Hepatitis_Typ:'Nếu có, loại nào?', sub_Atemwege_Welche:'Nếu có, loại nào?',
+    sub_Infektion_Sonstige:'Khác:', sub_Sonstige_Erkrankung_Welche:'Nếu có, loại nào?',
+    sub_Allergie_Welche:'Nếu có, dị ứng với gì?',
+    allergy_note:'(Vui lòng xuất trình thẻ dị ứng!)',
+    sub_Blutverdünner:'Thuốc làm loãng máu (ASS, Marcumar, Heparin)',
+    sub_Bisphosphonate:'Bisphosphonate', sub_Antidepressiva:'Thuốc chống trầm cảm',
+    sub_Herzmedikamente:'Thuốc tim mạch', sub_Sonstige_Medikamente:'Thuốc khác',
+    sub_Schwanger_Woche:'Nếu có, tuần thứ mấy?',
+    xray_label:'Lần chụp X-quang đầu/hàm/răng gần nhất là khi nào?',
+    xray_ph:'Ví dụ: 6 tháng trước tại bác sĩ Müller',
+    reminder:'Bạn muốn được nhắc nhở về lần kiểm tra tiếp theo bằng cách nào?',
+    er_post:'Qua bưu thiếp', er_email:'Qua E-Mail', er_sms:'Qua SMS',
+    notice1_t:'Lịch hẹn',
+    notice1_p:'Nếu bạn không thể đến hẹn, vui lòng hủy ít nhất 24 giờ trước.',
+    notice2_t:'Thẻ bảo hiểm y tế',
+    notice2_p:'Bạn phải xuất trình thẻ bảo hiểm y tế tại mỗi lần khám.',
+    notice3_t:'Khả năng lái xe',
+    notice3_p:'Khả năng lái xe của bạn có thể bị ảnh hưởng sau khi gây tê cục bộ.',
+    notice4_t:'Thông báo thay đổi',
+    notice4_p:'Vui lòng thông báo ngay nếu có thay đổi về thông tin cá nhân hoặc sức khỏe.',
+    confirm1:'Tôi xác nhận rằng tôi đã đọc phiếu tiền sử bệnh và hiểu tất cả các câu hỏi. Tôi khẳng định rằng thông tin được cung cấp là đầy đủ và chính xác. Tôi đã lưu ý các hướng dẫn quan trọng.',
+    confirm2:'Tôi đồng ý cho phép dữ liệu cá nhân của mình được lưu trữ và xử lý dành riêng cho mục đích điều trị nha khoa. Xem thêm trong <a href="datenschutz.html" style="color:#5eb3b3;text-decoration:underline;">Chính sách bảo mật</a>.',
+    datum:'Ngày', unterschrift:'Chữ ký', unterschrift_hint:'(nhập tên của bạn)',
+    unterschrift_ph:'Họ và Tên',
+    submit:'Gửi phiếu tiền sử bệnh',
+    data_note:'Dữ liệu của bạn được truyền an toàn và chỉ dùng cho mục đích điều trị nha khoa.',
+    modal_title:'Cảm ơn bạn!',
+    modal_text:'Phiếu tiền sử bệnh của bạn đã được gửi thành công. Chúng tôi rất mong được gặp bạn!',
+    modal_close:'Đóng',
+    toast_err:'Gửi thất bại. Vui lòng thử lại.',
+    err_nachname:'Vui lòng nhập họ.', err_vorname:'Vui lòng nhập tên.',
+    err_dob:'Vui lòng nhập ngày sinh.', err_street:'Vui lòng nhập địa chỉ.',
+    err_plz:'Vui lòng nhập mã bưu điện hợp lệ.', err_ort:'Vui lòng nhập thành phố.',
+    err_mobil:'Vui lòng nhập số điện thoại.',
+    err_email:'Vui lòng nhập địa chỉ email hợp lệ.',
+    err_vers:'Vui lòng nhập tên bảo hiểm.',
+    err_unterschrift:'Vui lòng nhập chữ ký.',
+    print_bar:'In phiếu', optional:'(tùy chọn)',
+    ph_wann:'vd: 2020', ph_hepatitis:'A / B / C …', ph_schwanger:'vd: tuần 12',
+    ph_blutverd:'Có / Không / Tên', ph_yn:'Có / Không',
+  },
+  ru: {
+    sec1:'Данные пациента', sec2:'Данные страховки',
+    sec3:'Вопросы об общем здоровье', sec4:'Вопросы о здоровье полости рта',
+    sec5:'Подтверждение и подпись',
+    anrede:'Обращение', frau:'Г-жа', herr:'Г-н', divers:'Другое',
+    nachname:'Фамилия', vorname:'Имя', geburtsdatum:'Дата рождения',
+    geburtsort:'Место рождения', strasse:'Улица и номер дома',
+    plz:'Индекс', ort:'Город', mobil:'Мобильный телефон',
+    festnetz:'Стационарный телефон', email:'Адрес E-Mail',
+    ag_header:'Работодатель', ag_opt:'(по желанию)',
+    ag_name:'Название', ag_tel:'Рабочий телефон', beruf:'Профессия',
+    ha_header:'Лечащий врач', ha_opt:'(при наличии)',
+    ha_name:'Фамилия', ha_street:'Улица и номер дома', ha_plz:'Индекс', ha_ort:'Город',
+    vers_name:'Название страховой / кассы', vers_type:'Тип страховки',
+    v_gesetz:'Государственное страхование', v_privat:'Частное страхование',
+    v_zusatz:'Дополнительное стоматологическое страхование',
+    v_beihilfe:'Государственная субсидия', v_basis:'Базовый тариф',
+    v_kvb:'KVB (Федеральные железные дороги)', v_post:'Касса почтовых чиновников',
+    v_polizei:'Полиция', v_knapp:'Горняцкое страхование',
+    zusatz_areas:'В ОБЛАСТЯХ:', z_full:'Пломбы', z_proph:'Профилактика',
+    z_zahnersatz:'Протезирование', z_kfo:'Ортодонтия',
+    fv_label:'Если пациент застрахован как член семьи – кто является основным застрахованным?',
+    fv_nein:'Не застрахован как член семьи', fv_ja:'Да, семейная страховка',
+    hv_name:'Фамилия', hv_vorname:'Имя', hv_dob:'Дата рождения',
+    hv_pob:'Место рождения', hv_street:'Улица и номер дома', hv_plz:'Индекс', hv_ort:'Город',
+    health_instr:'Пожалуйста, отвечайте на каждый вопрос <strong>ДА</strong> или <strong>НЕТ</strong>. Нажмите на кнопку для выбора ответа.',
+    cat_herz:'Заболевания сердца', cat_kreislauf:'Заболевания кровообращения и сосудов',
+    cat_stoff:'Метаболические заболевания', cat_nerven:'Заболевания нервной системы',
+    cat_blut:'Заболевания крови', cat_tumor:'Онкология / Опухоли',
+    cat_infekt:'Инфекционные заболевания', cat_sonst:'Другие заболевания или инфекции?',
+    cat_allergie:'Аллергии (непереносимость, гиперчувствительность)',
+    cat_medi:'Приём лекарств', cat_drogen:'Употребление веществ',
+    cat_schwanger:'Для женщин: Вы беременны?',
+    hl_Herzschwäche:'Сердечная недостаточность',
+    hl_Arrhythmien:'Нарушение сердечного ритма (аритмия)',
+    hl_Herzasthma:'Сердечная астма, стенокардия',
+    hl_Endokarditis:'Воспаление эндокарда', hl_Herzschrittmacher:'Кардиостимулятор',
+    hl_Herzklappenfehler:'Порок сердечного клапана, искусственный клапан',
+    hl_Herzinfarkt:'Инфаркт миокарда, операция на сердце, шунтирование',
+    hl_Blutdruck_Hoch:'Высокое давление', hl_Blutdruck_Niedrig:'Низкое давление',
+    hl_Ohnmacht:'Обмороки / склонность к обморокам', hl_Schlaganfall:'Инсульт',
+    hl_Diabetes:'Сахарный диабет', hl_Magen_Darm:'Заболевания ЖКТ',
+    hl_Schilddrüse:'Заболевания щитовидной железы',
+    hl_Epilepsie:'Эпилепсия', hl_Krämpfe:'Судороги',
+    hl_Hämophilie:'Гемофилия', hl_Anämie:'Анемия',
+    hl_Tumorerkrankungen:'Наличие опухоли / онкологии?',
+    hl_Hepatitis:'Гепатит', hl_TBC:'Туберкулёз', hl_HIV:'ВИЧ', hl_MRSA:'МРСА',
+    hl_Atemwege:'Хроническое заболевание дыхательных путей',
+    hl_Sonstige_Erkrankung:'Наличие других заболеваний?',
+    hl_Allergie_Antibiotika:'Аллергия на антибиотики / пенициллин',
+    hl_Allergie_Andere:'Аллергия на другие препараты или вещества<br><span style="font-size:11px;color:#a0aec0;">(напр. латекс, металлы и т.д.)</span>',
+    hl_Medikamente_Einnahme:'Вы принимаете лекарства в настоящее время?',
+    hl_Rauchen:'Вы курите?', hl_Alkohol:'Есть ли алкогольная зависимость?',
+    hl_Drogen:'Есть ли другая зависимость от веществ?<br><span style="font-size:11px;color:#a0aec0;">(включая стимуляторы, снотворные)</span>',
+    hl_Schwanger:'Беременность',
+    hl_Knirschen:'Вы скрипите или стискиваете зубы?',
+    hl_Zahnfleisch:'Есть ли проблемы с дёснами? Кровоточивость?',
+    hl_Mundgeruch:'Страдаете от неприятного запаха изо рта?',
+    yes:'ДА', no:'НЕТ',
+    sub_Herzinfarkt_Wann:'Если да, когда?', sub_Herz_Sonstige:'Другое:',
+    sub_Schlaganfall_Wann:'Если да, когда?', sub_Kreislauf_Sonstige:'Другое:',
+    sub_Stoffwechsel_Sonstige:'Другое:', sub_Nerven_Sonstige:'Другое:',
+    sub_Blut_Sonstige:'Другое:', sub_Tumor_Welche:'Если да, какая?',
+    sub_Hepatitis_Typ:'Если да, какой тип?', sub_Atemwege_Welche:'Если да, какая?',
+    sub_Infektion_Sonstige:'Другое:', sub_Sonstige_Erkrankung_Welche:'Если да, какая?',
+    sub_Allergie_Welche:'Если да, на что?',
+    allergy_note:'(Пожалуйста, предъявите аллергический паспорт!)',
+    sub_Blutverdünner:'Разжижители крови (АСК, Варфарин, Гепарин)',
+    sub_Bisphosphonate:'Бисфосфонаты', sub_Antidepressiva:'Антидепрессанты',
+    sub_Herzmedikamente:'Сердечные препараты', sub_Sonstige_Medikamente:'Другие препараты',
+    sub_Schwanger_Woche:'Если да, какая неделя?',
+    xray_label:'Когда делался последний рентген головы/челюсти/зубов?',
+    xray_ph:'напр. 6 месяцев назад у д-ра Мюллера',
+    reminder:'Как вы хотите получать напоминание о следующем осмотре?',
+    er_post:'По почте', er_email:'По E-Mail', er_sms:'По SMS',
+    notice1_t:'Запись на приём',
+    notice1_p:'Если вы не можете прийти на приём, просим отменить его не менее чем за 24 часа.',
+    notice2_t:'Медицинская карта',
+    notice2_p:'При каждом посещении обязательно предъявляйте карту медицинского страхования.',
+    notice3_t:'Управление автомобилем',
+    notice3_p:'После местной анестезии ваша способность управлять транспортным средством может быть ограничена.',
+    notice4_t:'Уведомление об изменениях',
+    notice4_p:'Просим немедленно сообщать нам об изменениях в личных данных или состоянии здоровья.',
+    confirm1:'Я подтверждаю, что прочитал(а) анкету и понял(а) все вопросы. Я заверяю, что предоставленные данные являются полными и достоверными. Я ознакомился(лась) с важными указаниями.',
+    confirm2:'Я даю согласие на хранение и обработку моих персональных данных исключительно в целях стоматологического лечения. Подробнее см. в нашей <a href="datenschutz.html" style="color:#5eb3b3;text-decoration:underline;">Политике конфиденциальности</a>.',
+    datum:'Дата', unterschrift:'Подпись', unterschrift_hint:'(введите имя)',
+    unterschrift_ph:'Имя и Фамилия',
+    submit:'Отправить анкету',
+    data_note:'Ваши данные передаются в зашифрованном виде и используются только в стоматологических целях.',
+    modal_title:'Спасибо!',
+    modal_text:'Ваша анкета успешно отправлена. Ждём вас!',
+    modal_close:'Закрыть',
+    toast_err:'Ошибка отправки. Пожалуйста, попробуйте снова.',
+    err_nachname:'Пожалуйста, введите фамилию.', err_vorname:'Пожалуйста, введите имя.',
+    err_dob:'Пожалуйста, введите дату рождения.', err_street:'Пожалуйста, введите адрес.',
+    err_plz:'Пожалуйста, введите корректный индекс.', err_ort:'Пожалуйста, введите город.',
+    err_mobil:'Пожалуйста, введите номер мобильного.',
+    err_email:'Пожалуйста, введите корректный адрес email.',
+    err_vers:'Пожалуйста, введите название страховой.',
+    err_unterschrift:'Пожалуйста, введите подпись.',
+    print_bar:'Распечатать форму', optional:'(по желанию)',
+    ph_wann:'напр. 2020', ph_hepatitis:'A / B / C …', ph_schwanger:'напр. 12',
+    ph_blutverd:'Да / Нет / Название', ph_yn:'Да / Нет',
+  },
+  ar: {
+    sec1:'بيانات المريض', sec2:'بيانات التأمين',
+    sec3:'أسئلة الصحة العامة', sec4:'أسئلة صحة الفم والأسنان',
+    sec5:'تأكيد وتوقيع',
+    anrede:'اللقب', frau:'السيدة', herr:'السيد', divers:'أخرى',
+    nachname:'اسم العائلة', vorname:'الاسم الأول', geburtsdatum:'تاريخ الميلاد',
+    geburtsort:'مكان الميلاد', strasse:'الشارع ورقم المنزل',
+    plz:'الرمز البريدي', ort:'المدينة', mobil:'رقم الهاتف المحمول',
+    festnetz:'رقم الهاتف الأرضي', email:'عنوان البريد الإلكتروني',
+    ag_header:'جهة العمل', ag_opt:'(اختياري)',
+    ag_name:'الاسم', ag_tel:'هاتف العمل', beruf:'المهنة',
+    ha_header:'طبيب الأسرة', ha_opt:'(إن وجد)',
+    ha_name:'اسم العائلة', ha_street:'الشارع ورقم المنزل', ha_plz:'الرمز البريدي', ha_ort:'المدينة',
+    vers_name:'اسم شركة التأمين / الصندوق الصحي', vers_type:'نوع التأمين',
+    v_gesetz:'تأمين صحي قانوني', v_privat:'تأمين خاص',
+    v_zusatz:'تأمين أسنان تكميلي', v_beihilfe:'إعانة الخدمة المدنية',
+    v_basis:'التعريفة الأساسية', v_kvb:'KVB (السكك الحديدية الفيدرالية)',
+    v_post:'صندوق موظفي البريد', v_polizei:'الشرطة', v_knapp:'تأمين عمال المناجم',
+    zusatz_areas:'في المجالات:', z_full:'الحشوات', z_proph:'الوقاية',
+    z_zahnersatz:'أطقم الأسنان', z_kfo:'تقويم الأسنان',
+    fv_label:'إذا كان المريض مؤمناً كفرد عائلي – من هو المؤمن الرئيسي؟',
+    fv_nein:'غير مؤمن كفرد عائلي', fv_ja:'نعم، تأمين عائلي',
+    hv_name:'اسم العائلة', hv_vorname:'الاسم الأول', hv_dob:'تاريخ الميلاد',
+    hv_pob:'مكان الميلاد', hv_street:'الشارع ورقم المنزل', hv_plz:'الرمز البريدي', hv_ort:'المدينة',
+    health_instr:'يرجى الإجابة على كل سؤال بـ <strong>نعم</strong> أو <strong>لا</strong>. انقر على الزر لاختيار إجابتك.',
+    cat_herz:'أمراض القلب', cat_kreislauf:'أمراض الدورة الدموية والأوعية الدموية',
+    cat_stoff:'أمراض التمثيل الغذائي', cat_nerven:'أمراض الجهاز العصبي',
+    cat_blut:'أمراض الدم', cat_tumor:'الأورام / السرطان',
+    cat_infekt:'الأمراض المعدية', cat_sonst:'أمراض أو التهابات أخرى؟',
+    cat_allergie:'الحساسية (عدم التحمل، فرط الحساسية)',
+    cat_medi:'تناول الأدوية', cat_drogen:'تعاطي المواد',
+    cat_schwanger:'للمريضات: هل أنتِ حامل؟',
+    hl_Herzschwäche:'قصور القلب', hl_Arrhythmien:'اضطراب نظم القلب',
+    hl_Herzasthma:'ربو القلب، الذبحة الصدرية',
+    hl_Endokarditis:'التهاب الشغاف', hl_Herzschrittmacher:'جهاز تنظيم ضربات القلب',
+    hl_Herzklappenfehler:'عيب صمام القلب، صمام قلب اصطناعي',
+    hl_Herzinfarkt:'تاريخ نوبة قلبية، عملية قلب، تحويل مسار',
+    hl_Blutdruck_Hoch:'ارتفاع ضغط الدم', hl_Blutdruck_Niedrig:'انخفاض ضغط الدم',
+    hl_Ohnmacht:'الإغماء / الميل للإغماء', hl_Schlaganfall:'السكتة الدماغية',
+    hl_Diabetes:'السكري', hl_Magen_Darm:'أمراض الجهاز الهضمي',
+    hl_Schilddrüse:'أمراض الغدة الدرقية',
+    hl_Epilepsie:'الصرع', hl_Krämpfe:'التشنجات',
+    hl_Hämophilie:'الهيموفيليا', hl_Anämie:'فقر الدم',
+    hl_Tumorerkrankungen:'هل يوجد ورم / سرطان؟',
+    hl_Hepatitis:'التهاب الكبد', hl_TBC:'السل', hl_HIV:'فيروس نقص المناعة', hl_MRSA:'MRSA',
+    hl_Atemwege:'مرض مزمن في الجهاز التنفسي',
+    hl_Sonstige_Erkrankung:'هل توجد أمراض أخرى؟',
+    hl_Allergie_Antibiotika:'حساسية من المضادات الحيوية / البنسلين',
+    hl_Allergie_Andere:'حساسية من أدوية أو مواد أخرى<br><span style="font-size:11px;color:#a0aec0;">(مثل اللاتكس والمعادن وما إلى ذلك)</span>',
+    hl_Medikamente_Einnahme:'هل تتناول أدوية حاليًا؟',
+    hl_Rauchen:'هل تدخن؟', hl_Alkohol:'هل تعاني من إدمان الكحول؟',
+    hl_Drogen:'هل تعاني من إدمان مواد أخرى؟<br><span style="font-size:11px;color:#a0aec0;">(بما في ذلك المنشطات وحبوب النوم)</span>',
+    hl_Schwanger:'الحمل',
+    hl_Knirschen:'هل تصرّ أسنانك أو تضغط عليها؟',
+    hl_Zahnfleisch:'هل تعاني من مشاكل في اللثة؟ نزيف اللثة؟',
+    hl_Mundgeruch:'هل تعاني من رائحة الفم الكريهة؟',
+    yes:'نعم', no:'لا',
+    sub_Herzinfarkt_Wann:'إذا نعم، متى؟', sub_Herz_Sonstige:'أخرى:',
+    sub_Schlaganfall_Wann:'إذا نعم، متى؟', sub_Kreislauf_Sonstige:'أخرى:',
+    sub_Stoffwechsel_Sonstige:'أخرى:', sub_Nerven_Sonstige:'أخرى:',
+    sub_Blut_Sonstige:'أخرى:', sub_Tumor_Welche:'إذا نعم، أيّها؟',
+    sub_Hepatitis_Typ:'إذا نعم، أيّ نوع؟', sub_Atemwege_Welche:'إذا نعم، أيّها؟',
+    sub_Infektion_Sonstige:'أخرى:', sub_Sonstige_Erkrankung_Welche:'إذا نعم، أيّها؟',
+    sub_Allergie_Welche:'إذا نعم، ضد أيّ شيء؟',
+    allergy_note:'(يرجى إبراز بطاقة الحساسية الخاصة بك!)',
+    sub_Blutverdünner:'مضادات تخثر الدم (ASS، ماركومار، هيبارين)',
+    sub_Bisphosphonate:'بيسفوسفونات', sub_Antidepressiva:'مضادات الاكتئاب',
+    sub_Herzmedikamente:'أدوية القلب', sub_Sonstige_Medikamente:'أدوية أخرى',
+    sub_Schwanger_Woche:'إذا نعم، في أيّ أسبوع؟',
+    xray_label:'متى كانت آخر أشعة سينية على الرأس/الفك/الأسنان؟',
+    xray_ph:'مثلاً: منذ 6 أشهر عند الدكتور مولر',
+    reminder:'كيف تريد تلقّي تذكير بموعد الفحص القادم؟',
+    er_post:'عبر بطاقة بريدية', er_email:'عبر البريد الإلكتروني', er_sms:'عبر SMS',
+    notice1_t:'مواعيد العلاج',
+    notice1_p:'إذا لم تستطع الحضور في الموعد المحدد، يرجى الإلغاء قبل 24 ساعة على الأقل.',
+    notice2_t:'بطاقة التأمين الصحي',
+    notice2_p:'يجب تقديم بطاقة التأمين الصحي في كل زيارة.',
+    notice3_t:'القدرة على القيادة',
+    notice3_p:'قد تتأثر قدرتك على القيادة بعد التخدير الموضعي.',
+    notice4_t:'إخطار بالتغييرات',
+    notice4_p:'يرجى إعلامنا فورًا بأي تغييرات في بياناتك الشخصية أو حالتك الصحية.',
+    confirm1:'أؤكد أنني قرأت استمارة التاريخ الطبي وفهمت جميع الأسئلة. أؤكد أن المعلومات المقدمة كاملة وصحيحة. لقد اطلعت على الملاحظات المهمة.',
+    confirm2:'أوافق على تخزين ومعالجة بياناتي الشخصية حصريًا لأغراض علاج الأسنان. لمزيد من المعلومات، راجع <a href="datenschutz.html" style="color:#5eb3b3;text-decoration:underline;">سياسة الخصوصية</a>.',
+    datum:'التاريخ', unterschrift:'التوقيع', unterschrift_hint:'(اكتب اسمك)',
+    unterschrift_ph:'الاسم الأول واسم العائلة',
+    submit:'إرسال الاستمارة الطبية',
+    data_note:'يتم نقل بياناتك بشكل مشفّر وتُستخدم فقط لأغراض علاج الأسنان.',
+    modal_title:'شكرًا لك!',
+    modal_text:'تم إرسال استمارتك الطبية بنجاح. نتطلع إلى زيارتك!',
+    modal_close:'إغلاق',
+    toast_err:'فشل الإرسال. يرجى المحاولة مرة أخرى.',
+    err_nachname:'يرجى إدخال اسم العائلة.', err_vorname:'يرجى إدخال الاسم الأول.',
+    err_dob:'يرجى إدخال تاريخ الميلاد.', err_street:'يرجى إدخال العنوان.',
+    err_plz:'يرجى إدخال رمز بريدي صحيح.', err_ort:'يرجى إدخال المدينة.',
+    err_mobil:'يرجى إدخال رقم الهاتف المحمول.',
+    err_email:'يرجى إدخال عنوان بريد إلكتروني صحيح.',
+    err_vers:'يرجى إدخال اسم التأمين.',
+    err_unterschrift:'يرجى إدخال التوقيع.',
+    print_bar:'طباعة الاستمارة', optional:'(اختياري)',
+    ph_wann:'مثلاً: 2020', ph_hepatitis:'أ / ب / ج …', ph_schwanger:'مثلاً: 12',
+    ph_blutverd:'نعم / لا / الاسم', ph_yn:'نعم / لا',
+  }
+};
+
+/* current language for dynamic messages */
+let currentLang = 'de';
+
+/* ══════════════════════════════════════════
+   APPLY FORM TRANSLATIONS
+══════════════════════════════════════════ */
+function applyFormTranslations(fs) {
+  const $ = id => document.getElementById(id);
+  const set = (id, txt) => { const el = $(id); if (el) el.textContent = txt; };
+  const html = (id, h) => { const el = $(id); if (el) el.innerHTML = h; };
+
+  // ── Section titles via .af-sec-text span ────────────────────────────
+  const secKeys = ['sec1','sec2','sec3','sec4','sec5'];
+  document.querySelectorAll('.af-section-title').forEach((el, i) => {
+    if (!secKeys[i]) return;
+    const span = el.querySelector('.af-sec-text');
+    if (span) span.textContent = fs[secKeys[i]];
+  });
+
+  // ── Section 1 – Patient ──────────────────────────────────────────────
+  set('lbl-anrede', fs.anrede);
+  html('lbl-arbeitgeber', fs.ag_header + ' <span class="af-optional" id="lbl-ag-optional">' + fs.ag_opt + '</span>');
+  html('lbl-hausarzt', fs.ha_header + ' <span class="af-optional" id="lbl-ha-optional">' + fs.ha_opt + '</span>');
+
+  // Labels by [for] attribute
+  const labelMap = [
+    ['f-nachname',   `${fs.nachname} <span style="color:#e53e3e;">*</span>`],
+    ['f-vorname',    `${fs.vorname} <span style="color:#e53e3e;">*</span>`],
+    ['f-dob',        `${fs.geburtsdatum} <span style="color:#e53e3e;">*</span>`],
+    ['f-pob',        fs.geburtsort],
+    ['f-street',     `${fs.strasse} <span style="color:#e53e3e;">*</span>`],
+    ['f-plz',        `${fs.plz} <span style="color:#e53e3e;">*</span>`],
+    ['f-ort',        `${fs.ort} <span style="color:#e53e3e;">*</span>`],
+    ['f-mobil',      `${fs.mobil} <span style="color:#e53e3e;">*</span>`],
+    ['f-festnetz',   `${fs.festnetz} <span class="af-optional">${fs.optional}</span>`],
+    ['f-email',      `${fs.email} <span style="color:#e53e3e;">*</span>`],
+    ['f-ag-name',    fs.ag_name],
+    ['f-ag-tel',     fs.ag_tel],
+    ['f-beruf',      fs.beruf],
+    ['f-ha-name',    fs.ha_name],
+    ['f-ha-street',  fs.ha_street],
+    ['f-ha-plz',     fs.ha_plz],
+    ['f-ha-ort',     fs.ha_ort],
+    ['f-vers-name',  `${fs.vers_name} <span style="color:#e53e3e;">*</span>`],
+    ['f-hv-name',    fs.hv_name],
+    ['f-hv-vorname', fs.hv_vorname],
+    ['f-hv-dob',     fs.hv_dob],
+    ['f-hv-pob',     fs.hv_pob],
+    ['f-hv-street',  fs.hv_street],
+    ['f-hv-plz',     fs.hv_plz],
+    ['f-hv-ort',     fs.hv_ort],
+    ['f-xray',       fs.xray_label],
+    ['f-datum',      fs.datum],
+    ['f-unterschrift', `${fs.unterschrift} <span style="font-size:10px;color:#a0aec0;font-weight:400;">${fs.unterschrift_hint}</span>`],
+  ];
+  labelMap.forEach(([forAttr, content]) => {
+    const lbl = document.querySelector(`label[for="${forAttr}"]`);
+    if (lbl) lbl.innerHTML = content;
+  });
+
+  // Error messages
+  const errMap = {
+    'f-nachname': fs.err_nachname, 'f-vorname': fs.err_vorname,
+    'f-dob': fs.err_dob, 'f-street': fs.err_street,
+    'f-plz': fs.err_plz, 'f-ort': fs.err_ort,
+    'f-mobil': fs.err_mobil, 'f-email': fs.err_email,
+    'f-vers-name': fs.err_vers, 'f-unterschrift': fs.err_unterschrift,
+  };
+  Object.entries(errMap).forEach(([forAttr, msg]) => {
+    const lbl = document.querySelector(`label[for="${forAttr}"]`);
+    if (!lbl) return;
+    const errEl = lbl.closest('.af-field')?.querySelector('.af-error-msg');
+    if (errEl) errEl.textContent = msg;
+  });
+
+  // Anrede radio pills
+  const anredeMap = {
+    'anrede-frau': fs.frau, 'anrede-herr': fs.herr, 'anrede-divers': fs.divers
+  };
+  Object.entries(anredeMap).forEach(([forId, txt]) => {
+    const lbl = document.querySelector(`label[for="${forId}"]`);
+    if (lbl) lbl.textContent = txt;
+  });
+
+  // ── Section 2 – Versicherung ─────────────────────────────────────────
+  set('lbl-verstyp', fs.vers_type);
+  set('lbl-fv', fs.fv_label);
+
+  // Insurance type checkboxes (by value)
+  const versMap = {
+    'gesetzlich versichert': fs.v_gesetz, 'privat versichert': fs.v_privat,
+    'zahnzusatzversichert': fs.v_zusatz, 'Beihilfe': fs.v_beihilfe,
+    'Basistarif': fs.v_basis, 'KVB': fs.v_kvb,
+    'Postbeamtenkrankenkasse': fs.v_post, 'Polizei': fs.v_polizei, 'Knappschaft': fs.v_knapp,
+  };
+  document.querySelectorAll('input[name="Versicherungstyp"]').forEach(chk => {
+    const lbl = chk.closest('label');
+    if (lbl && versMap[chk.value]) {
+      // Preserve checkbox element, update text node only
+      const txt = lbl.childNodes[lbl.childNodes.length - 1];
+      if (txt && txt.nodeType === 3) txt.textContent = ' ' + versMap[chk.value];
+    }
+  });
+
+  // Zusatz subgroup
+  const zusatzTitle = document.querySelector('#zusatz-subgroup > div');
+  if (zusatzTitle) zusatzTitle.textContent = fs.zusatz_areas;
+  const zusatzMap = {
+    'Füllungen': fs.z_full, 'Prophylaxe': fs.z_proph,
+    'Zahnersatz': fs.z_zahnersatz, 'Kieferorthopädie': fs.z_kfo
+  };
+  document.querySelectorAll('input[name="Versicherungstyp_Zusatz"]').forEach(chk => {
+    const lbl = chk.closest('label');
+    if (lbl && zusatzMap[chk.value]) {
+      const txt = lbl.childNodes[lbl.childNodes.length - 1];
+      if (txt && txt.nodeType === 3) txt.textContent = ' ' + zusatzMap[chk.value];
+    }
+  });
+
+  // Familienversichert radio pills
+  const fvLblNein = document.querySelector('label[for="fv-nein"]');
+  const fvLblJa   = document.querySelector('label[for="fv-ja"]');
+  if (fvLblNein) fvLblNein.textContent = fs.fv_nein;
+  if (fvLblJa)   fvLblJa.textContent   = fs.fv_ja;
+
+  // ── Section 3 – Gesundheit ───────────────────────────────────────────
+  html('health-instruction', fs.health_instr);
+
+  // Health category titles (in DOM order)
+  const catKeys = [
+    'cat_herz','cat_kreislauf','cat_stoff','cat_nerven','cat_blut','cat_tumor',
+    'cat_infekt','cat_sonst','cat_allergie','cat_medi','cat_drogen','cat_schwanger'
+  ];
+  document.querySelectorAll('.af-health-cat').forEach((el, i) => {
+    if (catKeys[i] && fs[catKeys[i]]) el.textContent = fs[catKeys[i]];
+  });
+
+  // YES/NO buttons text
+  document.querySelectorAll('.af-yn-btn[data-val="Ja"]').forEach(b => b.textContent = fs.yes);
+  document.querySelectorAll('.af-yn-btn[data-val="Nein"]').forEach(b => b.textContent = fs.no);
+
+  // Health condition labels (via data-field on sibling button, supports HTML)
+  document.querySelectorAll('.af-yn-row').forEach(row => {
+    const btn = row.querySelector('.af-yn-btn[data-field]');
+    const label = row.querySelector('.af-yn-label:not(.sub):not(.sub-note)');
+    if (btn && label) {
+      const key = 'hl_' + btn.dataset.field;
+      if (fs[key] !== undefined) label.innerHTML = fs[key];
+    }
+  });
+
+  // Sub-labels (via sibling input name)
+  document.querySelectorAll('.af-yn-row').forEach(row => {
+    const subLabel = row.querySelector('.af-yn-label.sub');
+    const input = row.querySelector('input[name]');
+    if (subLabel && input) {
+      const key = 'sub_' + input.name;
+      if (fs[key] !== undefined) subLabel.textContent = fs[key];
+    }
+  });
+
+  // Allergy note (sub-note, no input – sibling is af-yn-spacer)
+  document.querySelectorAll('.af-yn-label.sub-note').forEach(el => {
+    el.textContent = fs.allergy_note;
+  });
+
+  // ── Section 4 – Mundgesundheit ───────────────────────────────────────
+  set('lbl-reminder', fs.reminder);
+  const erPostLbl  = document.querySelector('label[for="er-post"]');
+  const erEmailLbl = document.querySelector('label[for="er-email"]');
+  const erSmsLbl   = document.querySelector('label[for="er-sms"]');
+  if (erPostLbl)  erPostLbl.textContent  = fs.er_post;
+  if (erEmailLbl) erEmailLbl.textContent = fs.er_email;
+  if (erSmsLbl)   erSmsLbl.textContent   = fs.er_sms;
+
+  // ── Section 5 – Bestätigung ──────────────────────────────────────────
+  set('notice1-title', fs.notice1_t); set('notice1-text', fs.notice1_p);
+  set('notice2-title', fs.notice2_t); set('notice2-text', fs.notice2_p);
+  set('notice3-title', fs.notice3_t); set('notice3-text', fs.notice3_p);
+  set('notice4-title', fs.notice4_t); set('notice4-text', fs.notice4_p);
+  html('confirm1-text', fs.confirm1);
+  html('confirm2-text', fs.confirm2);
+  set('submitBtnText', fs.submit);
+  set('data-note', fs.data_note);
+
+  // Modal
+  const modalH3 = document.querySelector('.af-modal h3');
+  const modalP  = document.querySelector('.af-modal > p');
+  const modalClose = document.querySelector('.af-modal-close');
+  if (modalH3) modalH3.textContent = fs.modal_title;
+  if (modalP)  modalP.textContent  = fs.modal_text;
+  if (modalClose) modalClose.textContent = fs.modal_close;
+
+  // Print bar
+  set('print-bar-text', fs.print_bar);
+
+  // Placeholders
+  const phMap = {
+    'Herzinfarkt_Wann': fs.ph_wann, 'Schlaganfall_Wann': fs.ph_wann,
+    'Hepatitis_Typ': fs.ph_hepatitis, 'Schwanger_Woche': fs.ph_schwanger,
+    'Blutverdünner': fs.ph_blutverd, 'Bisphosphonate': fs.ph_yn,
+    'Antidepressiva': fs.ph_yn, 'Herzmedikamente': fs.ph_yn,
+    'Letztes_Rontgen': fs.xray_ph, 'Unterschrift': fs.unterschrift_ph,
+  };
+  Object.entries(phMap).forEach(([name, ph]) => {
+    const el = document.querySelector(`[name="${name}"]`);
+    if (el && ph) el.placeholder = ph;
+  });
+}
+
+function changeLanguage(lang) {
+  currentLang = lang;
+  const ui = uiStrings[lang] || uiStrings.de;
+  const fs = formStrings[lang] || formStrings.de;
+  const flag = flagMap[lang] || flagMap.de;
+
+  // Hero & nav
+  const heroTitle = document.getElementById('hero-title');
+  const heroSubtitle = document.getElementById('hero-subtitle');
+  const heroPrintHint = document.getElementById('hero-print-hint');
+  const heroPrintBtn = document.getElementById('hero-print-btn');
+  if (heroTitle) heroTitle.textContent = ui.hero_title;
+  if (heroSubtitle) heroSubtitle.textContent = ui.hero_subtitle;
+  if (heroPrintHint) heroPrintHint.textContent = ui.print_hint;
+  if (heroPrintBtn) {
+    // Update the SVG text node inside the hero print button
+    heroPrintBtn.childNodes.forEach(node => {
+      if (node.nodeType === 3 && node.textContent.trim())
+        node.textContent = ' ' + ui.print_btn;
+    });
+  }
+
+  document.querySelectorAll('[data-nav]').forEach(el => {
+    const key = el.dataset.nav;
+    if (ui[key]) el.textContent = ui[key];
+  });
+
+  ['current-flag','mobile-current-flag'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.src = flag.src;
+  });
+  ['current-lang','mobile-current-lang'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = flag.code;
+  });
+
+  document.documentElement.lang = lang;
+
+  // Apply all form translations
+  applyFormTranslations(fs);
+
+  const menu = document.getElementById('language-menu');
+  if (menu) menu.classList.remove('show');
+  const mobileMenu = document.getElementById('mobile-language-menu');
+  if (mobileMenu) mobileMenu.classList.remove('show');
+
+  localStorage.setItem('preferredLanguage', lang);
+}
+
+/* ══════════════════════════════════════════
+   YES/NO TOGGLE BUTTONS
+══════════════════════════════════════════ */
+// Storage for yn values
+const ynValues = {};
+
+document.querySelectorAll('.af-yn-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const field = btn.dataset.field;
+    const val = btn.dataset.val;
+    ynValues[field] = val;
+
+    // Find sibling buttons for the same field
+    const siblings = btn.closest('.af-yn-btns').querySelectorAll('.af-yn-btn');
+    siblings.forEach(s => {
+      s.classList.remove('active-yes', 'active-no');
+    });
+
+    if (val === 'Ja') {
+      btn.classList.add('active-yes');
+    } else {
+      btn.classList.add('active-no');
+    }
+  });
+});
+
+/* ══════════════════════════════════════════
+   ZAHNZUSATZ TOGGLE
+══════════════════════════════════════════ */
+document.getElementById('chk-zusatz').addEventListener('change', function() {
+  const sg = document.getElementById('zusatz-subgroup');
+  sg.classList.toggle('visible', this.checked);
+});
+
+/* ══════════════════════════════════════════
+   FAMILIENVERSICHERT TOGGLE
+══════════════════════════════════════════ */
+document.querySelectorAll('input[name="Familienversichert"]').forEach(radio => {
+  radio.addEventListener('change', function() {
+    const hv = document.getElementById('hv-fields');
+    hv.style.display = this.value === 'Ja' ? '' : 'none';
+  });
+});
+
+/* ══════════════════════════════════════════
+   FORM VALIDATION
+══════════════════════════════════════════ */
+function validateForm() {
+  let valid = true;
+
+  // Required text/date/email inputs
+  document.querySelectorAll('#anamneseForm [required]').forEach(el => {
+    if (el.type === 'checkbox') return; // handled separately
+    const field = el.closest('.af-field');
+    if (!el.value.trim()) {
+      if (field) field.classList.add('has-error');
+      el.classList.add('af-error');
+      valid = false;
+    } else {
+      if (field) field.classList.remove('has-error');
+      el.classList.remove('af-error');
+    }
+  });
+
+  // Checkboxes
+  const chkConfirm = document.getElementById('chk-confirm');
+  const chkDsgvo = document.getElementById('chk-dsgvo');
+  if (!chkConfirm.checked || !chkDsgvo.checked) {
+    chkConfirm.closest('.af-confirm-item').style.borderColor = chkConfirm.checked ? '' : '#fc8181';
+    chkDsgvo.closest('.af-confirm-item').style.borderColor = chkDsgvo.checked ? '' : '#fc8181';
+    valid = false;
+  }
+
+  return valid;
+}
+
+/* ══════════════════════════════════════════
+   COLLECT FORM DATA
+══════════════════════════════════════════ */
+function collectFormData() {
+  const data = { Timestamp: new Date().toISOString() };
+
+  // Anrede
+  const anredeEl = document.querySelector('input[name="Anrede"]:checked');
+  data.Anrede = anredeEl ? anredeEl.value : '';
+
+  // Text/date/email/tel inputs
+  document.querySelectorAll('#anamneseForm input[name]:not([type="radio"]):not([type="checkbox"])').forEach(el => {
+    if (el.name) data[el.name] = el.value;
+  });
+
+  // Versicherungstyp checkboxes (multi)
+  const versTypes = [];
+  document.querySelectorAll('input[name="Versicherungstyp"]:checked').forEach(c => versTypes.push(c.value));
+  const zusatzTypes = [];
+  document.querySelectorAll('input[name="Versicherungstyp_Zusatz"]:checked').forEach(c => zusatzTypes.push(c.value));
+  data.Versicherungstyp = versTypes.join(', ') + (zusatzTypes.length ? ' (Zusatz: ' + zusatzTypes.join(', ') + ')' : '');
+
+  // Familienversichert radio
+  const fvEl = document.querySelector('input[name="Familienversichert"]:checked');
+  data.Familienversichert = fvEl ? fvEl.value : '';
+
+  // Erinnerung radio
+  const erEl = document.querySelector('input[name="Erinnerung"]:checked');
+  data.Erinnerung = erEl ? erEl.value : '';
+
+  // Yes/No toggle values
+  Object.assign(data, ynValues);
+
+  return data;
+}
+
+/* ══════════════════════════════════════════
+   SHOW TOAST
+══════════════════════════════════════════ */
+function showToast(msg) {
+  const toast = document.getElementById('errorToast');
+  toast.textContent = msg;
+  toast.classList.add('visible');
+  setTimeout(() => toast.classList.remove('visible'), 4000);
+}
+
+/* ══════════════════════════════════════════
+   FORM SUBMIT
+══════════════════════════════════════════ */
+document.getElementById('anamneseForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  if (!validateForm()) {
+    // Scroll to first error
+    const firstError = document.querySelector('.has-error, .af-input.af-error');
+    if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
+  const btn = document.getElementById('submitBtn');
+  const btnText = document.getElementById('submitBtnText');
+  const spinner = document.getElementById('submitSpinner');
+
+  btn.disabled = true;
+  btnText.style.display = 'none';
+  spinner.style.display = 'block';
+
+  const data = collectFormData();
+
+  // If no real URL configured, show success directly (demo mode)
+  if (SHEET_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+    setTimeout(() => {
+      btn.disabled = false;
+      btnText.style.display = '';
+      spinner.style.display = 'none';
+      document.getElementById('successModal').classList.add('visible');
+    }, 1200);
+    return;
+  }
+
+  try {
+    const response = await fetch(SHEET_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify(data)
+    });
+    const result = await response.json();
+
+    btn.disabled = false;
+    btnText.style.display = '';
+    spinner.style.display = 'none';
+
+    if (result.result === 'success') {
+      document.getElementById('successModal').classList.add('visible');
+      document.getElementById('anamneseForm').reset();
+      document.querySelectorAll('.af-yn-btn').forEach(b => b.classList.remove('active-yes','active-no'));
+      Object.keys(ynValues).forEach(k => delete ynValues[k]);
+    } else {
+      const fs = formStrings[currentLang] || formStrings.de;
+      showToast(result.message || fs.toast_err);
+    }
+  } catch (err) {
+    btn.disabled = false;
+    btnText.style.display = '';
+    spinner.style.display = 'none';
+    const fs = formStrings[currentLang] || formStrings.de;
+    showToast(fs.toast_err);
+  }
+});
+
+/* ══════════════════════════════════════════
+   INIT
+══════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  // Set today's date as default for Datum field
+  const datumField = document.getElementById('f-datum');
+  if (datumField) {
+    datumField.value = new Date().toISOString().split('T')[0];
+  }
+
+  // Restore language
+  const saved = localStorage.getItem('preferredLanguage') || 'de';
+  changeLanguage(saved);
+
+  // Mobile menu
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+  }
+
+  // Desktop language dropdown
+  const langBtn = document.getElementById('language-btn');
+  const langMenu = document.getElementById('language-menu');
+  if (langBtn && langMenu) {
+    langBtn.addEventListener('click', e => { e.stopPropagation(); langMenu.classList.toggle('show'); });
+    document.addEventListener('click', () => langMenu.classList.remove('show'));
+  }
+
+  // Mobile language dropdown
+  const mobileLangBtn = document.getElementById('mobile-language-btn');
+  const mobileLangMenu = document.getElementById('mobile-language-menu');
+  if (mobileLangBtn && mobileLangMenu) {
+    mobileLangBtn.addEventListener('click', e => { e.stopPropagation(); mobileLangMenu.classList.toggle('show'); });
+  }
+
+  // Live validation on blur
+  document.querySelectorAll('#anamneseForm [required]:not([type="checkbox"])').forEach(el => {
+    el.addEventListener('blur', () => {
+      const field = el.closest('.af-field');
+      if (!el.value.trim()) {
+        if (field) field.classList.add('has-error');
+        el.classList.add('af-error');
+      } else {
+        if (field) field.classList.remove('has-error');
+        el.classList.remove('af-error');
+      }
+    });
+    el.addEventListener('input', () => {
+      if (el.value.trim()) {
+        const field = el.closest('.af-field');
+        if (field) field.classList.remove('has-error');
+        el.classList.remove('af-error');
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>

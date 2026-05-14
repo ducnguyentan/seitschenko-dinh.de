@@ -93,12 +93,30 @@ function getColumnIndex(dentistIndex, timeSlotIndex) {
 }
 
 // ============================================
-// doPost - Receive appointment bookings
+// doPost - Unified router for all form submissions
 // ============================================
+
+var SHARED_CORS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type'
+};
+
+function doOptions(e) {
+  return ContentService.createTextOutput('').setMimeType(ContentService.MimeType.TEXT);
+}
 
 function doPost(e) {
   try {
     var data = JSON.parse(e.postData.contents);
+
+    // ── Route: Anamnesebogen form ──────────────────────────────────────────
+    // Detected by presence of "Nachname" or "Anrede" keys (unique to the medical form)
+    if (data.Nachname !== undefined || data.Anrede !== undefined) {
+      return handleAnamnesePost(data, SHARED_CORS);
+    }
+
+    // ── Route: Appointment booking (default) ───────────────────────────────
     var ss = SpreadsheetApp.getActiveSpreadsheet();
     var sheet = ss.getSheetByName('New_Appointments');
 

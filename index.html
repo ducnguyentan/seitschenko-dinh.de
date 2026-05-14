@@ -302,6 +302,93 @@
           Termin vereinbaren
         </a>
       </div>
+      <!-- Anamnesebogen Animated Hero Button -->
+      <div class="scroll-reveal mt-8">
+        <a href="pages/Anamnesebogen.html" target="_blank" class="anamnese-hero-btn" data-translate="hero.anamneseBtn">
+          <span class="anamnese-hero-shimmer"></span>
+          <span class="anamnese-hero-icon">📋</span>
+          <span class="anamnese-hero-text">Anamnesebogen ausfüllen</span>
+          <span class="anamnese-hero-arrow">→</span>
+        </a>
+      </div>
+      <style>
+        .anamnese-hero-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          position: relative;
+          overflow: hidden;
+          padding: 14px 28px;
+          border-radius: 50px;
+          font-weight: 600;
+          font-size: 15px;
+          text-decoration: none;
+          color: #2d7d7d;
+          background: rgba(255,255,255,0.85);
+          backdrop-filter: blur(12px);
+          border: 2px solid transparent;
+          background-clip: padding-box;
+          box-shadow:
+            0 4px 20px rgba(94,179,179,0.2),
+            inset 0 0 0 2px rgba(94,179,179,0.35);
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          animation: anamnesePulseGlow 3s ease-in-out infinite;
+        }
+        .anamnese-hero-btn:hover {
+          transform: translateY(-3px) scale(1.04);
+          color: #1a5f5f;
+          background: rgba(255,255,255,0.95);
+          box-shadow:
+            0 12px 40px rgba(94,179,179,0.4),
+            0 0 0 4px rgba(94,179,179,0.12),
+            inset 0 0 0 2px rgba(94,179,179,0.6);
+          animation: none;
+        }
+        .anamnese-hero-shimmer {
+          position: absolute;
+          top: 0; left: -100%;
+          width: 60%;
+          height: 100%;
+          background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.6) 50%, transparent 70%);
+          animation: anamneseShimmer 2.5s ease-in-out infinite;
+          pointer-events: none;
+        }
+        .anamnese-hero-icon {
+          font-size: 20px;
+          display: inline-block;
+          animation: anamneseIconFloat 2.5s ease-in-out infinite;
+        }
+        .anamnese-hero-text {
+          position: relative;
+          z-index: 1;
+          letter-spacing: 0.01em;
+        }
+        .anamnese-hero-arrow {
+          font-size: 16px;
+          display: inline-block;
+          transition: transform 0.3s ease;
+          opacity: 0.7;
+        }
+        .anamnese-hero-btn:hover .anamnese-hero-arrow {
+          transform: translateX(5px);
+          opacity: 1;
+        }
+        @keyframes anamnesePulseGlow {
+          0%, 100% { box-shadow: 0 4px 20px rgba(94,179,179,0.2), inset 0 0 0 2px rgba(94,179,179,0.35); }
+          50% { box-shadow: 0 4px 24px rgba(94,179,179,0.35), inset 0 0 0 2px rgba(94,179,179,0.6); }
+        }
+        @keyframes anamneseShimmer {
+          0% { left: -100%; opacity: 0; }
+          20% { opacity: 1; }
+          80% { opacity: 1; }
+          100% { left: 150%; opacity: 0; }
+        }
+        @keyframes anamneseIconFloat {
+          0%, 100% { transform: translateY(0) rotate(0deg); }
+          30% { transform: translateY(-3px) rotate(-5deg); }
+          60% { transform: translateY(-1px) rotate(3deg); }
+        }
+      </style>
     </div>
   </section>
 
@@ -925,7 +1012,8 @@
           title: "Moderne Zahnmedizin im Wohlfühl-Ambiente",
           subtitle: "Ihre Gesundheit und Ihr Wohlbefinden stehen bei uns an erster Stelle",
           exploreBtn: "Mehr erfahren",
-          contactBtn: "Termin vereinbaren"
+          contactBtn: "Termin vereinbaren",
+          anamneseBtn: "📋 Anamnesebogen ausfüllen"
         },
         about: {
           title: "Über unsere Praxis",
@@ -1065,7 +1153,8 @@
           title: "Modern Dentistry in a Comfortable Atmosphere",
           subtitle: "Your health and wellbeing are our top priority",
           exploreBtn: "Learn More",
-          contactBtn: "Book Appointment"
+          contactBtn: "Book Appointment",
+          anamneseBtn: "📋 Fill Medical History Form"
         },
         about: {
           title: "About Our Practice",
@@ -1205,7 +1294,8 @@
           title: "NHA KHOA HIỆN ĐẠI TRONG KHÔNG GIAN THOẢI MÁI",
           subtitle: "Sức khỏe và hạnh phúc của bạn là ưu tiên hàng đầu của chúng tôi",
           exploreBtn: "Tìm hiểu thêm",
-          contactBtn: "Đặt lịch hẹn"
+          contactBtn: "Đặt lịch hẹn",
+          anamneseBtn: "📋 Điền phiếu tiền sử bệnh"
         },
         about: {
           title: "Chăm sóc nha khoa với trái tim",
@@ -1345,7 +1435,8 @@
           title: "Современная стоматология в комфортной атмосфере",
           subtitle: "Ваше здоровье и благополучие являются нашим главным приоритетом",
           exploreBtn: "Узнать больше",
-          contactBtn: "Записаться на прием"
+          contactBtn: "Записаться на прием",
+          anamneseBtn: "📋 Заполнить анкету пациента"
         },
         about: {
           title: "О нашей клинике",
@@ -1487,7 +1578,8 @@
           title: "طب الأسنان الحديث في جو مريح",
           subtitle: "صحتك ورفاهيتك هما أولويتنا القصوى",
           exploreBtn: "اعرف المزيد",
-          contactBtn: "احجز موعد"
+          contactBtn: "احجز موعد",
+          anamneseBtn: "📋 ملء استمارة التاريخ الطبي"
         },
         about: {
           title: "عن عيادتنا",

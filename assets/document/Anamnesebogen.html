@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Anamnesebogen – Zahnarztpraxen Seitschenko-Dinh</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Arial',Helvetica,sans-serif;font-size:9pt;color:#1a1a1a;background:#fff;}
+
+/* ── PAGE ── */
+.page{width:210mm;min-height:297mm;padding:14mm 16mm 18mm 16mm;position:relative;background:#fff;}
+.page+.page{page-break-before:always;}
+
+/* ── HEADER ── */
+.header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8mm;}
+.logo-block{display:flex;flex-direction:column;}
+.logo-name{font-size:22pt;font-weight:900;letter-spacing:-0.5px;color:#1a1a1a;line-height:1;}
+.logo-name span{color:#5eb3b3;}
+.logo-sub{font-size:7.5pt;color:#888;margin-top:2px;}
+.contact-block{text-align:left;font-size:8pt;color:#444;line-height:1.7;}
+.contact-block .ci{display:flex;align-items:center;gap:5px;}
+.contact-block .ci-icon{width:12px;text-align:center;font-size:8pt;color:#5eb3b3;}
+
+/* ── BIG TITLE ── */
+.main-title{font-size:22pt;font-weight:900;letter-spacing:3px;color:#1a1a1a;margin-bottom:5mm;text-transform:uppercase;}
+
+/* ── INTRO ── */
+.intro-subtitle{font-size:12pt;color:#5eb3b3;font-weight:400;margin-bottom:3mm;}
+.intro-text{font-size:8.5pt;color:#555;line-height:1.55;margin-bottom:6mm;}
+
+/* ── SECTION HEADING ── */
+.sec{font-size:8.5pt;font-weight:700;color:#5eb3b3;letter-spacing:1px;text-transform:uppercase;margin:5mm 0 3mm 0;border-bottom:0.5pt solid #5eb3b3;padding-bottom:1.5mm;}
+
+/* ── FORM FIELDS ── */
+.frow{display:flex;gap:6mm;margin-bottom:3.5mm;align-items:flex-end;}
+.fl{flex:1;}
+.fl.w15{flex:0 0 15%;max-width:15%;}
+.fl.w20{flex:0 0 20%;max-width:20%;}
+.fl.w25{flex:0 0 25%;max-width:25%;}
+.fl.w30{flex:0 0 30%;max-width:30%;}
+.fl.w35{flex:0 0 35%;max-width:35%;}
+.fl.w40{flex:0 0 40%;max-width:40%;}
+.fl.w50{flex:0 0 50%;max-width:50%;}
+.fl.w55{flex:0 0 55%;max-width:55%;}
+.fl.w60{flex:0 0 60%;max-width:60%;}
+.fl.w65{flex:0 0 65%;max-width:65%;}
+.fl label{display:block;font-size:7pt;color:#999;margin-bottom:1px;}
+.fl .ul{border-bottom:0.75pt solid #aaa;height:13px;width:100%;}
+.fl .ul2{border-bottom:0.75pt solid #aaa;height:16px;width:100%;margin-top:2px;}
+
+/* side label */
+.side-label{font-size:8.5pt;font-weight:700;color:#1a1a1a;min-width:28mm;padding-top:2px;}
+.side-label small{font-size:7pt;font-weight:400;color:#999;display:block;}
+
+.frow-labeled{display:flex;gap:4mm;margin-bottom:3.5mm;align-items:flex-end;}
+
+/* ── VERSICHERUNG ── */
+.vers-row{display:flex;gap:8mm;margin-bottom:3mm;align-items:flex-start;}
+.vers-field{flex:0 0 38%;}
+.vers-options{flex:1;display:flex;gap:6mm;}
+.vers-col{flex:1;}
+.radio-item{display:flex;align-items:center;gap:4px;font-size:8.5pt;margin-bottom:1.5mm;}
+.radio-item .rb{width:11px;height:11px;border:1pt solid #888;border-radius:50%;display:inline-block;flex-shrink:0;}
+.sub-items{margin-left:15px;}
+.sub-label{font-size:8pt;color:#999;font-style:italic;margin:1.5mm 0 1mm 0;}
+
+/* ── PAGE 2 COLUMNS ── */
+.p2cols{display:flex;gap:8mm;}
+.p2col{flex:1;}
+
+/* ── JA/NEIN TABLE ── */
+.jn-block{margin-bottom:4mm;}
+.jn-title{font-size:8.5pt;font-weight:700;color:#1a1a1a;margin-bottom:1.5mm;}
+.jn-header{display:flex;justify-content:flex-end;font-size:7pt;font-weight:700;color:#888;margin-bottom:0.5mm;gap:8px;padding-right:1px;}
+.jn-row{display:flex;align-items:center;margin-bottom:1mm;}
+.jn-row .jn-q{flex:1;font-size:8.5pt;line-height:1.3;}
+.jn-row .jn-q.indent{padding-left:8px;font-size:8pt;color:#555;}
+.jn-row .jn-q.sub-note{padding-left:8px;font-size:7.5pt;color:#888;font-style:italic;}
+.jn-row .jn-yn{display:flex;gap:8px;flex-shrink:0;width:32px;}
+.jn-row .jn-yn .rb{width:11px;height:11px;border:1pt solid #888;border-radius:50%;display:inline-block;flex-shrink:0;}
+.jn-row .jn-yn-empty{width:32px;flex-shrink:0;}
+.jn-underline{border-bottom:0.5pt solid #bbb;height:11px;margin:1mm 0 1.5mm 8px;}
+
+/* medication list */
+.med-item{display:flex;align-items:center;gap:4px;font-size:8.5pt;margin-bottom:1mm;}
+.med-item .dot{width:4px;height:4px;background:#aaa;border-radius:50%;flex-shrink:0;margin-left:6px;}
+.med-underline{border-bottom:0.5pt solid #bbb;height:11px;flex:1;}
+
+/* ── MUNDGESUNDHEIT ── */
+.mg-row{display:flex;gap:8mm;margin-top:3mm;}
+.mg-left{flex:0 0 45%;}
+.mg-right{flex:1;}
+
+/* ── HINWEISE ── */
+.hinweise{margin-top:4mm;}
+.hinweise p{font-size:7.5pt;color:#444;line-height:1.5;margin-bottom:2mm;}
+.hinweise p strong{color:#1a1a1a;}
+.hinweise .confirm{font-size:8pt;font-weight:700;color:#1a1a1a;margin:3mm 0 2mm 0;line-height:1.5;}
+.hinweise .confirm-sub{font-size:7.5pt;color:#555;line-height:1.5;margin-bottom:3mm;}
+
+/* ── SIGNATURE ── */
+.sig-row{display:flex;gap:10mm;margin-top:4mm;align-items:flex-end;}
+.sig-block{flex:1;}
+.sig-block .sig-line{border-bottom:0.75pt solid #555;height:16px;}
+.sig-block .sig-lbl{font-size:7pt;color:#888;margin-top:2px;}
+
+/* ── BITTE WENDEN ── */
+.bitte-wenden{
+  position:absolute;
+  right:-3mm;
+  bottom:40mm;
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  background:#5eb3b3;
+  color:#fff;
+  font-size:8pt;
+  font-weight:700;
+  letter-spacing:1px;
+  padding:8px 4px;
+  border-radius:3px 0 0 3px;
+}
+
+/* ── PRINT ── */
+@media print{
+  body{background:#fff;}
+  .no-print{display:none!important;}
+  .page{padding:12mm 15mm 16mm 15mm;}
+  .page+.page{page-break-before:always;}
+}
+.print-bar{text-align:center;padding:10px;background:#5eb3b3;position:sticky;top:0;z-index:99;}
+.print-bar button{background:#fff;color:#5eb3b3;border:none;font-size:11pt;font-weight:700;padding:7px 28px;border-radius:30px;cursor:pointer;}
+
+.divider{border:none;border-top:0.75pt solid #ddd;margin:4mm 0;}
+</style>
+</head>
+<body>
+
+<div class="print-bar no-print">
+  <button onclick="window.print()">🖨 Drucken / Print / In ra</button>
+</div>
+
+<!-- ══════════════════════ SEITE 1 ══════════════════════ -->
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo-block">
+      <div class="logo-name">Seitschenko<span>-Dinh</span></div>
+      <div class="logo-sub">Zahnarztpraxen · Ihre Qualitäts- und Familienpraxis</div>
+    </div>
+    <div class="contact-block">
+      <div class="ci"><span class="ci-icon">📍</span> Schwarzbach 2, 42277 Wuppertal</div>
+      <div class="ci"><span class="ci-icon">📍</span> Loher Str. 40, 42283 Wuppertal</div>
+      <div class="ci"><span class="ci-icon">📞</span> 0202 660828 &nbsp;|&nbsp; 0202 451642</div>
+      <div class="ci"><span class="ci-icon">✉</span> info@seitschenko-dinh.de</div>
+      <div class="ci"><span class="ci-icon">🌐</span> www.seitschenko-dinh.de</div>
+    </div>
+  </div>
+
+  <!-- TITLE -->
+  <div class="main-title">Anamnesebogen</div>
+
+  <!-- INTRO -->
+  <div class="intro-subtitle">Liebe Patientin, lieber Patient,</div>
+  <div class="intro-text">
+    bevor wir uns über Ihre zahnmedizinischen Probleme und Wünsche persönlich unterhalten können, benötigen
+    wir neben den Angaben zu Ihrer Person auch Auskünfte über Ihren allgemeinen Gesundheitszustand (Rückseite
+    des Blattes). Dies ist wichtig, um mögliche Risiken zu erkennen und damit angemessen umzugehen. Wir bitten
+    Sie, den Erhebungsbogen gewissenhaft und vollständig auszufüllen. Er wird Ihren persönlichen Unterlagen
+    beigefügt. Alle Angaben unterliegen selbstverständlich der ärztlichen Schweigepflicht.
+  </div>
+
+  <!-- FRAGEN ZUM PATIENTEN -->
+  <div class="sec">Fragen zum Patienten</div>
+
+  <div class="frow-labeled">
+    <div class="side-label">Frau / Herr</div>
+    <div class="fl"><label>Nachname</label><div class="ul"></div></div>
+    <div class="fl"><label>Vorname</label><div class="ul"></div></div>
+  </div>
+
+  <div class="frow-labeled">
+    <div class="side-label" style="min-width:28mm;"></div>
+    <div class="fl"><label>Geburtsdatum</label><div class="ul"></div></div>
+    <div class="fl"><label>Geburtsort</label><div class="ul"></div></div>
+  </div>
+
+  <div class="frow-labeled">
+    <div class="side-label">Anschrift</div>
+    <div class="fl w55"><label>Straße und Hausnummer</label><div class="ul"></div></div>
+    <div class="fl w20"><label>Postleitzahl</label><div class="ul"></div></div>
+    <div class="fl"><label>Ort</label><div class="ul"></div></div>
+  </div>
+
+  <div class="frow-labeled">
+    <div class="side-label">Kontakt</div>
+    <div class="fl"><label>Mobiltelefonnummer</label><div class="ul"></div></div>
+    <div class="fl"><label>Festnetznummer</label><div class="ul"></div></div>
+    <div class="fl"><label>E-Mail-Adresse</label><div class="ul"></div></div>
+  </div>
+
+  <div class="frow-labeled">
+    <div class="side-label">Arbeitgeber<small>(freiwillige Angabe)</small></div>
+    <div class="fl"><label>Name</label><div class="ul"></div></div>
+    <div class="fl"><label>Telefon dienstlich</label><div class="ul"></div></div>
+    <div class="fl"><label>Beruf</label><div class="ul"></div></div>
+  </div>
+
+  <div class="frow-labeled">
+    <div class="side-label">Hausarzt<small>(falls vorhanden)</small></div>
+    <div class="fl"><label>Nachname</label><div class="ul"></div></div>
+    <div class="fl w55"><label>Straße und Hausnummer</label><div class="ul"></div></div>
+    <div class="fl w20"><label>Postleitzahl</label><div class="ul"></div></div>
+    <div class="fl"><label>Ort</label><div class="ul"></div></div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- FRAGEN ZUR VERSICHERUNG -->
+  <div class="sec">Fragen zur Versicherung</div>
+
+  <div class="vers-row">
+    <div class="vers-field">
+      <div class="side-label" style="margin-bottom:2mm;">Versicherung</div>
+      <label style="font-size:7pt;color:#999;">Name der Versicherung/Krankenkasse</label>
+      <div class="ul"></div>
+    </div>
+    <div class="vers-options">
+      <div class="vers-col">
+        <div class="radio-item"><span class="rb"></span> gesetzlich versichert</div>
+        <div class="radio-item"><span class="rb"></span> zahnzusatzversichert</div>
+        <div class="sub-label">in den Bereichen:</div>
+        <div class="sub-items">
+          <div class="radio-item"><span class="rb"></span> Füllungen</div>
+          <div class="radio-item"><span class="rb"></span> Prophylaxe</div>
+          <div class="radio-item"><span class="rb"></span> Zahnersatz</div>
+          <div class="radio-item"><span class="rb"></span> Kieferorthopädie</div>
+        </div>
+      </div>
+      <div class="vers-col">
+        <div class="radio-item"><span class="rb"></span> privat versichert</div>
+        <div class="radio-item"><span class="rb"></span> Beihilfe</div>
+        <div class="radio-item"><span class="rb"></span> Basistarif</div>
+        <div class="radio-item"><span class="rb"></span> KVB (Bundesbahn)</div>
+        <div class="radio-item"><span class="rb"></span> Postbeamtenkrankenkasse</div>
+        <div class="radio-item"><span class="rb"></span> Polizei</div>
+        <div class="radio-item"><span class="rb"></span> Knappschaft</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="font-size:8.5pt;font-weight:700;color:#5eb3b3;margin-bottom:3mm;">Falls der Patient familienversichert ist, wer ist der Hauptversicherte?</div>
+
+  <div class="frow-labeled">
+    <div class="side-label">Versicherter</div>
+    <div class="fl"><label>Nachname</label><div class="ul"></div></div>
+    <div class="fl"><label>Vorname</label><div class="ul"></div></div>
+  </div>
+  <div class="frow-labeled">
+    <div class="side-label" style="min-width:28mm;"></div>
+    <div class="fl"><label>Geburtsdatum</label><div class="ul"></div></div>
+    <div class="fl"><label>Geburtsort</label><div class="ul"></div></div>
+  </div>
+  <div class="frow-labeled">
+    <div class="side-label">Anschrift</div>
+    <div class="fl w55"><label>Straße und Hausnummer</label><div class="ul"></div></div>
+    <div class="fl w20"><label>Postleitzahl</label><div class="ul"></div></div>
+    <div class="fl"><label>Ort</label><div class="ul"></div></div>
+  </div>
+
+  <!-- BITTE WENDEN -->
+  <div class="bitte-wenden">Bitte wenden!</div>
+
+</div><!-- end page 1 -->
+
+
+<!-- ══════════════════════ SEITE 2 ══════════════════════ -->
+<div class="page">
+
+  <!-- ALLGEMEINE GESUNDHEIT -->
+  <div class="sec">Fragen zur allgemeinen Gesundheit</div>
+
+  <div class="p2cols">
+    <!-- LEFT COLUMN -->
+    <div class="p2col">
+
+      <!-- Herzerkrankungen -->
+      <div class="jn-block">
+        <div class="jn-title">Herzerkrankungen</div>
+        <div class="jn-header"><span>JA</span><span>NEIN</span></div>
+        <div class="jn-row"><span class="jn-q">Herzschwäche (Insuffizienz)</span><span class="jn-yn"><span class="rb"></span><span class="rb"></span></span></div>
+        <div class="jn-row"><span class="jn-q">Unregelmäßiger Herzschlag (Arrhythmien)</span><span class="jn-yn"><span class="rb"></span><span class="rb"></span></span></div>
+        <div class="jn-row"><span class="jn-q">Herzasthma, Angina pectoris</span><span class="jn-yn"><span class="rb"></span><span class="rb"></span></span></div>
+        <div class="jn-row"><span class="jn-q">Herzinnenhautentzündung (Endokarditis)</span><span class="jn-yn"><span class="rb"></span><span class="rb"></span></span></div>
+        <div class="jn-row"><span class="jn-q">Herzschrittmacher</span><span class="jn-yn"><span class="rb"></span><span class="rb"></span></span></div>
+        <div class="jn-row"><span class="jn-q">Herzklappenfehler, künstliche Herzklappe</span><span class="jn-yn"><span class="rb"></span><span class="rb"></span></span></div>
+        <div class="jn-row"><span class="jn-q">Zustand nach Herzinfarkt, Herz-OP, Bypass</span><span class="jn-yn"><span class="rb"></span><span class="rb"></span></span></div>
+        <div class="jn-row"><span class="jn-q indent">Wenn ja, wann? <span style="border-bottom:0.5pt solid #bbb;display:inline-block;width:35mm;">&nbsp;</span></span><span class="jn-yn-empty"></span></div>
+        <div class="jn-row"><span class="jn-q indent">Sonstige: <span style="border-bottom:0.5pt solid #bbb;display:inline-block;width:45mm;">&nbsp;</span></span><span class="jn-yn-empty"></span></div>
+      </div>
+
+      <!-- Kreislauf -->
+      <div class="jn-block">
+        <div class="jn-title">Erkrankungen Kreislauf und Gefäßsystem</div>
+        <div class="jn-header"><span>JA</span><span>NEIN</span></div>
+        <div class="jn-row"><span class="jn-q">Zu hoher Blutdruck</span><span class="jn-yn"><span class="rb"></span><span class="rb"></span></span></div>
+        <div class="jn-row"><span class="jn-q">Zu niedriger Blutdruck</span><span class="jn-yn"><span class="rb"></span><span class="rb"></span></span></div>
+        <div class="jn-row"><span class="jn-q">Ohnmachtsanfälle/Ohnmachtsneigung</span><span class="jn-yn"><span class="rb"></span><span class="rb"></span></span></div>
+        <div class="jn-row"><span class="jn-q">Schlaganfall</span><span class="jn-yn"><span class="rb"></span><span class="rb"></span></span></div>
+        <div class="jn-row"><span class="jn-q indent">Wenn ja, wann? <span style="border-bottom:0.5pt solid #bbb;display:inline-block;width:35mm;">&nbsp;</span></span><span class="jn-yn-empty"></span></div>
+        <div class="jn-row"><span class="jn-q indent">Sonstige: <span style="border-bottom:0.5pt solid #bbb;display:inline-block;width:45mm;">&nbsp;</span></span><span class="jn-yn-empty"></span></div>
+      </div>
+
+      <!-- Stoffwechsel -->
+      <div class="jn-block">
+        <div class="jn-title">Stoffwechselerkrankungen</div>
+        <div class="jn-header"><span>JA</span><span>NEIN</span></div>
+        <div class="jn-row"><span class="jn-q">Zuckerkrankheit (Diabetes)</span><span class="jn-yn"><span class="rb"></span><span class="rb"></span></span></div>
+        <div class="jn-row"><span class="jn-q">Magen-Darm-Erkrankungen</span><span class="jn-yn"><span class="rb"></span><span class="rb"></span></span></div>
+        <div class="jn-row"><span class="jn-q">Schilddrüsenerkrankungen</span><span class="jn-yn"><span class="rb"></span><span class="rb"></span></span></div>
+        <div class="jn-row"><span class="jn-q indent">Sonstige: <span style="border-bottom:0.5pt solid #bbb;display:inline-block;width:45mm;">&nbsp;</span></span><span class="jn-yn-empty"></span></div>
+      </div>
+
+      <!-- Nervensystem -->
+      <div class="jn-block">
+        <div class="jn-title">Erkrankungen des Nervensystems</div>
+        <div class="jn-header"><span>JA</span><span>NEIN</span></div>
+        <div class="jn-row"><span class="jn-q">Epilepsie</span><span class="jn-yn"><span class="rb"></span><span class="rb"></span></span></div>
+        <div class="jn-row"><span class="jn-q">Krämpfe</span><span class="jn-yn"><span class="rb"></span><span class="rb"></span></span></div>
+        <div class="jn-row"><span class="jn-q indent">Sonstige: <span style="border-bottom:0.5pt solid #bbb;display:inline-block;width:45mm;">&nbsp;</span></span><span class="jn-yn-empty"></span></div>
+      </div>
+
+      <!-- Blut -->
+      <div class="jn-block">
+        <div class="jn-title">Bluterkrankungen</div>
+        <div class="jn-header"><span>JA</span><span>NEIN</span></div>
+        <div class="jn-row"><span class="jn-q">Blutungsneigung (Hämophilie)</span><span class="jn-yn"><span class="rb"></span><span class="rb"></span></span></div>
+        <div class="jn-row"><span class="jn-q">Blutarmut (Anämie)</span><span class="jn-yn"><span class="rb"></span><span class="rb"></span></span></div>
+        <div class="jn-row"><span class="jn-q indent">Sonstige: <span style="border-bottom:0.5pt solid #bbb;display:inline-block;width:45mm;">&nbsp;</span></span><span class="jn-yn-empty"></span></div>
+      </div>
+
+      <!-- Tumor -->
+      <div class="jn-block">
+        <div class="jn-title">Tumorerkrankungen</div>
+        <div class="jn-header"><span>JA</span><span>NEIN</span></div>
+        <div class="jn-row"><span class="jn-q">Wenn ja, welche? <span style="border-bottom:0.5pt solid #bbb;display:inline-block;width:30mm;">&nbsp;</span></span><span class="jn-yn"><span class="rb"></span><span class="rb"></span></span></div>
+      </div>
+
+    </div><!-- end left col -->
+
+    <!-- RIGHT COLUMN -->
+    <div class="p2col">
+
+      <!-- Infektionskrankheiten -->
+      <div class="jn-block">
+        <div class="jn-title">Infektionskrankheiten</div>
+        <div class="jn-header"><span>JA</span><span>NEIN</span></div>
+        <div class="jn-row"><span class="jn-q">Leberentzündung (Hepatitis)</span><span class="jn-yn"><span class="rb"></span><span class="rb"></span></span></div>
+        <div class="jn-row"><span class="jn-q indent">Wenn ja, welcher Typ? <span style="border-bottom:0.5pt solid #bbb;display:inline-block;width:22mm;">&nbsp;</span></span><span class="jn-yn-empty"></span></div>
+        <div class="jn-row"><span class="jn-q">Tuberkulose</span><span class="jn-yn"><span class="rb"></span><span class="rb"></span></span></div>
+        <div class="jn-row"><span class="jn-q">HIV</span><span class="jn-yn"><span class="rb"></span><span class="rb"></span></span></div>
+        <div class="jn-row"><span class="jn-q">MRSA</span><span class="jn-yn"><span class="rb"></span><span class="rb"></span></span></div>
+        <div class="jn-row"><span class="jn-q">Chronische Atemwegserkrankung</span><span class="jn-yn"><span class="rb"></span><span class="rb"></span></span></div>
+        <div class="jn-row"><span class="jn-q indent">Wenn ja, welche? <span style="border-bottom:0.5pt solid #bbb;display:inline-block;width:28mm;">&nbsp;</span></span><span class="jn-yn-empty"></span></div>
+        <div class="jn-row"><span class="jn-q indent">Sonstige: <span style="border-bottom:0.5pt solid #bbb;display:inline-block;width:35mm;">&nbsp;</span></span><span class="jn-yn-empty"></span></div>
+      </div>
+
+      <!-- Sonstige Erkrankungen -->
+      <div class="jn-block">
+        <div class="jn-title">Sonstige Erkrankungen oder Infektionen?</div>
+        <div class="jn-header"><span>JA</span><span>NEIN</span></div>
+        <div class="jn-row"><span class="jn-q">Wenn ja, welche? <span style="border-bottom:0.5pt solid #bbb;display:inline-block;width:30mm;">&nbsp;</span></span><span class="jn-yn"><span class="rb"></span><span class="rb"></span></span></div>
+      </div>
+
+      <!-- Allergien -->
+      <div class="jn-block">
+        <div class="jn-title">Allergien (Unverträglichkeit, Überempfindlichkeit)</div>
+        <div class="jn-header"><span>JA</span><span>NEIN</span></div>
+        <div class="jn-row"><span class="jn-q">Allergie gegen Antibiotika/Penicillin</span><span class="jn-yn"><span class="rb"></span><span class="rb"></span></span></div>
+        <div class="jn-row"><span class="jn-q">Allergie gegen andere Medikamente oder Stoffe<br><span style="font-size:7.5pt;">(z.&nbsp;B. Latex, Metalle etc.)</span></span><span class="jn-yn" style="align-self:flex-start;margin-top:2px;"><span class="rb"></span><span class="rb"></span></span></div>
+        <div class="jn-row"><span class="jn-q indent">Wenn ja, gegen welche?</span><span class="jn-yn-empty"></span></div>
+        <div class="jn-underline"></div>
+        <div class="jn-row"><span class="jn-q sub-note">(Bitte legen Sie Ihren Allergiepass vor!)</span><span class="jn-yn-empty"></span></div>
+      </div>
+
+      <!-- Medikamente -->
+      <div class="jn-block">
+        <div class="jn-title">Einnahme von Medikamenten</div>
+        <div class="jn-header"><span>JA</span><span>NEIN</span></div>
+        <div class="jn-row"><span class="jn-q">Nehmen Sie zurzeit Medikamente ein?</span><span class="jn-yn"><span class="rb"></span><span class="rb"></span></span></div>
+        <div class="jn-row"><span class="jn-q indent">Wenn ja, welche?</span><span class="jn-yn-empty"></span></div>
+        <div class="med-item"><span class="dot"></span><span style="font-size:8.5pt;">Blutverdünnende Medikamente (z.B. ASS,</span></div>
+        <div style="padding-left:18px;font-size:8.5pt;margin-bottom:1mm;">Marcumar, Heparin) <span style="border-bottom:0.5pt solid #bbb;display:inline-block;width:20mm;">&nbsp;</span></div>
+        <div class="med-item"><span class="dot"></span><span style="font-size:8.5pt;">Bisphosphonate <span style="border-bottom:0.5pt solid #bbb;display:inline-block;width:25mm;">&nbsp;</span></span></div>
+        <div class="med-item"><span class="dot"></span><span style="font-size:8.5pt;">Antidepressiva <span style="border-bottom:0.5pt solid #bbb;display:inline-block;width:28mm;">&nbsp;</span></span></div>
+        <div class="med-item"><span class="dot"></span><span style="font-size:8.5pt;">Herzmedikamente <span style="border-bottom:0.5pt solid #bbb;display:inline-block;width:25mm;">&nbsp;</span></span></div>
+        <div style="font-size:8.5pt;margin-bottom:1mm;">Sonstige Medikamente: <span style="border-bottom:0.5pt solid #bbb;display:inline-block;width:28mm;">&nbsp;</span></div>
+      </div>
+
+      <!-- Drogenkonsum -->
+      <div class="jn-block">
+        <div class="jn-title">Drogenkonsum</div>
+        <div class="jn-header"><span>JA</span><span>NEIN</span></div>
+        <div class="jn-row"><span class="jn-q">Rauchen Sie?</span><span class="jn-yn"><span class="rb"></span><span class="rb"></span></span></div>
+        <div class="jn-row"><span class="jn-q">Besteht eine Alkoholabhängigkeit?</span><span class="jn-yn"><span class="rb"></span><span class="rb"></span></span></div>
+        <div class="jn-row"><span class="jn-q">Besteht eine andere Drogenabhängigkeit?<br><span style="font-size:7.5pt;">(auch Aufputschmittel, Schlafmittel)</span></span><span class="jn-yn" style="align-self:flex-start;margin-top:2px;"><span class="rb"></span><span class="rb"></span></span></div>
+      </div>
+
+      <!-- Schwangerschaft -->
+      <div class="jn-block">
+        <div class="jn-title">Patientinnen: Sind Sie schwanger?</div>
+        <div class="jn-header"><span>JA</span><span>NEIN</span></div>
+        <div class="jn-row"><span class="jn-q">Wenn ja, welche Woche? <span style="border-bottom:0.5pt solid #bbb;display:inline-block;width:20mm;">&nbsp;</span></span><span class="jn-yn"><span class="rb"></span><span class="rb"></span></span></div>
+      </div>
+
+    </div><!-- end right col -->
+  </div><!-- end p2cols -->
+
+  <hr class="divider">
+
+  <!-- MUNDGESUNDHEIT -->
+  <div class="sec">Fragen zur Mundgesundheit</div>
+
+  <div class="mg-row">
+    <div class="mg-left">
+      <div style="font-size:8.5pt;margin-bottom:2mm;">Wann wurden Sie zuletzt im Kopf-Kiefer-Zahnbereich<br>geröntgt? Vor ca. <span style="border-bottom:0.5pt solid #bbb;display:inline-block;width:14mm;">&nbsp;</span> Monaten, bei Zahnarzt / Arzt:</div>
+      <div class="frow" style="margin-bottom:0;">
+        <div class="fl"><label>Name Arzt / Arztpraxis</label><div class="ul"></div></div>
+        <div class="fl"><label>Ort der Praxis</label><div class="ul"></div></div>
+      </div>
+    </div>
+    <div class="mg-right">
+      <div class="jn-header" style="margin-bottom:1mm;"><span>JA</span><span>NEIN</span></div>
+      <div class="jn-row"><span class="jn-q">Knirschen oder pressen Sie mit den Zähnen?</span><span class="jn-yn"><span class="rb"></span><span class="rb"></span></span></div>
+      <div class="jn-row"><span class="jn-q">Haben Sie Zahnfleischprobleme? Zahnfleischbluten?</span><span class="jn-yn"><span class="rb"></span><span class="rb"></span></span></div>
+      <div class="jn-row"><span class="jn-q">Leiden Sie unter Mundgeruch?</span><span class="jn-yn"><span class="rb"></span><span class="rb"></span></span></div>
+      <div style="font-size:8.5pt;margin-top:3mm;">Wie möchten Sie von uns rechtzeitig an Ihre<br>nächste Kontrolluntersuchung erinnert werden?</div>
+      <div style="display:flex;gap:8mm;margin-top:2mm;">
+        <div class="radio-item"><span class="rb"></span> per Postkarte</div>
+        <div class="radio-item"><span class="rb"></span> per E-Mail</div>
+        <div class="radio-item"><span class="rb"></span> per SMS</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- WICHTIGE HINWEISE -->
+  <div class="sec">Wichtige Hinweise</div>
+  <div class="hinweise">
+    <p><strong>Behandlungstermine:</strong> Wir sind sehr bemüht, Ihnen lange Wartezeiten zu ersparen. Bedenken Sie jedoch, dass auch unangemeldete Schmerzpatienten ein Recht auf Behandlung haben und es dadurch im Einzelfall zu leichten Verzögerungen kommen kann. Können Sie einen vereinbarten Termin einmal nicht wahrnehmen, dann bitten wir Sie, diesen mindestens 24 Stunden vorher abzusagen. Wir sind persönlich, telefonisch und per E-Mail erreichbar. An Patienten, die ihre Termine mehrfach ohne Ankündigung versäumen, kann leider kein fester Termin mehr vergeben werden.</p>
+    <p><strong>Gesundheitskarte der gesetzlich Versicherten:</strong> Die Vorlage Ihrer Gesundheitskarte ist bei jedem Besuch zwingend erforderlich. Wir behalten uns vor, Patienten nicht zu behandeln, wenn diese ihre Gesundheitskarte nicht vorlegen.</p>
+    <p><strong>Fahrtauglichkeit:</strong> Wir möchten Sie darauf hinweisen, dass Ihre Fahrtauglichkeit nach lokaler Betäubung eingeschränkt sein kann.</p>
+    <p><strong>Mitteilung von Änderungen:</strong> Bitte teilen Sie uns Änderungen Ihrer persönlichen Daten oder Ihres Gesundheitszustandes unverzüglich mit.</p>
+
+    <div class="confirm">Ich bestätige, dass ich den Anamnesebogen gelesen und alle Fragen verstanden habe. Ich versichere, die Angaben auf diesem Bogen vollständig und inhaltlich richtig gemacht zu haben. Die wichtigen Hinweise am Ende des Bogens habe ich zur Kenntnis genommen.</div>
+    <div class="confirm-sub">Ich willige ein, dass meine personenbezogenen Daten ausschließlich zum Zweck meiner zahnärztlichen Behandlung gespeichert und verarbeitet werden dürfen (ausführliche Informationen zum Datenschutz und zu Ihren Rechten finden Sie in unserer Datenschutzerklärung auf <strong>seitschenko-dinh.de</strong>).</div>
+  </div>
+
+  <!-- SIGNATURE -->
+  <div class="sig-row">
+    <div class="sig-block" style="flex:0 0 35%;">
+      <div class="sig-line"></div>
+      <div class="sig-lbl">Datum</div>
+    </div>
+    <div class="sig-block">
+      <div class="sig-line"></div>
+      <div class="sig-lbl">Unterschrift Patient (bzw. gesetzlicher Vertreter) und Hauptversicherter (falls abweichend)</div>
+    </div>
+  </div>
+
+</div><!-- end page 2 -->
+
+</body>
+</html>
