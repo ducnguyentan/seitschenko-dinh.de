@@ -8,7 +8,14 @@
 <link href="../css/tailwind.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
+/* Prevent horizontal scroll on screen only */
+@media screen {
+  html, body { overflow-x: hidden; }
+  .anamnese-wrapper { overflow-x: hidden; }
+}
+
 /* ── HERO SECTION ANIMATIONS ── */
 .anamnese-hero-wrapper {
   position: relative;
@@ -393,6 +400,7 @@
   font-size: 13px;
   color: #2d3748;
   flex: 1;
+  min-width: 0;
   line-height: 1.45;
 }
 .af-yn-label.sub {
@@ -464,14 +472,41 @@
 }
 .af-health-cat:first-child { margin-top: 0; }
 
-/* ── Two-column health layout ── */
+/* ── Health layout: 2 columns on screen (buttons always fit) ── */
 .af-health-cols {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0 32px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 24px;
 }
-@media (max-width: 700px) {
+.af-health-cols > div {
+  min-width: 0;
+}
+/* Allow fixed-width sub-row inputs to shrink */
+.af-health-cols .af-yn-row > div[style*="flex:0"] {
+  flex-shrink: 1 !important;
+  min-width: 0 !important;
+}
+.af-health-cols .af-yn-row > div[style*="flex:0"] input {
+  width: 100% !important;
+  min-width: 0 !important;
+}
+.af-health-cols .af-yn-label {
+  min-width: 0;
+  word-break: break-word;
+}
+/* 3rd div spans full width, content flows as newspaper 2-col */
+.af-health-cols > div:nth-child(3) {
+  grid-column: 1 / -1;
+  column-count: 2;
+  column-gap: 24px;
+}
+.af-health-cols > div:nth-child(3) .af-health-cat,
+.af-health-cols > div:nth-child(3) .af-yn-row {
+  break-inside: avoid;
+}
+@media (max-width: 600px) {
   .af-health-cols { grid-template-columns: 1fr; }
+  .af-health-cols > div:nth-child(3) { column-count: 1; }
 }
 
 /* ── Checkboxes ── */
@@ -743,23 +778,432 @@
 }
 @keyframes spinnerRot { to { transform: rotate(360deg); } }
 
-/* ── PRINT ── */
+/* ── PRINT: color-adjust base (extended below) ── */
 @media print {
-  .no-print { display:none !important; }
-  header, footer, .anamnese-hero-wrapper, .page-chrome { display:none !important; }
-  .anamnese-wrapper { background:#fff !important; padding:0 !important; }
-  .af-container { max-width: 100% !important; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+}
+
+/* ── STANDORT SELECTOR ── */
+.af-standort-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+@media (max-width: 600px) { .af-standort-grid { grid-template-columns: 1fr; } }
+.af-standort-option { display: block; cursor: pointer; }
+.af-standort-option input[type="radio"] { display: none; }
+.af-standort-card-inner {
+  border: 2px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 18px 16px 16px;
+  transition: all 0.25s ease;
+  display: flex; flex-direction: column; gap: 3px;
+  background: #f8fafc; position: relative;
+}
+.af-standort-option:hover .af-standort-card-inner { border-color: #a0d4d4; background: #f0fafa; }
+.af-standort-option input:checked + .af-standort-card-inner {
+  border-color: #5eb3b3;
+  background: linear-gradient(135deg, #f0fafa 0%, #e6f7f7 100%);
+  box-shadow: 0 0 0 3px rgba(94,179,179,0.15), 0 4px 16px rgba(94,179,179,0.1);
+}
+.af-standort-check {
+  position: absolute; top: 12px; right: 12px;
+  width: 22px; height: 22px; border-radius: 50%;
+  border: 2px solid #cbd5e0; background: white;
+  transition: all 0.2s; display: flex; align-items: center; justify-content: center;
+}
+.af-standort-check svg { display: none; }
+.af-standort-option input:checked + .af-standort-card-inner .af-standort-check { background: #5eb3b3; border-color: #5eb3b3; }
+.af-standort-option input:checked + .af-standort-card-inner .af-standort-check svg { display: block; }
+.af-standort-num {
+  width: 30px; height: 30px;
+  background: linear-gradient(135deg, #5eb3b3, #3d9090);
+  border-radius: 50%; color: white; font-weight: 700; font-size: 15px;
+  display: flex; align-items: center; justify-content: center; margin-bottom: 10px;
+}
+.af-standort-name { font-weight: 700; font-size: 16px; color: #2d7d7d; }
+.af-standort-addr { font-size: 13px; color: #4a5568; margin-top: 2px; }
+.af-standort-tel { font-size: 12px; color: #718096; }
+.af-standort-error { color: #e53e3e; font-size: 12px; margin-top: 10px; font-weight: 500; display: none; }
+.af-standort-error.show { display: block; }
+
+@media print {
+  /* ════════════════════════════════════════
+     PAGE SETUP
+  ════════════════════════════════════════ */
+  @page { size: A4 portrait; margin: 0; }
+
+  /* ════════════════════════════════════════
+     HIDE CHROME
+  ════════════════════════════════════════ */
+  .no-print, header, footer, .af-print-bar,
+  .anamnese-hero-wrapper, #orbit-container,
+  #chat-widget-toggle, #chat-widget,
+  .chat-widget-container, .orbit-arm, .orbit-ball,
+  #successModal, #errorToast, #submitBtn,
+  #data-note, #health-instruction, .af-standort-error,
+  #arbeitgeber-block, #hausarzt-block {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* ════════════════════════════════════════
+     LETTERHEAD
+  ════════════════════════════════════════ */
+  body::before {
+    content: "ZAHNARZTPRAXEN SEITSCHENKO-DINH — Anamnesebogen";
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 8.5pt;
+    font-weight: 700;
+    color: #1a3a3a;
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-bottom: 1.5pt solid #5eb3b3;
+    padding-bottom: 3pt;
+    margin-bottom: 5pt;
+  }
+
+  /* ════════════════════════════════════════
+     BASE RESET
+  ════════════════════════════════════════ */
+  html, body { overflow: visible !important; }
+  body {
+    background: #fff !important;
+    color: #111 !important;
+    margin: 0 !important;
+    padding: 10mm 14mm 10mm 10mm !important;
+    box-sizing: border-box !important;
+    width: 210mm !important;
+  }
+  .anamnese-wrapper, .af-container {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    overflow: visible !important;
+  }
+
+  /* ════════════════════════════════════════
+     CARDS — shared base
+  ════════════════════════════════════════ */
   .af-card {
     box-shadow: none !important;
-    border: 1px solid #ddd !important;
-    border-radius: 4px !important;
+    border-radius: 3pt !important;
+    border: 0.5pt solid #c0cdd8 !important;
+    padding: 4pt 7pt !important;
+    margin-bottom: 3pt !important;
+    page-break-inside: avoid;
     break-inside: avoid;
-    margin-bottom: 12px !important;
-    padding: 16px !important;
   }
-  .af-submit-btn, .af-print-bar, .af-modal-overlay, .af-toast { display:none !important; }
-  body { background:#fff !important; }
-  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+  /* ════════════════════════════════════════
+     SECTION TITLES
+  ════════════════════════════════════════ */
+  .af-section-title {
+    font-size: 6.5pt !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.8px !important;
+    padding-bottom: 2pt !important;
+    margin-bottom: 4pt !important;
+    border-bottom: 0.75pt solid #5eb3b3 !important;
+    gap: 4pt !important;
+    color: #3a8a8a !important;
+  }
+  .af-section-number {
+    width: 13px !important; height: 13px !important;
+    font-size: 7pt !important; flex-shrink: 0 !important;
+  }
+  .af-section-title > svg { display: none !important; }
+
+  /* ════════════════════════════════════════
+     FIELDS — labels & inputs
+  ════════════════════════════════════════ */
+  .af-field { gap: 2pt !important; margin-bottom: 0 !important; }
+  .af-field[style*="margin-bottom"] { margin-bottom: 4pt !important; }
+
+  .af-label {
+    font-size: 6pt !important;
+    letter-spacing: 0.3px !important;
+    color: #4a9090 !important;
+    text-transform: uppercase !important;
+    margin: 0 !important;
+    line-height: 1 !important;
+  }
+  .af-label .af-optional { display: none !important; }
+  .af-label[style*="margin-bottom"] { margin-bottom: 3pt !important; }
+
+  .af-input {
+    border: none !important;
+    border-bottom: 0.75pt solid #777 !important;
+    border-radius: 0 !important;
+    padding: 0.5pt 0 1.5pt !important;
+    font-size: 8pt !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    min-height: 11pt !important;
+    color: #111 !important;
+    font-family: inherit !important;
+  }
+  .af-error-msg { display: none !important; }
+
+  /* ════════════════════════════════════════
+     PATIENT GRID — 3 columns
+  ════════════════════════════════════════ */
+  .af-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 3pt 10pt !important;
+  }
+  .af-col-full { grid-column: 1 / -1 !important; }
+
+  /* ════════════════════════════════════════
+     SUB-SECTIONS (Arbeitgeber, Hausarzt)
+  ════════════════════════════════════════ */
+  .af-card > div[style*="margin-top:22px"],
+  #arbeitgeber-block, #hausarzt-block {
+    margin-top: 8pt !important;
+    padding-top: 7pt !important;
+    border-top: 0.5pt solid #d8e4e4 !important;
+  }
+  .af-card > div[style*="margin-top:20px"] { margin-top: 6pt !important; }
+
+  /* ════════════════════════════════════════
+     RADIO PILLS
+  ════════════════════════════════════════ */
+  .af-radio-group { gap: 4pt !important; flex-wrap: wrap !important; }
+  .af-radio-pill label {
+    padding: 1.5pt 7pt !important;
+    font-size: 7pt !important;
+    border-radius: 20pt !important;
+    border: 0.75pt solid #aaa !important;
+    background: #fff !important;
+    box-shadow: none !important;
+    color: #333 !important;
+  }
+  .af-radio-pill input[type="radio"]:checked + label {
+    background: #5eb3b3 !important;
+    border-color: #5eb3b3 !important;
+    color: #fff !important;
+    box-shadow: none !important;
+  }
+
+  /* ════════════════════════════════════════
+     INSURANCE CHECKBOXES — 3 columns
+  ════════════════════════════════════════ */
+  .af-check-group {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 3pt 6pt !important;
+  }
+  .af-check-item { font-size: 7pt !important; gap: 3pt !important; color: #222 !important; }
+  .af-check-item input[type="checkbox"] { width: 9px !important; height: 9px !important; flex-shrink: 0 !important; }
+  .af-check-subgroup { display: none !important; }
+
+  /* ── Family insurance (hidden expanded fields) ── */
+  #hv-fields { display: none !important; }
+  #anamneseForm > div:nth-child(3) .af-radio-group { margin-top: 4pt !important; }
+
+  /* Health card allowed to break internally — div1+2 on page 1, div3 forced to page 2 */
+  #anamneseForm > div:nth-child(4) {
+    page-break-inside: auto !important;
+    break-inside: auto !important;
+  }
+
+  /* ════════════════════════════════════════
+     HEALTH SECTION — 2-col grid in print (halves height; buttons fit at ~89mm/col)
+  ════════════════════════════════════════ */
+  .af-health-cols {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0 6pt !important;
+  }
+  .af-health-cols > div { min-width: 0 !important; }
+  /* 3rd div: full width, 2 newspaper columns — forced to page 2 */
+  .af-health-cols > div:nth-child(3) {
+    grid-column: 1 / -1 !important;
+    display: block !important;
+    break-before: page !important;
+    page-break-before: always !important;
+    padding-top: 10mm !important;
+    column-count: 2 !important;
+    column-gap: 6pt !important;
+  }
+  .af-health-cols > div:nth-child(3) .af-health-cat,
+  .af-health-cols > div:nth-child(3) .af-yn-row {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+  /* Sub-row text inputs stay proportional */
+  .af-health-cols .af-yn-row > div[style*="flex:0"] {
+    flex: 0 0 26% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+  .af-health-cols .af-yn-row > div[style*="flex:0"] .af-yn-text-input {
+    width: 100% !important;
+  }
+
+  /* ── Dental section — flows naturally after health div3 on page 2 ── */
+  #anamneseForm > div:nth-child(5) {
+    page-break-before: auto !important;
+    break-before: auto !important;
+  }
+  #anamneseForm > div:nth-child(5) .af-grid { margin-bottom: 4pt !important; }
+  #anamneseForm > div:nth-child(5) > div:last-child {
+    margin-top: 5pt !important;
+    padding-top: 4pt !important;
+    border-top: 0.5pt solid #e0eaea !important;
+  }
+  #anamneseForm > div:nth-child(5) .af-input {
+    font-size: 7.5pt !important;
+    min-height: 10pt !important;
+    padding: 0 0 1pt !important;
+  }
+
+  /* Consent flows naturally on page 2 (no forced break) */
+  #anamneseForm > div:nth-child(6) {
+    page-break-before: auto !important;
+    break-before: auto !important;
+  }
+
+  .af-health-cat {
+    font-size: 6pt !important;
+    font-weight: 700 !important;
+    margin: 1.5pt 0 0 !important;
+    padding: 0.5pt 4pt !important;
+    border-left: 2.5pt solid #5eb3b3 !important;
+    background: #f4f9f9 !important;
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+    color: #1a3030 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.3px !important;
+  }
+  .af-health-cat:first-child { margin-top: 0 !important; }
+
+  /* ── YN rows ── */
+  .af-yn-row {
+    padding: 0.5pt 0 !important;
+    border-bottom: 0.4pt solid #eaeaea !important;
+    gap: 3pt !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+  .af-yn-label {
+    font-size: 6.5pt !important;
+    line-height: 1.3 !important;
+    color: #1a1a1a !important;
+    min-width: 0 !important;
+  }
+  .af-yn-label.sub { font-size: 6pt !important; padding-left: 4pt !important; color: #555 !important; }
+  .af-yn-label.sub-note { display: none !important; }
+  .af-yn-btns { gap: 2pt !important; flex-shrink: 0 !important; }
+  .af-yn-btn {
+    padding: 1pt 3pt !important;
+    font-size: 5.5pt !important;
+    border-radius: 20pt !important;
+    border: 0.6pt solid #bbb !important;
+    background: #fff !important;
+    box-shadow: none !important;
+    min-width: 14pt !important;
+    letter-spacing: 0 !important;
+    color: #444 !important;
+    font-weight: 700 !important;
+    white-space: nowrap !important;
+  }
+  .af-yn-btn.active-yes { background: #5eb3b3 !important; border-color: #5eb3b3 !important; color: #fff !important; box-shadow: none !important; }
+  .af-yn-btn.active-no  { background: #f56565 !important; border-color: #f56565 !important; color: #fff !important; box-shadow: none !important; }
+  .af-yn-text-input { font-size: 6.5pt !important; border-bottom: 0.5pt solid #aaa !important; background: transparent !important; padding: 0 1pt 1pt !important; }
+  .af-yn-spacer { display: none !important; }
+
+  /* ════════════════════════════════════════
+     STANDORT SELECTOR
+  ════════════════════════════════════════ */
+  #standortCard { padding: 3pt 7pt !important; margin-bottom: 3pt !important; }
+  #standortCard .af-section-title { margin-bottom: 3pt !important; padding-bottom: 2pt !important; }
+  .af-standort-grid { display: flex !important; gap: 6pt !important; margin-top: 3pt !important; }
+  .af-standort-option { flex: 1 !important; }
+  .af-standort-card-inner {
+    padding: 3pt 7pt !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1pt !important;
+    border-radius: 3pt !important;
+    border: 0.75pt solid #9ecccc !important;
+    box-shadow: none !important;
+    background: #f5fdfd !important;
+  }
+  .af-standort-num { width: 13px !important; height: 13px !important; font-size: 7pt !important; margin-bottom: 2pt !important; }
+  .af-standort-name { font-size: 8pt !important; font-weight: 700 !important; line-height: 1.2 !important; color: #1a5a5a !important; }
+  .af-standort-addr { font-size: 6.5pt !important; line-height: 1.25 !important; color: #444 !important; margin-top: 0.5pt !important; }
+  .af-standort-tel  { font-size: 6.5pt !important; line-height: 1.25 !important; color: #666 !important; }
+  .af-standort-check { display: none !important; }
+  .af-standort-option input:checked + .af-standort-card-inner {
+    border-color: #5eb3b3 !important;
+    background: #eef9f9 !important;
+  }
+
+  /* ════════════════════════════════════════
+     SECTION 5 — FULL-PAGE SIGNATURE
+     (page-break-before: always set above)
+  ════════════════════════════════════════ */
+
+  /* 2-column notice grid — compact */
+  .af-notice-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 5pt !important;
+    margin-bottom: 8pt !important;
+  }
+  .af-notice-box {
+    padding: 5pt 7pt !important;
+    border-radius: 2pt !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+  .af-notice-box strong {
+    font-size: 7pt !important;
+    display: block !important;
+    margin-bottom: 2pt !important;
+    color: #1a5a5a !important;
+  }
+  .af-notice-box p {
+    margin: 0 !important;
+    font-size: 6.5pt !important;
+    line-height: 1.4 !important;
+    color: #333 !important;
+  }
+
+  /* Confirm checkboxes — compact */
+  .af-confirm-block { gap: 5pt !important; margin-bottom: 8pt !important; }
+  .af-confirm-item { gap: 5pt !important; align-items: flex-start !important; }
+  .af-confirm-text { font-size: 7pt !important; line-height: 1.4 !important; color: #222 !important; }
+  .af-confirm-item input[type="checkbox"] {
+    width: 10px !important; height: 10px !important;
+    flex-shrink: 0 !important; margin-top: 1pt !important;
+  }
+
+  /* Signature row — reduced whitespace */
+  .af-sig-row {
+    display: grid !important;
+    grid-template-columns: 0.8fr 2.2fr !important;
+    gap: 14pt !important;
+    margin-top: 30pt !important;
+    padding-top: 8pt !important;
+    border-top: 1.5pt solid #5eb3b3 !important;
+  }
+  .af-sig-row .af-input {
+    font-size: 11pt !important;
+    border-bottom: 1.5pt solid #333 !important;
+    min-height: 22pt !important;
+    padding-bottom: 3pt !important;
+  }
+  .af-sig-row .af-label {
+    font-size: 7pt !important;
+    margin-bottom: 4pt !important;
+    letter-spacing: 0.3px !important;
+  }
 }
 </style>
 </head>
@@ -952,6 +1396,43 @@
 
   <form id="anamneseForm" novalidate>
 
+  <!-- ══ STANDORT SELECTOR ══ -->
+  <div class="af-card" id="standortCard">
+    <div class="af-section-title">
+      <span class="af-section-number" style="background:linear-gradient(135deg,#5eb3b3,#3d9090);font-size:16px;display:flex;align-items:center;justify-content:center;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </span>
+      <span class="af-sec-text" id="lbl-standort">Bitte wählen Sie Ihre Praxis</span>
+    </div>
+    <div class="af-standort-grid">
+      <label class="af-standort-option" for="standort-schwarzbach">
+        <input type="radio" name="Standort" id="standort-schwarzbach" value="Schwarzbach">
+        <div class="af-standort-card-inner">
+          <div class="af-standort-check">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="af-standort-num">1</div>
+          <div class="af-standort-name">Schwarzbach</div>
+          <div class="af-standort-addr">Schwarzbach 2, 42277 Wuppertal</div>
+          <div class="af-standort-tel">Tel.: 0202 660828</div>
+        </div>
+      </label>
+      <label class="af-standort-option" for="standort-amloh">
+        <input type="radio" name="Standort" id="standort-amloh" value="Am Loh">
+        <div class="af-standort-card-inner">
+          <div class="af-standort-check">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="af-standort-num">2</div>
+          <div class="af-standort-name">Am Loh</div>
+          <div class="af-standort-addr">Loher Str. 40, 42283 Wuppertal</div>
+          <div class="af-standort-tel">Tel.: 0202 451642</div>
+        </div>
+      </label>
+    </div>
+    <div class="af-standort-error" id="standort-error">Bitte wählen Sie eine Praxis aus.</div>
+  </div>
+
   <!-- ══ SECTION 1 – PATIENT ══ -->
   <div class="af-card">
     <div class="af-section-title">
@@ -1023,7 +1504,7 @@
         <label class="af-label" for="f-festnetz">Festnetznummer <span class="af-optional">(optional)</span></label>
         <input class="af-input" type="tel" id="f-festnetz" name="Festnetz" autocomplete="tel">
       </div>
-      <div class="af-field af-col-full">
+      <div class="af-field">
         <label class="af-label" for="f-email">E-Mail-Adresse <span style="color:#e53e3e;">*</span></label>
         <input class="af-input" type="email" id="f-email" name="E-Mail" autocomplete="email" required>
         <span class="af-error-msg">Bitte gültige E-Mail-Adresse eingeben.</span>
@@ -1031,7 +1512,7 @@
     </div>
 
     <!-- Arbeitgeber -->
-    <div style="margin-top:22px; padding-top:18px; border-top:1px solid #f0f4f8;">
+    <div id="arbeitgeber-block" style="margin-top:22px; padding-top:18px; border-top:1px solid #f0f4f8;">
       <div class="af-label" id="lbl-arbeitgeber" style="margin-bottom:14px;">Arbeitgeber <span class="af-optional" id="lbl-ag-optional">(freiwillige Angabe)</span></div>
       <div class="af-grid">
         <div class="af-field">
@@ -1050,7 +1531,7 @@
     </div>
 
     <!-- Hausarzt -->
-    <div style="margin-top:22px; padding-top:18px; border-top:1px solid #f0f4f8;">
+    <div id="hausarzt-block" style="margin-top:22px; padding-top:18px; border-top:1px solid #f0f4f8;">
       <div class="af-label" id="lbl-hausarzt" style="margin-bottom:14px;">Hausarzt <span class="af-optional" id="lbl-ha-optional">(falls vorhanden)</span></div>
       <div class="af-grid">
         <div class="af-field">
@@ -1304,7 +1785,10 @@
           <span class="af-yn-label sub">Sonstige:</span>
           <div style="flex:0 0 180px;"><input type="text" class="af-yn-text-input" name="Stoffwechsel_Sonstige"></div>
         </div>
+      </div>
 
+      <!-- COLUMN 2 -->
+      <div>
         <!-- Nervensystem -->
         <div class="af-health-cat">Erkrankungen des Nervensystems</div>
         <div class="af-yn-row">
@@ -1360,10 +1844,6 @@
           <span class="af-yn-label sub">Wenn ja, welche?</span>
           <div style="flex:0 0 180px;"><input type="text" class="af-yn-text-input" name="Tumor_Welche"></div>
         </div>
-      </div>
-
-      <!-- RIGHT COLUMN -->
-      <div>
         <!-- Infektionskrankheiten -->
         <div class="af-health-cat">Infektionskrankheiten</div>
         <div class="af-yn-row">
@@ -1413,6 +1893,10 @@
           <span class="af-yn-label sub">Sonstige:</span>
           <div style="flex:0 0 180px;"><input type="text" class="af-yn-text-input" name="Infektion_Sonstige"></div>
         </div>
+      </div>
+
+      <!-- COLUMN 3 -->
+      <div>
 
         <!-- Sonstige Erkrankungen -->
         <div class="af-health-cat">Sonstige Erkrankungen oder Infektionen?</div>
@@ -1719,7 +2203,7 @@
 /* ══════════════════════════════════════════
    GOOGLE SHEETS INTEGRATION
 ══════════════════════════════════════════ */
-const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzLGFiPYNcaQorPiZ9dpfCGnv_sxj5gb1a0aTsU6c2zrfaUQxUv6fXXa-v-92hsEb4DcQ/exec';
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxn1asgzSGNy0iCu1Xg_5ss1Fjkof32Wif3KhTFi60svxKNwgzY_L_lH2ID8o024nmVyw/exec';
 
 /* ══════════════════════════════════════════
    LANGUAGE SYSTEM
@@ -2274,10 +2758,14 @@ function applyFormTranslations(fs) {
 
   // ── Section titles via .af-sec-text span ────────────────────────────
   const secKeys = ['sec1','sec2','sec3','sec4','sec5'];
-  document.querySelectorAll('.af-section-title').forEach((el, i) => {
-    if (!secKeys[i]) return;
+  let si = 0;
+  document.querySelectorAll('.af-section-title').forEach((el) => {
+    const numSpan = el.querySelector('.af-section-number');
+    if (!numSpan || numSpan.querySelector('svg')) return; // skip Standort (has SVG map pin)
+    if (!secKeys[si]) return;
     const span = el.querySelector('.af-sec-text');
-    if (span) span.textContent = fs[secKeys[i]];
+    if (span) span.textContent = fs[secKeys[si]];
+    si++;
   });
 
   // ── Section 1 – Patient ──────────────────────────────────────────────
@@ -2584,6 +3072,17 @@ function validateForm() {
     }
   });
 
+  // Standort selection
+  const standortEl = document.querySelector('input[name="Standort"]:checked');
+  const standortErr = document.getElementById('standort-error');
+  if (!standortEl) {
+    standortErr.classList.add('show');
+    document.getElementById('standortCard').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    valid = false;
+  } else {
+    standortErr.classList.remove('show');
+  }
+
   // Checkboxes
   const chkConfirm = document.getElementById('chk-confirm');
   const chkDsgvo = document.getElementById('chk-dsgvo');
@@ -2601,6 +3100,10 @@ function validateForm() {
 ══════════════════════════════════════════ */
 function collectFormData() {
   const data = { Timestamp: new Date().toISOString() };
+
+  // Standort
+  const standortChk = document.querySelector('input[name="Standort"]:checked');
+  data.Standort = standortChk ? standortChk.value : '';
 
   // Anrede
   const anredeEl = document.querySelector('input[name="Anrede"]:checked');
@@ -2643,6 +3146,169 @@ function showToast(msg) {
 }
 
 /* ══════════════════════════════════════════
+   PDF GENERATOR
+══════════════════════════════════════════ */
+function generatePDF(data) {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF('p', 'mm', 'a4');
+  const W = 210, M = 15, CW = W - 2 * M;
+  let y = 0;
+
+  const T = [94, 179, 179], DT = [45, 125, 125], GR = [100, 116, 139], BK = [30, 30, 30];
+
+  function newPage() {
+    doc.addPage(); y = 18;
+    doc.setFillColor(...T); doc.rect(0, 0, W, 10, 'F');
+    doc.setFontSize(7); doc.setTextColor(255,255,255);
+    doc.text('Zahnarztpraxen Seitschenko-Dinh – Anamnesebogen', M, 7);
+    doc.text((data.Nachname||'') + ', ' + (data.Vorname||''), W-M, 7, {align:'right'});
+  }
+
+  function chk(n=10) { if (y + n > 282) newPage(); }
+
+  function secHead(t) {
+    chk(12);
+    doc.setFillColor(...T); doc.rect(M, y, CW, 7.5, 'F');
+    doc.setFontSize(8.5); doc.setFont('helvetica','bold'); doc.setTextColor(255,255,255);
+    doc.text(t, M+3, y+5.2); y += 11;
+  }
+
+  function field(label, val) {
+    chk(7);
+    doc.setFontSize(7.5); doc.setFont('helvetica','bold'); doc.setTextColor(...GR);
+    doc.text(label + ':', M+2, y);
+    doc.setFont('helvetica','normal'); doc.setTextColor(...BK);
+    const v = (val || '').toString().trim() || '—';
+    const lines = doc.splitTextToSize(v, CW - 52);
+    doc.text(lines, M+52, y);
+    doc.setDrawColor(230,236,241); doc.line(M, y+2.5, M+CW, y+2.5);
+    y += Math.max(7, lines.length * 5);
+  }
+
+  function yn(label, val) {
+    chk(6);
+    doc.setFontSize(7.5); doc.setFont('helvetica','normal'); doc.setTextColor(...GR);
+    doc.text(label + ':', M+2, y);
+    const v = val || '—';
+    const c = v==='Ja' ? [220,38,38] : v==='Nein' ? [22,163,74] : GR;
+    doc.setFont('helvetica','bold'); doc.setTextColor(...c);
+    doc.text(v, M+80, y); y += 6;
+  }
+
+  // ── HEADER ──
+  doc.setFillColor(...T); doc.rect(0, 0, W, 36, 'F');
+  doc.setFontSize(15); doc.setFont('helvetica','bold'); doc.setTextColor(255,255,255);
+  doc.text('ZAHNARZTPRAXEN SEITSCHENKO-DINH', W/2, 12, {align:'center'});
+  doc.setFontSize(10); doc.setFont('helvetica','normal');
+  doc.text('Anamnesebogen – Patientenerfassung', W/2, 20, {align:'center'});
+  doc.setFontSize(8.5);
+  doc.text('Standort: ' + (data.Standort||'—') + '   |   Eingegangen: ' + new Date().toLocaleString('de-DE'), W/2, 28, {align:'center'});
+  y = 44;
+
+  // ── 1. PATIENT ──
+  secHead('1. Patientendaten');
+  field('Anrede', data.Anrede);
+  field('Name', (data.Nachname||'') + ', ' + (data.Vorname||''));
+  field('Geburtsdatum', data.Geburtsdatum);
+  field('Geburtsort', data.Geburtsort);
+  field('Adresse', [data['Straße']||data.Strasse, data.PLZ, data.Ort].filter(Boolean).join(', '));
+  field('Mobil', data.Mobil);
+  field('Festnetz', data.Festnetz);
+  field('E-Mail', data['E-Mail']);
+
+  // ── 2. BERUF ──
+  secHead('2. Beruf & Arbeitgeber');
+  field('Beruf', data.Beruf);
+  field('Arbeitgeber', data.Arbeitgeber_Name);
+  field('Tel. Arbeitgeber', data.Arbeitgeber_Tel);
+
+  // ── 3. HAUSARZT ──
+  secHead('3. Hausarzt');
+  field('Name', data.Hausarzt_Name);
+  field('Adresse', [data['Hausarzt_Straße'], data.Hausarzt_PLZ, data.Hausarzt_Ort].filter(Boolean).join(', '));
+
+  // ── 4. VERSICHERUNG ──
+  secHead('4. Krankenversicherung');
+  field('Versicherung', data.Versicherung_Name);
+  field('Typ', data.Versicherungstyp);
+  field('Familienversichert', data.Familienversichert);
+  if (data.Familienversichert === 'Ja') {
+    field('HV Name', (data.HV_Name||'') + ' ' + (data.HV_Vorname||''));
+    field('HV Geburtsdatum', data.HV_Geburtsdatum);
+    field('HV Adresse', [data['HV_Straße'], data.HV_PLZ, data.HV_Ort].filter(Boolean).join(', '));
+  }
+
+  // ── 5. HERZERKRANKUNGEN ──
+  secHead('5. Herzerkrankungen');
+  yn('Herzschwäche', data['Herzschwäche']); yn('Arrhythmien', data.Arrhythmien);
+  yn('Herzasthma', data.Herzasthma); yn('Endokarditis', data.Endokarditis);
+  yn('Herzschrittmacher', data.Herzschrittmacher); yn('Herzklappenfehler', data.Herzklappenfehler);
+  yn('Herzinfarkt', data.Herzinfarkt);
+  if (data.Herzinfarkt === 'Ja' && data.Herzinfarkt_Wann) field('Wann', data.Herzinfarkt_Wann);
+  if (data.Herz_Sonstige) field('Sonstige', data.Herz_Sonstige);
+
+  // ── 6. KREISLAUF ──
+  secHead('6. Kreislauf & Blutdruck');
+  yn('Blutdruck hoch', data.Blutdruck_Hoch); yn('Blutdruck niedrig', data.Blutdruck_Niedrig);
+  yn('Ohnmacht/Schwindel', data.Ohnmacht); yn('Schlaganfall', data.Schlaganfall);
+  if (data.Schlaganfall === 'Ja' && data.Schlaganfall_Wann) field('Wann', data.Schlaganfall_Wann);
+  if (data.Kreislauf_Sonstige) field('Sonstige', data.Kreislauf_Sonstige);
+
+  // ── 7. STOFFWECHSEL & NERVEN & BLUT ──
+  secHead('7. Stoffwechsel / Nerven / Blut');
+  yn('Diabetes', data.Diabetes); yn('Magen-Darm', data.Magen_Darm);
+  yn('Schilddrüse', data['Schilddrüse']||data.Schilddruese); yn('Epilepsie', data.Epilepsie);
+  yn('Krämpfe', data['Krämpfe']||data.Kraempfe); yn('Hämophilie', data['Hämophilie']||data.Haemophilie);
+  yn('Anämie', data['Anämie']||data.Anaemie);
+
+  // ── 8. TUMOR & INFEKTIONSKRANKHEITEN ──
+  secHead('8. Tumor & Infektionskrankheiten');
+  yn('Tumorerkrankungen', data.Tumorerkrankungen);
+  if (data.Tumor_Welche) field('Welche', data.Tumor_Welche);
+  yn('Hepatitis', data.Hepatitis);
+  if (data.Hepatitis === 'Ja' && data.Hepatitis_Typ) field('Typ', data.Hepatitis_Typ);
+  yn('TBC', data.TBC); yn('HIV', data.HIV); yn('MRSA', data.MRSA);
+  yn('Atemwegserkrankungen', data.Atemwege);
+  if (data.Atemwege === 'Ja' && data.Atemwege_Welche) field('Welche', data.Atemwege_Welche);
+  if (data.Sonstige_Erkrankung === 'Ja' && data.Sonstige_Erkrankung_Welche) field('Sonstige Erkrankung', data.Sonstige_Erkrankung_Welche);
+
+  // ── 9. ALLERGIEN & MEDIKAMENTE ──
+  secHead('9. Allergien & Medikamente');
+  yn('Allergie Antibiotika', data.Allergie_Antibiotika); yn('Andere Allergie', data.Allergie_Andere);
+  if (data.Allergie_Welche) field('Welche', data.Allergie_Welche);
+  yn('Medikamente', data.Medikamente_Einnahme); yn('Blutverdünner', data['Blutverdünner']||data.Blutverduenner);
+  yn('Bisphosphonate', data.Bisphosphonate); yn('Antidepressiva', data.Antidepressiva);
+  yn('Herzmedikamente', data.Herzmedikamente);
+  if (data.Sonstige_Medikamente) field('Sonstige Medikamente', data.Sonstige_Medikamente);
+
+  // ── 10. LEBENSGEWOHNHEITEN ──
+  secHead('10. Lebensgewohnheiten & Zahngesundheit');
+  yn('Rauchen', data.Rauchen); yn('Alkohol', data.Alkohol); yn('Drogen', data.Drogen);
+  yn('Schwanger', data.Schwanger);
+  if (data.Schwanger === 'Ja' && data.Schwanger_Woche) field('SSW', data.Schwanger_Woche);
+  if (data.Letztes_Rontgen) field('Letztes Röntgen', data.Letztes_Rontgen);
+  yn('Knirschen/Pressen', data.Knirschen); yn('Zahnfleischbluten', data.Zahnfleisch);
+  yn('Mundgeruch', data.Mundgeruch);
+
+  // ── 11. UNTERSCHRIFT ──
+  secHead('11. Erinnerung & Unterschrift');
+  field('Erinnerung per', data.Erinnerung);
+  field('Datum', data.Datum);
+  field('Unterschrift', data.Unterschrift);
+
+  // Footer on all pages
+  const total = doc.getNumberOfPages();
+  for (let i = 1; i <= total; i++) {
+    doc.setPage(i);
+    doc.setFontSize(7); doc.setTextColor(...GR);
+    doc.text('Zahnarztpraxen Seitschenko-Dinh – vertraulich', M, 292);
+    doc.text('Seite ' + i + ' / ' + total, W-M, 292, {align:'right'});
+  }
+
+  return doc.output('datauristring').split(',')[1];
+}
+
+/* ══════════════════════════════════════════
    FORM SUBMIT
 ══════════════════════════════════════════ */
 document.getElementById('anamneseForm').addEventListener('submit', async function(e) {
@@ -2664,6 +3330,11 @@ document.getElementById('anamneseForm').addEventListener('submit', async functio
   spinner.style.display = 'block';
 
   const data = collectFormData();
+
+  // Generate PDF
+  let pdfBase64 = '';
+  try { pdfBase64 = generatePDF(data); } catch(e) { console.warn('PDF generation failed:', e); }
+  if (pdfBase64) data.pdfBase64 = pdfBase64;
 
   // If no real URL configured, show success directly (demo mode)
   if (SHEET_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
@@ -2689,6 +3360,7 @@ document.getElementById('anamneseForm').addEventListener('submit', async functio
     spinner.style.display = 'none';
 
     if (result.result === 'success') {
+      console.log('✅ Form submitted. emailStatus:', result.emailStatus, result.emailError ? '| error: ' + result.emailError : '');
       document.getElementById('successModal').classList.add('visible');
       document.getElementById('anamneseForm').reset();
       document.querySelectorAll('.af-yn-btn').forEach(b => b.classList.remove('active-yes','active-no'));
