@@ -828,6 +828,90 @@
 .af-standort-error { color: #e53e3e; font-size: 12px; margin-top: 10px; font-weight: 500; display: none; }
 .af-standort-error.show { display: block; }
 
+/* ══════════════════════════════════════════
+   RESPONSIVE — TABLET (iPad) & MOBILE
+══════════════════════════════════════════ */
+
+/* ── Tablet: 768px–1023px ── */
+@media (max-width: 1023px) {
+  .anamnese-wrapper { padding: 32px 16px 48px; }
+  .af-container { max-width: 100%; }
+  .af-card { padding: 28px 24px; }
+}
+
+/* ── Mobile: ≤768px ── */
+@media (max-width: 768px) {
+  /* Hero */
+  .anamnese-hero-wrapper { padding-top: 3rem !important; padding-bottom: 3rem !important; }
+  .anamnese-hero-wrapper h1 { font-size: 1.875rem !important; }
+
+  /* Wrapper */
+  .anamnese-wrapper { padding: 20px 12px 40px; }
+  .af-card { padding: 22px 16px; margin-bottom: 16px; }
+
+  /* YN rows: allow wrapping on very long labels */
+  .af-yn-row { flex-wrap: wrap; align-items: flex-start; gap: 8px; padding: 10px 0; }
+  .af-yn-label { flex-basis: 100%; min-width: 0; }
+  .af-yn-btns { margin-left: auto; flex-shrink: 0; }
+
+  /* Bigger tap targets for YN buttons (≥44px height per touch HIG) */
+  .af-yn-btn {
+    padding: 9px 18px;
+    font-size: 13px;
+    min-height: 40px;
+    min-width: 60px;
+    border-radius: 50px;
+  }
+
+  /* Radio pills — larger touch area */
+  .af-radio-pill label { padding: 10px 22px; font-size: 14px; }
+
+  /* Health 2-col on tablet stays 2, but loosen the gap */
+  .af-health-cols { gap: 0 12px; }
+
+  /* Hero print button */
+  .hero-print-btn { padding: 12px 24px; font-size: 14px; }
+
+  /* Section title: allow wrapping */
+  .af-section-title { flex-wrap: wrap; gap: 8px; }
+
+  /* Standort cards: always 1 col on mobile */
+  .af-standort-grid { grid-template-columns: 1fr; }
+
+  /* Confirm items: stacked */
+  .af-confirm-item { padding: 12px 14px; }
+  .af-confirm-text { font-size: 13px; }
+
+  /* Notice grid: stack on mobile */
+  .af-notice-grid { grid-template-columns: 1fr; }
+
+  /* Sig row: stack on mobile */
+  .af-sig-row { grid-template-columns: 1fr; gap: 16px; }
+
+  /* Submit button full-width centered */
+  .af-submit-btn { font-size: 15px; padding: 15px 24px; }
+}
+
+/* ── Small mobile: ≤480px ── */
+@media (max-width: 480px) {
+  /* Even smaller hero padding */
+  .anamnese-hero-wrapper { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
+
+  /* No spacer needed in 1-col health layout */
+  .af-yn-spacer { display: none !important; }
+
+  /* Tighten cards */
+  .af-card { padding: 18px 14px; border-radius: 12px; }
+
+  /* Health single col: reset label wrapping (no btns beside label on 1-col) */
+  .af-yn-label { flex-basis: auto; flex: 1; }
+  .af-yn-row { flex-wrap: nowrap; align-items: center; }
+  .af-yn-btns { margin-left: 0; }
+
+  /* Grid goes fully single col */
+  .af-grid, .af-grid.cols-3 { gap: 14px 0; }
+}
+
 @media print {
   /* ════════════════════════════════════════
      PAGE SETUP
