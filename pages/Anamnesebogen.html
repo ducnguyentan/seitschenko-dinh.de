@@ -653,6 +653,7 @@
 .af-print-bar {
   display: flex;
   justify-content: flex-end;
+  gap: 10px;
   margin-bottom: 20px;
 }
 .af-print-btn-small {
@@ -673,6 +674,52 @@
   border-color: #5eb3b3;
   color: #5eb3b3;
 }
+/* ── PDF download button ── */
+.af-pdf-btn-small {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 20px;
+  background: linear-gradient(135deg, #5eb3b3 0%, #3d9898 100%);
+  border: none;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.22s;
+  box-shadow: 0 2px 10px rgba(94,179,179,0.3);
+}
+.af-pdf-btn-small:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(94,179,179,0.45);
+}
+/* ── PDF bottom button (large, secondary) ── */
+.af-pdf-download-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 15px 32px;
+  background: #fff;
+  border: 2px solid #5eb3b3;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #2d7d7d;
+  cursor: pointer;
+  transition: all 0.22s;
+  margin-top: 12px;
+  letter-spacing: 0.3px;
+}
+.af-pdf-download-btn:hover {
+  background: linear-gradient(135deg, #f0fafa 0%, #e6f7f7 100%);
+  border-color: #3d9898;
+  box-shadow: 0 4px 16px rgba(94,179,179,0.2);
+  transform: translateY(-1px);
+}
+.af-pdf-download-btn svg { flex-shrink: 0; }
 
 /* ── Success modal ── */
 .af-modal-overlay {
@@ -742,6 +789,91 @@
   transition: all 0.2s;
 }
 .af-modal-close:hover { transform: translateY(-2px); }
+
+/* ── Offline save success modal ── */
+.offline-save-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 9100;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.offline-save-overlay.visible { display: flex; }
+.offline-save-modal {
+  background: #fff;
+  border-radius: 24px;
+  padding: 48px 44px 40px;
+  max-width: 480px;
+  width: 92%;
+  text-align: center;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.22);
+  animation: modalPop 0.38s cubic-bezier(0.34,1.56,0.64,1) both;
+  position: relative;
+}
+.offline-save-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #5eb3b3 0%, #3d9090 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 22px;
+  box-shadow: 0 10px 30px rgba(94,179,179,0.45);
+  animation: checkBounce 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.15s both;
+}
+.offline-save-modal h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 8px;
+}
+.offline-save-modal .sub {
+  font-size: 13px;
+  color: #718096;
+  line-height: 1.6;
+  margin-bottom: 6px;
+}
+.offline-save-filename {
+  display: inline-block;
+  background: #f0fafa;
+  border: 1px solid #bee3e3;
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #2d7d7d;
+  margin: 10px 0 24px;
+  word-break: break-all;
+}
+.offline-save-next-btn {
+  display: block;
+  width: 100%;
+  padding: 15px 24px;
+  background: linear-gradient(135deg, #5eb3b3 0%, #3d9898 100%);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(94,179,179,0.4);
+  transition: all 0.22s;
+  letter-spacing: 0.3px;
+}
+.offline-save-next-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(94,179,179,0.5);
+}
+.offline-save-countdown {
+  font-size: 12px;
+  color: #a0aec0;
+  margin-top: 12px;
+}
 
 /* ── Error toast ── */
 .af-toast {
@@ -1393,6 +1525,10 @@
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
       <span id="print-bar-text">Formular drucken</span>
     </button>
+    <a class="af-pdf-btn-small no-print" href="Anamnesebogen-offline.html" target="_blank" style="text-decoration:none;">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
+      <span id="pdf-bar-text">Offline-Modus</span>
+    </a>
   </div>
 
   <form id="anamneseForm" novalidate>
@@ -2152,6 +2288,26 @@
   </div>
 </div>
 
+<!-- ══ OFFLINE SAVE SUCCESS MODAL ══ -->
+<div class="offline-save-overlay no-print" id="offlineSaveModal">
+  <div class="offline-save-modal">
+    <div class="offline-save-icon">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <polyline points="14 2 14 8 20 8"/>
+        <polyline points="9 15 11 17 15 13"/>
+      </svg>
+    </div>
+    <h3>PDF gespeichert!</h3>
+    <p class="sub">Das Formular wurde erfolgreich als PDF auf dem Gerät gespeichert.</p>
+    <div class="offline-save-filename" id="offlineSaveFilename">Anamnesebogen.pdf</div>
+    <button class="offline-save-next-btn" id="offlineSaveNextBtn" onclick="closeOfflineSaveModal()">
+      ✓ Nächster Patient
+    </button>
+    <p class="offline-save-countdown" id="offlineSaveCountdown">Formular wird in <span id="offlineSaveTimer">10</span> Sekunden automatisch zurückgesetzt …</p>
+  </div>
+</div>
+
 <!-- ══ ERROR TOAST ══ -->
 <div class="af-toast" id="errorToast">
   Übertragung fehlgeschlagen. Bitte versuchen Sie es erneut.
@@ -2329,6 +2485,8 @@ const formStrings = {
     err_email:'Bitte gültige E-Mail-Adresse eingeben.',
     err_vers:'Bitte Versicherungsname eingeben.',
     err_unterschrift:'Bitte Unterschrift eingeben.',
+    standort:'Bitte wählen Sie Ihre Praxis', standort_err:'Bitte wählen Sie eine Praxis aus.', offline_mode:'Offline-Modus',
+    pdf_download:'Formular als PDF auf dem Gerät speichern',
     print_bar:'Formular drucken', optional:'(optional)',
     ph_wann:'z.B. 2020', ph_hepatitis:'A / B / C …', ph_schwanger:'z.B. 12',
     ph_blutverd:'Ja / Nein / Name', ph_yn:'Ja / Nein',
@@ -2433,6 +2591,8 @@ const formStrings = {
     err_email:'Please enter a valid email address.',
     err_vers:'Please enter insurance name.',
     err_unterschrift:'Please enter your signature.',
+    standort:'Please select your practice', standort_err:'Please select a practice.', offline_mode:'Offline Mode',
+    pdf_download:'Save form as PDF on this device',
     print_bar:'Print Form', optional:'(optional)',
     ph_wann:'e.g. 2020', ph_hepatitis:'A / B / C …', ph_schwanger:'e.g. week 12',
     ph_blutverd:'Yes / No / Name', ph_yn:'Yes / No',
@@ -2534,6 +2694,8 @@ const formStrings = {
     err_email:'Vui lòng nhập địa chỉ email hợp lệ.',
     err_vers:'Vui lòng nhập tên bảo hiểm.',
     err_unterschrift:'Vui lòng nhập chữ ký.',
+    standort:'Vui lòng chọn phòng khám', standort_err:'Vui lòng chọn phòng khám.', offline_mode:'Chế độ Offline',
+    pdf_download:'Lưu phiếu dưới dạng PDF vào thiết bị',
     print_bar:'In phiếu', optional:'(tùy chọn)',
     ph_wann:'vd: 2020', ph_hepatitis:'A / B / C …', ph_schwanger:'vd: tuần 12',
     ph_blutverd:'Có / Không / Tên', ph_yn:'Có / Không',
@@ -2638,6 +2800,8 @@ const formStrings = {
     err_email:'Пожалуйста, введите корректный адрес email.',
     err_vers:'Пожалуйста, введите название страховой.',
     err_unterschrift:'Пожалуйста, введите подпись.',
+    standort:'Пожалуйста, выберите клинику', standort_err:'Пожалуйста, выберите клинику.', offline_mode:'Офлайн режим',
+    pdf_download:'Сохранить форму как PDF на устройство',
     print_bar:'Распечатать форму', optional:'(по желанию)',
     ph_wann:'напр. 2020', ph_hepatitis:'A / B / C …', ph_schwanger:'напр. 12',
     ph_blutverd:'Да / Нет / Название', ph_yn:'Да / Нет',
@@ -2740,6 +2904,8 @@ const formStrings = {
     err_email:'يرجى إدخال عنوان بريد إلكتروني صحيح.',
     err_vers:'يرجى إدخال اسم التأمين.',
     err_unterschrift:'يرجى إدخال التوقيع.',
+    standort:'يرجى اختيار العيادة', standort_err:'يرجى اختيار العيادة.', offline_mode:'وضع عدم الاتصال',
+    pdf_download:'حفظ الاستمارة كملف PDF على الجهاز',
     print_bar:'طباعة الاستمارة', optional:'(اختياري)',
     ph_wann:'مثلاً: 2020', ph_hepatitis:'أ / ب / ج …', ph_schwanger:'مثلاً: 12',
     ph_blutverd:'نعم / لا / الاسم', ph_yn:'نعم / لا',
@@ -2942,6 +3108,12 @@ function applyFormTranslations(fs) {
   if (modalH3) modalH3.textContent = fs.modal_title;
   if (modalP)  modalP.textContent  = fs.modal_text;
   if (modalClose) modalClose.textContent = fs.modal_close;
+
+  // Standort & offline button
+  set('lbl-standort', fs.standort);
+  set('standort-error', fs.standort_err);
+  set('pdf-bar-text', fs.offline_mode);
+  set('pdf-download-text', fs.pdf_download);
 
   // Print bar
   set('print-bar-text', fs.print_bar);
@@ -3149,7 +3321,67 @@ function showToast(msg) {
 /* ══════════════════════════════════════════
    PDF GENERATOR
 ══════════════════════════════════════════ */
-function generatePDF(data) {
+function resetFormForNextPatient() {
+  const form = document.getElementById('anamneseForm');
+  form.reset();
+  // Clear YN toggle buttons
+  document.querySelectorAll('.af-yn-btn').forEach(b => b.classList.remove('active-yes','active-no'));
+  Object.keys(ynValues).forEach(k => delete ynValues[k]);
+  // Hide conditional sections
+  document.getElementById('hv-fields').style.display = 'none';
+  document.getElementById('zusatz-subgroup').classList.remove('visible');
+  // Clear all af-error states
+  document.querySelectorAll('.af-input.af-error').forEach(el => el.classList.remove('af-error'));
+  document.querySelectorAll('.af-field.has-error').forEach(el => el.classList.remove('has-error'));
+  document.getElementById('standort-error').classList.remove('show');
+  // Reset confirm item borders
+  document.querySelectorAll('.af-confirm-item').forEach(el => el.style.borderColor = '');
+  // Set today's date
+  const datumField = document.getElementById('f-datum');
+  if (datumField) datumField.value = new Date().toISOString().split('T')[0];
+  // Scroll to top of form
+  document.getElementById('standortCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+let offlineCountdownInterval = null;
+
+function showOfflineSaveSuccess(filename) {
+  const overlay = document.getElementById('offlineSaveModal');
+  const filenameEl = document.getElementById('offlineSaveFilename');
+  if (filenameEl) filenameEl.textContent = filename;
+  overlay.classList.add('visible');
+
+  // Auto-reset countdown: 10 seconds
+  let seconds = 10;
+  const timerEl = document.getElementById('offlineSaveTimer');
+  if (timerEl) timerEl.textContent = seconds;
+  if (offlineCountdownInterval) clearInterval(offlineCountdownInterval);
+  offlineCountdownInterval = setInterval(() => {
+    seconds--;
+    if (timerEl) timerEl.textContent = seconds;
+    if (seconds <= 0) {
+      clearInterval(offlineCountdownInterval);
+      closeOfflineSaveModal();
+    }
+  }, 1000);
+}
+
+function closeOfflineSaveModal() {
+  if (offlineCountdownInterval) clearInterval(offlineCountdownInterval);
+  document.getElementById('offlineSaveModal').classList.remove('visible');
+  resetFormForNextPatient();
+}
+
+function downloadPDF() {
+  const data = collectFormData();
+  const name = ((data.Vorname||'') + '_' + (data.Nachname||'')).replace(/\s+/g,'_').replace(/[^a-zA-ZÄÖÜäöüß0-9_-]/g,'') || 'Patient';
+  const dateStr = (data.Datum || new Date().toISOString().split('T')[0]).replace(/-/g,'');
+  const filename = `Anamnesebogen_${name}_${dateStr}.pdf`;
+  generatePDF(data, 'download', filename);
+  showOfflineSaveSuccess(filename);
+}
+
+function generatePDF(data, mode='base64', filename='Anamnesebogen.pdf') {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF('p', 'mm', 'a4');
   const W = 210, M = 15, CW = W - 2 * M;
@@ -3306,7 +3538,11 @@ function generatePDF(data) {
     doc.text('Seite ' + i + ' / ' + total, W-M, 292, {align:'right'});
   }
 
-  return doc.output('datauristring').split(',')[1];
+  if (mode === 'download') {
+    doc.save(filename);
+  } else {
+    return doc.output('datauristring').split(',')[1];
+  }
 }
 
 /* ══════════════════════════════════════════
