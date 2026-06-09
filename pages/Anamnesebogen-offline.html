@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Anamnesebogen – Offline Kiosk</title>
+<link rel="icon" type="image/svg+xml" href="../assets/img/logo.svg">
+<link href="../css/tailwind.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+/* ══ BASE ══ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #0f2626; min-height: 100vh; }
+
+/* ══ HEADER ══ */
+.ok-header {
+  background: linear-gradient(135deg, #0a1e1e 0%, #1a3535 50%, #0e2929 100%);
+  border-bottom: 2px solid #2d6060;
+  padding: 0 24px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.ok-header-left { display: flex; align-items: center; gap: 14px; }
+.ok-logo {
+  width: 40px; height: 40px;
+  background: rgba(94,179,179,0.15);
+  border: 1.5px solid rgba(94,179,179,0.4);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+}
+.ok-logo svg { opacity: 0.9; }
+.ok-header-name { display: flex; flex-direction: column; line-height: 1.2; }
+.ok-header-name span:first-child { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.5); letter-spacing: 1.5px; text-transform: uppercase; }
+.ok-header-name span:last-child { font-size: 13px; font-weight: 700; color: #e8fffe; letter-spacing: 0.5px; }
+.ok-badge {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(94,179,179,0.12);
+  border: 1px solid rgba(94,179,179,0.35);
+  border-radius: 20px;
+  padding: 6px 14px;
+}
+.ok-badge-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #5eb3b3;
+  box-shadow: 0 0 6px rgba(94,179,179,0.8);
+  animation: pulseDot 2s ease-in-out infinite;
+}
+@keyframes pulseDot {
+  0%,100% { opacity: 1; box-shadow: 0 0 6px rgba(94,179,179,0.8); }
+  50% { opacity: 0.5; box-shadow: 0 0 12px rgba(94,179,179,0.4); }
+}
+.ok-badge span { font-size: 12px; font-weight: 700; color: #7dd3d3; letter-spacing: 0.5px; }
+.ok-back-btn {
+  display: flex; align-items: center; gap: 7px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 8px;
+  padding: 6px 13px;
+  color: rgba(255,255,255,0.75);
+  font-size: 12px; font-weight: 600;
+  text-decoration: none;
+  transition: all 0.18s;
+  white-space: nowrap;
+}
+.ok-back-btn:hover { background: rgba(255,255,255,0.14); color: #fff; border-color: rgba(255,255,255,0.28); }
+.ok-back-btn svg { flex-shrink: 0; }
+.ok-header-right { display: flex; align-items: center; gap: 12px; }
+.ok-lang-btn {
+  display: flex; align-items: center; gap: 6px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+  color: rgba(255,255,255,0.8);
+  font-size: 12px; font-weight: 600;
+  transition: all 0.18s;
+}
+.ok-lang-btn:hover { background: rgba(255,255,255,0.14); }
+.ok-lang-dropdown {
+  position: absolute; right: 24px; top: 72px;
+  background: #1a3535;
+  border: 1px solid rgba(94,179,179,0.3);
+  border-radius: 10px;
+  overflow: hidden;
+  display: none;
+  min-width: 140px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  z-index: 200;
+}
+.ok-lang-dropdown.show { display: block; }
+.ok-lang-option {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 16px;
+  color: rgba(255,255,255,0.8);
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.ok-lang-option:hover { background: rgba(94,179,179,0.15); }
+.ok-patient-counter {
+  background: rgba(94,179,179,0.1);
+  border: 1px solid rgba(94,179,179,0.25);
+  border-radius: 8px;
+  padding: 5px 12px;
+  font-size: 12px; color: #7dd3d3; font-weight: 600;
+}
+
+/* ══ FORM WRAPPER ══ */
+.ok-wrapper {
+  background: #e6f0f0;
+  min-height: calc(100vh - 64px - 72px);
+  padding: 28px 20px 120px;
+}
+.ok-container {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+/* ══ SECTION CARDS ══ */
+.ok-card {
+  background: #fff;
+  border-radius: 14px;
+  border: 1.5px solid #c8e0e0;
+  box-shadow: 0 2px 12px rgba(0,46,46,0.08);
+  padding: 28px 32px;
+  margin-bottom: 20px;
+}
+@media (max-width: 600px) { .ok-card { padding: 20px 16px; } }
+
+/* ══ SECTION TITLE ══ */
+.ok-section-title {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 11px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #1a3535;
+  border-bottom: 2px solid #c8e0e0;
+  padding-bottom: 12px;
+  margin-bottom: 22px;
+}
+.ok-section-number {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px;
+  background: linear-gradient(135deg, #1a3535 0%, #2d6060 100%);
+  color: #fff; border-radius: 50%;
+  font-size: 12px; font-weight: 700; flex-shrink: 0;
+}
+
+/* ══ FORM GRID ══ */
+.ok-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 22px; }
+.ok-grid.cols-1 { grid-template-columns: 1fr; }
+.ok-col-full { grid-column: 1 / -1; }
+@media (max-width: 640px) { .ok-grid { grid-template-columns: 1fr; } }
+
+/* ══ FIELDS ══ */
+.ok-field { display: flex; flex-direction: column; gap: 6px; }
+.ok-label { font-size: 11px; font-weight: 700; color: #1a3535; letter-spacing: 0.5px; text-transform: uppercase; }
+.ok-label .ok-req { color: #e53e3e; }
+.ok-input {
+  width: 100%;
+  border: 1.5px solid #c8d8d8;
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 15px;
+  color: #1a202c;
+  background: #f8fdfd;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.18s, box-shadow 0.18s;
+  -webkit-appearance: none;
+}
+.ok-input:focus {
+  border-color: #2d6060;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(45,96,96,0.12);
+}
+.ok-error-msg { font-size: 11px; color: #e53e3e; display: none; }
+.ok-field.has-error .ok-error-msg { display: block; }
+.ok-field.has-error .ok-input { border-color: #fc8181; background: #fff5f5; }
+
+/* ══ RADIO PILLS ══ */
+.ok-radio-group { display: flex; gap: 10px; flex-wrap: wrap; }
+.ok-radio-pill { position: relative; }
+.ok-radio-pill input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+.ok-radio-pill label {
+  display: inline-block; padding: 10px 22px;
+  border: 1.5px solid #c8d8d8; border-radius: 50px;
+  font-size: 14px; font-weight: 500; color: #4a5568;
+  cursor: pointer; background: #f8fdfd; transition: all 0.18s;
+  user-select: none;
+}
+.ok-radio-pill input:checked + label {
+  background: #1a3535; border-color: #1a3535; color: #fff;
+  box-shadow: 0 2px 10px rgba(26,53,53,0.3);
+}
+
+/* ══ CHECKBOXES ══ */
+.ok-check-group { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; }
+.ok-check-item { display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 14px; color: #2d3748; }
+.ok-check-item input[type="checkbox"] {
+  width: 20px; height: 20px; accent-color: #1a3535; cursor: pointer; flex-shrink: 0;
+}
+.ok-check-subgroup {
+  display: none; margin-left: 30px; margin-top: 6px;
+  padding: 10px 14px; background: #e6f0f0;
+  border-radius: 8px; border: 1px solid #b0cece;
+}
+.ok-check-subgroup.visible { display: flex; flex-direction: column; gap: 8px; }
+
+/* ══ YN BUTTONS ══ */
+.ok-yn-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 11px 0; border-bottom: 1px solid #e6f0f0; gap: 12px;
+}
+.ok-yn-row:last-child { border-bottom: none; }
+.ok-yn-label { font-size: 14px; color: #2d3748; flex: 1; min-width: 0; line-height: 1.45; }
+.ok-yn-label.sub { font-size: 13px; color: #718096; padding-left: 14px; }
+.ok-yn-btns { display: flex; gap: 8px; flex-shrink: 0; }
+.ok-yn-btn {
+  padding: 8px 18px; border-radius: 50px;
+  border: 1.5px solid #c8d8d8;
+  font-size: 13px; font-weight: 700;
+  cursor: pointer; background: #f8fdfd; color: #718096;
+  transition: all 0.18s; min-width: 58px; min-height: 38px;
+  letter-spacing: 0.5px;
+}
+.ok-yn-btn:hover { border-color: #2d6060; color: #2d6060; }
+.ok-yn-btn.active-yes { background: #1a3535; border-color: #1a3535; color: #fff; box-shadow: 0 2px 8px rgba(26,53,53,0.3); }
+.ok-yn-btn.active-no  { background: #c53030; border-color: #c53030; color: #fff; box-shadow: 0 2px 8px rgba(197,48,48,0.25); }
+.ok-yn-text-input {
+  border: none; border-bottom: 1.5px solid #b0cece;
+  padding: 4px 2px; font-size: 14px; color: #2d3748;
+  background: transparent; outline: none; transition: border-color 0.18s;
+  font-family: inherit; width: 100%;
+}
+.ok-yn-text-input:focus { border-color: #1a3535; }
+.ok-yn-spacer { width: 88px; flex-shrink: 0; }
+
+/* ══ HEALTH COLS ══ */
+.ok-health-cols {
+  display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 0 24px;
+}
+.ok-health-cols > div { min-width: 0; }
+.ok-health-cols > div:nth-child(3) { grid-column: 1/-1; column-count: 2; column-gap: 24px; }
+.ok-health-cols > div:nth-child(3) .ok-health-cat,
+.ok-health-cols > div:nth-child(3) .ok-yn-row { break-inside: avoid; }
+@media (max-width: 600px) {
+  .ok-health-cols { grid-template-columns: 1fr; }
+  .ok-health-cols > div:nth-child(3) { column-count: 1; }
+}
+.ok-health-cat {
+  font-size: 12px; font-weight: 700; color: #1a3535;
+  margin: 18px 0 4px; padding: 6px 10px;
+  background: #d4e8e8; border-left: 3px solid #2d6060;
+  border-radius: 0 6px 6px 0;
+}
+.ok-health-cat:first-child { margin-top: 0; }
+
+/* ══ NOTICE GRID ══ */
+.ok-notice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 22px; }
+@media (max-width: 600px) { .ok-notice-grid { grid-template-columns: 1fr; } }
+.ok-notice-box { background: #d4e8e8; border: 1px solid #b0cece; border-radius: 10px; padding: 14px 16px; }
+.ok-notice-box strong { display: block; font-size: 12px; font-weight: 700; color: #1a3535; margin-bottom: 4px; }
+.ok-notice-box p { font-size: 12px; color: #2d4040; line-height: 1.55; margin: 0; }
+
+/* ══ CONFIRM ══ */
+.ok-confirm-block { display: flex; flex-direction: column; gap: 14px; margin-bottom: 22px; }
+.ok-confirm-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 14px 16px; border-radius: 10px;
+  border: 1.5px solid #c8d8d8; background: #f8fdfd;
+  cursor: pointer; transition: border-color 0.18s, background 0.18s;
+}
+.ok-confirm-item:has(input:checked) { border-color: #1a3535; background: #d4e8e8; }
+.ok-confirm-item input[type="checkbox"] { width: 20px; height: 20px; accent-color: #1a3535; flex-shrink: 0; margin-top: 2px; cursor: pointer; }
+.ok-confirm-text { font-size: 13px; color: #2d3748; line-height: 1.55; }
+
+/* ══ SIG ROW ══ */
+.ok-sig-row { display: grid; grid-template-columns: 1fr 2fr; gap: 24px; margin-top: 4px; }
+@media (max-width: 540px) { .ok-sig-row { grid-template-columns: 1fr; } }
+
+/* ══ STANDORT ══ */
+.ok-standort-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+@media (max-width: 600px) { .ok-standort-grid { grid-template-columns: 1fr; } }
+.ok-standort-option { display: block; cursor: pointer; }
+.ok-standort-option input[type="radio"] { display: none; }
+.ok-standort-card {
+  border: 2px solid #c8d8d8; border-radius: 14px;
+  padding: 18px 16px 16px;
+  transition: all 0.22s; display: flex; flex-direction: column; gap: 3px;
+  background: #f8fdfd; position: relative;
+}
+.ok-standort-option:hover .ok-standort-card { border-color: #2d6060; background: #e6f0f0; }
+.ok-standort-option input:checked + .ok-standort-card {
+  border-color: #1a3535; background: #d4e8e8;
+  box-shadow: 0 0 0 3px rgba(26,53,53,0.15), 0 4px 16px rgba(26,53,53,0.1);
+}
+.ok-standort-check {
+  position: absolute; top: 12px; right: 12px;
+  width: 22px; height: 22px; border-radius: 50%;
+  border: 2px solid #b0cece; background: white;
+  transition: all 0.2s; display: flex; align-items: center; justify-content: center;
+}
+.ok-standort-check svg { display: none; }
+.ok-standort-option input:checked + .ok-standort-card .ok-standort-check { background: #1a3535; border-color: #1a3535; }
+.ok-standort-option input:checked + .ok-standort-card .ok-standort-check svg { display: block; }
+.ok-standort-num {
+  width: 30px; height: 30px;
+  background: linear-gradient(135deg, #1a3535, #2d6060);
+  border-radius: 50%; color: white; font-weight: 700; font-size: 15px;
+  display: flex; align-items: center; justify-content: center; margin-bottom: 8px;
+}
+.ok-standort-name { font-weight: 700; font-size: 16px; color: #1a3535; }
+.ok-standort-addr { font-size: 13px; color: #4a5568; margin-top: 2px; }
+.ok-standort-tel { font-size: 12px; color: #718096; }
+.ok-standort-error { color: #e53e3e; font-size: 12px; margin-top: 10px; font-weight: 500; display: none; }
+.ok-standort-error.show { display: block; }
+
+/* ══ STICKY SAVE BAR ══ */
+.ok-save-bar {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(135deg, #0a1e1e 0%, #1a3535 100%);
+  border-top: 2px solid #2d6060;
+  padding: 14px 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  z-index: 100;
+  box-shadow: 0 -8px 30px rgba(0,0,0,0.35);
+}
+.ok-save-bar-info { display: flex; flex-direction: column; gap: 2px; }
+.ok-save-bar-info span:first-child { font-size: 11px; color: rgba(255,255,255,0.45); letter-spacing: 0.5px; }
+.ok-save-bar-info span:last-child { font-size: 13px; color: rgba(255,255,255,0.8); font-weight: 600; }
+.ok-save-btn {
+  display: flex; align-items: center; gap: 10px;
+  background: linear-gradient(135deg, #5eb3b3 0%, #3d9090 100%);
+  border: none; border-radius: 12px;
+  padding: 14px 32px;
+  font-size: 16px; font-weight: 700; color: #fff;
+  cursor: pointer; transition: all 0.22s;
+  box-shadow: 0 4px 18px rgba(94,179,179,0.4);
+  white-space: nowrap; letter-spacing: 0.3px;
+  flex-shrink: 0;
+}
+.ok-save-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(94,179,179,0.55); }
+.ok-save-btn:active { transform: translateY(0); }
+.ok-save-btn svg { flex-shrink: 0; }
+
+/* ══ SUCCESS MODAL ══ */
+.ok-modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.7); z-index: 9999;
+  align-items: center; justify-content: center;
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+.ok-modal-overlay.visible { display: flex; }
+.ok-modal {
+  background: linear-gradient(160deg, #0f2828 0%, #1a3535 100%);
+  border: 1px solid rgba(94,179,179,0.3);
+  border-radius: 24px; padding: 52px 44px 44px;
+  max-width: 460px; width: 92%; text-align: center;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+  animation: okModalPop 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes okModalPop { from { transform: scale(0.8) translateY(20px); opacity: 0; } to { transform: scale(1) translateY(0); opacity: 1; } }
+.ok-modal-icon {
+  width: 88px; height: 88px; border-radius: 50%;
+  background: linear-gradient(135deg, #5eb3b3 0%, #3d9090 100%);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 24px;
+  box-shadow: 0 12px 36px rgba(94,179,179,0.5);
+  animation: okIconBounce 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.15s both;
+}
+@keyframes okIconBounce { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.ok-modal h3 { font-size: 24px; font-weight: 700; color: #e8fffe; margin-bottom: 10px; }
+.ok-modal .ok-modal-sub { font-size: 14px; color: rgba(196,238,235,0.75); line-height: 1.6; margin-bottom: 12px; }
+.ok-modal-filename {
+  display: inline-block; background: rgba(94,179,179,0.12);
+  border: 1px solid rgba(94,179,179,0.3); border-radius: 8px;
+  padding: 7px 16px; font-size: 12px; font-weight: 600;
+  color: #7dd3d3; margin-bottom: 28px; word-break: break-all;
+}
+.ok-next-btn {
+  display: block; width: 100%;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, #5eb3b3 0%, #3d9090 100%);
+  color: #fff; border: none; border-radius: 12px;
+  font-size: 17px; font-weight: 700; cursor: pointer;
+  box-shadow: 0 4px 18px rgba(94,179,179,0.45);
+  transition: all 0.22s; letter-spacing: 0.3px;
+}
+.ok-next-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(94,179,179,0.6); }
+.ok-countdown { font-size: 12px; color: rgba(196,238,235,0.5); margin-top: 14px; }
+
+/* ══ TOAST ══ */
+.ok-toast {
+  position: fixed; bottom: 90px; right: 24px;
+  background: #c53030; color: #fff;
+  padding: 14px 22px; border-radius: 12px;
+  font-size: 14px; font-weight: 600;
+  box-shadow: 0 8px 24px rgba(197,48,48,0.4);
+  z-index: 9100; display: none;
+  animation: toastSlide 0.3s ease both;
+}
+.ok-toast.visible { display: block; }
+@keyframes toastSlide { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header class="ok-header">
+  <div class="ok-header-left">
+    <div class="ok-logo">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5eb3b3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 2v2h6V2"/>
+        <line x1="9" y1="10" x2="15" y2="10"/><line x1="9" y1="14" x2="15" y2="14"/>
+      </svg>
+    </div>
+    <div class="ok-header-name">
+      <span>ZAHNARZTPRAXEN</span>
+      <span>SEITSCHENKO-DINH</span>
+    </div>
+    <div class="ok-badge">
+      <div class="ok-badge-dot"></div>
+      <span id="hdr-offline-label">OFFLINE KIOSK</span>
+    </div>
+  </div>
+  <div class="ok-header-right">
+    <a href="../index.html" class="ok-back-btn" id="ok-back-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+      <span id="back-btn-text">Startseite</span>
+    </a>
+    <div class="ok-patient-counter" id="patientCounter">Patient #<span id="patientNum">1</span></div>
+    <div style="position:relative;">
+      <button class="ok-lang-btn" id="ok-lang-btn">
+        <img id="ok-flag" src="https://flagcdn.com/24x18/de.png" alt="" style="width:20px;height:15px;border-radius:2px;">
+        <span id="ok-lang-code">DE</span>
+        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="ok-lang-dropdown" id="ok-lang-menu">
+        <div class="ok-lang-option" onclick="changeLang('de')"><img src="https://flagcdn.com/24x18/de.png" style="width:20px;"> Deutsch</div>
+        <div class="ok-lang-option" onclick="changeLang('en')"><img src="https://flagcdn.com/24x18/us.png" style="width:20px;"> English</div>
+        <div class="ok-lang-option" onclick="changeLang('vi')"><img src="https://flagcdn.com/24x18/vn.png" style="width:20px;"> Tiếng Việt</div>
+        <div class="ok-lang-option" onclick="changeLang('ru')"><img src="https://flagcdn.com/24x18/ru.png" style="width:20px;"> Русский</div>
+        <div class="ok-lang-option" onclick="changeLang('ar')"><img src="https://flagcdn.com/24x18/sa.png" style="width:20px;"> العربية</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ══ FORM ══ -->
+<div class="ok-wrapper">
+<div class="ok-container">
+
+<form id="okForm" novalidate>
+
+  <!-- ── STANDORT ── -->
+  <div class="ok-card" id="ok-standortCard">
+    <div class="ok-section-title">
+      <span class="ok-section-number" style="background:linear-gradient(135deg,#1a3535,#2d6060);width:28px;height:28px;display:flex;align-items:center;justify-content:center;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </span>
+      <span id="lbl-standort">Bitte wählen Sie Ihre Praxis</span>
+    </div>
+    <div class="ok-standort-grid">
+      <label class="ok-standort-option" for="ok-s1">
+        <input type="radio" name="Standort" id="ok-s1" value="Schwarzbach">
+        <div class="ok-standort-card">
+          <div class="ok-standort-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="ok-standort-num">1</div>
+          <div class="ok-standort-name">Schwarzbach</div>
+          <div class="ok-standort-addr">Schwarzbach 2, 42277 Wuppertal</div>
+          <div class="ok-standort-tel">Tel.: 0202 660828</div>
+        </div>
+      </label>
+      <label class="ok-standort-option" for="ok-s2">
+        <input type="radio" name="Standort" id="ok-s2" value="Am Loh">
+        <div class="ok-standort-card">
+          <div class="ok-standort-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="ok-standort-num">2</div>
+          <div class="ok-standort-name">Am Loh</div>
+          <div class="ok-standort-addr">Loher Str. 40, 42283 Wuppertal</div>
+          <div class="ok-standort-tel">Tel.: 0202 451642</div>
+        </div>
+      </label>
+    </div>
+    <div class="ok-standort-error" id="ok-standort-error">Bitte wählen Sie eine Praxis aus.</div>
+  </div>
+
+  <!-- ── SECTION 1 – PATIENT ── -->
+  <div class="ok-card">
+    <div class="ok-section-title">
+      <span class="ok-section-number">1</span>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <span id="sec1-title">Fragen zum Patienten</span>
+    </div>
+    <div class="ok-field" style="margin-bottom:18px;">
+      <span class="ok-label" id="lbl-anrede">Anrede</span>
+      <div class="ok-radio-group">
+        <div class="ok-radio-pill"><input type="radio" name="Anrede" id="ok-frau" value="Frau"><label for="ok-frau" id="lbl-frau">Frau</label></div>
+        <div class="ok-radio-pill"><input type="radio" name="Anrede" id="ok-herr" value="Herr"><label for="ok-herr" id="lbl-herr">Herr</label></div>
+        <div class="ok-radio-pill"><input type="radio" name="Anrede" id="ok-divers" value="Divers"><label for="ok-divers" id="lbl-divers">Divers</label></div>
+      </div>
+    </div>
+    <div class="ok-grid">
+      <div class="ok-field"><label class="ok-label" for="ok-nachname"><span id="lbl-nachname">Nachname</span> <span class="ok-req">*</span></label><input class="ok-input" type="text" id="ok-nachname" name="Nachname" required autocomplete="family-name"><span class="ok-error-msg" id="err-nachname">Bitte Nachname eingeben.</span></div>
+      <div class="ok-field"><label class="ok-label" for="ok-vorname"><span id="lbl-vorname">Vorname</span> <span class="ok-req">*</span></label><input class="ok-input" type="text" id="ok-vorname" name="Vorname" required autocomplete="given-name"><span class="ok-error-msg" id="err-vorname">Bitte Vorname eingeben.</span></div>
+      <div class="ok-field"><label class="ok-label" for="ok-dob"><span id="lbl-dob">Geburtsdatum</span> <span class="ok-req">*</span></label><input class="ok-input" type="date" id="ok-dob" name="Geburtsdatum" required><span class="ok-error-msg" id="err-dob">Bitte Geburtsdatum eingeben.</span></div>
+      <div class="ok-field"><label class="ok-label" for="ok-pob"><span id="lbl-pob">Geburtsort</span></label><input class="ok-input" type="text" id="ok-pob" name="Geburtsort"></div>
+      <div class="ok-field ok-col-full"><label class="ok-label" for="ok-street"><span id="lbl-street">Straße und Hausnummer</span> <span class="ok-req">*</span></label><input class="ok-input" type="text" id="ok-street" name="Straße" required autocomplete="street-address"><span class="ok-error-msg" id="err-street">Bitte Adresse eingeben.</span></div>
+      <div class="ok-field"><label class="ok-label" for="ok-plz"><span id="lbl-plz">PLZ</span> <span class="ok-req">*</span></label><input class="ok-input" type="text" id="ok-plz" name="PLZ" maxlength="5" required><span class="ok-error-msg" id="err-plz">Bitte PLZ eingeben.</span></div>
+      <div class="ok-field"><label class="ok-label" for="ok-ort"><span id="lbl-ort">Ort</span> <span class="ok-req">*</span></label><input class="ok-input" type="text" id="ok-ort" name="Ort" required><span class="ok-error-msg" id="err-ort">Bitte Ort eingeben.</span></div>
+      <div class="ok-field"><label class="ok-label" for="ok-mobil"><span id="lbl-mobil">Mobiltelefon</span> <span class="ok-req">*</span></label><input class="ok-input" type="tel" id="ok-mobil" name="Mobil" required autocomplete="tel"><span class="ok-error-msg" id="err-mobil">Bitte Mobilnummer eingeben.</span></div>
+      <div class="ok-field"><label class="ok-label" for="ok-email"><span id="lbl-email">E-Mail</span> <span class="ok-req">*</span></label><input class="ok-input" type="email" id="ok-email" name="E-Mail" required autocomplete="email"><span class="ok-error-msg" id="err-email">Bitte E-Mail eingeben.</span></div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 2 – VERSICHERUNG ── -->
+  <div class="ok-card">
+    <div class="ok-section-title">
+      <span class="ok-section-number">2</span>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <span id="sec2-title">Fragen zur Versicherung</span>
+    </div>
+    <div class="ok-grid">
+      <div class="ok-field ok-col-full">
+        <label class="ok-label" for="ok-vers-name"><span id="lbl-vers">Name der Versicherung / Krankenkasse</span> <span class="ok-req">*</span></label>
+        <input class="ok-input" type="text" id="ok-vers-name" name="Versicherung_Name" required>
+        <span class="ok-error-msg" id="err-vers">Bitte Versicherungsname eingeben.</span>
+      </div>
+    </div>
+    <div style="margin-top:18px;">
+      <div class="ok-label" style="margin-bottom:12px;" id="lbl-verstyp">Versicherungstyp</div>
+      <div class="ok-check-group">
+        <label class="ok-check-item"><input type="checkbox" name="Versicherungstyp" value="gesetzlich versichert"> <span id="v-gesetz">gesetzlich versichert</span></label>
+        <label class="ok-check-item"><input type="checkbox" name="Versicherungstyp" value="privat versichert"> <span id="v-privat">privat versichert</span></label>
+        <label class="ok-check-item"><input type="checkbox" name="Versicherungstyp" value="zahnzusatzversichert" id="ok-chk-zusatz"> <span id="v-zusatz">zahnzusatzversichert</span></label>
+        <label class="ok-check-item"><input type="checkbox" name="Versicherungstyp" value="Beihilfe"> <span id="v-beihilfe">Beihilfe</span></label>
+        <label class="ok-check-item"><input type="checkbox" name="Versicherungstyp" value="Basistarif"> <span id="v-basistarif">Basistarif</span></label>
+        <label class="ok-check-item"><input type="checkbox" name="Versicherungstyp" value="KVB"> <span id="v-kvb">KVB (Bundesbahn)</span></label>
+      </div>
+      <div class="ok-check-subgroup" id="ok-zusatz-sub">
+        <label class="ok-check-item"><input type="checkbox" name="VTyp_Zusatz" value="Füllungen"> <span id="v-full">Füllungen</span></label>
+        <label class="ok-check-item"><input type="checkbox" name="VTyp_Zusatz" value="Prophylaxe"> <span id="v-proph">Prophylaxe</span></label>
+        <label class="ok-check-item"><input type="checkbox" name="VTyp_Zusatz" value="Zahnersatz"> <span id="v-zahnersatz">Zahnersatz</span></label>
+        <label class="ok-check-item"><input type="checkbox" name="VTyp_Zusatz" value="Kieferorthopädie"> <span id="v-kieferortho">Kieferorthopädie</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 3 – GESUNDHEIT ── -->
+  <div class="ok-card">
+    <div class="ok-section-title">
+      <span class="ok-section-number">3</span>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      <span id="sec3-title">Fragen zur allgemeinen Gesundheit</span>
+    </div>
+    <div class="ok-health-cols">
+      <!-- COL 1 -->
+      <div>
+        <div class="ok-health-cat" id="cat-herz">Herzerkrankungen</div>
+        <div class="ok-yn-row"><span class="ok-yn-label" id="hl-Herzschwäche">Herzschwäche (Insuffizienz)</span><div class="ok-yn-btns"><button type="button" class="ok-yn-btn" data-field="Herzschwäche" data-val="Ja">JA</button><button type="button" class="ok-yn-btn" data-field="Herzschwäche" data-val="Nein">NEIN</button></div></div>
+        <div class="ok-yn-row"><span class="ok-yn-label" id="hl-Arrhythmien">Unregelmäßiger Herzschlag (Arrhythmien)</span><div class="ok-yn-btns"><button type="button" class="ok-yn-btn" data-field="Arrhythmien" data-val="Ja">JA</button><button type="button" class="ok-yn-btn" data-field="Arrhythmien" data-val="Nein">NEIN</button></div></div>
+        <div class="ok-yn-row"><span class="ok-yn-label" id="hl-Herzasthma">Herzasthma, Angina pectoris</span><div class="ok-yn-btns"><button type="button" class="ok-yn-btn" data-field="Herzasthma" data-val="Ja">JA</button><button type="button" class="ok-yn-btn" data-field="Herzasthma" data-val="Nein">NEIN</button></div></div>
+        <div class="ok-yn-row"><span class="ok-yn-label" id="hl-Endokarditis">Herzinnenhautentzündung (Endokarditis)</span><div class="ok-yn-btns"><button type="button" class="ok-yn-btn" data-field="Endokarditis" data-val="Ja">JA</button><button type="button" class="ok-yn-btn" data-field="Endokarditis" data-val="Nein">NEIN</button></div></div>
+        <div class="ok-yn-row"><span class="ok-yn-label" id="hl-Herzschrittmacher">Herzschrittmacher</span><div class="ok-yn-btns"><button type="button" class="ok-yn-btn" data-field="Herzschrittmacher" data-val="Ja">JA</button><button type="button" class="ok-yn-btn" data-field="Herzschrittmacher" data-val="Nein">NEIN</button></div></div>
+        <div class="ok-yn-row"><span class="ok-yn-label" id="hl-Herzklappenfehler">Herzklappenfehler, künstliche Herzklappe</span><div class="ok-yn-btns"><button type="button" class="ok-yn-btn" data-field="Herzklappenfehler" data-val="Ja">JA</button><button type="button" class="ok-yn-btn" data-field="Herzklappenfehler" data-val="Nein">NEIN</button></div></div>
+        <div class="ok-yn-row"><span class="ok-yn-label" id="hl-Herzinfarkt">Zustand nach Herzinfarkt, Herz-OP, Bypass</span><div class="ok-yn-btns"><button type="button" class="ok-yn-btn" data-field="Herzinfarkt" data-val="Ja">JA</button><button type="button" class="ok-yn-btn" data-field="Herzinfarkt" data-val="Nein">NEIN</button></div></div>
+        <div class="ok-yn-row"><span class="ok-yn-label sub" id="sub-Herzinfarkt_Wann">Wenn ja, wann?</span><div style="flex:0 0 120px;"><input type="text" class="ok-yn-text-input" name="Herzinfarkt_Wann" placeholder="z.B. 2020"></div></div>
+        <div class="ok-health-cat" id="cat-kreislauf">Erkrankungen Kreislauf und Gefäßsystem</div>
+        <div class="ok-yn-row"><span class="ok-yn-label" id="hl-Blutdruck_Hoch">Zu hoher Blutdruck</span><div class="ok-yn-btns"><button type="button" class="ok-yn-btn" data-field="Blutdruck_Hoch" data-val="Ja">JA</button><button type="button" class="ok-yn-btn" data-field="Blutdruck_Hoch" data-val="Nein">NEIN</button></div></div>
+        <div class="ok-yn-row"><span class="ok-yn-label" id="hl-Blutdruck_Niedrig">Zu niedriger Blutdruck</span><div class="ok-yn-btns"><button type="button" class="ok-yn-btn" data-field="Blutdruck_Niedrig" data-val="Ja">JA</button><button type="button" class="ok-yn-btn" data-field="Blutdruck_Niedrig" data-val="Nein">NEIN</button></div></div>
+        <div class="ok-yn-row"><span class="ok-yn-label" id="hl-Ohnmacht">Ohnmachtsanfälle / Ohnmachtsneigung</span><div class="ok-yn-btns"><button type="button" class="ok-yn-btn" data-field="Ohnmacht" data-val="Ja">JA</button><button type="button" class="ok-yn-btn" data-field="Ohnmacht" data-val="Nein">NEIN</button></div></div>
+        <div class="ok-yn-row"><span class="ok-yn-label" id="hl-Schlaganfall">Schlaganfall</span><div class="ok-yn-btns"><button type="button" class="ok-yn-btn" data-field="Schlaganfall" data-val="Ja">JA</button><button type="button" class="ok-yn-btn" data-field="Schlaganfall" data-val="Nein">NEIN</button></div></div>
+        <div class="ok-yn-row"><span class="ok-yn-label sub" id="sub-Schlaganfall_Wann">Wenn ja, wann?</span><div style="flex:0 0 120px;"><input type="text" class="ok-yn-text-input" name="Schlaganfall_Wann" placeholder="z.B. 2020"></div></div>
+        <div class="ok-health-cat" id="cat-stoff">Stoffwechselerkrankungen</div>
+        <div class="ok-yn-row"><span class="ok-yn-label" id="hl-Diabetes">Zuckerkrankheit (Diabetes)</span><div class="ok-yn-btns"><button type="button" class="ok-yn-btn" data-field="Diabetes" data-val="Ja">JA</button><button type="button" class="ok-yn-btn" data-field="Diabetes" data-val="Nein">NEIN</button></div></div>
+        <div class="ok-yn-row"><span class="ok-yn-label" id="hl-Magen_Darm">Magen-Darm-Erkrankungen</span><div class="ok-yn-btns"><button type="button" class="ok-yn-btn" data-field="Magen_Darm" data-val="Ja">JA</button><button type="button" class="ok-yn-btn" data-field="Magen_Darm" data-val="Nein">NEIN</button></div></div>
+        <div class="ok-yn-row"><span class="ok-yn-label" id="hl-Schilddrüse">Schilddrüsenerkrankungen</span><div class="ok-yn-btns"><button type="button" class="ok-yn-btn" data-field="Schilddrüse" data-val="Ja">JA</button><button type="button" class="ok-yn-btn" data-field="Schilddrüse" data-val="Nein">NEIN</button></div></div>
+      </div>
+      <!-- COL 2 -->
+      <div>
+        <div class="ok-health-cat" id="cat-nerven">Erkrankungen des Nervensystems</div>
+        <div class="ok-yn-row"><span class="ok-yn-label" id="hl-Epilepsie">Epilepsie</span><div class="ok-yn-btns"><button type="button" class="ok-yn-btn" data-field="Epilepsie" data-val="Ja">JA</button><button type="button" class="ok-yn-btn" data-field="Epilepsie" data-val="Nein">NEIN</button></div></div>
+        <div class="ok-yn-row"><span class="ok-yn-label" id="hl-Krämpfe">Krämpfe</span><div class="ok-yn-btns"><button type="button" class="ok-yn-btn" data-field="Krämpfe" data-val="Ja">JA</button><button type="button" class="ok-yn-btn" data-field="Krämpfe" data-val="Nein">NEIN</button></div></div>
+        <div class="ok-health-cat" id="cat-blut">Bluterkrankungen</div>
+        <div class="ok-yn-row"><span class="ok-yn-label" id="hl-Hämophilie">Blutungsneigung (Hämophilie)</span><div class="ok-yn-btns"><button type="button" class="ok-yn-btn" data-field="Hämophilie" data-val="Ja">JA</button><button type="button" class="ok-yn-btn" data-field="Hämophilie" data-val="Nein">NEIN</button></div></div>
+        <div class="ok-yn-row"><span class="ok-yn-label" id="hl-Anämie">Blutarmut (Anämie)</span><div class="ok-yn-btns"><button type="button" class="ok-yn-btn" data-field="Anämie" data-val="Ja">JA</button><button type="button" class="ok-yn-btn" data-field="Anämie" data-val="Nein">NEIN</button></div></div>
+        <div class="ok-health-cat" id="cat-tumor">Tumorerkrankungen</div>
+        <div class="ok-yn-row"><span class="ok-yn-label" id="hl-Tumorerkrankungen">Tumorerkrankung vorhanden?</span><div class="ok-yn-btns"><button type="button" class="ok-yn-btn" data-field="Tumorerkrankungen" data-val="Ja">JA</button><button type="button" class="ok-yn-btn" data-field="Tumorerkrankungen" data-val="Nein">NEIN</button></div></div>
+        <div class="ok-yn-row"><span class="ok-yn-label sub" id="sub-Tumor_Welche">Wenn ja, welche?</span><div style="flex:0 0 180px;"><input type="text" class="ok-yn-text-input" name="Tumor_Welche"></div></div>
+        <div class="ok-health-cat" id="cat-infekt">Infektionskrankheiten</div>
+        <div class="ok-yn-row"><span class="ok-yn-label" id="hl-Hepatitis">Leberentzündung (Hepatitis)</span><div class="ok-yn-btns"><button type="button" class="ok-yn-btn" data-field="Hepatitis" data-val="Ja">JA</button><button type="button" class="ok-yn-btn" data-field="Hepatitis" data-val="Nein">NEIN</button></div></div>
+        <div class="ok-yn-row"><span class="ok-yn-label sub" id="sub-Hepatitis_Typ">Wenn ja, welcher Typ?</span><div style="flex:0 0 120px;"><input type="text" class="ok-yn-text-input" name="Hepatitis_Typ" placeholder="A / B / C …"></div></div>
+        <div class="ok-yn-row"><span class="ok-yn-label" id="hl-TBC">Tuberkulose</span><div class="ok-yn-btns"><button type="button" class="ok-yn-btn" data-field="TBC" data-val="Ja">JA</button><button type="button" class="ok-yn-btn" data-field="TBC" data-val="Nein">NEIN</button></div></div>
+        <div class="ok-yn-row"><span class="ok-yn-label" id="hl-HIV">HIV</span><div class="ok-yn-btns"><button type="button" class="ok-yn-btn" data-field="HIV" data-val="Ja">JA</button><button type="button" class="ok-yn-btn" data-field="HIV" data-val="Nein">NEIN</button></div></div>
+        <div class="ok-yn-row"><span class="ok-yn-label" id="hl-MRSA">MRSA</span><div class="ok-yn-btns"><button type="button" class="ok-yn-btn" data-field="MRSA" data-val="Ja">JA</button><button type="button" class="ok-yn-btn" data-field="MRSA" data-val="Nein">NEIN</button></div></div>
+        <div class="ok-yn-row"><span class="ok-yn-label" id="hl-Atemwege">Chronische Atemwegserkrankung</span><div class="ok-yn-btns"><button type="button" class="ok-yn-btn" data-field="Atemwege" data-val="Ja">JA</button><button type="button" class="ok-yn-btn" data-field="Atemwege" data-val="Nein">NEIN</button></div></div>
+      </div>
+      <!-- COL 3 – full width -->
+      <div>
+        <div class="ok-health-cat" id="cat-allergie">Allergien (Unverträglichkeit, Überempfindlichkeit)</div>
+        <div class="ok-yn-row"><span class="ok-yn-label" id="hl-Allergie_Antibiotika">Allergie gegen Antibiotika / Penicillin</span><div class="ok-yn-btns"><button type="button" class="ok-yn-btn" data-field="Allergie_Antibiotika" data-val="Ja">JA</button><button type="button" class="ok-yn-btn" data-field="Allergie_Antibiotika" data-val="Nein">NEIN</button></div></div>
+        <div class="ok-yn-row"><span class="ok-yn-label" id="hl-Allergie_Andere">Allergie gegen andere Medikamente oder Stoffe (z.B. Latex, Metalle)</span><div class="ok-yn-btns"><button type="button" class="ok-yn-btn" data-field="Allergie_Andere" data-val="Ja">JA</button><button type="button" class="ok-yn-btn" data-field="Allergie_Andere" data-val="Nein">NEIN</button></div></div>
+        <div class="ok-yn-row"><span class="ok-yn-label sub" id="sub-Allergie_Welche">Wenn ja, gegen welche?</span><div style="flex:0 0 200px;"><input type="text" class="ok-yn-text-input" name="Allergie_Welche"></div></div>
+        <div class="ok-health-cat" id="cat-medi">Einnahme von Medikamenten</div>
+        <div class="ok-yn-row"><span class="ok-yn-label" id="hl-Medikamente_Einnahme">Nehmen Sie zurzeit Medikamente ein?</span><div class="ok-yn-btns"><button type="button" class="ok-yn-btn" data-field="Medikamente_Einnahme" data-val="Ja">JA</button><button type="button" class="ok-yn-btn" data-field="Medikamente_Einnahme" data-val="Nein">NEIN</button></div></div>
+        <div class="ok-yn-row"><span class="ok-yn-label sub" id="sub-Blutverdünner">Blutverdünnende Medikamente (ASS, Marcumar, Heparin)</span><div style="flex:0 0 130px;"><input type="text" class="ok-yn-text-input" name="Blutverdünner" placeholder="Ja / Nein / Name"></div></div>
+        <div class="ok-yn-row"><span class="ok-yn-label sub" id="sub-Bisphosphonate">Bisphosphonate</span><div style="flex:0 0 130px;"><input type="text" class="ok-yn-text-input" name="Bisphosphonate" placeholder="Ja / Nein"></div></div>
+        <div class="ok-yn-row"><span class="ok-yn-label sub" id="sub-Sonstige_Medikamente">Sonstige Medikamente</span><div style="flex:0 0 200px;"><input type="text" class="ok-yn-text-input" name="Sonstige_Medikamente"></div></div>
+        <div class="ok-health-cat" id="cat-drogen">Drogenkonsum</div>
+        <div class="ok-yn-row"><span class="ok-yn-label" id="hl-Rauchen">Rauchen Sie?</span><div class="ok-yn-btns"><button type="button" class="ok-yn-btn" data-field="Rauchen" data-val="Ja">JA</button><button type="button" class="ok-yn-btn" data-field="Rauchen" data-val="Nein">NEIN</button></div></div>
+        <div class="ok-yn-row"><span class="ok-yn-label" id="hl-Alkohol">Besteht eine Alkoholabhängigkeit?</span><div class="ok-yn-btns"><button type="button" class="ok-yn-btn" data-field="Alkohol" data-val="Ja">JA</button><button type="button" class="ok-yn-btn" data-field="Alkohol" data-val="Nein">NEIN</button></div></div>
+        <div class="ok-health-cat" id="cat-schwanger">Patientinnen: Sind Sie schwanger?</div>
+        <div class="ok-yn-row"><span class="ok-yn-label" id="hl-Schwanger">Schwangerschaft</span><div class="ok-yn-btns"><button type="button" class="ok-yn-btn" data-field="Schwanger" data-val="Ja">JA</button><button type="button" class="ok-yn-btn" data-field="Schwanger" data-val="Nein">NEIN</button></div></div>
+        <div class="ok-yn-row"><span class="ok-yn-label sub" id="sub-Schwanger_Woche">Wenn ja, welche Woche?</span><div style="flex:0 0 120px;"><input type="text" class="ok-yn-text-input" name="Schwanger_Woche" placeholder="z.B. 12"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 4 – MUNDGESUNDHEIT ── -->
+  <div class="ok-card">
+    <div class="ok-section-title">
+      <span class="ok-section-number">4</span>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+      <span id="sec4-title">Fragen zur Mundgesundheit</span>
+    </div>
+    <div class="ok-grid" style="margin-bottom:18px;">
+      <div class="ok-field ok-col-full">
+        <label class="ok-label" for="ok-xray"><span id="lbl-xray">Wann wurden Sie zuletzt im Kopf-Kiefer-Zahnbereich geröntgt?</span></label>
+        <input class="ok-input" type="text" id="ok-xray" name="Letztes_Rontgen" placeholder="z.B. vor 6 Monaten bei Dr. Müller">
+      </div>
+    </div>
+    <div class="ok-yn-row"><span class="ok-yn-label" id="hl-Knirschen">Knirschen oder pressen Sie mit den Zähnen?</span><div class="ok-yn-btns"><button type="button" class="ok-yn-btn" data-field="Knirschen" data-val="Ja">JA</button><button type="button" class="ok-yn-btn" data-field="Knirschen" data-val="Nein">NEIN</button></div></div>
+    <div class="ok-yn-row"><span class="ok-yn-label" id="hl-Zahnfleisch">Haben Sie Zahnfleischprobleme? Zahnfleischbluten?</span><div class="ok-yn-btns"><button type="button" class="ok-yn-btn" data-field="Zahnfleisch" data-val="Ja">JA</button><button type="button" class="ok-yn-btn" data-field="Zahnfleisch" data-val="Nein">NEIN</button></div></div>
+    <div class="ok-yn-row"><span class="ok-yn-label" id="hl-Mundgeruch">Leiden Sie unter Mundgeruch?</span><div class="ok-yn-btns"><button type="button" class="ok-yn-btn" data-field="Mundgeruch" data-val="Ja">JA</button><button type="button" class="ok-yn-btn" data-field="Mundgeruch" data-val="Nein">NEIN</button></div></div>
+    <div style="margin-top:18px;padding-top:14px;border-top:1px solid #e6f0f0;">
+      <div class="ok-label" style="margin-bottom:12px;" id="lbl-reminder">Wie möchten Sie an Ihre nächste Kontrolluntersuchung erinnert werden?</div>
+      <div class="ok-radio-group">
+        <div class="ok-radio-pill"><input type="radio" name="Erinnerung" id="ok-er-post" value="Postkarte"><label for="ok-er-post" id="er-post">Per Postkarte</label></div>
+        <div class="ok-radio-pill"><input type="radio" name="Erinnerung" id="ok-er-email" value="E-Mail"><label for="ok-er-email" id="er-email">Per E-Mail</label></div>
+        <div class="ok-radio-pill"><input type="radio" name="Erinnerung" id="ok-er-sms" value="SMS"><label for="ok-er-sms" id="er-sms">Per SMS</label></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 5 – BESTÄTIGUNG ── -->
+  <div class="ok-card">
+    <div class="ok-section-title">
+      <span class="ok-section-number">5</span>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      <span id="sec5-title">Bestätigung &amp; Unterschrift</span>
+    </div>
+    <div class="ok-confirm-block">
+      <label class="ok-confirm-item">
+        <input type="checkbox" id="ok-chk-confirm" required>
+        <span class="ok-confirm-text" id="confirm1-text">Ich bestätige, dass ich den Anamnesebogen gelesen und alle Fragen verstanden habe. Ich versichere, die Angaben vollständig und inhaltlich richtig gemacht zu haben.</span>
+      </label>
+      <label class="ok-confirm-item">
+        <input type="checkbox" id="ok-chk-dsgvo" required>
+        <span class="ok-confirm-text" id="confirm2-text">Ich willige ein, dass meine personenbezogenen Daten ausschließlich zum Zweck meiner zahnärztlichen Behandlung gespeichert und verarbeitet werden dürfen.</span>
+      </label>
+    </div>
+    <div class="ok-sig-row">
+      <div class="ok-field">
+        <label class="ok-label" for="ok-datum"><span id="lbl-datum">Datum</span></label>
+        <input class="ok-input" type="date" id="ok-datum" name="Datum" required>
+      </div>
+      <div class="ok-field">
+        <label class="ok-label" for="ok-unterschrift"><span id="lbl-unterschrift">Unterschrift</span> <span style="font-size:11px;color:#718096;font-weight:400;" id="lbl-unterschrift-hint">(Name eintippen)</span></label>
+        <input class="ok-input" type="text" id="ok-unterschrift" name="Unterschrift" placeholder="Vor- und Nachname" style="font-family:'Brush Script MT',cursive;font-size:20px;letter-spacing:1px;" required>
+        <span class="ok-error-msg" id="err-unterschrift">Bitte Unterschrift eingeben.</span>
+      </div>
+    </div>
+  </div>
+
+</form>
+</div><!-- end ok-container -->
+</div><!-- end ok-wrapper -->
+
+<!-- ══ STICKY SAVE BAR ══ -->
+<div class="ok-save-bar">
+  <div class="ok-save-bar-info">
+    <span id="save-bar-hint">Nach dem Ausfüllen:</span>
+    <span id="save-bar-sub">PDF wird auf diesem Gerät gespeichert – kein Internet erforderlich</span>
+  </div>
+  <button class="ok-save-btn" onclick="okSavePDF()" id="ok-save-btn">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+      <polyline points="14 2 14 8 20 8"/>
+      <line x1="12" y1="18" x2="12" y2="12"/>
+      <line x1="9" y1="15" x2="15" y2="15"/>
+    </svg>
+    <span id="save-btn-text">Speichern &amp; PDF</span>
+  </button>
+</div>
+
+<!-- ══ SUCCESS MODAL ══ -->
+<div class="ok-modal-overlay" id="ok-success-modal">
+  <div class="ok-modal">
+    <div class="ok-modal-icon">
+      <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <polyline points="14 2 14 8 20 8"/>
+        <polyline points="9 15 11 17 15 13"/>
+      </svg>
+    </div>
+    <h3 id="modal-title">PDF gespeichert!</h3>
+    <p class="ok-modal-sub" id="modal-sub">Das Formular wurde erfolgreich als PDF auf dem Gerät gespeichert.</p>
+    <div class="ok-modal-filename" id="ok-modal-filename">Anamnesebogen.pdf</div>
+    <button class="ok-next-btn" onclick="okNextPatient()" id="ok-next-btn">
+      ✓ Nächster Patient / Next Patient
+    </button>
+    <p class="ok-countdown" id="ok-countdown">Automatisches Zurücksetzen in <strong><span id="ok-timer">15</span>s</strong></p>
+  </div>
+</div>
+
+<!-- ══ TOAST ══ -->
+<div class="ok-toast" id="ok-toast">Bitte alle Pflichtfelder ausfüllen.</div>
+
+<script>
+'use strict';
+
+/* ── YN state ── */
+const okYN = {};
+let okPatientCount = parseInt(localStorage.getItem('okPatientCount') || '0') + 1;
+localStorage.setItem('okPatientCount', okPatientCount);
+document.getElementById('patientNum').textContent = okPatientCount;
+
+document.querySelectorAll('.ok-yn-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const field = btn.dataset.field;
+    okYN[field] = btn.dataset.val;
+    btn.closest('.ok-yn-btns').querySelectorAll('.ok-yn-btn').forEach(b => b.classList.remove('active-yes','active-no'));
+    btn.classList.add(btn.dataset.val === 'Ja' ? 'active-yes' : 'active-no');
+  });
+});
+
+document.getElementById('ok-chk-zusatz').addEventListener('change', function() {
+  document.getElementById('ok-zusatz-sub').classList.toggle('visible', this.checked);
+});
+
+/* ── Collect data ── */
+function okCollect() {
+  const d = { Timestamp: new Date().toISOString() };
+  d.Standort = (document.querySelector('input[name="Standort"]:checked') || {}).value || '';
+  d.Anrede   = (document.querySelector('input[name="Anrede"]:checked') || {}).value || '';
+  document.querySelectorAll('#okForm input[name]:not([type="radio"]):not([type="checkbox"])').forEach(el => { if (el.name) d[el.name] = el.value; });
+  d.Versicherungstyp = [...document.querySelectorAll('input[name="Versicherungstyp"]:checked')].map(c=>c.value).join(', ');
+  d.Erinnerung = (document.querySelector('input[name="Erinnerung"]:checked') || {}).value || '';
+  Object.assign(d, okYN);
+  return d;
+}
+
+/* ── Validate ── */
+function okValidate() {
+  let ok = true;
+  document.querySelectorAll('#okForm [required]').forEach(el => {
+    if (el.type === 'checkbox') return;
+    const fld = el.closest('.ok-field');
+    if (!el.value.trim()) { if (fld) fld.classList.add('has-error'); el.classList.add('af-error'); ok = false; }
+    else { if (fld) fld.classList.remove('has-error'); el.classList.remove('af-error'); }
+  });
+  if (!document.querySelector('input[name="Standort"]:checked')) {
+    document.getElementById('ok-standort-error').classList.add('show');
+    document.getElementById('ok-standortCard').scrollIntoView({ behavior:'smooth', block:'center' });
+    ok = false;
+  } else { document.getElementById('ok-standort-error').classList.remove('show'); }
+  if (!document.getElementById('ok-chk-confirm').checked || !document.getElementById('ok-chk-dsgvo').checked) {
+    document.querySelectorAll('.ok-confirm-item').forEach(el => {
+      const chk = el.querySelector('input[type="checkbox"]');
+      el.style.borderColor = chk && !chk.checked ? '#fc8181' : '';
+    });
+    ok = false;
+  }
+  return ok;
+}
+
+/* ── Generate PDF ── */
+function normPDF(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/Đ/g,'D').replace(/đ/g,'d')
+    .normalize('NFD').replace(/[̀-ͯ]/g,'');
+}
+
+function okBuildPDF(data) {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF('p','mm','a4');
+  const W=210, M=15, CW=W-2*M;
+  let y=0;
+  const T=[26,53,53], TC=[94,179,179], GR=[100,116,139], BK=[30,30,30];
+
+  function newPage() {
+    doc.addPage(); y=18;
+    doc.setFillColor(...T); doc.rect(0,0,W,10,'F');
+    doc.setFontSize(7); doc.setTextColor(255,255,255);
+    doc.text('Zahnarztpraxen Seitschenko-Dinh – Anamnesebogen [OFFLINE]', M, 7);
+    doc.text(normPDF(data.Nachname||'') + ' ' + normPDF(data.Vorname||''), W-M, 7, {align:'right'});
+  }
+  function chk(n=10) { if (y+n>282) newPage(); }
+
+  function secHead(t) {
+    chk(12);
+    doc.setFillColor(...T); doc.rect(M,y,CW,7.5,'F');
+    doc.setFontSize(8.5); doc.setFont('helvetica','bold'); doc.setTextColor(255,255,255);
+    doc.text(t, M+3, y+5.2); y+=11;
+  }
+  function field(label, val) {
+    chk(7);
+    doc.setFontSize(7.5); doc.setFont('helvetica','bold'); doc.setTextColor(...GR);
+    doc.text(label+':', M+2, y);
+    doc.setFont('helvetica','normal'); doc.setTextColor(...BK);
+    const v = normPDF((val||'').toString().trim()||'—');
+    const lines = doc.splitTextToSize(v, CW-52);
+    doc.text(lines, M+52, y);
+    doc.setDrawColor(220,230,230); doc.line(M,y+2.5,M+CW,y+2.5);
+    y += Math.max(7, lines.length*5);
+  }
+  function yn(label, val) {
+    chk(6);
+    doc.setFontSize(7.5); doc.setFont('helvetica','normal'); doc.setTextColor(...GR);
+    doc.text(label+':', M+2, y);
+    const v=val||'—';
+    const c=v==='Ja'?[197,48,48]:v==='Nein'?[22,163,74]:GR;
+    doc.setFont('helvetica','bold'); doc.setTextColor(...c);
+    doc.text(v, M+80, y); y+=6;
+  }
+
+  // Header
+  doc.setFillColor(...T); doc.rect(0,0,W,38,'F');
+  doc.setFillColor(...TC); doc.rect(0,35,W,3,'F');
+  doc.setFontSize(14); doc.setFont('helvetica','bold'); doc.setTextColor(255,255,255);
+  doc.text('ZAHNARZTPRAXEN SEITSCHENKO-DINH', W/2, 12, {align:'center'});
+  doc.setFontSize(9.5); doc.setFont('helvetica','normal');
+  doc.text('Anamnesebogen – Offline Kiosk', W/2, 20, {align:'center'});
+  doc.setFontSize(8); doc.setTextColor(200,230,230);
+  doc.text('Standort: '+(data.Standort||'—')+'   |   Datum: '+new Date().toLocaleDateString('de-DE'), W/2, 28, {align:'center'});
+  y = 46;
+
+  secHead('1. Patientendaten');
+  field('Anrede', data.Anrede);
+  field('Name', (data.Nachname||'') + ' ' + (data.Vorname||''));
+  field('Geburtsdatum', data.Geburtsdatum);
+  field('Adresse', [data['Straße']||data.Strasse, data.PLZ, data.Ort].filter(Boolean).join(', '));
+  field('Mobil', data.Mobil);
+  field('E-Mail', data['E-Mail']);
+
+  secHead('2. Krankenversicherung');
+  field('Versicherung', data.Versicherung_Name);
+  field('Typ', data.Versicherungstyp);
+
+  secHead('3. Herzerkrankungen & Kreislauf');
+  yn('Herzschwäche', data['Herzschwäche']); yn('Arrhythmien', data.Arrhythmien);
+  yn('Herzasthma', data.Herzasthma); yn('Endokarditis', data.Endokarditis);
+  yn('Herzschrittmacher', data.Herzschrittmacher); yn('Herzklappenfehler', data.Herzklappenfehler);
+  yn('Herzinfarkt', data.Herzinfarkt);
+  if (data.Herzinfarkt_Wann) field('Herzinfarkt Wann', data.Herzinfarkt_Wann);
+  yn('Blutdruck hoch', data.Blutdruck_Hoch); yn('Blutdruck niedrig', data.Blutdruck_Niedrig);
+  yn('Ohnmacht', data.Ohnmacht); yn('Schlaganfall', data.Schlaganfall);
+  if (data.Schlaganfall_Wann) field('Schlaganfall Wann', data.Schlaganfall_Wann);
+
+  secHead('4. Stoffwechsel / Nerven / Blut / Tumor');
+  yn('Diabetes', data.Diabetes); yn('Magen-Darm', data.Magen_Darm);
+  yn('Schilddrüse', data['Schilddrüse']); yn('Epilepsie', data.Epilepsie);
+  yn('Krämpfe', data['Krämpfe']); yn('Hämophilie', data['Hämophilie']); yn('Anämie', data['Anämie']);
+  yn('Tumorerkrankungen', data.Tumorerkrankungen);
+  if (data.Tumor_Welche) field('Tumor Welche', data.Tumor_Welche);
+
+  secHead('5. Infektionskrankheiten & Allergien');
+  yn('Hepatitis', data.Hepatitis);
+  if (data.Hepatitis_Typ) field('Hepatitis Typ', data.Hepatitis_Typ);
+  yn('TBC', data.TBC); yn('HIV', data.HIV); yn('MRSA', data.MRSA); yn('Atemwege', data.Atemwege);
+  yn('Allergie Antibiotika', data.Allergie_Antibiotika); yn('Andere Allergie', data.Allergie_Andere);
+  if (data.Allergie_Welche) field('Welche Allergie', data.Allergie_Welche);
+
+  secHead('6. Medikamente & Lebensgewohnheiten');
+  yn('Medikamente', data.Medikamente_Einnahme);
+  if (data['Blutverdünner']) field('Blutverdünner', data['Blutverdünner']);
+  if (data.Bisphosphonate) field('Bisphosphonate', data.Bisphosphonate);
+  if (data.Sonstige_Medikamente) field('Sonstige Medikamente', data.Sonstige_Medikamente);
+  yn('Rauchen', data.Rauchen); yn('Alkohol', data.Alkohol);
+  yn('Schwanger', data.Schwanger);
+  if (data.Schwanger_Woche) field('SSW', data.Schwanger_Woche);
+
+  secHead('7. Mundgesundheit & Unterschrift');
+  if (data.Letztes_Rontgen) field('Letztes Röntgen', data.Letztes_Rontgen);
+  yn('Knirschen/Pressen', data.Knirschen); yn('Zahnfleischbluten', data.Zahnfleisch); yn('Mundgeruch', data.Mundgeruch);
+  field('Erinnerung per', data.Erinnerung);
+  field('Datum', data.Datum);
+  field('Unterschrift', data.Unterschrift);
+
+  const total = doc.getNumberOfPages();
+  for (let i=1; i<=total; i++) {
+    doc.setPage(i);
+    doc.setFontSize(7); doc.setTextColor(...GR);
+    doc.text('Zahnarztpraxen Seitschenko-Dinh – Offline Kiosk – vertraulich', M, 292);
+    doc.text('Seite '+i+' / '+total, W-M, 292, {align:'right'});
+  }
+  return doc;
+}
+
+/* ── Save PDF & show modal ── */
+let okCountdownTimer = null;
+
+async function okSavePDF() {
+  if (!okValidate()) {
+    const toast = document.getElementById('ok-toast');
+    toast.classList.add('visible');
+    setTimeout(() => toast.classList.remove('visible'), 3500);
+    const firstErr = document.querySelector('.ok-field.has-error .ok-input, input[name="Standort"]');
+    if (firstErr) firstErr.scrollIntoView({ behavior:'smooth', block:'center' });
+    return;
+  }
+  const data = okCollect();
+  const name = normPDF((data.Vorname||'')+'_'+(data.Nachname||'')).replace(/\s+/g,'_').replace(/[^a-zA-Z0-9_-]/g,'')||'Patient';
+  const dateStr = (data.Datum||new Date().toISOString().split('T')[0]).replace(/-/g,'');
+  const filename = `Anamnesebogen_${name}_${dateStr}.pdf`;
+
+  const doc = okBuildPDF(data);
+
+  if (window.showSaveFilePicker) {
+    try {
+      const fileHandle = await window.showSaveFilePicker({
+        suggestedName: filename,
+        types: [{ description: 'PDF-Dokument', accept: { 'application/pdf': ['.pdf'] } }]
+      });
+      const writable = await fileHandle.createWritable();
+      await writable.write(doc.output('blob'));
+      await writable.close();
+    } catch (err) {
+      if (err.name === 'AbortError') return; // user cancelled dialog
+      doc.save(filename); // fallback on unexpected error
+    }
+  } else {
+    doc.save(filename); // fallback for Firefox / Safari
+  }
+
+  document.getElementById('ok-modal-filename').textContent = filename;
+  document.getElementById('ok-success-modal').classList.add('visible');
+
+  let secs = 15;
+  document.getElementById('ok-timer').textContent = secs;
+  if (okCountdownTimer) clearInterval(okCountdownTimer);
+  okCountdownTimer = setInterval(() => {
+    secs--;
+    const el = document.getElementById('ok-timer');
+    if (el) el.textContent = secs;
+    if (secs <= 0) { clearInterval(okCountdownTimer); okNextPatient(); }
+  }, 1000);
+}
+
+function okNextPatient() {
+  if (okCountdownTimer) clearInterval(okCountdownTimer);
+  document.getElementById('ok-success-modal').classList.remove('visible');
+
+  // Reset form
+  document.getElementById('okForm').reset();
+  document.querySelectorAll('.ok-yn-btn').forEach(b => b.classList.remove('active-yes','active-no'));
+  Object.keys(okYN).forEach(k => delete okYN[k]);
+  document.getElementById('ok-zusatz-sub').classList.remove('visible');
+  document.querySelectorAll('.ok-field.has-error').forEach(el => el.classList.remove('has-error'));
+  document.querySelectorAll('.ok-confirm-item').forEach(el => el.style.borderColor='');
+  document.getElementById('ok-standort-error').classList.remove('show');
+  document.getElementById('ok-datum').value = new Date().toISOString().split('T')[0];
+
+  // Update patient counter
+  okPatientCount++;
+  localStorage.setItem('okPatientCount', okPatientCount);
+  document.getElementById('patientNum').textContent = okPatientCount;
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ── Language ── */
+const okLangs = {
+  de: {
+    badge:'OFFLINE KIOSK', standort:'Bitte wählen Sie Ihre Praxis',
+    sec1:'Fragen zum Patienten', sec2:'Fragen zur Versicherung',
+    sec3:'Fragen zur allgemeinen Gesundheit', sec4:'Fragen zur Mundgesundheit', sec5:'Bestätigung & Unterschrift',
+    anrede:'Anrede', frau:'Frau', herr:'Herr', divers:'Divers',
+    nachname:'Nachname', vorname:'Vorname', dob:'Geburtsdatum', pob:'Geburtsort',
+    street:'Straße und Hausnummer', plz:'PLZ', ort:'Ort', mobil:'Mobiltelefon', email:'E-Mail',
+    vers:'Name der Versicherung / Krankenkasse', verstyp:'Versicherungstyp',
+    v_gesetz:'gesetzlich versichert', v_privat:'privat versichert', v_zusatz:'zahnzusatzversichert',
+    v_beihilfe:'Beihilfe', v_basistarif:'Basistarif', v_kvb:'KVB (Bundesbahn)',
+    v_full:'Füllungen', v_proph:'Prophylaxe', v_zahnersatz:'Zahnersatz', v_kieferortho:'Kieferorthopädie',
+    yn_yes:'JA', yn_no:'NEIN', back:'Startseite',
+    cat_herz:'Herzerkrankungen', cat_kreislauf:'Erkrankungen Kreislauf und Gefäßsystem',
+    cat_stoff:'Stoffwechselerkrankungen', cat_nerven:'Erkrankungen des Nervensystems',
+    cat_blut:'Bluterkrankungen', cat_tumor:'Tumorerkrankungen', cat_infekt:'Infektionskrankheiten',
+    cat_allergie:'Allergien (Unverträglichkeit, Überempfindlichkeit)',
+    cat_medi:'Einnahme von Medikamenten', cat_drogen:'Drogenkonsum', cat_schwanger:'Patientinnen: Sind Sie schwanger?',
+    hl_Herzschw:'Herzschwäche (Insuffizienz)', hl_Arr:'Unregelmäßiger Herzschlag (Arrhythmien)',
+    hl_Herzasthma:'Herzasthma, Angina pectoris', hl_Endokard:'Herzinnenhautentzündung (Endokarditis)',
+    hl_Schrittm:'Herzschrittmacher', hl_Herzklappe:'Herzklappenfehler, künstliche Herzklappe',
+    hl_Herzinfarkt:'Zustand nach Herzinfarkt, Herz-OP, Bypass', sub_Herzinfarkt:'Wenn ja, wann?',
+    hl_BDhoch:'Zu hoher Blutdruck', hl_BDniedrig:'Zu niedriger Blutdruck',
+    hl_Ohnmacht:'Ohnmachtsanfälle / Ohnmachtsneigung', hl_Schlaganfall:'Schlaganfall', sub_Schlaganfall:'Wenn ja, wann?',
+    hl_Diabetes:'Zuckerkrankheit (Diabetes)', hl_Magen:'Magen-Darm-Erkrankungen', hl_Schild:'Schilddrüsenerkrankungen',
+    hl_Epilepsie:'Epilepsie', hl_Krampfe:'Krämpfe',
+    hl_Hamoph:'Blutungsneigung (Hämophilie)', hl_Anamie:'Blutarmut (Anämie)',
+    hl_Tumor:'Tumorerkrankung vorhanden?', sub_TumorWelche:'Wenn ja, welche?',
+    hl_Hepatitis:'Leberentzündung (Hepatitis)', sub_HepTyp:'Wenn ja, welcher Typ?',
+    hl_TBC:'Tuberkulose', hl_HIV:'HIV', hl_MRSA:'MRSA', hl_Atemwege:'Chronische Atemwegserkrankung',
+    hl_AllergiAbx:'Allergie gegen Antibiotika / Penicillin',
+    hl_AllergiAndere:'Allergie gegen andere Medikamente oder Stoffe (z.B. Latex, Metalle)',
+    sub_AllergiWelche:'Wenn ja, gegen welche?',
+    hl_Medikamente:'Nehmen Sie zurzeit Medikamente ein?',
+    sub_Blutverd:'Blutverdünnende Medikamente (ASS, Marcumar, Heparin)',
+    sub_Bisphosph:'Bisphosphonate', sub_SonstigeMedi:'Sonstige Medikamente',
+    hl_Rauchen:'Rauchen Sie?', hl_Alkohol:'Besteht eine Alkoholabhängigkeit?',
+    hl_Schwanger:'Schwangerschaft', sub_SchwangerW:'Wenn ja, welche Woche?',
+    xray:'Wann wurden Sie zuletzt im Kopf-Kiefer-Zahnbereich geröntgt?',
+    hl_Knirschen:'Knirschen oder pressen Sie mit den Zähnen?',
+    hl_Zahnfleisch:'Haben Sie Zahnfleischprobleme? Zahnfleischbluten?',
+    hl_Mundgeruch:'Leiden Sie unter Mundgeruch?',
+    reminder:'Wie möchten Sie an Ihre nächste Kontrolluntersuchung erinnert werden?',
+    er_post:'Per Postkarte', er_email:'Per E-Mail', er_sms:'Per SMS',
+    datum:'Datum', unterschrift:'Unterschrift', unterschrift_hint:'(Name eintippen)',
+    confirm1:'Ich bestätige, dass ich den Anamnesebogen gelesen und alle Fragen verstanden habe. Ich versichere, die Angaben vollständig und inhaltlich richtig gemacht zu haben.',
+    confirm2:'Ich willige ein, dass meine personenbezogenen Daten ausschließlich zum Zweck meiner zahnärztlichen Behandlung gespeichert und verarbeitet werden dürfen.',
+    save:'Speichern', hint:'Nach dem Ausfüllen:', sub:'PDF wird auf diesem Gerät gespeichert',
+    modal_title:'PDF gespeichert!', modal_sub:'Das Formular wurde erfolgreich als PDF gespeichert.',
+    next:'✓ Nächster Patient', countdown:'Automatisches Zurücksetzen in',
+    err_standort:'Bitte wählen Sie eine Praxis aus.',
+    err_nachname:'Bitte Nachname eingeben.', err_vorname:'Bitte Vorname eingeben.',
+    err_dob:'Bitte Geburtsdatum eingeben.', err_street:'Bitte Adresse eingeben.',
+    err_plz:'Bitte PLZ eingeben.', err_ort:'Bitte Ort eingeben.',
+    err_mobil:'Bitte Mobilnummer eingeben.', err_email:'Bitte E-Mail eingeben.',
+    err_vers:'Bitte Versicherungsname eingeben.', err_sig:'Bitte Unterschrift eingeben.',
+    toast:'Bitte alle Pflichtfelder ausfüllen.'
+  },
+  en: {
+    badge:'OFFLINE KIOSK', standort:'Please select your practice',
+    sec1:'Patient Information', sec2:'Insurance Information',
+    sec3:'General Health Questions', sec4:'Oral Health Questions', sec5:'Confirmation & Signature',
+    anrede:'Salutation', frau:'Mrs', herr:'Mr', divers:'Other',
+    nachname:'Last name', vorname:'First name', dob:'Date of birth', pob:'Place of birth',
+    street:'Street and house number', plz:'Postal code', ort:'City', mobil:'Mobile phone', email:'E-Mail',
+    vers:'Name of insurance / health fund', verstyp:'Insurance type',
+    v_gesetz:'statutory insurance', v_privat:'private insurance', v_zusatz:'supplemental dental',
+    v_beihilfe:'Beihilfe (Govt. Benefit)', v_basistarif:'Basic rate', v_kvb:'KVB (Federal Railway)',
+    v_full:'Fillings', v_proph:'Prophylaxis', v_zahnersatz:'Dental prosthetics', v_kieferortho:'Orthodontics',
+    yn_yes:'YES', yn_no:'NO', back:'Home',
+    cat_herz:'Heart diseases', cat_kreislauf:'Circulatory and vascular diseases',
+    cat_stoff:'Metabolic diseases', cat_nerven:'Nervous system diseases',
+    cat_blut:'Blood diseases', cat_tumor:'Tumour diseases', cat_infekt:'Infectious diseases',
+    cat_allergie:'Allergies (intolerance, hypersensitivity)',
+    cat_medi:'Medication use', cat_drogen:'Substance use', cat_schwanger:'Patients: Are you pregnant?',
+    hl_Herzschw:'Heart failure (Insufficiency)', hl_Arr:'Irregular heartbeat (Arrhythmia)',
+    hl_Herzasthma:'Cardiac asthma, Angina pectoris', hl_Endokard:'Endocarditis',
+    hl_Schrittm:'Cardiac pacemaker', hl_Herzklappe:'Heart valve defect, artificial valve',
+    hl_Herzinfarkt:'History of heart attack, heart surgery, bypass', sub_Herzinfarkt:'If yes, when?',
+    hl_BDhoch:'High blood pressure', hl_BDniedrig:'Low blood pressure',
+    hl_Ohnmacht:'Fainting spells', hl_Schlaganfall:'Stroke', sub_Schlaganfall:'If yes, when?',
+    hl_Diabetes:'Diabetes', hl_Magen:'Gastrointestinal diseases', hl_Schild:'Thyroid diseases',
+    hl_Epilepsie:'Epilepsy', hl_Krampfe:'Cramps / Seizures',
+    hl_Hamoph:'Bleeding tendency (Haemophilia)', hl_Anamie:'Anaemia',
+    hl_Tumor:'Tumour present?', sub_TumorWelche:'If yes, which?',
+    hl_Hepatitis:'Hepatitis (liver inflammation)', sub_HepTyp:'If yes, which type?',
+    hl_TBC:'Tuberculosis', hl_HIV:'HIV', hl_MRSA:'MRSA', hl_Atemwege:'Chronic respiratory disease',
+    hl_AllergiAbx:'Allergy to antibiotics / Penicillin',
+    hl_AllergiAndere:'Allergy to other substances (e.g. latex, metals)',
+    sub_AllergiWelche:'If yes, which ones?',
+    hl_Medikamente:'Are you currently taking medication?',
+    sub_Blutverd:'Blood thinners (ASS, Marcumar, Heparin)',
+    sub_Bisphosph:'Bisphosphonates', sub_SonstigeMedi:'Other medications',
+    hl_Rauchen:'Do you smoke?', hl_Alkohol:'Do you have alcohol dependency?',
+    hl_Schwanger:'Pregnancy', sub_SchwangerW:'If yes, which week?',
+    xray:'When was your last head / jaw / dental X-ray?',
+    hl_Knirschen:'Do you grind or clench your teeth?',
+    hl_Zahnfleisch:'Do you have gum problems? Bleeding gums?',
+    hl_Mundgeruch:'Do you suffer from bad breath?',
+    reminder:'How would you like to be reminded of your next appointment?',
+    er_post:'By postcard', er_email:'By E-mail', er_sms:'By SMS',
+    datum:'Date', unterschrift:'Signature', unterschrift_hint:'(type your name)',
+    confirm1:'I confirm that I have read the form and answered all questions truthfully and completely.',
+    confirm2:'I agree that my personal data may be stored and processed exclusively for dental treatment purposes.',
+    save:'Save', hint:'After completing:', sub:'PDF will be saved on this device',
+    modal_title:'PDF Saved!', modal_sub:'The form has been successfully saved as a PDF.',
+    next:'✓ Next Patient', countdown:'Auto-reset in',
+    err_standort:'Please select a practice.',
+    err_nachname:'Please enter last name.', err_vorname:'Please enter first name.',
+    err_dob:'Please enter date of birth.', err_street:'Please enter address.',
+    err_plz:'Please enter postal code.', err_ort:'Please enter city.',
+    err_mobil:'Please enter mobile number.', err_email:'Please enter email.',
+    err_vers:'Please enter insurance name.', err_sig:'Please enter signature.',
+    toast:'Please fill in all required fields.'
+  },
+  vi: {
+    badge:'OFFLINE KIOSK', standort:'Vui lòng chọn phòng khám',
+    sec1:'Thông tin bệnh nhân', sec2:'Thông tin bảo hiểm',
+    sec3:'Câu hỏi sức khỏe chung', sec4:'Câu hỏi sức khỏe răng miệng', sec5:'Xác nhận & Chữ ký',
+    anrede:'Danh xưng', frau:'Bà', herr:'Ông', divers:'Khác',
+    nachname:'Họ', vorname:'Tên', dob:'Ngày sinh', pob:'Nơi sinh',
+    street:'Địa chỉ (đường, số nhà)', plz:'Mã bưu điện', ort:'Thành phố', mobil:'Điện thoại di động', email:'Email',
+    vers:'Tên công ty bảo hiểm / Quỹ y tế', verstyp:'Loại bảo hiểm',
+    v_gesetz:'Bảo hiểm nhà nước', v_privat:'Bảo hiểm tư nhân', v_zusatz:'Bảo hiểm răng bổ sung',
+    v_beihilfe:'Trợ cấp nhà nước (Beihilfe)', v_basistarif:'Tarif cơ bản', v_kvb:'KVB (Đường sắt LB)',
+    v_full:'Trám răng', v_proph:'Phòng ngừa', v_zahnersatz:'Răng giả', v_kieferortho:'Chỉnh nha',
+    yn_yes:'CÓ', yn_no:'KHÔNG', back:'Trang chủ',
+    cat_herz:'Bệnh tim', cat_kreislauf:'Bệnh tuần hoàn và mạch máu',
+    cat_stoff:'Rối loạn chuyển hóa', cat_nerven:'Bệnh thần kinh',
+    cat_blut:'Bệnh máu', cat_tumor:'Bệnh khối u / ung thư', cat_infekt:'Bệnh truyền nhiễm',
+    cat_allergie:'Dị ứng (không dung nạp, quá mẫn cảm)',
+    cat_medi:'Sử dụng thuốc', cat_drogen:'Sử dụng chất kích thích', cat_schwanger:'Bệnh nhân nữ: Bạn có đang mang thai?',
+    hl_Herzschw:'Suy tim', hl_Arr:'Nhịp tim không đều (Loạn nhịp)',
+    hl_Herzasthma:'Hen tim, đau thắt ngực', hl_Endokard:'Viêm nội tâm mạc',
+    hl_Schrittm:'Máy tạo nhịp tim', hl_Herzklappe:'Hở van tim, van tim nhân tạo',
+    hl_Herzinfarkt:'Tiền sử nhồi máu cơ tim, phẫu thuật tim, cầu nối', sub_Herzinfarkt:'Nếu có, khi nào?',
+    hl_BDhoch:'Huyết áp cao', hl_BDniedrig:'Huyết áp thấp',
+    hl_Ohnmacht:'Ngất xỉu', hl_Schlaganfall:'Đột quỵ', sub_Schlaganfall:'Nếu có, khi nào?',
+    hl_Diabetes:'Tiểu đường (Diabetes)', hl_Magen:'Bệnh tiêu hóa', hl_Schild:'Bệnh tuyến giáp',
+    hl_Epilepsie:'Động kinh', hl_Krampfe:'Co giật',
+    hl_Hamoph:'Rối loạn đông máu (Hämophilie)', hl_Anamie:'Thiếu máu',
+    hl_Tumor:'Có khối u không?', sub_TumorWelche:'Nếu có, loại nào?',
+    hl_Hepatitis:'Viêm gan (Hepatitis)', sub_HepTyp:'Nếu có, loại nào?',
+    hl_TBC:'Lao phổi (TBC)', hl_HIV:'HIV', hl_MRSA:'MRSA', hl_Atemwege:'Bệnh hô hấp mãn tính',
+    hl_AllergiAbx:'Dị ứng kháng sinh / Penicillin',
+    hl_AllergiAndere:'Dị ứng các chất khác (vd: Latex, kim loại)',
+    sub_AllergiWelche:'Nếu có, chất gì?',
+    hl_Medikamente:'Bạn hiện đang dùng thuốc không?',
+    sub_Blutverd:'Thuốc làm loãng máu (ASS, Marcumar, Heparin)',
+    sub_Bisphosph:'Bisphosphonate', sub_SonstigeMedi:'Thuốc khác',
+    hl_Rauchen:'Bạn có hút thuốc không?', hl_Alkohol:'Bạn có phụ thuộc vào rượu bia không?',
+    hl_Schwanger:'Đang mang thai', sub_SchwangerW:'Nếu có, tuần thứ mấy?',
+    xray:'Lần chụp X-quang vùng đầu / hàm / răng gần nhất là khi nào?',
+    hl_Knirschen:'Bạn có nghiến hoặc siết răng không?',
+    hl_Zahnfleisch:'Bạn có vấn đề về nướu không? Nướu chảy máu?',
+    hl_Mundgeruch:'Bạn có bị hôi miệng không?',
+    reminder:'Bạn muốn được nhắc lịch khám tiếp theo như thế nào?',
+    er_post:'Qua bưu thiếp', er_email:'Qua Email', er_sms:'Qua SMS',
+    datum:'Ngày', unterschrift:'Chữ ký', unterschrift_hint:'(nhập họ tên)',
+    confirm1:'Tôi xác nhận đã đọc và trả lời đầy đủ, trung thực tất cả câu hỏi trong phiếu khai báo.',
+    confirm2:'Tôi đồng ý cho phép lưu trữ và xử lý dữ liệu cá nhân cho mục đích điều trị nha khoa.',
+    save:'Lưu lại', hint:'Sau khi hoàn tất:', sub:'PDF sẽ được lưu trên thiết bị này',
+    modal_title:'Đã lưu PDF!', modal_sub:'Phiếu khai báo đã được lưu thành công dưới dạng PDF.',
+    next:'✓ Bệnh nhân tiếp theo', countdown:'Tự động đặt lại sau',
+    err_standort:'Vui lòng chọn phòng khám.',
+    err_nachname:'Vui lòng nhập họ.', err_vorname:'Vui lòng nhập tên.',
+    err_dob:'Vui lòng nhập ngày sinh.', err_street:'Vui lòng nhập địa chỉ.',
+    err_plz:'Vui lòng nhập mã bưu điện.', err_ort:'Vui lòng nhập thành phố.',
+    err_mobil:'Vui lòng nhập số điện thoại.', err_email:'Vui lòng nhập email.',
+    err_vers:'Vui lòng nhập tên bảo hiểm.', err_sig:'Vui lòng nhập chữ ký.',
+    toast:'Vui lòng điền đầy đủ thông tin bắt buộc.'
+  },
+  ru: {
+    badge:'ОФЛАЙН КИОСК', standort:'Пожалуйста, выберите клинику',
+    sec1:'Данные пациента', sec2:'Данные страхования',
+    sec3:'Вопросы о здоровье', sec4:'Вопросы о здоровье полости рта', sec5:'Подтверждение и подпись',
+    anrede:'Обращение', frau:'Госпожа', herr:'Господин', divers:'Другое',
+    nachname:'Фамилия', vorname:'Имя', dob:'Дата рождения', pob:'Место рождения',
+    street:'Улица и номер дома', plz:'Почтовый индекс', ort:'Город', mobil:'Мобильный телефон', email:'Эл. почта',
+    vers:'Название страховки / фонда здоровья', verstyp:'Тип страхования',
+    v_gesetz:'Государственное страхование', v_privat:'Частное страхование', v_zusatz:'Доп. стоматол. страхование',
+    v_beihilfe:'Беихильфе (Госпособие)', v_basistarif:'Базовый тариф', v_kvb:'KVB (Федеральные ж/д)',
+    v_full:'Пломбы', v_proph:'Профилактика', v_zahnersatz:'Протезирование', v_kieferortho:'Ортодонтия',
+    yn_yes:'ДА', yn_no:'НЕТ', back:'На главную',
+    cat_herz:'Заболевания сердца', cat_kreislauf:'Заболевания кровообращения и сосудов',
+    cat_stoff:'Нарушения обмена веществ', cat_nerven:'Заболевания нервной системы',
+    cat_blut:'Заболевания крови', cat_tumor:'Онкологические заболевания', cat_infekt:'Инфекционные заболевания',
+    cat_allergie:'Аллергии (непереносимость, гиперчувствительность)',
+    cat_medi:'Приём медикаментов', cat_drogen:'Употребление веществ', cat_schwanger:'Для женщин: Беременны ли Вы?',
+    hl_Herzschw:'Сердечная недостаточность', hl_Arr:'Нарушения сердечного ритма (аритмия)',
+    hl_Herzasthma:'Сердечная астма, стенокардия', hl_Endokard:'Эндокардит',
+    hl_Schrittm:'Кардиостимулятор', hl_Herzklappe:'Порок клапана сердца, протез клапана',
+    hl_Herzinfarkt:'Перенесённый инфаркт, операция на сердце, шунтирование', sub_Herzinfarkt:'Если да, когда?',
+    hl_BDhoch:'Высокое давление', hl_BDniedrig:'Низкое давление',
+    hl_Ohnmacht:'Обмороки', hl_Schlaganfall:'Инсульт', sub_Schlaganfall:'Если да, когда?',
+    hl_Diabetes:'Сахарный диабет', hl_Magen:'Заболевания ЖКТ', hl_Schild:'Заболевания щитовидной железы',
+    hl_Epilepsie:'Эпилепсия', hl_Krampfe:'Судороги',
+    hl_Hamoph:'Склонность к кровотечениям (гемофилия)', hl_Anamie:'Анемия',
+    hl_Tumor:'Онкологическое заболевание?', sub_TumorWelche:'Если да, какое?',
+    hl_Hepatitis:'Гепатит (воспаление печени)', sub_HepTyp:'Если да, какой тип?',
+    hl_TBC:'Туберкулёз', hl_HIV:'ВИЧ', hl_MRSA:'MRSA', hl_Atemwege:'Хронические заболевания дыхательных путей',
+    hl_AllergiAbx:'Аллергия на антибиотики / пенициллин',
+    hl_AllergiAndere:'Аллергия на другие вещества (напр. латекс, металлы)',
+    sub_AllergiWelche:'Если да, на что именно?',
+    hl_Medikamente:'Принимаете ли Вы сейчас медикаменты?',
+    sub_Blutverd:'Антикоагулянты (АСС, Маркумар, Гепарин)',
+    sub_Bisphosph:'Бисфосфонаты', sub_SonstigeMedi:'Другие медикаменты',
+    hl_Rauchen:'Вы курите?', hl_Alkohol:'Есть ли алкогольная зависимость?',
+    hl_Schwanger:'Беременность', sub_SchwangerW:'Если да, какая неделя?',
+    xray:'Когда последний раз делали рентген головы / челюсти / зубов?',
+    hl_Knirschen:'Вы скрипите или сжимаете зубы?',
+    hl_Zahnfleisch:'Есть ли проблемы с дёснами? Кровоточат ли дёсны?',
+    hl_Mundgeruch:'Страдаете ли Вы от неприятного запаха изо рта?',
+    reminder:'Как Вы хотите получать напоминание о следующем визите?',
+    er_post:'По открытке', er_email:'По электронной почте', er_sms:'По SMS',
+    datum:'Дата', unterschrift:'Подпись', unterschrift_hint:'(введите имя)',
+    confirm1:'Подтверждаю, что прочитал(а) анкету и ответил(а) на все вопросы честно и полностью.',
+    confirm2:'Соглашаюсь на хранение и обработку персональных данных исключительно в целях стоматологического лечения.',
+    save:'Сохранить', hint:'После заполнения:', sub:'PDF сохраняется на этом устройстве',
+    modal_title:'PDF сохранён!', modal_sub:'Форма успешно сохранена как PDF-файл.',
+    next:'✓ Следующий пациент', countdown:'Автосброс через',
+    err_standort:'Пожалуйста, выберите клинику.',
+    err_nachname:'Введите фамилию.', err_vorname:'Введите имя.',
+    err_dob:'Введите дату рождения.', err_street:'Введите адрес.',
+    err_plz:'Введите почтовый индекс.', err_ort:'Введите город.',
+    err_mobil:'Введите номер телефона.', err_email:'Введите эл. почту.',
+    err_vers:'Введите название страховки.', err_sig:'Введите подпись.',
+    toast:'Пожалуйста, заполните все обязательные поля.'
+  },
+  ar: {
+    badge:'كشك غير متصل', standort:'يرجى اختيار العيادة',
+    sec1:'بيانات المريض', sec2:'بيانات التأمين',
+    sec3:'أسئلة الصحة العامة', sec4:'أسئلة صحة الفم', sec5:'التأكيد والتوقيع',
+    anrede:'التحية', frau:'السيدة', herr:'السيد', divers:'أخرى',
+    nachname:'اللقب', vorname:'الاسم', dob:'تاريخ الميلاد', pob:'مكان الميلاد',
+    street:'الشارع ورقم المنزل', plz:'الرمز البريدي', ort:'المدينة', mobil:'الهاتف المحمول', email:'البريد الإلكتروني',
+    vers:'اسم شركة التأمين / صندوق الصحة', verstyp:'نوع التأمين',
+    v_gesetz:'تأمين حكومي', v_privat:'تأمين خاص', v_zusatz:'تأمين أسنان إضافي',
+    v_beihilfe:'إعانة حكومية', v_basistarif:'التعريفة الأساسية', v_kvb:'KVB (السكك الحديدية)',
+    v_full:'حشوات', v_proph:'الوقاية', v_zahnersatz:'تعويضات الأسنان', v_kieferortho:'تقويم الأسنان',
+    yn_yes:'نعم', yn_no:'لا', back:'الصفحة الرئيسية',
+    cat_herz:'أمراض القلب', cat_kreislauf:'أمراض الدورة الدموية والأوعية',
+    cat_stoff:'اضطرابات الأيض', cat_nerven:'أمراض الجهاز العصبي',
+    cat_blut:'أمراض الدم', cat_tumor:'الأمراض الورمية', cat_infekt:'الأمراض المعدية',
+    cat_allergie:'الحساسية (عدم التحمل، فرط الحساسية)',
+    cat_medi:'تناول الأدوية', cat_drogen:'تناول المواد', cat_schwanger:'للمريضات: هل أنت حامل؟',
+    hl_Herzschw:'قصور القلب', hl_Arr:'اضطراب نظم القلب',
+    hl_Herzasthma:'الربو القلبي، الذبحة الصدرية', hl_Endokard:'التهاب الشغاف',
+    hl_Schrittm:'جهاز تنظيم ضربات القلب', hl_Herzklappe:'عيب صمام القلب، صمام اصطناعي',
+    hl_Herzinfarkt:'احتشاء عضلة القلب، عملية جراحية، مجازة', sub_Herzinfarkt:'إذا نعم، متى؟',
+    hl_BDhoch:'ارتفاع ضغط الدم', hl_BDniedrig:'انخفاض ضغط الدم',
+    hl_Ohnmacht:'نوبات الإغماء', hl_Schlaganfall:'السكتة الدماغية', sub_Schlaganfall:'إذا نعم، متى؟',
+    hl_Diabetes:'مرض السكري', hl_Magen:'أمراض الجهاز الهضمي', hl_Schild:'أمراض الغدة الدرقية',
+    hl_Epilepsie:'الصرع', hl_Krampfe:'التشنجات',
+    hl_Hamoph:'الميل للنزيف (الهيموفيليا)', hl_Anamie:'فقر الدم',
+    hl_Tumor:'هل يوجد ورم؟', sub_TumorWelche:'إذا نعم، أي ورم؟',
+    hl_Hepatitis:'التهاب الكبد (هيباتيتس)', sub_HepTyp:'إذا نعم، أي نوع؟',
+    hl_TBC:'السل', hl_HIV:'فيروس نقص المناعة', hl_MRSA:'MRSA', hl_Atemwege:'أمراض الجهاز التنفسي المزمنة',
+    hl_AllergiAbx:'حساسية للمضادات الحيوية / البنسلين',
+    hl_AllergiAndere:'حساسية لمواد أخرى (مثل اللاتكس، المعادن)',
+    sub_AllergiWelche:'إذا نعم، ما هي؟',
+    hl_Medikamente:'هل تتناول أدوية حاليًا؟',
+    sub_Blutverd:'مضادات التخثر (ASS، Marcumar، Heparin)',
+    sub_Bisphosph:'البيسفوسفونات', sub_SonstigeMedi:'أدوية أخرى',
+    hl_Rauchen:'هل تدخن؟', hl_Alkohol:'هل تعاني من إدمان الكحول؟',
+    hl_Schwanger:'الحمل', sub_SchwangerW:'إذا نعم، أي أسبوع؟',
+    xray:'متى كان آخر تصوير بالأشعة السينية للرأس / الفك / الأسنان؟',
+    hl_Knirschen:'هل تصرف أسنانك أو تضغط عليها؟',
+    hl_Zahnfleisch:'هل لديك مشاكل في اللثة؟ نزيف اللثة؟',
+    hl_Mundgeruch:'هل تعاني من رائحة الفم الكريهة؟',
+    reminder:'كيف تريد أن يتم تذكيرك بموعدك القادم؟',
+    er_post:'بطاقة بريدية', er_email:'بريد إلكتروني', er_sms:'رسالة نصية',
+    datum:'التاريخ', unterschrift:'التوقيع', unterschrift_hint:'(اكتب اسمك)',
+    confirm1:'أؤكد أنني قرأت الاستمارة وأجبت على جميع الأسئلة بصدق وبشكل كامل.',
+    confirm2:'أوافق على تخزين ومعالجة بياناتي الشخصية لأغراض علاج الأسنان فقط.',
+    save:'حفظ', hint:'بعد الاكتمال:', sub:'سيتم حفظ PDF على هذا الجهاز',
+    modal_title:'تم حفظ PDF!', modal_sub:'تم حفظ الاستمارة بنجاح كملف PDF.',
+    next:'✓ المريض التالي', countdown:'إعادة تعيين تلقائية خلال',
+    err_standort:'يرجى اختيار العيادة.',
+    err_nachname:'يرجى إدخال اللقب.', err_vorname:'يرجى إدخال الاسم.',
+    err_dob:'يرجى إدخال تاريخ الميلاد.', err_street:'يرجى إدخال العنوان.',
+    err_plz:'يرجى إدخال الرمز البريدي.', err_ort:'يرجى إدخال المدينة.',
+    err_mobil:'يرجى إدخال رقم الهاتف.', err_email:'يرجى إدخال البريد الإلكتروني.',
+    err_vers:'يرجى إدخال اسم التأمين.', err_sig:'يرجى إدخال التوقيع.',
+    toast:'يرجى ملء جميع الحقول الإلزامية.'
+  }
+};
+
+const flagMap = { de:{src:'https://flagcdn.com/24x18/de.png',code:'DE'}, en:{src:'https://flagcdn.com/24x18/us.png',code:'EN'}, vi:{src:'https://flagcdn.com/24x18/vn.png',code:'VI'}, ru:{src:'https://flagcdn.com/24x18/ru.png',code:'RU'}, ar:{src:'https://flagcdn.com/24x18/sa.png',code:'AR'} };
+
+function changeLang(lang) {
+  const L = okLangs[lang] || okLangs.de;
+  const F = flagMap[lang] || flagMap.de;
+  document.getElementById('ok-flag').src = F.src;
+  document.getElementById('ok-lang-code').textContent = F.code;
+
+  // id → language key mapping
+  const textMap = {
+    'hdr-offline-label':'badge', 'lbl-standort':'standort',
+    'sec1-title':'sec1', 'sec2-title':'sec2', 'sec3-title':'sec3', 'sec4-title':'sec4', 'sec5-title':'sec5',
+    'lbl-anrede':'anrede', 'lbl-frau':'frau', 'lbl-herr':'herr', 'lbl-divers':'divers',
+    'lbl-nachname':'nachname', 'lbl-vorname':'vorname', 'lbl-dob':'dob', 'lbl-pob':'pob',
+    'lbl-street':'street', 'lbl-plz':'plz', 'lbl-ort':'ort', 'lbl-mobil':'mobil', 'lbl-email':'email',
+    'lbl-vers':'vers', 'lbl-verstyp':'verstyp',
+    'v-gesetz':'v_gesetz', 'v-privat':'v_privat', 'v-zusatz':'v_zusatz',
+    'v-beihilfe':'v_beihilfe', 'v-basistarif':'v_basistarif', 'v-kvb':'v_kvb',
+    'v-full':'v_full', 'v-proph':'v_proph', 'v-zahnersatz':'v_zahnersatz', 'v-kieferortho':'v_kieferortho',
+    'cat-herz':'cat_herz', 'cat-kreislauf':'cat_kreislauf', 'cat-stoff':'cat_stoff',
+    'cat-nerven':'cat_nerven', 'cat-blut':'cat_blut', 'cat-tumor':'cat_tumor',
+    'cat-infekt':'cat_infekt', 'cat-allergie':'cat_allergie',
+    'cat-medi':'cat_medi', 'cat-drogen':'cat_drogen', 'cat-schwanger':'cat_schwanger',
+    'hl-Herzschwäche':'hl_Herzschw', 'hl-Arrhythmien':'hl_Arr',
+    'hl-Herzasthma':'hl_Herzasthma', 'hl-Endokarditis':'hl_Endokard',
+    'hl-Herzschrittmacher':'hl_Schrittm', 'hl-Herzklappenfehler':'hl_Herzklappe',
+    'hl-Herzinfarkt':'hl_Herzinfarkt', 'sub-Herzinfarkt_Wann':'sub_Herzinfarkt',
+    'hl-Blutdruck_Hoch':'hl_BDhoch', 'hl-Blutdruck_Niedrig':'hl_BDniedrig',
+    'hl-Ohnmacht':'hl_Ohnmacht', 'hl-Schlaganfall':'hl_Schlaganfall', 'sub-Schlaganfall_Wann':'sub_Schlaganfall',
+    'hl-Diabetes':'hl_Diabetes', 'hl-Magen_Darm':'hl_Magen', 'hl-Schilddrüse':'hl_Schild',
+    'hl-Epilepsie':'hl_Epilepsie', 'hl-Krämpfe':'hl_Krampfe',
+    'hl-Hämophilie':'hl_Hamoph', 'hl-Anämie':'hl_Anamie',
+    'hl-Tumorerkrankungen':'hl_Tumor', 'sub-Tumor_Welche':'sub_TumorWelche',
+    'hl-Hepatitis':'hl_Hepatitis', 'sub-Hepatitis_Typ':'sub_HepTyp',
+    'hl-TBC':'hl_TBC', 'hl-HIV':'hl_HIV', 'hl-MRSA':'hl_MRSA', 'hl-Atemwege':'hl_Atemwege',
+    'hl-Allergie_Antibiotika':'hl_AllergiAbx', 'hl-Allergie_Andere':'hl_AllergiAndere',
+    'sub-Allergie_Welche':'sub_AllergiWelche',
+    'hl-Medikamente_Einnahme':'hl_Medikamente',
+    'sub-Blutverdünner':'sub_Blutverd', 'sub-Bisphosphonate':'sub_Bisphosph',
+    'sub-Sonstige_Medikamente':'sub_SonstigeMedi',
+    'hl-Rauchen':'hl_Rauchen', 'hl-Alkohol':'hl_Alkohol',
+    'hl-Schwanger':'hl_Schwanger', 'sub-Schwanger_Woche':'sub_SchwangerW',
+    'lbl-xray':'xray',
+    'hl-Knirschen':'hl_Knirschen', 'hl-Zahnfleisch':'hl_Zahnfleisch', 'hl-Mundgeruch':'hl_Mundgeruch',
+    'lbl-reminder':'reminder',
+    'er-post':'er_post', 'er-email':'er_email', 'er-sms':'er_sms',
+    'lbl-datum':'datum', 'lbl-unterschrift':'unterschrift', 'lbl-unterschrift-hint':'unterschrift_hint',
+    'confirm1-text':'confirm1', 'confirm2-text':'confirm2',
+    'save-bar-hint':'hint', 'save-bar-sub':'sub', 'save-btn-text':'save',
+    'modal-title':'modal_title', 'modal-sub':'modal_sub', 'ok-next-btn':'next',
+    'err-nachname':'err_nachname', 'err-vorname':'err_vorname',
+    'err-dob':'err_dob', 'err-street':'err_street', 'err-plz':'err_plz', 'err-ort':'err_ort',
+    'err-mobil':'err_mobil', 'err-email':'err_email',
+    'err-vers':'err_vers', 'err-unterschrift':'err_sig',
+    'ok-standort-error':'err_standort', 'ok-toast':'toast',
+    'back-btn-text':'back'
+  };
+
+  Object.entries(textMap).forEach(([id, key]) => {
+    const el = document.getElementById(id);
+    if (el && L[key] !== undefined) el.textContent = L[key];
+  });
+
+  // Translate JA/NEIN buttons
+  document.querySelectorAll('.ok-yn-btn[data-val="Ja"]').forEach(b => b.textContent = L.yn_yes || 'JA');
+  document.querySelectorAll('.ok-yn-btn[data-val="Nein"]').forEach(b => b.textContent = L.yn_no || 'NEIN');
+
+  document.getElementById('ok-countdown').innerHTML = L.countdown + ' <strong><span id="ok-timer">15</span>s</strong>';
+  document.documentElement.lang = lang;
+  document.getElementById('ok-lang-menu').classList.remove('show');
+  localStorage.setItem('okLang', lang);
+}
+
+/* ── Init ── */
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('ok-datum').value = new Date().toISOString().split('T')[0];
+  const saved = localStorage.getItem('okLang') || localStorage.getItem('preferredLanguage') || 'de';
+  changeLang(saved);
+
+  document.getElementById('ok-lang-btn').addEventListener('click', e => {
+    e.stopPropagation();
+    document.getElementById('ok-lang-menu').classList.toggle('show');
+  });
+  document.addEventListener('click', () => document.getElementById('ok-lang-menu').classList.remove('show'));
+
+  // Live validation
+  document.querySelectorAll('#okForm [required]:not([type="checkbox"])').forEach(el => {
+    el.addEventListener('blur', () => {
+      const fld = el.closest('.ok-field');
+      if (!el.value.trim()) { if (fld) fld.classList.add('has-error'); }
+      else { if (fld) fld.classList.remove('has-error'); }
+    });
+    el.addEventListener('input', () => {
+      if (el.value.trim()) { const fld = el.closest('.ok-field'); if (fld) fld.classList.remove('has-error'); }
+    });
+  });
+});
+</script>
+</body>
+</html>
